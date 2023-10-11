@@ -1,0 +1,103 @@
+.dropdown {
+    margin: 0 auto;
+    z-index: 100;
+    width: 280px;
+    position: relative;
+}
+
+.dropdown,
+.dropdown * {
+    z-index: 100;
+}
+
+.dropdown .dropdownBtn {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    padding-left: 12px;
+    background: white;
+    border-bottom: 1px solid gray;
+    color: #777;
+    padding-right: 12px;
+}
+
+.dropdownBtnActive {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    padding-left: 12px;
+    border-bottom: 1px solid gray;
+    color: black;
+    padding-right: 12px;
+}
+
+.dropdownContent {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: rgba(243, 243, 243, 0.93);
+    box-shadow: 0px 6px 15px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    margin-block: 1px;
+}
+
+.dropdownContent .item {
+    padding: 7px;
+    padding-left: 30px;
+    cursor: pointer;
+    text-align: start;
+}
+
+.dropdownContent .item:hover {
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(255, 101, 150, 1);
+}
+
+.dropdownContent .item:first-child:hover {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.dropdownContent .item:last-child:hover {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.dropdownBtn {
+    z-index: -1;
+    display: block;
+    width: 280px;
+    margin: 0 auto;
+}
+
+.iconArrowDown {
+    width: 18px;
+    height: 9px;
+    transform: rotate(0deg);
+}
+
+.iconArrowUp {
+    width: 18px;
+    height: 9px;
+    transform: rotate(180deg);
+}
+
+@media screen and (min-width: 767px) {
+
+    .dropdown,
+    .dropdownBtn,
+    .dropdownBtnActive {
+        width: 394px;
+    }
+
+    .dropdownContent .item {
+        padding: 5px;
+        padding-left: 20px;
+    }
+}
