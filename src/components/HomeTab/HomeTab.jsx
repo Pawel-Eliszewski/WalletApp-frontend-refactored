@@ -199,7 +199,12 @@ export const HomeTab = () => {
           onItemOffsetChange={handleItemOffset}
         />
       )}
-      <Button styles="--add" onClick={openModalAddTransaction} type="button" />
+      <Button
+        title="+"
+        styles="--add"
+        onClick={openModalAddTransaction}
+        type="button"
+      />
     </div>
   );
 };
