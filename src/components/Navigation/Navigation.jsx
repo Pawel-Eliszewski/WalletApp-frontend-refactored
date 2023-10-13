@@ -1,6 +1,6 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { useMediaQuery } from "@react-hook/media-query";
-import css from "./Navigation.module.css";
+import "./Navigation.scss";
 
 export const Navigation = () => {
   const location = useLocation();
@@ -16,20 +16,22 @@ export const Navigation = () => {
 
   return (
     <nav>
-      <ul className={css.nav}>
+      <ul className="nav">
         {navItems.map((item, index) => (
           <li key={index}>
-            <NavLink className={css.item} to={item.path}>
+            <NavLink className="nav__item" to={item.path}>
               <img
-                className={`${css.logo} ${
-                  location.pathname === item.path ? css["active-logo"] : ""
+                className={`nav__logo ${
+                  location.pathname === item.path ? "nav__logo--active" : ""
                 }`}
                 src={`/assets/${item.icon}`}
                 alt={item.label}
               />
               <p
-                className={`${css.description} ${
-                  location.pathname === item.path ? css.bold : ""
+                className={`nav__description ${
+                  location.pathname === item.path
+                    ? "nav__description--active"
+                    : ""
                 }`}
               >
                 {item.label}

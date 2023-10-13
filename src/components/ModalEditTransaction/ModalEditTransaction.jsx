@@ -7,8 +7,9 @@ import { selectTransactionId } from "../../redux/global/selectors";
 import { updateTransaction } from "../../redux/finance/operations";
 import { DropdownMenu } from "../DropdownMenu/DropdownMenu";
 import { Calendar } from "../Calendar/Calendar";
+import { Button } from "../Button/Button";
 import { fakeTransaction } from "../../utils/fakeData";
-import css from "./ModalEditTransaction.module.css";
+import "./ModalEditTransaction.scss";
 
 export const ModalEditTransaction = () => {
   const modalRef = useRef(null);
@@ -115,31 +116,39 @@ export const ModalEditTransaction = () => {
   };
 
   const incomeClass =
-    selectedOrFakeTransaction.type === "income" ? css.income : "";
+    selectedOrFakeTransaction.type === "income" ? "--income" : "";
   const expenseClass =
-    selectedOrFakeTransaction.type === "expense" ? css.expense : "";
+    selectedOrFakeTransaction.type === "expense" ? "--expense" : "";
 
   const backdropClass = isModalEditTransactionOpen
-    ? css.backdropEditIsOpen
-    : css.backdropEdit;
+    ? "backdropEditIsOpen"
+    : "backdropEdit";
 
   return (
     <div className={backdropClass} onClick={handleBackdropClick}>
-      <div className={css.container} ref={modalRef}>
-        <h2 className={css.title}>Edit transaction</h2>
-        <div className={css.switchContainer}>
-          <p className={incomeClass}>Income</p>
-          <p className={css.slash}>/</p>
-          <p className={expenseClass}>Expense</p>
+      <div className="modal-edit" ref={modalRef}>
+        <h2 className="modal-edit__title">Edit transaction</h2>
+        <div className="modal-edit__type-wrapper">
+          <span
+            className={`modal-edit__type-span modal-edit__type-span${incomeClass}`}
+          >
+            Income
+          </span>
+          <span className="modal-edit__type-slash">/</span>
+          <span
+            className={`modal-edit__type-span modal-edit__type-span${expenseClass}`}
+          >
+            Expense
+          </span>
         </div>
-        <form id="form" className={css.form} onSubmit={handleSubmit}>
+        <form id="form" className="modal-edit__form" onSubmit={handleSubmit}>
           {selectedOrFakeTransaction.type === "expense" ? (
             <DropdownMenu
               category={selectedOrFakeTransaction.category}
               onClick={handleUpdatedCategory}
             />
           ) : null}
-          <div className={css.formInnerBox}>
+          <div className="modal-edit__form-wrapper">
             <input
               id="amount"
               name="amount"
@@ -148,7 +157,7 @@ export const ModalEditTransaction = () => {
               onInput={(e) => {
                 e.target.value = e.target.value.replace(/[^0-9,\\.]/g, "");
               }}
-              className={css.money}
+              className="modal-edit__form-amount"
               placeholder={selectedOrFakeTransaction.amount.toFixed(2) || ""}
             ></input>
             <Calendar
@@ -160,16 +169,17 @@ export const ModalEditTransaction = () => {
           <textarea
             id="textarea"
             name="comment"
-            className={css.comment}
+            className="modal-edit__form-comment"
             placeholder={selectedOrFakeTransaction.comment}
           ></textarea>
-          <button type="submit" className={css.btnGreen}>
-            SAVE
-          </button>
+          <Button title="Save" styles="--submit" type="submit" />
         </form>
-        <button onClick={handleModalClose} className={css.btnCancel}>
-          CANCEL
-        </button>
+        <Button
+          title="Cancel"
+          styles="--cancel"
+          onClick={handleModalClose}
+          type="button"
+        />
       </div>
     </div>
   );

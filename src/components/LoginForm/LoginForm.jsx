@@ -1,87 +1,87 @@
-import {Link} from "react-router-dom";
-import {Formik, Form, Field, ErrorMessage} from "formik";
-import {useDispatch} from "react-redux";
-import {login} from "../../redux/session/operations";
-import {loginValidationSchema} from "../../utils/yupValidationSchema";
-import styles from "./LoginForm.module.css";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/session/operations";
+import { Logo } from "../Logo/Logo";
+import { Button } from "../Button/Button";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { loginValidationSchema } from "../../utils/yupValidationSchema";
+import "./LoginForm.scss";
 
-const LoginForm = () => {
-    const dispatch = useDispatch();
-    const initialValues = {
-        email: "",
-        password: "",
+export const LoginForm = () => {
+  const dispatch = useDispatch();
+  const initialValues = {
+    email: "",
+    password: "",
+  };
+
+  const handleSubmit = async (values) => {
+    const formData = {
+      email: values.email,
+      password: values.password,
     };
+    dispatch(login(formData));
+  };
 
-    const handleSubmit = async (values) => {
-        const formData = {
-            email: values.email,
-            password: values.password,
-        };
-        dispatch(login(formData));
-    };
-
-    return (
-        <div className={styles.login}>
-            <div className={styles.login__header}>
-                <img src="/assets/icon-wallet-small.svg" alt="Wallet"/>
-                <h2 className={styles.h2}>Wallet</h2>
+  return (
+    <div className="login-form">
+      <Logo />
+      <Formik
+        initialValues={initialValues}
+        validationSchema={loginValidationSchema}
+        onSubmit={handleSubmit}
+      >
+        {() => (
+          <Form className="login-form__form">
+            <div className="login-form__form-box">
+              <img
+                className="login-form__form-icon"
+                src="/assets/icon-email.svg"
+                alt="email"
+              />
+              <Field
+                className="login-form__form-input"
+                type="email"
+                name="email"
+                placeholder="E-mail"
+                autoComplete="email"
+              />
+              <ErrorMessage
+                name="email"
+                component="div"
+                className="login-form__form-error"
+              />
             </div>
-            <Formik
-                initialValues={initialValues}
-                validationSchema={loginValidationSchema}
-                onSubmit={handleSubmit}
-            >
-                {() => (
-                    <Form className={styles.login__form}>
-                        <div className={styles.field}>
-                            <img
-                                className={styles.email}
-                                src="/assets/icon-email.svg"
-                                alt="email"
-                            />
-                            <Field
-                                className={styles.login__field}
-                                type="email"
-                                name="email"
-                                placeholder="E-mail"
-                                autoComplete="email"
-                            />
-                            <ErrorMessage
-                                name="email"
-                                component="div"
-                                className={styles.error}
-                            />
-                        </div>
-                        <div className={styles.field}>
-                            <img
-                                className={styles.fieldimg}
-                                src="/assets/icon-lock.svg"
-                                alt="lock"
-                            />
-                            <Field
-                                className={styles.login__field}
-                                type="password"
-                                name="password"
-                                placeholder="Password"
-                                autoComplete="current-password"
-                            />
-                            <ErrorMessage
-                                name="password"
-                                component="div"
-                                className={styles.error}
-                            />
-                        </div>
-                        <button className={styles.login__signin} type="submit">
-                            LOG IN
-                        </button>
-                        <Link to="/register">
-                            <button className={styles.login__signup}>REGISTER</button>
-                        </Link>
-                    </Form>
-                )}
-            </Formik>
-        </div>
-    );
+            <div className="login-form__form-box">
+              <img
+                className="login-form__form-icon"
+                src="/assets/icon-lock.svg"
+                alt="lock"
+              />
+              <Field
+                className="login-form__form-input"
+                type="password"
+                name="password"
+                placeholder="Password"
+                autoComplete="current-password"
+              />
+              <ErrorMessage
+                name="password"
+                component="div"
+                className="login-form__form-error"
+              />
+            </div>
+            <Button
+              title="Log in"
+              styles="--submit"
+              onClick={handleSubmit}
+              type="submit"
+            />
+            <Link to="/register">
+              <Button title="Register" styles="--cancel" type="button" />
+            </Link>
+          </Form>
+        )}
+      </Formik>
+    </div>
+  );
 };
-
-export default LoginForm;

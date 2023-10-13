@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import ReactPaginate from "react-paginate";
-import css from "./Pagination.module.css";
+import "./Pagination.scss";
 
 export const Pagination = ({ pageCount, setItemOffset }) => {
   const handlePageClick = (event) => {
@@ -9,20 +9,21 @@ export const Pagination = ({ pageCount, setItemOffset }) => {
 
   return (
     <>
-      {" "}
       <ReactPaginate
         breakLabel="..."
         onPageChange={handlePageClick}
-        pageRangeDisplayed={3}
+        pageRangeDisplayed={2}
+        marginPagesDisplayed={2}
         pageCount={pageCount}
-        previousLabel={" ← "}
-        nextLabel={" → "}
+        previousLabel={"←"}
+        nextLabel={"→"}
         renderOnZeroPageCount={null}
-        containerClassName={css.pagination}
-        previousLinkClassName={css.paginationLink}
-        nextLinkClassName={css.paginationLink}
-        disabledClassName={css.paginationLinkDisabled}
-        activeClassName={css.paginationLinkActive}
+        containerClassName="pagination"
+        pageClassName="pagination__link"
+        previousClassName="pagination__link"
+        nextClassName="pagination__link"
+        disabledClassName="pagination__link--disabled"
+        activeClassName="pagination__link--active"
       />
     </>
   );

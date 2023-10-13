@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import { useMedia } from "react-use";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import { useMedia } from "react-use";
 import {
+  setIsModalAddTransactionOpen,
   setIsModalEditTransactionOpen,
   setTransactionId,
 } from "../../redux/global/globalSlice";
@@ -11,22 +12,19 @@ import {
   deleteTransaction,
 } from "../../redux/finance/operations";
 import { selectUser } from "../../redux/session/selectors";
-import { selectTransactions } from "../../redux/finance/selectors";
 import { Pagination } from "../Pagination/Pagination";
-import { ButtonAddTransaction } from "../ButtonAddTransaction/ButtonAddTransaction";
+import { Button } from "../Button/Button";
 import { Balance } from "../Balance/Balance";
 import { paginateTransactions } from "../../utils/pagination";
 import { nanoid } from "nanoid";
 import styles from "./HomeTab.module.css";
 
 export const HomeTab = () => {
-  const isMobile = useMedia("(max-width: 767px)");
-  const [itemOffset, setItemOffset] = useState(1);
-
   const dispatch = useDispatch();
-
   const user = useSelector(selectUser);
-  const data = useSelector(selectTransactions);
+
+  const isMobile = useMedia("(max-width: 767px)");
+  const [itemOffset, setItemOffset] = useState(0);
 
   let paginationData = paginateTransactions(itemOffset);
   let transactions = paginationData.paginatedTransactions;
@@ -34,7 +32,7 @@ export const HomeTab = () => {
 
   useEffect(() => {
     dispatch(fetchTransactions(user.id));
-  }, []);
+  }, [dispatch, user.id]);
 
   const handleItemOffset = (event) => {
     setItemOffset(event);
@@ -52,6 +50,11 @@ export const HomeTab = () => {
     return `${day}.${month}.${year}`;
   }
 
+  const openModalAddTransaction = () => {
+    dispatch(setIsModalAddTransactionOpen(true));
+    document.body.style.overflow = "hidden";
+  };
+
   const openModalEditTransaction = (_id) => {
     dispatch(setTransactionId(_id));
     dispatch(setIsModalEditTransactionOpen(true));
@@ -64,7 +67,6 @@ export const HomeTab = () => {
 
   return (
     <div className={styles.homeWrapper}>
-      <ButtonAddTransaction />
       {isMobile && <Balance />}
       <table className={styles.tableWrapper}>
         {!isMobile && (
@@ -120,12 +122,12 @@ export const HomeTab = () => {
                             src={"/assets/icon-pen.svg"}
                           />
                         </button>
-                        <button
+                        <Button
+                          title="Delete"
                           onClick={() => handleDelete(_id)}
-                          className={styles.dataItemBtnDelete}
-                        >
-                          Delete
-                        </button>
+                          styles="--delete"
+                          type="button"
+                        />
                       </div>
                     </td>
                   </tr>
@@ -167,12 +169,12 @@ export const HomeTab = () => {
                   </span>
                 </li>
                 <div className={styles.buttonsWrapperMob}>
-                  <button
+                  <Button
+                    title="Delete"
                     onClick={() => handleDelete(_id)}
-                    className={styles.dataItemBtnDelete}
-                  >
-                    Delete
-                  </button>
+                    styles="--delete"
+                    type="button"
+                  />
                   <button
                     onClick={() => openModalEditTransaction(_id)}
                     className={styles.dataItemBtnEdit}
@@ -193,6 +195,7 @@ export const HomeTab = () => {
       {pageCount > 1 && (
         <Pagination pageCount={pageCount} setItemOffset={handleItemOffset} />
       )}
+      <Button styles="--add" onClick={openModalAddTransaction} type="button" />
     </div>
   );
 };

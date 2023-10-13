@@ -1,17 +1,17 @@
 import { useSelector } from "react-redux";
 import { selectBalance } from "../../redux/finance/selectors";
-import styles from "./Balance.module.css";
+import "./Balance.scss";
 
-export function Balance() {
+export const Balance = () => {
   const balance = useSelector(selectBalance);
 
   return (
-    <div className={styles.balance}>
-      <div className={styles.balance__text}>Your balance</div>
-      <div className={styles.balance__amount}>
-        <span className={styles.balance__currency}></span>
+    <div className="balance">
+      <div className="balance__title">Your balance</div>
+      <div className="balance__amount-wrapper">
+        <span className="balance__amount"></span>
         {balance.toFixed(2)} PLN
       </div>
     </div>
   );
-}
+};

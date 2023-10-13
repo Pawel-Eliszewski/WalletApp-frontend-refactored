@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchCurrency } from "../../utils/currencyExchange";
 import { nanoid } from "nanoid";
-import s from "./Currency.module.css";
+import "./Currency.scss";
 
 export function Currency() {
   const [currencyData, setCurrencyData] = useState([]);
@@ -51,30 +51,29 @@ export function Currency() {
   };
 
   return (
-    <div className={s.currency_sidebar}>
-      <table className={s.currency_table}>
-        <thead className={s.currency_head}>
-          <tr key={nanoid()} className={s.currency_head_row}>
-            <th className={s.currency_header}>Currency</th>
-            <th className={s.currency_header}>Purchase</th>
-            <th className={s.currency_header}>Sale</th>
+    <div className="currency">
+      <table className="currency__table">
+        <thead className="currency__head">
+          <tr key={nanoid()} className="currency__head-row">
+            <th className="currency__header">Currency</th>
+            <th className="currency__header">Purchase</th>
+            <th className="currency__header">Sale</th>
           </tr>
         </thead>
-        <tbody className={s.currency_body}>
+        <tbody className="currency__body">
           {currencyData.map((element) => (
-            <tr key={nanoid()} className={s.currency_row}>
-              <td className={s.currency_item}>{element.currency}</td>
-              <td className={s.currency_item}>
+            <tr key={nanoid()} className="currency__body-row">
+              <td className="currency__item">{element.currency}</td>
+              <td className="currency__item">
                 {Math.floor(element.buy * 100) / 100}
               </td>
-              <td className={s.currency_item}>
+              <td className="currency__item">
                 {Math.floor(element.sale * 100) / 100}
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <div className={s.currency_bg}></div>
     </div>
   );
 }

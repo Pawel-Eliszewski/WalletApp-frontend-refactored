@@ -184,21 +184,9 @@ li.dataItemMob {
   background: none;
 }
 
-.dataItemBtnDelete {
-  background-color: var(--primary-income-color);
-  font-size: 12px;
-  width: 67px;
-  height: 26px;
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-  color: white;
-  transition: 300ms;
-}
-
 .dataItemBtnDelete:focus,
 .dataItemBtnDelete:hover {
-  background-color: var(--btn-green-hover);
+  background-color: var(--btn-submit-hover);
 }
 
 .buttonsWrapperMob {

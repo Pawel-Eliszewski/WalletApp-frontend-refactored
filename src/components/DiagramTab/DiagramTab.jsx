@@ -8,9 +8,9 @@ import { DropdownSelectYear } from "../DropdownSelect/DropdownSelect";
 import { DropdownSelectMonth } from "../DropdownSelect/DropdownSelect";
 import { assignColorsToTransactions } from "../../utils/assignColorsToTransactions";
 import "chart.js/auto";
-import styles from "./DiagramTab.module.css";
+import "./DiagramTab.scss";
 
-export function DiagramTab() {
+export const DiagramTab = () => {
   const dispatch = useDispatch();
 
   const user = useSelector(selectUser);
@@ -149,7 +149,7 @@ export function DiagramTab() {
 
     const categorySum = {};
     expenseTransactionsAll.forEach((transaction) => {
-      const { _id, category, amount } = transaction;
+      const { category, amount } = transaction;
 
       if (categorySum[category]) {
         categorySum[category].amount += amount;
@@ -191,12 +191,11 @@ export function DiagramTab() {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.chart__container}>
-        <h2 className={styles.statistics__header}>Statistics</h2>
-
-        <div className={styles.doughnut}>
-          <span className={styles.diagram__balance}>
+    <div className="diagram">
+      <div className="diagram__doughnut">
+        <h2 className="diagram__doughnut-title">Statistics</h2>
+        <div className="diagram__doughnut-wrapper">
+          <span className="diagram__doughnut-balance">
             {difference.toFixed(2)} PLN
           </span>
           <Doughnut
@@ -215,16 +214,17 @@ export function DiagramTab() {
           />
         </div>
       </div>
-      <div className={styles.tablet__container}>
-        <div className={styles.selectContainer}>
-          <label className={styles.select__month}>
+
+      <div className="diagram__dropdown">
+        <div className="diagram__dropdown-wrapper">
+          <label className="diagram__dropdown-label diagram__dropdown-label--month">
             <DropdownSelectMonth
               selectedYear={selectedYear}
               selectedMonth={selectedMonth}
               onSelect={handleMonthSelect}
             />
           </label>
-          <label className={styles.select__year}>
+          <label className="diagram__dropdown-label diagram__dropdown-label--year">
             <DropdownSelectYear
               selectedYear={selectedYear}
               onSelect={handleYearSelect}
@@ -232,49 +232,54 @@ export function DiagramTab() {
           </label>
         </div>
 
-        <ul className={styles.listNames}>
-          <li className={styles.nameElement}>Category</li>
-          <li className={styles.nameElement}>Amount</li>
-        </ul>
-
-        <ul className={styles.listTransaction}>
-          {coloredTransactions?.length > 0 ? (
-            coloredTransactions.map(({ _id, category, amount, color }) => (
-              <li key={_id} className={styles.elementTransaction}>
-                <div
-                  className={styles.icon}
-                  style={{
-                    backgroundColor: `${color}`,
-                  }}
-                ></div>
-                <div className={styles.category}>{category}</div>
-                <div className={styles.amount}>{amount.toFixed(2)} PLN</div>
+        <div className="diagram__legend">
+          <ul className="diagram__legend-headers">
+            <li className="diagram__legend-header">Category</li>
+            <li className="diagram__legend-header">Sum</li>
+          </ul>
+          <ul className="diagram__legend-list">
+            {coloredTransactions?.length > 0 ? (
+              coloredTransactions.map(({ _id, category, amount, color }) => (
+                <li key={_id} className="diagram__legend-item">
+                  <div
+                    className="diagram__legend-icon"
+                    style={{
+                      backgroundColor: `${color}`,
+                    }}
+                  ></div>
+                  <p className="diagram__legend-category">{category}</p>
+                  <p className="diagram__legend-amount">
+                    {amount.toFixed(2)} PLN
+                  </p>
+                </li>
+              ))
+            ) : (
+              <li className="diagram__legend-item">
+                <p className="diagram__legend-category">
+                  No expense transactions found
+                </p>
               </li>
-            ))
-          ) : (
-            <li className={styles.elementTransaction}>
-              <div className={styles.category}>
-                <p>No expense transactions found</p>
-              </div>
-            </li>
-          )}
-        </ul>
+            )}
+          </ul>
+        </div>
 
-        <ul className={styles.listAll}>
-          <li className={styles.elementListAll}>
-            <div className={styles.elementAllText}>Expenses:</div>
-            <div className={styles.elementAllExpenses}>
-              {expenseSum.toFixed(2)} PLN
-            </div>
-          </li>
-          <li className={styles.elementListAll}>
-            <div className={styles.elementAllText}>Income:</div>
-            <div className={styles.elementAllIncome}>
-              {incomeSum.toFixed(2)} PLN
-            </div>
-          </li>
-        </ul>
+        <div className="diagram__summary">
+          <ul className="diagram__summary-list">
+            <li className="diagram__summary-item">
+              <p className="diagram__summary-type">Expenses:</p>
+              <p className="diagram__summary-type diagram__summary-type--expense">
+                {expenseSum.toFixed(2)} PLN
+              </p>
+            </li>
+            <li className="diagram__summary-item">
+              <p className="diagram__summary-type">Income:</p>
+              <p className="diagram__summary-type diagram__summary-type--income">
+                {incomeSum.toFixed(2)} PLN
+              </p>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );
-}
+};

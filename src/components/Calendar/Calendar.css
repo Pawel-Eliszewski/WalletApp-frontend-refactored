@@ -9,9 +9,7 @@
     padding: 4px;
     margin-top: 1px;
     z-index: 100;
-    background: #fff;
     box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
-    border: 1px solid #f9f9f9;
 }
 
 .rdtOpen .rdtPicker {
@@ -44,7 +42,7 @@
 
 .rdtPicker td.rdtOld,
 .rdtPicker td.rdtNew {
-    color: #999999;
+    color: var(--primary-gray-font-color);
 }
 
 .rdtPicker td.rdtToday {
@@ -52,24 +50,24 @@
 }
 
 .rdtPicker td.rdtActive.rdtToday:before {
-    border-bottom-color: #fff;
+    border-bottom-color: var(--primary-background-color);
 }
 
 .rdtPicker td.rdtDisabled,
 .rdtPicker td.rdtDisabled:hover {
     background: none;
-    color: #999999;
+    color: var(--primary-gray-font-color);
     cursor: not-allowed;
 }
 
 .rdtPicker td span.rdtOld {
-    color: #999999;
+    color: var(--primary-gray-font-color);
 }
 
 .rdtPicker td span.rdtDisabled,
 .rdtPicker td span.rdtDisabled:hover {
     background: none;
-    color: #999999;
+    color: var(--primary-gray-font-color);
     cursor: not-allowed;
 }
 
@@ -112,7 +110,7 @@
 .rdtPicker th.rdtDisabled,
 .rdtPicker th.rdtDisabled:hover {
     background: none;
-    color: #999999;
+    color: var(--primary-gray-font-color);
     cursor: not-allowed;
 }
 
@@ -125,7 +123,7 @@
 }
 
 .rdtPicker tfoot {
-    border-top: 1px solid #f9f9f9;
+    border-top: 1px solid rgb(249, 249, 249);
 }
 
 .rdtPicker button {
@@ -135,7 +133,7 @@
 }
 
 .rdtPicker button:hover {
-    background-color: #eee;
+    background-color: var(--primary-background-color);
 }
 
 .rdtPicker thead button {
@@ -152,7 +150,7 @@ td.rdtYear {
 
 td.rdtMonth:hover,
 td.rdtYear:hover {
-    background: #eee;
+    background: var(--primary-background-color);
 }
 
 .calendarBox {
@@ -163,7 +161,7 @@ td.rdtYear:hover {
     width: 280px;
     padding-right: 12px;
     padding-bottom: 5px;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid var(--primary-gray-font-color);
 }
 
 .calendar input {
@@ -207,7 +205,7 @@ td.rdtYear:hover {
     content: '';
     display: inline-block;
     border-left: 7px solid transparent;
-    border-bottom: 7px solid white;
+    border-bottom: 7px solid var(--primary-background-color);
     border-top-color: rgba(0, 0, 0, 0.2);
     position: absolute;
     bottom: 4px;
@@ -218,7 +216,7 @@ td.rdtYear:hover {
 .calendar .rdtToday,
 .calendar .rdtActive {
     background-color: var(--primary-expense-color);
-    color: white;
+    color: var(--primary-background-color);
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 

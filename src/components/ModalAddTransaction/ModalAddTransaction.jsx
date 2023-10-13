@@ -7,8 +7,9 @@ import { addTransaction } from "../../redux/finance/operations";
 import { Calendar } from "../Calendar/Calendar";
 import { CustomizedMuiSwitch } from "./CustomizedMuiSwitch/CustomizedMuiSwitch";
 import { DropdownMenu } from "../DropdownMenu/DropdownMenu";
+import { Button } from "../Button/Button";
 import { Notify } from "notiflix";
-import css from "./ModalAddTransaction.module.css";
+import "./ModalAddTransaction.scss";
 
 export const ModalAddTransaction = () => {
   const modalRef = useRef(null);
@@ -132,33 +133,41 @@ export const ModalAddTransaction = () => {
     }
   };
 
-  const incomeClass = transactionType === "income" ? css.income : "";
-  const expenseClass = transactionType === "expense" ? css.expense : "";
+  const incomeClass = transactionType === "income" ? "--income" : "";
+  const expenseClass = transactionType === "expense" ? "--expense" : "";
 
   const backdropClass = isModalAddTransactionOpen
-    ? css.backdropIsOpen
-    : css.backdrop;
+    ? "backdropIsOpen"
+    : "backdrop";
 
   return (
     <div className={backdropClass} onClick={handleBackdropClick}>
-      <div className={css.container} ref={modalRef}>
-        <h2 className={css.title}>Add transaction</h2>
-        <div className={css.switchContainer}>
-          <p className={incomeClass}>Income</p>
+      <div className="modal-add" ref={modalRef}>
+        <h2 className="modal-add__title">Add transaction</h2>
+        <div className="modal-add__switch-wrapper">
+          <span
+            className={`modal-add__switch-span modal-add__switch-span${incomeClass}`}
+          >
+            Income
+          </span>
           <CustomizedMuiSwitch
             onChange={handleTransactionTypeChange}
             transactionType={transactionType}
           />
-          <p className={expenseClass}>Expense</p>
+          <span
+            className={`modal-add__switch-span modal-add__switch-span${expenseClass}`}
+          >
+            Expense
+          </span>
         </div>
-        <form id="form" className={css.form} onSubmit={handleSubmit}>
+        <form id="form" className="modal-add__form" onSubmit={handleSubmit}>
           {transactionType === "expense" ? (
             <DropdownMenu
               category={transactionCategory}
               onClick={handleTransactionCategoryChange}
             />
           ) : null}
-          <div className={css.formInnerBox}>
+          <div className="modal-add__form-wrapper">
             <input
               name="amount"
               type="text"
@@ -166,7 +175,7 @@ export const ModalAddTransaction = () => {
               onInput={(e) => {
                 e.target.value = e.target.value.replace(/[^0-9,\\.]/g, "");
               }}
-              className={css.money}
+              className="modal-add__form-amount"
               placeholder="0.00"
             ></input>
             <Calendar
@@ -177,16 +186,17 @@ export const ModalAddTransaction = () => {
           </div>
           <textarea
             name="comment"
-            className={css.comment}
+            className="modal-add__form-comment"
             placeholder="Comment"
           ></textarea>
-          <button type="submit" className={css.btnGreen}>
-            ADD
-          </button>
+          <Button title="Add" styles="--submit" type="submit" />
         </form>
-        <button onClick={handleModalClose} className={css.btnCancel}>
-          CANCEL
-        </button>
+        <Button
+          title="Cancel"
+          styles="--cancel"
+          onClick={handleModalClose}
+          type="button"
+        />
       </div>
     </div>
   );

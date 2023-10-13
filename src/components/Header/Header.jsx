@@ -1,8 +1,9 @@
-import css from "./Header.module.css";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { setIsModalLogoutOpen } from "../../redux/global/globalSlice";
 import { selectUser } from "../../redux/session/selectors";
+import { Logo } from "../Logo/Logo";
+import "./Header.scss";
 
 export const Header = () => {
   const dispatch = useDispatch();
@@ -14,18 +15,13 @@ export const Header = () => {
   };
 
   return (
-    <div className={css.wrapper}>
-      <div className={css.header}>
-        <div className={css.logoWrapper}>
-          <img className={css.logo} src="/assets/icon-wallet.png" />
-          <img className={css.appName} src="/assets/icon-wallet-text.png" />
-        </div>
-        <div className={css.nav}>
-          <p className={css.userName}>{user.email}</p>
-          <div className={css.boxExit} onClick={handleOpenModalLogout}>
-            <img className={css.iconExit} src="/assets/icon-exit-doors.svg" />
-            <p className={css.textExit}>Exit</p>
-          </div>
+    <div className="header">
+      <Logo />
+      <div className="header__nav">
+        <p className="header__nav-user">{user.email}</p>
+        <div className="header__nav-logout" onClick={handleOpenModalLogout}>
+          <img className="header__nav-icon" src="/assets/icon-exit-doors.svg" />
+          <p className="header__nav-text">Exit</p>
         </div>
       </div>
     </div>
