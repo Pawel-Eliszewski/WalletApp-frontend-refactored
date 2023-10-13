@@ -12,16 +12,6 @@ export const ModalLogout = () => {
 
   const isModalLogoutOpen = useSelector(selectIsModalLogoutOpen);
 
-  const handleLogout = () => {
-    dispatch(logout());
-    dispatch(setIsModalLogoutOpen(false));
-  };
-
-  const handleModalClose = () => {
-    dispatch(setIsModalLogoutOpen(false));
-    document.body.style.overflow = "unset";
-  };
-
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
@@ -33,7 +23,17 @@ export const ModalLogout = () => {
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [dispatch]);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    dispatch(setIsModalLogoutOpen(false));
+  };
+
+  const handleModalClose = () => {
+    dispatch(setIsModalLogoutOpen(false));
+    document.body.style.overflow = "unset";
+  };
 
   const handleBackdropClick = (event) => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {

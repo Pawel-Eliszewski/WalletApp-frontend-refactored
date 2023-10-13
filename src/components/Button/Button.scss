@@ -36,7 +36,6 @@
 
     &--delete {
         text-transform: none;
-        font-family: "Circe" sans-serif;
         font-size: 12px;
         line-height: 21px;
         letter-spacing: 0em;
@@ -72,13 +71,13 @@
     }
 
     &--add {
-        font-family: "Robot";
+        font-family: "Roboto";
         letter-spacing: 0;
         width: 44px;
         height: 44px;
         position: fixed;
-        bottom: 30px;
-        right: 30px;
+        bottom: 20px;
+        right: 20px;
         font-size: 38px;
         line-height: 1.2;
         border-radius: 50%;
@@ -86,13 +85,38 @@
         margin-bottom: 0;
 
         @media screen and (min-width: 768px) {
-            bottom: 44px;
-            right: 44px;
+            bottom: 40px;
+            right: 40px;
         }
 
         &:hover,
         &:focus {
             box-shadow: 0px 6px 15px 0px rgba(36, 204, 167, 0.5);
+        }
+    }
+
+    &--edit {
+        width: 14px;
+        height: 14px;
+    }
+
+    &--edit-mobile {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 52px;
+        height: 18px;
+        font-size: 14px;
+        text-transform: none;
+    }
+
+    &--edit,
+    &--edit-mobile {
+        background: none;
+
+        &::before {
+            height: 23px;
+            content: url("/assets/icon-pen.svg");
         }
     }
 }

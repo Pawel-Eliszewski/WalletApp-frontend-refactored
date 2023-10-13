@@ -1,0 +1,224 @@
+// mobile max-width 767px
+
+.home {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 380px;
+  }
+}
+
+.mobile-table {
+  width: 100%;
+
+  &__list {
+    list-style: none;
+    width: 100%;
+    min-width: 280px;
+    padding: 0;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+
+    &[data-type="expense"] {
+      border-left: 5px solid var(--primary-expense-color);
+    }
+
+    &[data-type="income"] {
+      border-left: 5px solid var(--primary-income-color);
+    }
+
+    &:not(:last-child) {
+      margin: 0 auto 10px;
+    }
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+    align-items: center;
+    background-color: var(--primary-background-color);
+    padding-left: 10px;
+    padding-right: 15px;
+    width: 100%;
+    min-height: 50px;
+
+    &-header {
+      text-align: start;
+      max-width: 110px;
+      white-space: nowrap;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 27px;
+    }
+
+    &-comment {
+      text-align: end;
+      width: 150px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: pre-line;
+    }
+
+    &:first-child {
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &:not(:last-child) {
+      border-bottom: 1px solid var(--secondary-gray-font-color);
+    }
+  }
+
+  &__controls {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: space-between;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: var(--primary-background-color);
+    padding-left: 10px;
+    padding-right: 15px;
+    min-height: 50px;
+  }
+}
+
+// tablet & desktop min width 768px
+
+@media screen and (min-width: 768px) {
+  .home {
+    &__container {
+      max-width: 728px;
+
+      @media screen and (min-width: 1280px) {
+        flex-shrink: 0;
+        flex-grow: 1;
+        border-left: 1px solid rgba(231, 229, 242, 1);
+        padding-left: 40px;
+        max-width: 775px;
+      }
+    }
+  }
+
+  .table {
+    text-align: start;
+
+    &__head {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding-left: 15px;
+      border-radius: 30px;
+      background-color: var(--primary-background-color);
+      width: 728px;
+      height: 58px;
+
+      &-list {
+        font-size: 18px;
+        line-height: 27px;
+      }
+
+      &-item {
+        display: inline;
+
+        &--date {
+          margin-right: 40px;
+        }
+
+        &--type {
+          margin-right: 30px;
+        }
+
+        &--category {
+          margin-right: 80px;
+        }
+
+        &--comment {
+          margin-right: 125px;
+        }
+      }
+    }
+
+    &__body {
+      &-list {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        word-wrap: break-word;
+        font-size: 16px;
+        line-height: 24px;
+        min-height: 52px;
+        width: 728px;
+        padding-inline: 10px;
+
+        &:not(:last-child)::after {
+          content: "";
+          display: block;
+          position: absolute;
+          left: 10px;
+          bottom: 0;
+          width: 680px;
+          border: 1px solid var(--secondary-gray-font-color);
+          box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
+        }
+      }
+
+      &-item {
+        color: var(--primary-text-color);
+        font-weight: 400;
+        font-size: 16px;
+        padding-block: 5px;
+
+        &--date {
+          width: 70px;
+        }
+
+        &--type {
+          width: 10px;
+        }
+
+        &--category {
+          width: 120px;
+        }
+
+        &--comment {
+          width: 140px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: pre-line;
+        }
+
+        &--sum[data-type="income"] {
+          color: var(--primary-income-color);
+          text-align: end;
+          font-weight: 700;
+          width: 70px;
+        }
+
+        &--sum[data-type="expense"] {
+          color: var(--primary-expense-color);
+          text-align: end;
+          font-weight: 700;
+          width: 70px;
+        }
+
+        &-controls {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 90px;
+        }
+      }
+    }
+  }
+}

@@ -17,7 +17,7 @@ import { Button } from "../Button/Button";
 import { Balance } from "../Balance/Balance";
 import { paginateTransactions } from "../../utils/pagination";
 import { nanoid } from "nanoid";
-import styles from "./HomeTab.module.css";
+import "./HomeTab.scss";
 
 export const HomeTab = () => {
   const dispatch = useDispatch();
@@ -66,130 +66,116 @@ export const HomeTab = () => {
   };
 
   return (
-    <div className={styles.homeWrapper}>
+    <div className="home__container">
       {isMobile && <Balance />}
-      <table className={styles.tableWrapper}>
-        {!isMobile && (
-          <>
-            <thead>
-              <tr key={nanoid()} className={styles.tableHead}>
-                <th className={styles.tableHeadItem}>Date</th>
-                <th className={styles.tableHeadItem}>Type</th>
-                <th className={styles.tableHeadItem}>Category</th>
-                <th className={styles.tableHeadItem}>Comment</th>
-                <th className={styles.tableHeadItem}>Sum</th>
-              </tr>
-            </thead>
-            <tbody className={styles.tbody}>
-              {transactions.map(
-                ({ _id, date, type, category, comment, amount }) => (
-                  <tr key={nanoid()} className={styles.data}>
-                    <td className={styles.dataItem}>{formatDate(date)}</td>
-                    <td className={styles.dataItem}>
-                      {type === "income" ? "+" : "-"}
-                    </td>
-                    <td
-                      className={styles.dataItem}
-                      style={{ textAlign: "left" }}
-                    >
-                      {category}
-                    </td>
-                    <td
-                      className={styles.dataItem}
-                      style={{ textAlign: "left" }}
-                    >
-                      <span className={styles.dataComment}>{comment}</span>
-                    </td>
-                    <td
-                      className={styles.dataItem}
-                      style={{ textAlign: "right", fontWeight: "700" }}
-                    >
-                      <span className={styles.dataSum} data-type={type}>
-                        {amount.toFixed(2)}
-                      </span>
-                    </td>
-                    <td
-                      className={styles.dataItem}
-                      style={{ textAlign: "right" }}
-                    >
-                      <div className={styles.buttonsWrapper}>
-                        <button
-                          onClick={() => openModalEditTransaction(_id)}
-                          className={styles.dataItemBtnEdit}
-                        >
-                          <img
-                            className={styles.btnIcon}
-                            src={"/assets/icon-pen.svg"}
-                          />
-                        </button>
-                        <Button
-                          title="Delete"
-                          onClick={() => handleDelete(_id)}
-                          styles="--delete"
-                          type="button"
-                        />
-                      </div>
-                    </td>
-                  </tr>
-                )
-              )}
-            </tbody>
-          </>
-        )}
-      </table>
-
       {isMobile && (
-        <>
+        <div className="home__mobile-table mobile-table">
           {transactions.map(
             ({ _id, date, type, category, comment, amount }) => (
-              <ul key={nanoid()} className={styles.dataMob} data-type={type}>
-                <li className={styles.dataItemMob}>
-                  <span className={styles.headItemMob}>Date</span>
+              <ul
+                key={nanoid()}
+                className="mobile-table__list"
+                data-type={type}
+              >
+                <li className="mobile-table__item">
+                  <span className="mobile-table__item-header">Date</span>
                   {formatDate(date)}
                 </li>
-                <li className={styles.dataItemMob}>
-                  <span className={styles.headItemMob}>Type</span>
+                <li className="mobile-table__item">
+                  <span className="mobile-table__item-header">Type</span>
                   {type === "income" ? "+" : "-"}
                 </li>
-                <li className={styles.dataItemMob}>
-                  <span className={styles.headItemMob}>Category</span>
+                <li className="mobile-table__item">
+                  <span className="mobile-table__item-header">Category</span>
                   {category}
                 </li>
-                <li className={styles.dataItemMob}>
-                  <span className={styles.headItemMob}>Comment</span>
-                  <span className={styles.dataComment}>{comment}</span>
+                <li className="mobile-table__item">
+                  <span className="mobile-table__item-header">Comment</span>
+                  <span className="mobile-table__item-comment">{comment}</span>
                 </li>
-                <li
-                  className={styles.dataItemMob}
-                  style={{ fontWeight: "700" }}
-                >
-                  <span className={styles.headItemMob}>Sum</span>
-                  <span className={styles.dataSum} data-type={type.toString()}>
+                <li className="mobile-table__item">
+                  <span className="mobile-table__item-header">Sum</span>
+                  <span className="mobile-table__item-sum" data-type={type}>
                     {amount.toFixed(2)}
                   </span>
                 </li>
-                <div className={styles.buttonsWrapperMob}>
+                <li className="mobile-table__controls">
                   <Button
                     title="Delete"
                     onClick={() => handleDelete(_id)}
                     styles="--delete"
                     type="button"
                   />
-                  <button
+                  <Button
+                    title="Edit"
                     onClick={() => openModalEditTransaction(_id)}
-                    className={styles.dataItemBtnEdit}
-                  >
-                    <img
-                      className={styles.btnIcon}
-                      src={"/assets/icon-pen.svg"}
-                    />
-                    Edit
-                  </button>
-                </div>
+                    styles="--edit-mobile"
+                    type="button"
+                  />
+                </li>
               </ul>
             )
           )}
-        </>
+        </div>
+      )}
+
+      {!isMobile && (
+        <table className="home__table table">
+          <thead className="table__head">
+            <tr key={nanoid()} className="table__head-list">
+              <th className="table__head-item table__head-item--date">Date</th>
+              <th className="table__head-item table__head-item--type">Type</th>
+              <th className="table__head-item table__head-item--category">
+                Category
+              </th>
+              <th className="table__head-item table__head-item--comment">
+                Comment
+              </th>
+              <th className="table__head-item table__head-item--sum">Sum</th>
+            </tr>
+          </thead>
+          <tbody className="table__body">
+            {transactions.map(
+              ({ _id, date, type, category, comment, amount }) => (
+                <tr key={nanoid()} className="table__body-list">
+                  <td className="table__body-item body-item--date">
+                    {formatDate(date)}
+                  </td>
+                  <td className="table__body-item table__body-item--type">
+                    {type === "income" ? "+" : "-"}
+                  </td>
+                  <td className="table__body-item table__body-item--category">
+                    {category}
+                  </td>
+                  <td className="table__body-item table__body-item--comment">
+                    {comment}
+                  </td>
+                  <td
+                    className="table__body-item table__body-item--sum"
+                    data-type={type}
+                  >
+                    {amount.toFixed(2)}
+                  </td>
+                  <td className="table__body-item">
+                    <div className="table__body-item-controls">
+                      <Button
+                        onClick={() => openModalEditTransaction(_id)}
+                        styles="--edit"
+                        type="button"
+                      />
+                      <Button
+                        title="Delete"
+                        onClick={() => handleDelete(_id)}
+                        styles="--delete"
+                        type="button"
+                      />
+                    </div>
+                  </td>
+                </tr>
+              )
+            )}
+          </tbody>
+        </table>
       )}
 
       {pageCount > 1 && (
@@ -201,8 +187,8 @@ export const HomeTab = () => {
       )}
       <Button
         title="+"
-        styles="--add"
         onClick={openModalAddTransaction}
+        styles="--add"
         type="button"
       />
     </div>
