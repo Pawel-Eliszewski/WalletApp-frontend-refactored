@@ -11,8 +11,8 @@ export const fetchCurrency = async (query) => {
 
   const transformedData = data.rates.map((rate) => {
     return {
-      buy: rate.ask,
-      sale: rate.bid,
+      sale: rate.ask,
+      buy: rate.bid,
     };
   });
 

@@ -9,6 +9,7 @@ import "./LoginForm.scss";
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
+
   const initialValues = {
     email: "",
     password: "",
@@ -19,7 +20,7 @@ export const LoginForm = () => {
       email: values.email,
       password: values.password,
     };
-    dispatch(login(formData));
+    await dispatch(login(formData)).unwrap();
   };
 
   return (
@@ -70,12 +71,7 @@ export const LoginForm = () => {
                 className="login-form__form-error"
               />
             </div>
-            <Button
-              title="Log in"
-              styles="--submit"
-              onClick={handleSubmit}
-              type="submit"
-            />
+            <Button title="Log in" styles="--submit" type="submit" />
             <Link to="/register">
               <Button title="Register" styles="--cancel" type="button" />
             </Link>

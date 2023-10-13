@@ -65,10 +65,10 @@ export function Currency() {
             <tr key={nanoid()} className="currency__body-row">
               <td className="currency__item">{element.currency}</td>
               <td className="currency__item">
-                {Math.floor(element.buy * 100) / 100}
+                {Math.round(element.buy * 100) / 100}
               </td>
               <td className="currency__item">
-                {Math.floor(element.sale * 100) / 100}
+                {Math.round(element.sale * 100) / 100}
               </td>
             </tr>
           ))}

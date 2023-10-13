@@ -10,6 +10,7 @@ import "./RegisterForm.scss";
 export const RegisterForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const initialValues = {
     email: "",
     password: "",
@@ -115,12 +116,7 @@ export const RegisterForm = () => {
                 className="register-form__form-error"
               />
             </div>
-            <Button
-              title="Register"
-              styles="--submit"
-              onClick={handleSubmit}
-              type="submit"
-            />
+            <Button title="Register" styles="--submit" type="submit" />
             <Link to="/login">
               <Button title="Log in" styles="--cancel" type="button" />
             </Link>
