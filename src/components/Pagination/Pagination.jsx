@@ -19,8 +19,8 @@ export const Pagination = ({ isMobile, pageCount, onItemOffsetChange }) => {
         pageRangeDisplayed={isMobile ? 0 : 1}
         marginPagesDisplayed={isMobile ? 0 : 1}
         pageCount={pageCount}
-        previousLabel="<"
-        nextLabel=">"
+        previousLabel={<span className="pagination-arrow">&#8592;</span>}
+        nextLabel={<span className="pagination-arrow">&#8594;</span>}
         containerClassName="pagination"
         previousClassName="pagination__link pagination__link--outermost"
         nextClassName="pagination__link pagination__link--outermost"

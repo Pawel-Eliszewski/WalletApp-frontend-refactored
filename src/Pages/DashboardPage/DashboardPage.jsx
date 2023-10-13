@@ -8,13 +8,13 @@ import { ModalAddTransaction } from "../../components/ModalAddTransaction/ModalA
 import { Currency } from "../../components/Currency/Currency";
 import { ModalLogout } from "../../components/ModalLogout/ModalLogout";
 import { ModalEditTransaction } from "../../components/ModalEditTransaction/ModalEditTransaction";
-import css from "./DashboardPage.module.css";
+import "./DashboardPage.scss";
 
 const MobileDashboard = () => {
   return (
     <>
       <Header />
-      <div className={css.mobileContainer}>
+      <div className="container container--mobile">
         <Suspense fallback={null}>
           <Navigation />
           <ModalAddTransaction />
@@ -31,10 +31,10 @@ const TabletDashboard = () => {
   return (
     <>
       <Header />
-      <div className={css.tabletContainer}>
+      <div className="container container--tablet">
         <Suspense fallback={null}>
-          <div className={css.tabletWrapper}>
-            <div className={css.tabletInnerBox}>
+          <div className="wrapper wrapper--tablet">
+            <div className="wrapper__inner wrapper__inner--tablet">
               <Navigation />
               <Balance />
             </div>
@@ -54,9 +54,9 @@ const DesktopDashboard = () => {
   return (
     <>
       <Header />
-      <div className={css.desktopContainer}>
+      <div className="container container--desktop">
         <Suspense fallback={null}>
-          <div className={css.desktopInnerWrapper}>
+          <div className="wrapper wrapper--desktop">
             <Navigation />
             <Balance />
             <Currency />

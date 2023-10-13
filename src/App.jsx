@@ -14,7 +14,7 @@ import { HomeTab } from "./components/HomeTab/HomeTab";
 import { Currency } from "./components/Currency/Currency";
 import { DiagramTab } from "./components/DiagramTab/DiagramTab";
 
-function App() {
+export default function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
 
@@ -57,5 +57,3 @@ function App() {
     </>
   );
 }
-
-export default App;
