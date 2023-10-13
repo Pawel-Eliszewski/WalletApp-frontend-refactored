@@ -1,10 +1,14 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
 import ReactPaginate from "react-paginate";
 import "./Pagination.scss";
 
-export const Pagination = ({ pageCount, setItemOffset }) => {
+export const Pagination = ({ isMobile, pageCount, onItemOffsetChange }) => {
+  const [currentPage, setCurrentPage] = useState(0);
+
   const handlePageClick = (event) => {
-    setItemOffset(event.selected + 1);
+    setCurrentPage(event.selected);
+    onItemOffsetChange(event.selected + 1);
   };
 
   return (
@@ -12,24 +16,26 @@ export const Pagination = ({ pageCount, setItemOffset }) => {
       <ReactPaginate
         breakLabel="..."
         onPageChange={handlePageClick}
-        pageRangeDisplayed={2}
-        marginPagesDisplayed={2}
+        pageRangeDisplayed={isMobile ? 0 : 1}
+        marginPagesDisplayed={isMobile ? 0 : 1}
         pageCount={pageCount}
-        previousLabel={"←"}
-        nextLabel={"→"}
-        renderOnZeroPageCount={null}
+        previousLabel="<"
+        nextLabel=">"
         containerClassName="pagination"
+        previousClassName="pagination__link pagination__link--outermost"
+        nextClassName="pagination__link pagination__link--outermost"
+        breakClassName="pagination__link"
         pageClassName="pagination__link"
-        previousClassName="pagination__link"
-        nextClassName="pagination__link"
         disabledClassName="pagination__link--disabled"
         activeClassName="pagination__link--active"
+        forcePage={currentPage}
       />
     </>
   );
 };
 
 Pagination.propTypes = {
+  isMobile: PropTypes.bool.isRequired,
   pageCount: PropTypes.number,
-  setItemOffset: PropTypes.func,
+  onItemOffsetChange: PropTypes.func,
 };

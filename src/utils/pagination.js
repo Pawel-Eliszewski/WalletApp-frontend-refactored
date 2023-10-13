@@ -2,6 +2,7 @@ import { selectTransactions } from "../redux/finance/selectors";
 import { useSelector } from "react-redux";
 
 export const paginateTransactions = (page) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const transactions = useSelector(selectTransactions);
 
   if (!transactions || transactions.length === 0) {

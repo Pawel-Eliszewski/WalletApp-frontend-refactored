@@ -40,11 +40,13 @@
 			align-items: center;
 			transition: 200ms;
 
-			&:hover .nav__description {
+			&:hover .nav__description,
+			&:focus .nav__description {
 				font-weight: 700;
 			}
 
-			&:hover .nav__logo {
+			&:hover .nav__logo,
+			&:focus .nav__logo {
 				box-shadow: 0px 0.5px 7px 1px rgba(74, 86, 226, 0.5);
 				transition: 200ms;
 			}

@@ -23,8 +23,8 @@ export const HomeTab = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
 
-  const isMobile = useMedia("(max-width: 767px)");
   const [itemOffset, setItemOffset] = useState(0);
+  const isMobile = useMedia("(max-width: 767px)");
 
   let paginationData = paginateTransactions(itemOffset);
   let transactions = paginationData.paginatedTransactions;
@@ -193,7 +193,11 @@ export const HomeTab = () => {
       )}
 
       {pageCount > 1 && (
-        <Pagination pageCount={pageCount} setItemOffset={handleItemOffset} />
+        <Pagination
+          isMobile={isMobile}
+          pageCount={pageCount}
+          onItemOffsetChange={handleItemOffset}
+        />
       )}
       <Button styles="--add" onClick={openModalAddTransaction} type="button" />
     </div>
