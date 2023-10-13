@@ -30,6 +30,9 @@ export function Currency() {
     try {
       const dataEUR = await fetchCurrency("EUR");
       const dataUSD = await fetchCurrency("USD");
+      const dataGBP = await fetchCurrency("GBP");
+      const dataCHF = await fetchCurrency("CHF");
+      const dataCZK = await fetchCurrency("CZK");
 
       const modifiedDataEUR = dataEUR.map((element) => ({
         ...element,
@@ -41,7 +44,28 @@ export function Currency() {
         currency: "USD",
       }));
 
-      const combinedData = [...modifiedDataEUR, ...modifiedDataUSD];
+      const modifiedDataGBP = dataGBP.map((element) => ({
+        ...element,
+        currency: "GBP",
+      }));
+
+      const modifiedDataCHF = dataCHF.map((element) => ({
+        ...element,
+        currency: "CHF",
+      }));
+
+      const modifiedDataCZK = dataCZK.map((element) => ({
+        ...element,
+        currency: "CZK",
+      }));
+
+      const combinedData = [
+        ...modifiedDataEUR,
+        ...modifiedDataUSD,
+        ...modifiedDataGBP,
+        ...modifiedDataCHF,
+        ...modifiedDataCZK,
+      ];
       setCurrencyData(combinedData);
 
       localStorage.setItem("currencyData", JSON.stringify(combinedData));
@@ -65,10 +89,10 @@ export function Currency() {
             <tr key={nanoid()} className="currency__body-row">
               <td className="currency__item">{element.currency}</td>
               <td className="currency__item">
-                {Math.round(element.buy * 100) / 100}
+                {(Math.round(element.buy * 100) / 100).toFixed(2)}
               </td>
               <td className="currency__item">
-                {Math.round(element.sale * 100) / 100}
+                {(Math.round(element.sale * 100) / 100).toFixed(2)}
               </td>
             </tr>
           ))}
