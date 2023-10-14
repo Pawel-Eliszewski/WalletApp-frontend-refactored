@@ -29,7 +29,6 @@ export const DropdownSelectMonth = ({
             break;
         }
       };
-
       window.addEventListener("keydown", handleKeyDown);
 
       return () => {
@@ -89,6 +88,7 @@ export const DropdownSelectMonth = ({
 };
 
 DropdownSelectMonth.propTypes = {
+  selectedYear: PropTypes.string.isRequired,
   selectedMonth: PropTypes.string.isRequired,
   onSelect: PropTypes.func.isRequired,
 };
@@ -154,5 +154,6 @@ export const DropdownSelectYear = ({ selectedYear, onSelect }) => {
 
 DropdownSelectYear.propTypes = {
   selectedYear: PropTypes.string.isRequired,
+  selectedMonth: PropTypes.string,
   onSelect: PropTypes.func.isRequired,
 };

@@ -5,7 +5,7 @@
 	--secondary-background-color: #e7eaf2;
 	--currency-primary-background-color: #4a56e2;
 	--currency-secondary-background-color: #6e78e8;
-	--primary-outline-color: #000000;
+	--primary-font-color: #000000;
 	--primary-expense-color: #ff6596;
 	--primary-income-color: #24cca7;
 	--main-expenses-diagram-color: #fed057;
@@ -20,7 +20,7 @@
 }
 
 body {
-	color: var(--primary-outline-color);
+	color: var(--primary-font-color);
 	font-family: "Circe", sans-serif, "Poppins", sans-serif;
 	margin: 0;
 	padding: 0;

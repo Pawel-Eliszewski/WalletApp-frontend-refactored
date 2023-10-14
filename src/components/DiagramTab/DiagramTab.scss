@@ -93,7 +93,7 @@
       color: #000;
       display: flex;
       justify-content: space-between;
-      height: 40px;
+      height: 45px;
       align-items: center;
       border-bottom: 1px solid rgba(220, 220, 223, 1);
       padding-inline: 10px;
@@ -174,11 +174,15 @@
     }
 
     &__dropdown {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       width: 100%;
       max-width: 336px;
 
       &-wrapper {
         flex-direction: row;
+        align-items: flex-start;
       }
 
       &-label {
@@ -206,6 +210,18 @@
 
       &-title {
         margin-bottom: 20px;
+      }
+    }
+
+    &__dropdown {
+      &-label {
+        margin-top: 0;
+      }
+    }
+
+    &__legend {
+      &-item {
+        height: 40px;
       }
     }
   }

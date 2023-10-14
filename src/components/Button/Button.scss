@@ -52,8 +52,8 @@
 
         &:hover,
         &:focus {
-            outline: 1px solid var(--primary-outline-color);
-            color: var(--primary-outline-color);
+            outline: 1px solid var(--primary-font-color);
+            color: var(--primary-font-color);
             background: none;
         }
     }

@@ -46,7 +46,6 @@
     &-row {
       display: flex;
       justify-content: space-around;
-      padding-left: 10px;
     }
   }
 
@@ -69,6 +68,10 @@
     &__head {
       width: 100%;
       max-width: 336px;
+    }
+
+    &__body-row {
+      padding-left: 10px;
     }
   }
 }
