@@ -33,6 +33,8 @@ export function Currency() {
       const dataGBP = await fetchCurrency("GBP");
       const dataCHF = await fetchCurrency("CHF");
       const dataCZK = await fetchCurrency("CZK");
+      const dataSEK = await fetchCurrency("SEK");
+      const dataNOK = await fetchCurrency("NOK");
 
       const modifiedDataEUR = dataEUR.map((element) => ({
         ...element,
@@ -59,12 +61,24 @@ export function Currency() {
         currency: "CZK",
       }));
 
+      const modifiedDataSEK = dataSEK.map((element) => ({
+        ...element,
+        currency: "SEK",
+      }));
+
+      const modifiedDataNOK = dataNOK.map((element) => ({
+        ...element,
+        currency: "NOK",
+      }));
+
       const combinedData = [
         ...modifiedDataEUR,
         ...modifiedDataUSD,
         ...modifiedDataGBP,
         ...modifiedDataCHF,
         ...modifiedDataCZK,
+        ...modifiedDataSEK,
+        ...modifiedDataNOK,
       ];
       setCurrencyData(combinedData);
 
