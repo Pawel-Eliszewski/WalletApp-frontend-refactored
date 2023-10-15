@@ -1,15 +1,22 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { Logo } from "../Logo/Logo";
-import { Button } from "../Button/Button";
-import "./UserForm.scss";
+import { Logo } from "../../Logo/Logo";
+import { Button } from "../../Button/Button";
+import "./AuthForm.scss";
 /**
- * @param {{ validation: { loginValidationSchema } | { registerValidationSchema },
- * onSubmit?: (ev?: import('react').MouseEvent) => void,
- * context: 'login' | 'register' }} props
+ * @typedef {object} YupValidation
+ * @property {YupSchema} loginValidationSchema
+ * @property {YupSchema} registerValidationSchema
  */
-export const UserForm = ({ context, validation, onSubmit }) => {
+/**
+ * @param {{
+ *   validation: YupValidation,
+ *   onSubmit?: (ev?: import('react').MouseEvent) => void,
+ *   context: 'login' | 'register'
+ * }} props
+ */
+export const AuthForm = ({ context, validation, onSubmit }) => {
   const initialValues = {
     email: "",
     password: "",
@@ -126,7 +133,7 @@ export const UserForm = ({ context, validation, onSubmit }) => {
   );
 };
 
-UserForm.propTypes = {
+AuthForm.propTypes = {
   validation: PropTypes.object.isRequired,
   onSubmit: PropTypes.func.isRequired,
   context: PropTypes.string.isRequired,

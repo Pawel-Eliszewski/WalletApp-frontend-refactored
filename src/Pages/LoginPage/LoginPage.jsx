@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/session/operations";
-import { UserForm } from "../../components/Form/UserForm";
+import { AuthForm } from "../../components/Forms/AuthForm/AuthForm";
 import { loginValidationSchema } from "../../utils/yupValidationSchema";
 import styles from "./LoginPage.module.css";
 
@@ -31,7 +31,7 @@ export default function LoginPage() {
         </div>
       </div>
       <div className={styles.login__desktop}>
-        <UserForm
+        <AuthForm
           context="login"
           validation={loginValidationSchema}
           onSubmit={handleSubmit}
