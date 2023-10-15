@@ -1,7 +1,20 @@
-import { LoginForm } from "../../components/LoginForm/LoginForm";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/session/operations";
+import { UserForm } from "../../components/Form/UserForm";
+import { loginValidationSchema } from "../../utils/yupValidationSchema";
 import styles from "./LoginPage.module.css";
 
-const LoginPage = () => {
+export default function LoginPage() {
+  const dispatch = useDispatch();
+
+  const handleSubmit = async (values) => {
+    const formData = {
+      email: values.email,
+      password: values.password,
+    };
+    await dispatch(login(formData)).unwrap();
+  };
+
   return (
     <div className={styles.login__container}>
       <div className={styles.login__tablet}>
@@ -18,10 +31,12 @@ const LoginPage = () => {
         </div>
       </div>
       <div className={styles.login__desktop}>
-        <LoginForm />
+        <UserForm
+          context="login"
+          validation={loginValidationSchema}
+          onSubmit={handleSubmit}
+        />
       </div>
     </div>
   );
-};
-
-export default LoginPage;
+}

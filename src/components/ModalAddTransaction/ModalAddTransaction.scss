@@ -82,6 +82,13 @@
             border-bottom: 1px solid var(--primary-gray-font-color);
         }
 
+        &-info {
+            font-size: 14px;
+            margin: 0;
+            padding: 0;
+            text-align: start;
+        }
+
         &-amount:focus,
         &-comment:focus {
             outline: none;

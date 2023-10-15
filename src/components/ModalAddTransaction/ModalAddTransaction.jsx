@@ -74,6 +74,16 @@ export const ModalAddTransaction = () => {
     setTransactionCategory(category);
   };
 
+  const [text, setText] = useState("");
+  const maxLength = 30;
+
+  const handleTextareaChange = (e) => {
+    const inputValue = e.target.value;
+    if (inputValue.length <= maxLength) {
+      setText(inputValue);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -188,7 +198,13 @@ export const ModalAddTransaction = () => {
             name="comment"
             className="modal-add__form-comment"
             placeholder="Comment"
+            value={text}
+            onChange={handleTextareaChange}
+            maxLength={maxLength}
           ></textarea>
+          <span className="modal-add__form-info">
+            Characters remaining: {maxLength - text.length}.
+          </span>
           <Button title="Add" styles="--submit" type="submit" />
         </form>
         <Button

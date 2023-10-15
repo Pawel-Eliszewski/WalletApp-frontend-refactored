@@ -1,7 +1,23 @@
-import { RegisterForm } from "../../components/RegisterForm/RegisterForm";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { register } from "../../redux/session/operations";
+import { UserForm } from "../../components/Form/UserForm";
+import { registerValidationSchema } from "../../utils/yupValidationSchema";
 import styles from "./RegisterPage.module.css";
 
-const RegisterPage = () => {
+export default function RegisterPage() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (values) => {
+    const formData = {
+      email: values.email,
+      password: values.password,
+    };
+    await dispatch(register(formData)).unwrap();
+    navigate("login", { replace: "true" });
+  };
+
   return (
     <div className={styles.register__container}>
       <div className={styles.register__tablet}>
@@ -18,10 +34,12 @@ const RegisterPage = () => {
         </div>
       </div>
       <div className={styles.register__desktop}>
-        <RegisterForm />
+        <UserForm
+          context="register"
+          validation={registerValidationSchema}
+          onSubmit={handleSubmit}
+        />
       </div>
     </div>
   );
-};
-
-export default RegisterPage;
+}
