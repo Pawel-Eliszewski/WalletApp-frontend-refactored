@@ -21,3 +21,20 @@ export const registerValidationSchema = object().shape({
     .max(12, "First name must not exceed 12 characters")
     .required("First name is required"),
 });
+
+export const transactionValidationSchema = object().shape({
+  comment: string()
+    .max(30, "Description must be less than 30 characters")
+    .test(
+      "remainingCharacters",
+      "You have exceeded the character limit",
+      function (value) {
+        if (value) {
+          const maxChars = 30;
+          const remainingChars = maxChars - value.length;
+          return remainingChars >= 0;
+        }
+        return true;
+      }
+    ),
+});

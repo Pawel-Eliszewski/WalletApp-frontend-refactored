@@ -4,10 +4,7 @@ import { Outlet } from "react-router-dom";
 import { Header } from "../../components/Header/Header";
 import { Navigation } from "../../components/Navigation/Navigation";
 import { Balance } from "../../components/Balance/Balance";
-import { ModalAddTransaction } from "../../components/ModalAddTransaction/ModalAddTransaction";
 import { Currency } from "../../components/Currency/Currency";
-import { ModalLogout } from "../../components/ModalLogout/ModalLogout";
-import { ModalEditTransaction } from "../../components/ModalEditTransaction/ModalEditTransaction";
 import "./DashboardPage.scss";
 
 const MobileDashboard = () => {
@@ -17,9 +14,6 @@ const MobileDashboard = () => {
       <div className="container container--mobile">
         <Suspense fallback={null}>
           <Navigation />
-          <ModalAddTransaction />
-          <ModalEditTransaction />
-          <ModalLogout />
           <Outlet />
         </Suspense>
       </div>
@@ -40,9 +34,6 @@ const TabletDashboard = () => {
             </div>
             <Currency />
           </div>
-          <ModalAddTransaction />
-          <ModalEditTransaction />
-          <ModalLogout />
           <Outlet />
         </Suspense>
       </div>
@@ -61,9 +52,6 @@ const DesktopDashboard = () => {
             <Balance />
             <Currency />
           </div>
-          <ModalAddTransaction />
-          <ModalEditTransaction />
-          <ModalLogout />
           <Outlet />
         </Suspense>
       </div>

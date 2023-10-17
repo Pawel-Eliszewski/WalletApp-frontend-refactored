@@ -17,9 +17,9 @@
     justify-content: space-between;
     padding: 5px;
     padding-left: 12px;
-    background: white;
+    background: var(--primary-background-color);
     border-bottom: 1px solid var(--primary-gray-font-color);
-    color: #777;
+    color: var(--primary-gray-font-color);
     padding-right: 12px;
 }
 
@@ -31,7 +31,7 @@
     padding: 5px;
     padding-left: 12px;
     border-bottom: 1px solid var(--primary-gray-font-color);
-    color: black;
+    color: var(--primary-font-color);
     padding-right: 12px;
 }
 
@@ -55,8 +55,8 @@
 }
 
 .dropdownContent .item:hover {
-    background-color: rgba(255, 255, 255, 1);
-    color: rgba(255, 101, 150, 1);
+    background-color: var(--primary-background-color);
+    color: var(--primary-expense-color);
 }
 
 .dropdownContent .item:first-child:hover {

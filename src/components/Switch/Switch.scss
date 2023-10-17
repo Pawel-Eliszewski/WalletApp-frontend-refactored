@@ -1,0 +1,46 @@
+.switch {
+    margin-inline: 20px;
+
+    &__label {
+        display: flex;
+        position: relative;
+        width: 80px;
+        height: 40px;
+    }
+
+    &__input {
+        display: none;
+    }
+
+    &__slider {
+        position: absolute;
+        cursor: pointer;
+        border: 1px solid var(--secondary-gray-font-color);
+        border-radius: 30px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        transition: 300ms;
+    }
+
+    &__slider:before {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        width: 44px;
+        height: 44px;
+        bottom: -3px;
+        border-radius: 50%;
+        content: url("/assets/icon-income.svg");
+        box-shadow: 0px 6px 15px 0px rgba(36, 204, 167, 0.5);
+        transition: 300ms;
+    }
+
+    &__input:checked+&__slider:before {
+        content: url("/assets/icon-expense.svg");
+        box-shadow: 0px 6px 15px 0px rgba(255, 101, 150, 0.5);
+        transform: translateX(35px);
+    }
+}

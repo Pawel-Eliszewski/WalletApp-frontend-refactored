@@ -15,6 +15,7 @@
     letter-spacing: 0.1em;
     margin: 0;
     padding: 0;
+    background: none;
 
     @media screen and (min-width: 768px) {
         width: 300px;
@@ -46,7 +47,6 @@
 
     &--cancel,
     &--no {
-        background: none;
         outline: 1px solid var(--household-products-diagram-color);
         color: var(--household-products-diagram-color);
 
@@ -54,7 +54,6 @@
         &:focus {
             outline: 1px solid var(--primary-font-color);
             color: var(--primary-font-color);
-            background: none;
         }
     }
 
@@ -108,11 +107,24 @@
 
     &--edit,
     &--edit-mobile {
-        background: none;
 
         &::before {
             height: 23px;
             content: url("/assets/icon-pen.svg");
+        }
+    }
+
+    &--close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 18px;
+        height: 18px;
+
+        &::after {
+            content: url("/assets/icon-close.svg");
+            width: 18px;
+            height: 18px;
         }
     }
 }

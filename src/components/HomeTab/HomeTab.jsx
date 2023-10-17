@@ -2,29 +2,29 @@ import { useEffect, useState } from "react";
 import { useMedia } from "react-use";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import {
-  setIsModalAddTransactionOpen,
-  setIsModalEditTransactionOpen,
-  setTransactionId,
-} from "../../redux/global/globalSlice";
+import { setTransactionId } from "../../redux/global/globalSlice";
 import {
   fetchTransactions,
   deleteTransaction,
 } from "../../redux/finance/operations";
 import { selectUser } from "../../redux/session/selectors";
-import { Pagination } from "../Pagination/Pagination";
-import { Button } from "../Button/Button";
 import { Balance } from "../Balance/Balance";
+import { Button } from "../Button/Button";
+import { Pagination } from "../Pagination/Pagination";
+import { Modal } from "../Modal/Modal";
 import { paginateTransactions } from "../../utils/pagination";
 import { nanoid } from "nanoid";
 import "./HomeTab.scss";
 
 export const HomeTab = () => {
   const dispatch = useDispatch();
+  const isMobile = useMedia("(max-width: 767px)");
+
   const user = useSelector(selectUser);
 
+  const [context, setContext] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [itemOffset, setItemOffset] = useState(0);
-  const isMobile = useMedia("(max-width: 767px)");
 
   let paginationData = paginateTransactions(itemOffset);
   let transactions = paginationData.paginatedTransactions;
@@ -50,18 +50,25 @@ export const HomeTab = () => {
     return `${day}.${month}.${year}`;
   }
 
-  const openModalAddTransaction = () => {
-    dispatch(setIsModalAddTransactionOpen(true));
+  const openModalAdd = () => {
+    setContext("add");
+    setIsModalOpen(true);
     document.body.style.overflow = "hidden";
   };
 
-  const openModalEditTransaction = (_id) => {
+  const openModalEdit = (_id) => {
+    setContext("edit");
+    setIsModalOpen(true);
     dispatch(setTransactionId(_id));
-    dispatch(setIsModalEditTransactionOpen(true));
     document.body.style.overflow = "hidden";
   };
 
-  const handleDelete = (transactionId) => {
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    document.body.style.overflow = "unset";
+  };
+
+  const handleDeleteTransaction = (transactionId) => {
     dispatch(deleteTransaction(transactionId));
   };
 
@@ -102,13 +109,13 @@ export const HomeTab = () => {
                 <li className="mobile-table__controls">
                   <Button
                     title="Delete"
-                    onClick={() => handleDelete(_id)}
+                    onClick={() => handleDeleteTransaction(_id)}
                     styles="--delete"
                     type="button"
                   />
                   <Button
                     title="Edit"
-                    onClick={() => openModalEditTransaction(_id)}
+                    onClick={() => openModalEdit(_id)}
                     styles="--edit-mobile"
                     type="button"
                   />
@@ -159,13 +166,13 @@ export const HomeTab = () => {
                   <td className="table__body-item">
                     <div className="table__body-item-controls">
                       <Button
-                        onClick={() => openModalEditTransaction(_id)}
+                        onClick={() => openModalEdit(_id)}
                         styles="--edit"
                         type="button"
                       />
                       <Button
                         title="Delete"
-                        onClick={() => handleDelete(_id)}
+                        onClick={() => handleDeleteTransaction(_id)}
                         styles="--delete"
                         type="button"
                       />
@@ -185,12 +192,14 @@ export const HomeTab = () => {
           onItemOffsetChange={handleItemOffset}
         />
       )}
-      <Button
-        title="+"
-        onClick={openModalAddTransaction}
-        styles="--add"
-        type="button"
-      />
+      <Button title="+" onClick={openModalAdd} styles="--add" type="button" />
+      {isModalOpen && (
+        <Modal
+          isModalOpen={isModalOpen}
+          onModalClose={handleModalClose}
+          context={context}
+        />
+      )}
     </div>
   );
 };

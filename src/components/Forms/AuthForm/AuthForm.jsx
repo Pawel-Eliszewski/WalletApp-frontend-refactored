@@ -12,7 +12,7 @@ import "./AuthForm.scss";
 /**
  * @param {{
  *   validation: YupValidation,
- *   onSubmit?: (ev?: import('react').MouseEvent) => void,
+ *   onSubmit: () => void,
  *   context: 'login' | 'register'
  * }} props
  */
