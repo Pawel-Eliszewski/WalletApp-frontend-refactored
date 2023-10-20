@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
 import { useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/session/operations";
 import { TransactionForm } from "../Forms/TransactionForm/TransactionForm";
 import { Button } from "../Button/Button";
 import "./Modal.scss";
@@ -8,6 +10,7 @@ import "./Modal.scss";
  * onModalClose: () => void }} props
  */
 export const Modal = ({ isModalOpen, context, onModalClose }) => {
+  const dispatch = useDispatch();
   const modalRef = useRef(null);
 
   useEffect(() => {
@@ -30,6 +33,11 @@ export const Modal = ({ isModalOpen, context, onModalClose }) => {
     }
   };
 
+  const handleLogout = () => {
+    dispatch(logout());
+    onModalClose();
+  };
+
   return (
     <div
       className={`modal__backdrop ${
@@ -45,7 +53,11 @@ export const Modal = ({ isModalOpen, context, onModalClose }) => {
       >
         <Button styles="--close" type="button" onClick={onModalClose} />
         <h2 className="modal__title">
-          {context === "add" ? "Add transaction" : "Edit transaction"}
+          {context === "logout"
+            ? "Log out?"
+            : context === "add"
+            ? "Add transaction"
+            : "Edit transaction"}
         </h2>
         {context !== "logout" ? (
           <>
@@ -57,7 +69,22 @@ export const Modal = ({ isModalOpen, context, onModalClose }) => {
               onClick={onModalClose}
             />
           </>
-        ) : null}
+        ) : (
+          <div className="modal__controls">
+            <Button
+              title="Yes"
+              styles="--yes"
+              type="button"
+              onClick={handleLogout}
+            />
+            <Button
+              title="No"
+              styles="--no"
+              type="button"
+              onClick={onModalClose}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

@@ -115,16 +115,26 @@
     }
 
     &--close {
+        display: none;
         position: absolute;
         top: 20px;
         right: 20px;
         width: 18px;
         height: 18px;
 
+        @media screen and (min-width: 768px) {
+            display: block;
+        }
+
         &::after {
             content: url("/assets/icon-close.svg");
             width: 18px;
             height: 18px;
+        }
+
+        &:hover::after,
+        &:focus::after {
+            content: url("/assets/icon-close-red.svg");
         }
     }
 }

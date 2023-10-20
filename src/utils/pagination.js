@@ -27,7 +27,16 @@ export const paginateTransactions = (page) => {
   let start = (currentPage - 1) * 7;
   let end = currentPage * 7;
 
-  const paginatedTransactions = transactions.slice(start, end);
+  const sortedTransactions = [...transactions]; // Tworzy kopię tablicy transactions
+
+  sortedTransactions.sort((a, b) => {
+    const dateA = new Date(a.date.split(".").reverse().join("-"));
+    const dateB = new Date(b.date.split(".").reverse().join("-"));
+
+    return dateB - dateA;
+  });
+
+  const paginatedTransactions = sortedTransactions.slice(start, end);
 
   const paginationData = {
     pages,

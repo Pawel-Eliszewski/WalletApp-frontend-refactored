@@ -10,11 +10,7 @@ import "./AuthForm.scss";
  * @property {YupSchema} registerValidationSchema
  */
 /**
- * @param {{
- *   validation: YupValidation,
- *   onSubmit: () => void,
- *   context: 'login' | 'register'
- * }} props
+ * @param {{ validation: YupValidation, onSubmit: () => void, context: 'login' | 'register' }} props
  */
 export const AuthForm = ({ context, validation, onSubmit }) => {
   const initialValues = {
@@ -25,7 +21,7 @@ export const AuthForm = ({ context, validation, onSubmit }) => {
   };
 
   return (
-    <div className="user-form__container">
+    <div className="auth-form">
       <Logo />
       <Formik
         initialValues={initialValues}
@@ -33,15 +29,15 @@ export const AuthForm = ({ context, validation, onSubmit }) => {
         onSubmit={onSubmit}
       >
         {() => (
-          <Form className="user-form__form">
-            <div className="user-form__field">
+          <Form className="auth-form__wrapper">
+            <div className="auth-form__field">
               <img
-                className="user-form__icon user-form__icon--email"
+                className="auth-form__icon auth-form__icon--email"
                 src="/assets/icon-email.svg"
                 alt="email icon"
               />
               <Field
-                className="user-form__input"
+                className="auth-form__input"
                 type="email"
                 name="email"
                 placeholder="E-mail"
@@ -50,17 +46,17 @@ export const AuthForm = ({ context, validation, onSubmit }) => {
               <ErrorMessage
                 name="email"
                 component="div"
-                className="user-form__alert"
+                className="auth-form__alert"
               />
             </div>
-            <div className="user-form__field">
+            <div className="auth-form__field">
               <img
-                className="user-form__icon"
+                className="auth-form__icon"
                 src="/assets/icon-lock.svg"
                 alt="lock icon"
               />
               <Field
-                className="user-form__input"
+                className="auth-form__input"
                 type="password"
                 name="password"
                 placeholder="Password"
@@ -69,19 +65,19 @@ export const AuthForm = ({ context, validation, onSubmit }) => {
               <ErrorMessage
                 name="password"
                 component="div"
-                className="user-form__alert"
+                className="auth-form__alert"
               />
             </div>
             {context === "register" ? (
               <>
-                <div className="user-form__field">
+                <div className="auth-form__field">
                   <img
-                    className="user-form__icon"
+                    className="auth-form__icon"
                     src="/assets/icon-lock.svg"
                     alt="lock icon"
                   />
                   <Field
-                    className="user-form__input"
+                    className="auth-form__input"
                     type="password"
                     name="confirmPassword"
                     placeholder="Confirm password"
@@ -90,17 +86,17 @@ export const AuthForm = ({ context, validation, onSubmit }) => {
                   <ErrorMessage
                     name="confirmPassword"
                     component="div"
-                    className="user-form__alert"
+                    className="auth-form__alert"
                   />
                 </div>
-                <div className="user-form__field">
+                <div className="auth-form__field">
                   <img
-                    className="user-form__icon user-form__icon--person"
+                    className="auth-form__icon auth-form__icon--person"
                     src="/assets/icon-person.svg"
                     alt="person icon"
                   />
                   <Field
-                    className="user-form__input"
+                    className="auth-form__input"
                     type="name"
                     name="firstName"
                     placeholder="First name"
@@ -109,7 +105,7 @@ export const AuthForm = ({ context, validation, onSubmit }) => {
                   <ErrorMessage
                     name="firstName"
                     component="div"
-                    className="user-form__alert"
+                    className="auth-form__alert"
                   />
                 </div>
               </>

@@ -1,4 +1,4 @@
-import { object, string, ref } from "yup";
+import { object, string, number, ref } from "yup";
 
 export const loginValidationSchema = object().shape({
   email: string().email("Invalid email address").required("Email is required"),
@@ -23,18 +23,17 @@ export const registerValidationSchema = object().shape({
 });
 
 export const transactionValidationSchema = object().shape({
-  comment: string()
-    .max(30, "Description must be less than 30 characters")
-    .test(
-      "remainingCharacters",
-      "You have exceeded the character limit",
-      function (value) {
-        if (value) {
-          const maxChars = 30;
-          const remainingChars = maxChars - value.length;
-          return remainingChars >= 0;
-        }
-        return true;
-      }
-    ),
+  type: string().oneOf(["income", "expense"]).required("Type is required"),
+  category: object().when("type", {
+    is: "expense",
+    then: () =>
+      object()
+        .test("isValidCategory", "Category is required", (value) => {
+          return value.label !== "Select a category";
+        })
+        .required("Category is required"),
+    otherwise: () => object(),
+  }),
+  amount: number().required("Amount is required"),
+  comment: string().max(40, "Comment must be less than 40 characters"),
 });

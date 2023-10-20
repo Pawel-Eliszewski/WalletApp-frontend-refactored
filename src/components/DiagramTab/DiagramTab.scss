@@ -42,7 +42,6 @@
       line-height: 27px;
       letter-spacing: 0em;
       text-align: center;
-      color: #000;
     }
   }
 
@@ -90,7 +89,6 @@
 
     &-item {
       position: relative;
-      color: #000;
       display: flex;
       justify-content: space-between;
       height: 45px;
@@ -196,7 +194,6 @@
 }
 
 @media screen and (min-width: 1280px) {
-
   .diagram {
     justify-content: flex-end;
     max-width: 775px;
@@ -221,7 +218,7 @@
 
     &__legend {
       &-item {
-        height: 40px;
+        height: 34px;
       }
     }
   }
