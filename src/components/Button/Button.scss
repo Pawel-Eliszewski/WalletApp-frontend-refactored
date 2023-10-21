@@ -6,7 +6,6 @@
     height: 50px;
     border-radius: 20px;
     border: none;
-    transition: 300ms;
     text-align: center;
     text-transform: uppercase;
     font-size: 18px;
@@ -91,8 +90,9 @@
     }
 
     &--edit {
-        width: 14px;
-        height: 14px;
+        width: 23px;
+        height: 23px;
+        margin-right: 4px;
     }
 
     &--edit-mobile {
@@ -119,11 +119,14 @@
         position: absolute;
         top: 20px;
         right: 20px;
-        width: 18px;
-        height: 18px;
+        width: 30px;
+        height: 30px;
+        padding-bottom: 2px;
 
         @media screen and (min-width: 768px) {
-            display: block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         &::after {

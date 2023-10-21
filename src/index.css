@@ -58,7 +58,7 @@ button:focus {
 	cursor: pointer;
 }
 
-button:focus-visible {
-	outline: none;
-	border: none;
+button:focus {
+	outline: 2px solid var(--primary-font-color);
+	transition: 0s;
 }
