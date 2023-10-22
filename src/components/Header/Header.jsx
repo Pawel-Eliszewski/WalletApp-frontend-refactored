@@ -4,6 +4,7 @@ import { selectUser } from "../../redux/session/selectors";
 import { Logo } from "../Logo/Logo";
 import { Modal } from "../Modal/Modal";
 import "./Header.scss";
+import { Button } from "../Button/Button";
 
 export const Header = () => {
   const user = useSelector(selectUser);
@@ -25,10 +26,12 @@ export const Header = () => {
       <Logo />
       <div className="header__nav">
         <p className="header__nav-user">{user.email}</p>
-        <div className="header__nav-logout" onClick={handleLogout}>
-          <img className="header__nav-icon" src="/assets/icon-exit-doors.svg" />
-          <p className="header__nav-text">Exit</p>
-        </div>
+        <Button
+          title={window.innerWidth >= 768 ? "Exit" : ""}
+          styles="--logout"
+          type="button"
+          onClick={handleLogout}
+        />
         {isModalOpen && (
           <Modal
             isModalOpen={isModalOpen}
