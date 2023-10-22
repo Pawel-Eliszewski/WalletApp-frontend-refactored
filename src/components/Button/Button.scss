@@ -166,13 +166,13 @@
 
         &:hover,
         &:focus {
-            color: var(--primary-font-color);
+            color: var(--primary-expense-color);
             transition: none;
         }
 
         &:hover::before,
         &:focus::before {
-            content: url("/assets/icon-exit-doors-black.svg");
+            content: url("/assets/icon-exit-doors-red.svg");
         }
     }
 }
