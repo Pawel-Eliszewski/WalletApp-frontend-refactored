@@ -3,8 +3,7 @@ import { useEffect, useState } from "react";
 import Datetime from "react-datetime";
 import "./Calendar.css";
 /**
- * @param {{
- * transactionType: 'income' | 'expense',
+ * @param {{ transactionType: 'income' | 'expense',
  * transactionDate: string, onChange: () => void }} props
  */
 export const Calendar = ({ transactionType, transactionDate, onChange }) => {

@@ -114,7 +114,6 @@
 
     &-container {
         width: 280px !important;
-        border-bottom: 1px solid var(--primary-gray-font-color) !important;
 
         @media screen and (min-width: 768px) {
             width: 394px !important;
@@ -126,6 +125,8 @@
         cursor: pointer !important;
         border: none !important;
         outline: none !important;
+        border-bottom: 1px solid var(--primary-gray-font-color) !important;
+        border-radius: 0 !important;
 
         &:focus,
         &--is-focused,
@@ -133,6 +134,7 @@
             border: none !important;
             outline: none !important;
             box-shadow: none !important;
+            border-bottom: 1px solid var(--primary-font-color) !important;
         }
     }
 
