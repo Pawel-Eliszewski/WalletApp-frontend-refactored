@@ -71,6 +71,11 @@
             left: 8px;
         }
 
+        &--date {
+            top: 90px;
+            left: 8px;
+        }
+
         &--comment {
             top: 88px;
             left: 8px;
@@ -144,7 +149,7 @@
 
     &__menu {
         margin: 2px 0 0 0 !important;
-        background-color: rgba(243, 243, 243, 0.9) !important;
+        background-color: var(--primary-gray-background-color) !important;
         border-radius: 20px !important;
         height: 328px !important;
 
@@ -210,13 +215,21 @@
         }
 
         &__alert {
+            width: max-content;
+
             &--category {
+                top: 41px;
                 left: 12px;
             }
 
             &--amount {
-                top: 36px;
-                left: 40px;
+                top: 32px;
+                left: 38px;
+            }
+
+            &--date {
+                top: 32px;
+                left: 200px;
             }
 
             &--comment {

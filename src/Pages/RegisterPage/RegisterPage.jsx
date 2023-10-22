@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/session/operations";
 import { AuthForm } from "../../components/Forms/AuthForm/AuthForm";
-import { registerValidationSchema } from "../../utils/yupValidationSchema";
+import { registerValidationSchema } from "../../utils/yupValidationSchemas";
 import styles from "./RegisterPage.module.css";
 
 export default function RegisterPage() {

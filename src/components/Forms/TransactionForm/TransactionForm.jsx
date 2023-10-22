@@ -13,7 +13,8 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Button } from "../../Button/Button";
 import { Switch } from "../../Switch/Switch";
 import { Calendar } from "../../Calendar/Calendar";
-import { transactionValidationSchema } from "../../../utils/yupValidationSchema";
+import { categoryOptions } from "../../../utils/transactionCategories";
+import { transactionValidationSchema } from "../../../utils/yupValidationSchemas";
 import "./TransactionForm.scss";
 /**
  * @param {{ context: 'add' | 'edit' | 'logout', onModalClose: () => void }} props
@@ -50,7 +51,21 @@ export const TransactionForm = ({ context, onModalClose }) => {
   const [transactionDate, setTransactionDate] = useState(formattedTodayDate);
 
   const handleNewDate = (newDate) => {
-    setTransactionDate(newDate.format("DD.MM.YYYY"));
+    if (newDate !== null) {
+      const day = newDate.getDate();
+      const month = newDate.getMonth() + 1;
+      const year = newDate.getFullYear();
+
+      const dateString =
+        (day < 10 ? "0" : "") +
+        day +
+        "." +
+        (month < 10 ? "0" : "") +
+        month +
+        "." +
+        year;
+      setTransactionDate(dateString);
+    }
   };
 
   const handleTransactionTypeChange = () => {
@@ -100,29 +115,12 @@ export const TransactionForm = ({ context, onModalClose }) => {
           }
         : { label: transactionCategory, value: transactionCategory },
     amount: context === "edit" ? selectedTransaction.amount : "",
+    date: context === "edit" ? selectedTransaction.date : transactionDate,
     comment: context === "edit" ? selectedTransaction.comment : "",
   };
 
   const spanIncomeClass = transactionType === "income" ? "--income" : "";
   const spanExpenseClass = transactionType === "expense" ? "--expense" : "";
-
-  const categoryOptions = [
-    "Main expenses",
-    "Products",
-    "Car",
-    "Self care",
-    "Child care",
-    "Household products",
-    "Education",
-    "Leisure",
-    "Other expenses",
-    "Entertainment",
-  ];
-
-  const options = categoryOptions.map((option) => ({
-    label: option,
-    value: option,
-  }));
 
   return (
     <div className="transaction-form">
@@ -168,7 +166,7 @@ export const TransactionForm = ({ context, onModalClose }) => {
                   className="react-select-container"
                   classNamePrefix="react-select"
                   name="category"
-                  options={options}
+                  options={categoryOptions}
                   value={values.category}
                   onChange={(selectedOption) => {
                     handleChange("category")(selectedOption.value);
@@ -209,6 +207,11 @@ export const TransactionForm = ({ context, onModalClose }) => {
                 transactionDate={transactionDate}
                 onChange={handleNewDate}
               />
+              {touched.date && errors.date && (
+                <div className="transaction-form__alert transaction-form__alert--date">
+                  {errors.date}
+                </div>
+              )}
             </div>
             <div className="transaction-form__comment">
               <Field

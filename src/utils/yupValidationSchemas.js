@@ -35,5 +35,18 @@ export const transactionValidationSchema = object().shape({
     otherwise: () => object(),
   }),
   amount: number().required("Amount is required"),
-  comment: string().max(40, "Comment must be less than 40 characters"),
+  date: string()
+    .required("Date is required")
+    .test("is-valid-date", "Date format must be DD.MM.YYYY", function (value) {
+      if (!value) return true;
+      if (!/^\d{2}\.\d{2}\.\d{4}$/.test(value)) return false;
+      const parts = value.split(".");
+      const day = parseInt(parts[0], 10);
+      const month = parseInt(parts[1], 10);
+      // eslint-disable-next-line no-unused-vars
+      const year = parseInt(parts[2], 10);
+      if (day < 1 || day > 31 || month < 1 || month > 12) return false;
+      return true;
+    }),
+  comment: string().max(34, "Comment must be less than 34 characters"),
 });

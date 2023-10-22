@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/session/operations";
 import { AuthForm } from "../../components/Forms/AuthForm/AuthForm";
-import { loginValidationSchema } from "../../utils/yupValidationSchema";
+import { loginValidationSchema } from "../../utils/yupValidationSchemas";
 import styles from "./LoginPage.module.css";
 
 export default function LoginPage() {
