@@ -1,12 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, Suspense, lazy } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useMedia } from "react-use";
 import { selectIsRefreshing } from "./redux/session/selectors";
 import { refreshUser } from "./redux/session/operations";
-import LoginPage from "./Pages/LoginPage/LoginPage";
-import RegisterPage from "./Pages/RegisterPage/RegisterPage";
-import DashboardPage from "./Pages/DashboardPage/DashboardPage";
 import { Loader } from "./components/Loader/Loader";
 import { ProtectedRoute } from "./components/ProtectedRoute/ProtectedRoute";
 import { RestrictedRoute } from "./components/RestrictedRoute/RestrictedRoute";
@@ -15,6 +12,10 @@ import { Currency } from "./components/Currency/Currency";
 import { DiagramTab } from "./components/DiagramTab/DiagramTab";
 import "./styles/main.css";
 import "./styles/index.css";
+
+const LoginPage = lazy(() => import("./Pages/LoginPage/LoginPage"));
+const RegisterPage = lazy(() => import("./Pages/RegisterPage/RegisterPage"));
+const DashboardPage = lazy(() => import("./Pages/DashboardPage/DashboardPage"));
 
 export default function App() {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ export default function App() {
   return isRefreshing ? (
     <Loader />
   ) : (
-    <>
+    <Suspense fallback={<Loader />}>
       <Routes>
         <Route
           path="/register"
@@ -50,12 +51,12 @@ export default function App() {
             <ProtectedRoute redirectTo="/login" component={<DashboardPage />} />
           }
         >
-          <Route index path="/" element={<HomeTab />} />
-          <Route path="/statistics" element={<DiagramTab />} />
-          {isMobile && <Route path="/currency" element={<Currency />} />}
+          <Route index element={<HomeTab />} />
+          <Route path="statistics" element={<DiagramTab />} />
+          {isMobile && <Route path="currency" element={<Currency />} />}
+          <Route path="*" element={<Navigate to="login" />} />
         </Route>
-        <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
-    </>
+    </Suspense>
   );
 }
