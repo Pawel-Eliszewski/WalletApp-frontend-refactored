@@ -15,7 +15,6 @@ import { Switch } from "../../Switch/Switch";
 import { Calendar } from "../../Calendar/Calendar";
 import { categoryOptions } from "../../../utils/transactionCategories";
 import { transactionValidationSchema } from "../../../utils/yupValidationSchemas";
-import "./TransactionForm.scss";
 /**
  * @param {{ context: 'add' | 'edit' | 'logout', onModalClose: () => void }} props
  */
