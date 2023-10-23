@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 import ReactPaginate from "react-paginate";
-import "./Pagination.scss";
-
+/**
+ * @param {{ isMobile: boolean, pageCount?: number, onItemOffsetChange?: () => void }} props
+ */
 export const Pagination = ({ isMobile, pageCount, onItemOffsetChange }) => {
   const [currentPage, setCurrentPage] = useState(0);
 

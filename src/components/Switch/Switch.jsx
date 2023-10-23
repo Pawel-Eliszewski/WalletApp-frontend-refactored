@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import { useRef } from "react";
-import "./Switch.scss";
 /**
  * @param {{ onChange: () => void }} props
  */

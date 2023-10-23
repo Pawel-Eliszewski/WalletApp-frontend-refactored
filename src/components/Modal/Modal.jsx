@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../redux/session/operations";
 import { TransactionForm } from "../Forms/TransactionForm/TransactionForm";
 import { Button } from "../Button/Button";
-import "./Modal.scss";
 /**
  * @param {{ isModalOpen: boolean, context: 'add' | 'edit' | 'logout',
  * onModalClose: () => void }} props

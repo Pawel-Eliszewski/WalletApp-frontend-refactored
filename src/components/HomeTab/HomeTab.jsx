@@ -14,7 +14,6 @@ import { Pagination } from "../Pagination/Pagination";
 import { Modal } from "../Modal/Modal";
 import { paginateTransactions } from "../../utils/pagination";
 import { nanoid } from "nanoid";
-import "./HomeTab.scss";
 
 export const HomeTab = () => {
   const dispatch = useDispatch();

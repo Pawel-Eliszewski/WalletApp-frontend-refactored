@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import "./Button.scss";
 /**
  * @param {{ title?: string, onClick?: (ev?: import('react').MouseEvent) => void,
  *  styles: '--submit' | '--cancel' | '--add' | '--edit' | '--edit-mobile'

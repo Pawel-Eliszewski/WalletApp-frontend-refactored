@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import DatePicker from "react-datepicker";
-import "./Calendar.scss";
 /**
  * @param {{ transactionType: 'income' | 'expense',
  * transactionDate: string, onChange: () => void }} props

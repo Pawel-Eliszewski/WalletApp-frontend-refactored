@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Logo } from "../../Logo/Logo";
 import { Button } from "../../Button/Button";
-import "./AuthForm.scss";
 /**
  * @typedef {object} YupValidation
  * @property {YupSchema} loginValidationSchema

@@ -1,6 +1,5 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { useMediaQuery } from "@react-hook/media-query";
-import "./Navigation.scss";
 
 export const Navigation = () => {
   const location = useLocation();

@@ -8,7 +8,6 @@ import { DropdownSelectYear } from "../DropdownSelect/DropdownSelect";
 import { DropdownSelectMonth } from "../DropdownSelect/DropdownSelect";
 import { assignColorsToTransactions } from "../../utils/assignColorsToTransactions";
 import "chart.js/auto";
-import "./DiagramTab.scss";
 
 export const DiagramTab = () => {
   const dispatch = useDispatch();

@@ -2,9 +2,8 @@ import { useState } from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { selectUser } from "../../redux/session/selectors";
 import { Logo } from "../Logo/Logo";
-import { Modal } from "../Modal/Modal";
-import "./Header.scss";
 import { Button } from "../Button/Button";
+import { Modal } from "../Modal/Modal";
 
 export const Header = () => {
   const user = useSelector(selectUser);

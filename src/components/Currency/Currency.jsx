@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchCurrency } from "../../utils/currencyExchange";
 import { nanoid } from "nanoid";
-import "./Currency.scss";
 
 export function Currency() {
   const [currencyData, setCurrencyData] = useState([]);
