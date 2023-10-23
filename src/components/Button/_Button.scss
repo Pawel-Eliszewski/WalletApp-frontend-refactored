@@ -1,3 +1,9 @@
+$iconPen: url("/assets/icon-pen.svg");
+$iconClose: url("/assets/icon-close.svg");
+$iconCloseRed: url("/assets/icon-close-red.svg");
+$iconExitDoors: url("/assets/icon-exit-doors.svg");
+$iconExitDoorsRed: url("/assets/icon-exit-doors-red.svg");
+
 .btn {
     display: flex;
     justify-content: center;
@@ -110,7 +116,7 @@
 
         &::before {
             height: 23px;
-            content: url("/assets/icon-pen.svg");
+            content: $iconPen;
         }
     }
 
@@ -130,14 +136,14 @@
         }
 
         &::after {
-            content: url("/assets/icon-close.svg");
+            content: $iconClose;
             width: 18px;
             height: 18px;
         }
 
         &:hover::after,
         &:focus::after {
-            content: url("/assets/icon-close-red.svg");
+            content: $iconCloseRed;
         }
     }
 
@@ -153,7 +159,7 @@
         }
 
         &::before {
-            content: url("/assets/icon-exit-doors.svg");
+            content: $iconExitDoors;
             width: 18px;
             height: 18px;
             margin-bottom: 2px;
@@ -172,7 +178,7 @@
 
         &:hover::before,
         &:focus::before {
-            content: url("/assets/icon-exit-doors-red.svg");
+            content: $iconExitDoorsRed;
         }
     }
 }

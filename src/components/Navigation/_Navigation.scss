@@ -20,7 +20,7 @@
 		&--active {
 			transform: scale(1.07);
 			transition: 100ms;
-			box-shadow: 0px 0.5px 7px 1px rgba(63, 77, 227, 0.5);
+			box-shadow: 0px 0.5px 7px 1px #3f4de380;
 		}
 	}
 
@@ -39,7 +39,7 @@
 			width: fit-content;
 			display: flex;
 			align-items: center;
-			transition: 200ms;
+			transition: 100ms;
 
 			&:hover .nav__description,
 			&:focus .nav__description {
@@ -49,7 +49,7 @@
 			&:hover .nav__logo,
 			&:focus .nav__logo {
 				box-shadow: 0px 0.5px 7px 1px rgba(74, 86, 226, 0.5);
-				transition: 200ms;
+				transition: 100ms;
 			}
 		}
 
@@ -57,12 +57,12 @@
 			width: 18px;
 			height: 18px;
 			border-radius: 3px;
-			transition: 200ms;
+			transition: 100ms;
 
 			&--active {
 				transform: scale(1);
 				box-shadow: 0px 0.5px 7px 1px rgba(74, 86, 226, 0.5);
-				transition: 200ms;
+				transition: 100ms;
 			}
 		}
 
@@ -72,11 +72,11 @@
 			size: 18px;
 			line-height: 27px;
 			margin: 0;
-			transition: 200ms;
+			transition: 100ms;
 
 			&--active {
 				font-weight: 700;
-				transition: 200ms;
+				transition: 100ms;
 			}
 		}
 	}

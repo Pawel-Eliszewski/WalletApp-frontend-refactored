@@ -2,20 +2,22 @@ import { useEffect, Suspense, lazy } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useMedia } from "react-use";
-import { selectIsRefreshing } from "./redux/session/selectors";
-import { refreshUser } from "./redux/session/operations";
-import { Loader } from "./components/Loader/Loader";
-import { ProtectedRoute } from "./components/ProtectedRoute/ProtectedRoute";
-import { RestrictedRoute } from "./components/RestrictedRoute/RestrictedRoute";
-import { HomeTab } from "./components/HomeTab/HomeTab";
-import { Currency } from "./components/Currency/Currency";
-import { DiagramTab } from "./components/DiagramTab/DiagramTab";
-import "./styles/main.css";
-import "./styles/index.css";
+import { selectIsRefreshing } from "../redux/session/selectors";
+import { refreshUser } from "../redux/session/operations";
+import { Loader } from "./Loader/Loader";
+import { ProtectedRoute } from "./Routes/ProtectedRoute";
+import { RestrictedRoute } from "./Routes/RestrictedRoute";
+import { HomeTab } from "./HomeTab/HomeTab";
+import { Currency } from "./Currency/Currency";
+import { DiagramTab } from "./DiagramTab/DiagramTab";
+import "../styles/main.css";
+import "../styles/index.css";
 
-const LoginPage = lazy(() => import("./Pages/LoginPage/LoginPage"));
-const RegisterPage = lazy(() => import("./Pages/RegisterPage/RegisterPage"));
-const DashboardPage = lazy(() => import("./Pages/DashboardPage/DashboardPage"));
+const LoginPage = lazy(() => import("../Pages/LoginPage/LoginPage"));
+const RegisterPage = lazy(() => import("../Pages/RegisterPage/RegisterPage"));
+const DashboardPage = lazy(() =>
+  import("../Pages/DashboardPage/DashboardPage")
+);
 
 export default function App() {
   const dispatch = useDispatch();

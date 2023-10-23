@@ -1,3 +1,5 @@
+$iconCalendar: url("/assets/icon-calendar.svg");
+
 .react-datepicker {
     font-size: 18px;
     background-color: var(--primary-background-color);
@@ -52,7 +54,7 @@
         }
 
         &::after {
-            content: url("/assets/icon-calendar.svg");
+            content: $iconCalendar;
             top: 0px;
             right: 10px;
             display: block;
