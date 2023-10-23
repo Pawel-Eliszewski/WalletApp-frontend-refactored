@@ -13,6 +13,8 @@ import { RestrictedRoute } from "./components/RestrictedRoute/RestrictedRoute";
 import { HomeTab } from "./components/HomeTab/HomeTab";
 import { Currency } from "./components/Currency/Currency";
 import { DiagramTab } from "./components/DiagramTab/DiagramTab";
+import "./styles/main.css";
+import "./styles/index.css";
 
 export default function App() {
   const dispatch = useDispatch();
