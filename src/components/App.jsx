@@ -11,7 +11,6 @@ import { HomeTab } from "./HomeTab/HomeTab";
 import { Currency } from "./Currency/Currency";
 import { DiagramTab } from "./DiagramTab/DiagramTab";
 import "../styles/main.css";
-import "../styles/index.css";
 
 const LoginPage = lazy(() => import("../Pages/LoginPage/LoginPage"));
 const RegisterPage = lazy(() => import("../Pages/RegisterPage/RegisterPage"));

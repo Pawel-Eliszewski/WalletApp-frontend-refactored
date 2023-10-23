@@ -1,0 +1,53 @@
+body {
+    color: var(--primary-font-color);
+    font-family: "Circe", sans-serif, "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul,
+p,
+h2 {
+    padding: 0;
+    margin: 0;
+}
+
+ul:focus-visible {
+    outline: none;
+}
+
+li {
+    list-style-type: none;
+}
+
+button:hover {
+    transition: 300ms;
+    cursor: pointer;
+}
+
+button:focus {
+    border: none;
+    outline: none;
+}
+
+button:focus-visible,
+div:focus-visible {
+    border: none;
+    outline: 2px solid var(--primary-font-color);
+    transition: 0s;
+}
+
+div:focus-visible {
+    border-radius: 4px;
+}
