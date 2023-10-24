@@ -13,7 +13,7 @@ export const paginateTransactions = (page) => {
   }
 
   const length = transactions.length;
-  const pages = Math.ceil(length / 7);
+  const pages = Math.ceil(length / 5);
 
   let currentPage;
   if (!page) {
@@ -24,8 +24,8 @@ export const paginateTransactions = (page) => {
     currentPage = page;
   }
 
-  let start = (currentPage - 1) * 7;
-  let end = currentPage * 7;
+  let start = (currentPage - 1) * 5;
+  let end = currentPage * 5;
 
   const sortedTransactions = [...transactions]; // Tworzy kopię tablicy transactions
 

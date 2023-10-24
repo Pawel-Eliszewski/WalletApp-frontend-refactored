@@ -1,0 +1,120 @@
+.auth-page {
+  &__hero {
+    &-container {
+      display: none;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .auth-page {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--secondary-background-color);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    position: relative;
+    gap: 50px;
+    padding-top: 60px;
+    overflow: hidden;
+
+    &__hero {
+      &-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 533px;
+        z-index: 2;
+      }
+
+      &-img {
+        width: 260px;
+        height: 250px;
+      }
+
+      &-title {
+        font-family: "Poppins";
+        font-size: 30px;
+        line-height: 45px;
+        font-weight: 400;
+        padding-right: 50px;
+      }
+    }
+
+    &__form-container {
+      width: 533px;
+    }
+
+    &__ellipse {
+      display: block;
+      position: absolute;
+      border-radius: 50%;
+
+      &--top {
+        width: 80%;
+        padding-top: 80%;
+        top: -19%;
+        right: -31%;
+        background-color: var(--products-diagram-color);
+        transform: rotate(-21.94deg);
+      }
+
+      &--bottom {
+        width: 78%;
+        padding-top: 163%;
+        top: 40%;
+        left: -49%;
+        background-color: var(--ellipse-bottom-color);
+        transform: rotate(69.862deg);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .auth-page {
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0;
+    gap: 0;
+
+    &__hero {
+      &-container {
+        flex-direction: column;
+        width: 100%;
+        max-width: 45vw;
+      }
+
+      &-img {
+        width: 435px;
+        height: 420px;
+      }
+    }
+
+    &__form-container {
+      width: 100%;
+      height: 100%;
+      background: var(--login-form-background-color);
+      backdrop-filter: blur(25px);
+    }
+
+    &__ellipse {
+      &--top {
+        width: 50%;
+        padding-top: 50%;
+        top: -32%;
+        right: -9%;
+      }
+
+      &--bottom {
+        width: 69%;
+        padding-top: 221%;
+        top: -54%;
+        left: -95%;
+        transform: rotate(60.862deg);
+      }
+    }
+  }
+}

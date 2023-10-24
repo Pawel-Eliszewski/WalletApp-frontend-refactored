@@ -8,6 +8,7 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    background-color: var(--primary-background-color);
     z-index: 9;
 
     &__wrapper {
@@ -25,6 +26,10 @@
         position: relative;
         display: flex;
         align-items: center;
+
+        &:focus-within {
+            border-bottom: 1px solid var(--primary-font-color);
+        }
     }
 
     &__icon {
@@ -70,11 +75,8 @@
         position: relative;
         max-width: 533px;
         border-radius: 20px;
-        background-color: var(--primary-background-color);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding-block: 60px;
+        padding-top: 40px;
+        padding-bottom: 62px;
 
         &__field {
             width: 409px;

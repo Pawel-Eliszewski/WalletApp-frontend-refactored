@@ -12,8 +12,7 @@ import { Currency } from "./Currency/Currency";
 import { DiagramTab } from "./DiagramTab/DiagramTab";
 import "../styles/main.css";
 
-const LoginPage = lazy(() => import("../Pages/LoginPage/LoginPage"));
-const RegisterPage = lazy(() => import("../Pages/RegisterPage/RegisterPage"));
+const AuthPage = lazy(() => import("../Pages/AuthPage/AuthPage"));
 const DashboardPage = lazy(() =>
   import("../Pages/DashboardPage/DashboardPage")
 );
@@ -39,12 +38,20 @@ export default function App() {
         <Route
           path="/register"
           element={
-            <RestrictedRoute redirectTo="/" component={<RegisterPage />} />
+            <RestrictedRoute
+              redirectTo="/"
+              component={<AuthPage context="register" />}
+            />
           }
         />
         <Route
           path="/login"
-          element={<RestrictedRoute redirectTo="/" component={<LoginPage />} />}
+          element={
+            <RestrictedRoute
+              redirectTo="/"
+              component={<AuthPage context="login" />}
+            />
+          }
         />
         <Route
           path="/"

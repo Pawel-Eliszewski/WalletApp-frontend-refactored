@@ -3,15 +3,14 @@ import { Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Logo } from "../../Logo/Logo";
 import { Button } from "../../Button/Button";
+import {
+  loginValidationSchema,
+  registerValidationSchema,
+} from "../../../utils/yupValidationSchemas";
 /**
- * @typedef {object} YupValidation
- * @property {YupSchema} loginValidationSchema
- * @property {YupSchema} registerValidationSchema
+ * @param {{ context: 'login' | 'register', onSubmit: () => void }} props
  */
-/**
- * @param {{ validation: YupValidation, onSubmit: () => void, context: 'login' | 'register' }} props
- */
-export const AuthForm = ({ context, validation, onSubmit }) => {
+export const AuthForm = ({ context, onSubmit }) => {
   const initialValues = {
     email: "",
     password: "",
@@ -24,7 +23,9 @@ export const AuthForm = ({ context, validation, onSubmit }) => {
       <Logo />
       <Formik
         initialValues={initialValues}
-        validationSchema={validation}
+        validationSchema={
+          context === "login" ? loginValidationSchema : registerValidationSchema
+        }
         onSubmit={onSubmit}
       >
         {() => (
@@ -129,7 +130,6 @@ export const AuthForm = ({ context, validation, onSubmit }) => {
 };
 
 AuthForm.propTypes = {
-  validation: PropTypes.object.isRequired,
-  onSubmit: PropTypes.func.isRequired,
   context: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
