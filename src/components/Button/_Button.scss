@@ -155,7 +155,8 @@ $iconExitDoorsRed: url("/assets/icon-exit-doors-red.svg");
         margin-left: 10px;
 
         @media screen and (min-width:768px) {
-            width: fit-content;
+            width: 80px;
+            height: 30px;
         }
 
         &::before {

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Logo } from "../../Logo/Logo";
 import { Button } from "../../Button/Button";
@@ -11,11 +11,18 @@ import {
  * @param {{ context: 'login' | 'register', onSubmit: () => void }} props
  */
 export const AuthForm = ({ context, onSubmit }) => {
+  const navigate = useNavigate();
+
   const initialValues = {
     email: "",
     password: "",
     confirmPassword: "",
     firstName: "",
+  };
+
+  const handleClick = () => {
+    console.log(context);
+    navigate(context === "login" ? "/register" : "/login", { replace: true });
   };
 
   return (
@@ -115,13 +122,12 @@ export const AuthForm = ({ context, onSubmit }) => {
               styles="--submit"
               type="submit"
             />
-            <Link to={context === "login" ? "/register" : "/login"}>
-              <Button
-                title={context === "login" ? "Register" : "Log in"}
-                styles="--cancel"
-                type="button"
-              />
-            </Link>
+            <Button
+              title={context === "login" ? "Register" : "Log in"}
+              styles="--cancel"
+              type="button"
+              onClick={handleClick}
+            />
           </Form>
         )}
       </Formik>

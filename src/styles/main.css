@@ -394,8 +394,8 @@ div:focus-visible {
 }
 @media screen and (min-width: 768px) {
   .btn--logout {
-    width: -moz-fit-content;
-    width: fit-content;
+    width: 80px;
+    height: 30px;
   }
 }
 .btn--logout::before {
