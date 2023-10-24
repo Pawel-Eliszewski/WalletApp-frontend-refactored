@@ -21,7 +21,6 @@ export const AuthForm = ({ context, onSubmit }) => {
   };
 
   const handleClick = () => {
-    console.log(context);
     navigate(context === "login" ? "/register" : "/login", { replace: true });
   };
 

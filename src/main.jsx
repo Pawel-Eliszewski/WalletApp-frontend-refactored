@@ -6,6 +6,19 @@ import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./redux/store";
 import App from "./components/App";
 
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("/service-worker.js")
+    .then((registration) => {
+      console.log("Service Worker zarejestrowany z sukcesem:", registration);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+} else {
+  // Przeglądarka nie obsługuje service workera, obsłuż tę sytuację
+}
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>

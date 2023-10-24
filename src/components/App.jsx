@@ -1,3 +1,4 @@
+import "../../installPrompt";
 import { useEffect, Suspense, lazy } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -29,6 +30,11 @@ export default function App() {
   }, [dispatch]);
 
   const isMobile = useMedia("(max-width: 767px)");
+
+  // const handleInstallClick = () => {
+  //   const installPromptEvent = new Event("beforeinstallprompt");
+  //   window.dispatchEvent(installPromptEvent);
+  // };
 
   return isRefreshing ? (
     <Loader />
