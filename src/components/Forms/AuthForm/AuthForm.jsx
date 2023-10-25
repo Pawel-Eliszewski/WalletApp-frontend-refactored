@@ -41,6 +41,8 @@ export const AuthForm = ({ context, onSubmit }) => {
                 className="auth-form__icon auth-form__icon--email"
                 src="/assets/icon-email.svg"
                 alt="email icon"
+                width="21"
+                height="16"
               />
               <Field
                 className="auth-form__input"
@@ -60,6 +62,8 @@ export const AuthForm = ({ context, onSubmit }) => {
                 className="auth-form__icon"
                 src="/assets/icon-lock.svg"
                 alt="lock icon"
+                width="17"
+                height="21"
               />
               <Field
                 className="auth-form__input"
@@ -81,6 +85,8 @@ export const AuthForm = ({ context, onSubmit }) => {
                     className="auth-form__icon"
                     src="/assets/icon-lock.svg"
                     alt="lock icon"
+                    width="17"
+                    height="21"
                   />
                   <Field
                     className="auth-form__input"
@@ -100,6 +106,8 @@ export const AuthForm = ({ context, onSubmit }) => {
                     className="auth-form__icon auth-form__icon--person"
                     src="/assets/icon-person.svg"
                     alt="person icon"
+                    width="19"
+                    height="18"
                   />
                   <Field
                     className="auth-form__input"

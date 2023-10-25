@@ -99,9 +99,14 @@ $iconExitDoorsRed: url("/assets/icon-exit-doors-red.svg");
         width: 23px;
         height: 23px;
         margin-right: 4px;
+
+        &:hover {
+            transform: rotate(360deg);
+        }
     }
 
     &--edit-mobile {
+        color: var(--primary-font-color);
         display: flex;
         justify-content: space-between;
         align-items: center;
