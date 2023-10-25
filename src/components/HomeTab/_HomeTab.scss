@@ -143,11 +143,11 @@
         display: inline;
 
         &--date {
-          margin-right: 40px;
+          margin-right: 45px;
         }
 
         &--type {
-          margin-right: 30px;
+          margin-right: 25px;
         }
 
         &--category {
@@ -155,7 +155,15 @@
         }
 
         &--comment {
-          margin-right: 125px;
+          margin-right: 130px;
+        }
+
+        &--sum {
+          margin-right: 50px;
+        }
+
+        &--controls {
+          color: transparent;
         }
       }
     }

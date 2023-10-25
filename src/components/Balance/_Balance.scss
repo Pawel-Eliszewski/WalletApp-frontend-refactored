@@ -20,7 +20,7 @@
 
   &__title {
     color: var(--primary-gray-font-color);
-    font-family: "Circe";
+    font-family: "Circe", sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
@@ -29,17 +29,11 @@
     padding-left: 15px;
   }
 
-  &__amount-wrapper {
-    font-family: "Poppins";
+  &__amount {
+    font-family: "Poppins", sans-serif;
     font-weight: 700;
     font-size: 30px;
     line-height: 1.5;
-    display: flex;
-    overflow: hidden;
-  }
-
-  &__amount {
-    font-weight: 600;
     margin-right: 10px;
   }
 }

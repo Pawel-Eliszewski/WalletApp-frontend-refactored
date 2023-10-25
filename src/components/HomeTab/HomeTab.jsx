@@ -138,6 +138,9 @@ export const HomeTab = () => {
                 Comment
               </th>
               <th className="table__head-item table__head-item--sum">Sum</th>
+              <th className="table__head-item table__head-item--controls">
+                Controls
+              </th>
             </tr>
           </thead>
           <tbody className="table__body">
@@ -165,6 +168,7 @@ export const HomeTab = () => {
                   <td className="table__body-item">
                     <div className="table__body-item-controls">
                       <Button
+                        ariaLabel="Edit"
                         onClick={() => openModalEdit(_id)}
                         styles="--edit"
                         type="button"

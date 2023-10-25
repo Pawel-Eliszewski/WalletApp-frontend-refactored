@@ -24,7 +24,7 @@ export const Navigation = () => {
                   location.pathname === item.path ? "nav__logo--active" : ""
                 }`}
                 src={`/assets/${item.icon}`}
-                alt={item.label}
+                alt={`${item.label} small icon`}
               />
               <p
                 className={`nav__description ${

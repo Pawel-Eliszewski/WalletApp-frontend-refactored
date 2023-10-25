@@ -6,11 +6,8 @@ export const Balance = () => {
 
   return (
     <div className="balance">
-      <div className="balance__title">Your balance</div>
-      <div className="balance__amount-wrapper">
-        <span className="balance__amount"></span>
-        {balance.toFixed(2)} PLN
-      </div>
+      <h2 className="balance__title">Your balance</h2>
+      <p className="balance__amount">{balance.toFixed(2)} PLN</p>
     </div>
   );
 };

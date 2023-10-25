@@ -243,7 +243,7 @@ div:focus-visible {
 }
 .balance__title {
   color: var(--primary-gray-font-color);
-  font-family: "Circe";
+  font-family: "Circe", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -251,16 +251,11 @@ div:focus-visible {
   text-transform: uppercase;
   padding-left: 15px;
 }
-.balance__amount-wrapper {
-  font-family: "Poppins";
+.balance__amount {
+  font-family: "Poppins", sans-serif;
   font-weight: 700;
   font-size: 30px;
   line-height: 1.5;
-  display: flex;
-  overflow: hidden;
-}
-.balance__amount {
-  font-weight: 600;
   margin-right: 10px;
 }
 
@@ -1317,16 +1312,22 @@ div:focus-visible {
     display: inline;
   }
   .table__head-item--date {
-    margin-right: 40px;
+    margin-right: 45px;
   }
   .table__head-item--type {
-    margin-right: 30px;
+    margin-right: 25px;
   }
   .table__head-item--category {
     margin-right: 80px;
   }
   .table__head-item--comment {
-    margin-right: 125px;
+    margin-right: 130px;
+  }
+  .table__head-item--sum {
+    margin-right: 50px;
+  }
+  .table__head-item--controls {
+    color: transparent;
   }
   .table__body-list {
     position: relative;

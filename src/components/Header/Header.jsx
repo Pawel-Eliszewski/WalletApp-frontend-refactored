@@ -26,6 +26,7 @@ export const Header = () => {
       <div className="header__nav">
         <p className="header__nav-user">{user.email}</p>
         <Button
+          ariaLabel="Exit"
           title={window.innerWidth >= 768 ? "Exit" : ""}
           styles="--logout"
           type="button"
