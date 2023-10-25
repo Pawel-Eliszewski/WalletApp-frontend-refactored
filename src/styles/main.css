@@ -202,7 +202,7 @@ div:focus-visible {
   background-image: url(/assets/dashboard-background-desktop.png);
   background-size: cover;
   background-position: center;
-  padding: 40px 40px;
+  padding: 40px 40px 20px 40px;
 }
 
 .wrapper {
@@ -246,7 +246,7 @@ div:focus-visible {
   font-family: "Circe", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.5;
   text-transform: uppercase;
   padding-left: 15px;
@@ -1621,7 +1621,6 @@ div:focus-visible {
 @media screen and (min-width: 768px) {
   .pagination {
     justify-content: center;
-    margin-top: 30px;
   }
   .pagination__link--outermost {
     display: none;
