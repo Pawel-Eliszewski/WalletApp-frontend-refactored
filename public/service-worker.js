@@ -32,7 +32,6 @@ const urlsToCache = [
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log("Pamięć podręczna utworzona");
       return cache.addAll(urlsToCache);
     })
   );
@@ -52,7 +51,6 @@ self.addEventListener("activate", (event) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           if (cacheName !== CACHE_NAME) {
-            console.log("Stara pamięć podręczna zostaje usunięta:", cacheName);
             return caches.delete(cacheName);
           }
         })
