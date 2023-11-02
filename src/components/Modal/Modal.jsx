@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
+import { setIsLoading } from "../../redux/global/globalSlice";
 import { logout } from "../../redux/session/operations";
 import { TransactionForm } from "../Forms/TransactionForm/TransactionForm";
 import { Button } from "../Button/Button";
@@ -33,8 +34,15 @@ export const Modal = ({ isModalOpen, context, onModalClose }) => {
   };
 
   const handleLogout = () => {
-    dispatch(logout());
-    onModalClose();
+    dispatch(setIsLoading(true));
+    try {
+      dispatch(logout());
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch(setIsLoading(false));
+      onModalClose();
+    }
   };
 
   return (

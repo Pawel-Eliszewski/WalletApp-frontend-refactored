@@ -4,6 +4,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useMedia } from "react-use";
 import { selectIsRefreshing } from "../redux/session/selectors";
+import { selectIsLoading } from "../redux/global/selectors";
 import { refreshUser } from "../redux/session/operations";
 import { Loader } from "./Loader/Loader";
 import { ProtectedRoute } from "./Routes/ProtectedRoute";
@@ -21,6 +22,7 @@ const DashboardPage = lazy(() =>
 export default function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     const func = async () => {
@@ -31,12 +33,7 @@ export default function App() {
 
   const isMobile = useMedia("(max-width: 767px)");
 
-  // const handleInstallClick = () => {
-  //   const installPromptEvent = new Event("beforeinstallprompt");
-  //   window.dispatchEvent(installPromptEvent);
-  // };
-
-  return isRefreshing ? (
+  return isRefreshing || isLoading ? (
     <Loader />
   ) : (
     <Suspense fallback={<Loader />}>

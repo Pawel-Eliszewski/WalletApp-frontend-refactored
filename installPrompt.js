@@ -4,5 +4,5 @@ window.addEventListener("beforeinstallprompt", (event) => {
 });
 
 function showInstallPrompt() {
-  alert("Zainstaluj tę aplikację na pulpicie!");
+  alert("Install this application on your device");
 }
