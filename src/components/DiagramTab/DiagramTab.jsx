@@ -11,10 +11,8 @@ import "chart.js/auto";
 
 export const DiagramTab = () => {
   const dispatch = useDispatch();
-
   const user = useSelector(selectUser);
   const transactions = useSelector(selectTransactions);
-
   const [selectedMonth, setSelectedMonth] = useState("Month");
   const [selectedYear, setSelectedYear] = useState("Year");
   const [transactionColors, setTransactionColors] = useState({});

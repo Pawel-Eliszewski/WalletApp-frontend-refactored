@@ -1,10 +1,4 @@
-import { useSelector } from "react-redux";
-import { selectTransactions } from "../redux/finance/selectors";
-
-export const getMonthsForYear = (year) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const transactions = useSelector(selectTransactions);
-
+export const getMonthsForYear = (transactions, year) => {
   let monthsAsNumbers = [];
 
   transactions.map((transaction) => {

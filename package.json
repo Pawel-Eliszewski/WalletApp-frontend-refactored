@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://wallet-app-teamloremipsum.netlify.app/",
+  "homepage": "https://finance-app-wallet.netlify.app/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

@@ -1,7 +1,10 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { selectTransactionsYears } from "../../redux/finance/selectors";
+import {
+  selectTransactions,
+  selectTransactionsYears,
+} from "../../redux/finance/selectors";
 import { getMonthsForYear } from "../../utils/getMonthsForYear";
 import css from "./DropdownSelect.module.css";
 
@@ -10,6 +13,7 @@ export const DropdownSelectMonth = ({
   selectedMonth,
   onSelect,
 }) => {
+  const transactions = useSelector(selectTransactions);
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
@@ -37,7 +41,7 @@ export const DropdownSelectMonth = ({
     }
   }, [isActive]);
 
-  const months = getMonthsForYear(selectedYear);
+  const months = getMonthsForYear(transactions, selectedYear);
 
   const iconArrowClass = isActive ? css.iconArrowUp : css.iconArrowDown;
   const selectedClass =
@@ -94,6 +98,7 @@ DropdownSelectMonth.propTypes = {
 };
 
 export const DropdownSelectYear = ({ selectedYear, onSelect }) => {
+  const years = useSelector(selectTransactionsYears);
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
@@ -105,8 +110,6 @@ export const DropdownSelectYear = ({ selectedYear, onSelect }) => {
       mounted = false;
     };
   }, []);
-
-  const years = useSelector(selectTransactionsYears);
 
   const iconArrowClass = isActive ? css.iconArrowUp : css.iconArrowDown;
   const selectedClass =
