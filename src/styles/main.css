@@ -7,6 +7,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -ms-overflow-style: none;
+  overscroll-behavior-y: none;
 }
 
 body::-webkit-scrollbar {
@@ -885,7 +886,7 @@ div:focus-visible {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background-color: var(--primary-background-color);
+  background-color: transparent;
   z-index: 9;
 }
 .auth-form__wrapper {
@@ -948,6 +949,7 @@ div:focus-visible {
     border-radius: 20px;
     padding-top: 40px;
     padding-bottom: 62px;
+    background-color: var(--primary-background-color);
   }
   .auth-form__field {
     width: 409px;

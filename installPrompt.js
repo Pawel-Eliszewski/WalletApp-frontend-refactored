@@ -9,5 +9,5 @@ window.addEventListener("beforeinstallprompt", (event) => {
 });
 
 function showInstallPrompt() {
-  alert("Install this application on your device");
+  alert("You can install this application on your device");
 }
