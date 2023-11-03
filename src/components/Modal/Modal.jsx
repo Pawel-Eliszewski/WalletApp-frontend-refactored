@@ -6,7 +6,7 @@ import { logout } from "../../redux/session/operations";
 import { TransactionForm } from "../Forms/TransactionForm/TransactionForm";
 import { Button } from "../Button/Button";
 /**
- * @param {{ isModalOpen: boolean, context: 'add' | 'edit' | 'logout',
+ * @param {{ isModalOpen: boolean, context?: 'add' | 'edit' | 'logout',
  * onModalClose: () => void }} props
  */
 export const Modal = ({ isModalOpen, context, onModalClose }) => {
@@ -66,9 +66,13 @@ export const Modal = ({ isModalOpen, context, onModalClose }) => {
             ? "Add transaction"
             : "Edit transaction"}
         </h2>
-        {context !== "logout" ? (
+        {context === "add" || context === "edit" ? (
           <>
-            <TransactionForm context={context} onModalClose={onModalClose} />
+            <TransactionForm
+              isModalOpen={isModalOpen}
+              context={context}
+              onModalClose={onModalClose}
+            />
             <Button
               title="Cancel"
               styles="--cancel"
@@ -76,7 +80,8 @@ export const Modal = ({ isModalOpen, context, onModalClose }) => {
               onClick={onModalClose}
             />
           </>
-        ) : (
+        ) : null}
+        {context === "logout" && (
           <div className="modal__controls">
             <Button
               title="Yes"
@@ -99,6 +104,6 @@ export const Modal = ({ isModalOpen, context, onModalClose }) => {
 
 Modal.propTypes = {
   isModalOpen: PropTypes.bool.isRequired,
-  context: PropTypes.string.isRequired,
+  context: PropTypes.string,
   onModalClose: PropTypes.func.isRequired,
 };

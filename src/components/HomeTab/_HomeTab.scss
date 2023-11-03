@@ -1,5 +1,3 @@
-// mobile max-width 767px
-
 .home {
   &__container {
     display: flex;
@@ -104,8 +102,6 @@
   }
 }
 
-// tablet & desktop min-width 768px
-
 @media screen and (min-width: 768px) {
   .home {
     &__container {
@@ -143,23 +139,23 @@
         display: inline;
 
         &--date {
-          margin-right: 45px;
+          margin-right: 55px;
         }
 
         &--type {
-          margin-right: 25px;
+          margin-right: 20px;
         }
 
         &--category {
-          margin-right: 80px;
+          margin-right: 75px;
         }
 
         &--comment {
-          margin-right: 130px;
+          margin-right: 135px;
         }
 
         &--sum {
-          margin-right: 50px;
+          margin-right: 45px;
         }
 
         &--controls {

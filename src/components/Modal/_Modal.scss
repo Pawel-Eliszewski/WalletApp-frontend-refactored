@@ -1,9 +1,6 @@
 .modal {
     &__backdrop {
-        display: none;
-        pointer-events: none;
-        opacity: 0;
-        transition: opacity 0.3s ease-in-out;
+        display: block;
         position: fixed;
         left: 0;
         top: 0;
@@ -11,16 +8,19 @@
         height: 100%;
         background-color: var(--backdrop--background-color);
         z-index: 10;
+        pointer-events: none;
+        opacity: 0;
+        transition: 300ms;
 
         &--visible {
-            display: block;
             pointer-events: all;
             opacity: 1;
-            transition: opacity 0.3s ease-in-out;
+            transition: 300ms;
         }
     }
 
     &__container {
+        display: flex;
         position: fixed;
         left: 50%;
         top: 50%;
@@ -32,15 +32,14 @@
         flex-direction: column;
         margin: 0 auto;
         background-color: var(--primary-background-color);
-        padding-block: 25px;
+        padding-block: 20px;
         border-radius: 20px;
-        display: none;
-        opacity: 0;
+        scale: 0;
+        transition: 500ms;
 
         &--visible {
-            display: flex;
-            opacity: 1;
-            transition-duration: 300ms;
+            scale: 1;
+            transition: 500ms;
         }
     }
 
@@ -52,7 +51,6 @@
         line-height: 35px;
         letter-spacing: 0em;
         margin: 0 auto;
-        margin-top: 20px;
     }
 
     &__controls {
@@ -62,15 +60,6 @@
         width: 100%;
         margin-top: 50px;
         padding-inline: 40px;
-    }
-}
-
-@media screen and (min-width: 375px) {
-    .modal {
-        &__container {
-            width: calc(100vw - 40px);
-            padding-bottom: 35px;
-        }
     }
 }
 
@@ -89,6 +78,7 @@
 
         &__title {
             font-size: 30px;
+            margin-top: 20px;
         }
     }
 }

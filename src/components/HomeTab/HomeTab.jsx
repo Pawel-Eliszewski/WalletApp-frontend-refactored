@@ -17,37 +17,24 @@ import { nanoid } from "nanoid";
 
 export const HomeTab = () => {
   const dispatch = useDispatch();
-  const isMobile = useMedia("(max-width: 767px)");
-
   const user = useSelector(selectUser);
+  const isMobile = useMedia("(max-width: 767px)");
 
   const [context, setContext] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [itemOffset, setItemOffset] = useState(0);
 
-  let paginationData = paginateTransactions(itemOffset);
-  let transactions = paginationData.paginatedTransactions;
-  let pageCount = paginationData.pages;
-
   useEffect(() => {
     dispatch(fetchTransactions(user.id));
   }, [dispatch, user.id]);
 
+  let paginationData = paginateTransactions(itemOffset);
+  let transactions = paginationData.paginatedTransactions;
+  let pageCount = paginationData.pages;
+
   const handleItemOffset = (event) => {
     setItemOffset(event);
   };
-
-  function formatDate(inputDate) {
-    const parts = inputDate.split(".");
-    if (parts.length !== 3) {
-      return "Invalid Date";
-    }
-    const day = parts[0].toString().padStart(2, "0");
-    const month = parts[1].toString().padStart(2, "0");
-    const year = parts[2].toString().slice(2);
-
-    return `${day}.${month}.${year}`;
-  }
 
   const openModalAdd = () => {
     setContext("add");
@@ -64,6 +51,7 @@ export const HomeTab = () => {
 
   const handleModalClose = () => {
     setIsModalOpen(false);
+    setContext(null);
     document.body.style.overflow = "unset";
   };
 
@@ -85,7 +73,7 @@ export const HomeTab = () => {
               >
                 <li className="mobile-table__item">
                   <span className="mobile-table__item-header">Date</span>
-                  {formatDate(date)}
+                  {date}
                 </li>
                 <li className="mobile-table__item">
                   <span className="mobile-table__item-header">Type</span>
@@ -147,9 +135,7 @@ export const HomeTab = () => {
             {transactions.map(
               ({ _id, date, type, category, comment, amount }) => (
                 <tr key={nanoid()} className="table__body-list">
-                  <td className="table__body-item body-item--date">
-                    {formatDate(date)}
-                  </td>
+                  <td className="table__body-item body-item--date">{date}</td>
                   <td className="table__body-item table__body-item--type">
                     {type === "income" ? "+" : "-"}
                   </td>
@@ -196,13 +182,11 @@ export const HomeTab = () => {
         />
       )}
       <Button title="+" onClick={openModalAdd} styles="--add" type="button" />
-      {isModalOpen && (
-        <Modal
-          isModalOpen={isModalOpen}
-          onModalClose={handleModalClose}
-          context={context}
-        />
-      )}
+      <Modal
+        isModalOpen={isModalOpen}
+        context={context}
+        onModalClose={handleModalClose}
+      />
     </div>
   );
 };

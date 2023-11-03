@@ -8,7 +8,7 @@
   background-position: bottom;
   color: var(--primary-background-color);
   border-radius: 30px;
-  overflow-y: auto;
+  overflow: hidden;
 
   &__table {
     position: relative;

@@ -1,19 +1,24 @@
 import PropTypes from "prop-types";
 import DatePicker from "react-datepicker";
+import {
+  formattedTransactionDate,
+  handleNewDate,
+} from "../../utils/dateHandlers";
 /**
  * @param {{ transactionType: 'income' | 'expense',
- * transactionDate: string, onChange: () => void }} props
+ * transactionDate: string, onDateChange: () => void }} props
  */
-export const Calendar = ({ transactionType, transactionDate, onChange }) => {
-  const dateParts = transactionDate.split(".");
-  const date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
-
+export const Calendar = ({
+  transactionType,
+  transactionDate,
+  onDateChange,
+}) => {
   const calendarIncomeClass = transactionType === "income" ? "--income" : "";
 
   return (
     <DatePicker
-      selected={date}
-      onChange={(date) => onChange(date)}
+      selected={formattedTransactionDate(transactionDate)}
+      onChange={(newDate) => onDateChange(handleNewDate(newDate))}
       dateFormat="dd.MM.yyyy"
       calendarClassName={"react-datepicker" + calendarIncomeClass}
     />
@@ -21,7 +26,7 @@ export const Calendar = ({ transactionType, transactionDate, onChange }) => {
 };
 
 Calendar.propTypes = {
-  transactionType: PropTypes.string,
+  transactionType: PropTypes.string.isRequired,
   transactionDate: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
+  onDateChange: PropTypes.func.isRequired,
 };

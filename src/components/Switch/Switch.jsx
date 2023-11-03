@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import { useRef } from "react";
 /**
- * @param {{ onChange: () => void }} props
+ * @param {{ checked: boolean, onChange: () => void }} props
  */
-export const Switch = ({ onChange }) => {
+export const Switch = ({ checked, onChange }) => {
   const checkboxRef = useRef(null);
 
   const handleKeyDown = (e) => {
@@ -34,8 +34,8 @@ export const Switch = ({ onChange }) => {
           className="switch__input"
           type="checkbox"
           id="checkbox"
-          onClick={onChange}
-          defaultChecked
+          onChange={onChange}
+          checked={checked}
         />
         <div className="switch__slider"></div>
       </label>
@@ -44,5 +44,6 @@ export const Switch = ({ onChange }) => {
 };
 
 Switch.propTypes = {
+  checked: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
 };

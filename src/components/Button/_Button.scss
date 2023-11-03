@@ -32,7 +32,11 @@ $iconExitDoorsRed: url("/assets/icon-exit-doors-red.svg");
     &--yes {
         background-color: var(--primary-income-color);
         color: var(--primary-background-color);
-        margin-bottom: 20px;
+        margin-bottom: 12px;
+
+        @media screen and (min-width: 768px) {
+            margin-bottom: 20px;
+        }
 
         &:hover,
         &:focus {
@@ -157,7 +161,7 @@ $iconExitDoorsRed: url("/assets/icon-exit-doors-red.svg");
         height: 18px;
         text-transform: none;
         color: var(--primary-gray-font-color);
-        margin-left: 10px;
+        margin-left: 5px;
 
         @media screen and (min-width:768px) {
             width: 80px;

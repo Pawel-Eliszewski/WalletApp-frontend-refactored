@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
-import Select from "react-select";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../../redux/session/selectors";
 import { selectTransactions } from "../../../redux/finance/selectors";
@@ -10,78 +9,40 @@ import {
   updateTransaction,
 } from "../../../redux/finance/operations";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import Select from "react-select";
 import { Button } from "../../Button/Button";
 import { Switch } from "../../Switch/Switch";
 import { Calendar } from "../../Calendar/Calendar";
 import { categoryOptions } from "../../../utils/transactionCategories";
+import { formattedTodayDate } from "../../../utils/dateHandlers";
 import { transactionValidationSchema } from "../../../utils/yupValidationSchemas";
 /**
- * @param {{ context: 'add' | 'edit' | 'logout', onModalClose: () => void }} props
+ * @param {{ isModalOpen: boolean, context: 'add' | 'edit', onModalClose: () => void }} props
  */
-export const TransactionForm = ({ context, onModalClose }) => {
+export const TransactionForm = ({ isModalOpen, context, onModalClose }) => {
   const dispatch = useDispatch();
+  const formikRef = useRef();
 
   const user = useSelector(selectUser);
   const allTransactions = useSelector(selectTransactions);
   const transactionId = useSelector(selectTransactionId);
 
-  const [transactionType, setTransactionType] = useState("expense");
-  const [transactionCategory, setTransactionCategory] =
-    useState("Select a category");
+  useEffect(() => {
+    if (isModalOpen) {
+      formikRef.current?.resetForm();
+    }
+  }, [isModalOpen, context]);
 
   const selectedTransaction = allTransactions.find(
     (transaction) => transaction._id === transactionId
   );
 
-  useEffect(() => {
-    context === "edit"
-      ? [
-          setTransactionType(selectedTransaction.type),
-          setTransactionCategory(selectedTransaction.category),
-          setTransactionDate(selectedTransaction.date),
-        ]
-      : null;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [context]);
-
-  const today = new Date();
-  const dateOptions = { year: "numeric", month: "2-digit", day: "2-digit" };
-  const formattedTodayDate = today.toLocaleDateString("pl-PL", dateOptions);
-  const [transactionDate, setTransactionDate] = useState(formattedTodayDate);
-
-  const handleNewDate = (newDate) => {
-    if (newDate !== null) {
-      const day = newDate.getDate();
-      const month = newDate.getMonth() + 1;
-      const year = newDate.getFullYear();
-
-      const dateString =
-        (day < 10 ? "0" : "") +
-        day +
-        "." +
-        (month < 10 ? "0" : "") +
-        month +
-        "." +
-        year;
-      setTransactionDate(dateString);
-    }
-  };
-
-  const handleTransactionTypeChange = () => {
-    transactionType === "expense"
-      ? setTransactionType("income")
-      : [
-          setTransactionType("expense"),
-          setTransactionCategory("Select a category"),
-        ];
-  };
-
   const handleAddTransaction = async (values) => {
     const formData = {
-      type: transactionType,
-      category: transactionType === "income" ? "Income" : transactionCategory,
+      type: values.type,
+      category: values.type === "income" ? "Income" : values.category.value,
       amount: values.amount,
-      date: transactionDate,
+      date: values.date,
       comment: values.comment,
       owner: user.id,
     };
@@ -94,9 +55,11 @@ export const TransactionForm = ({ context, onModalClose }) => {
       transactionId: selectedTransaction._id,
       type: selectedTransaction.type,
       category:
-        selectedTransaction.type === "income" ? "Income" : transactionCategory,
+        selectedTransaction.type === "income"
+          ? "Income"
+          : values.category.value,
       amount: values.amount,
-      date: transactionDate,
+      date: values.date,
       comment: values.comment,
       owner: selectedTransaction.owner,
     };
@@ -105,25 +68,23 @@ export const TransactionForm = ({ context, onModalClose }) => {
   };
 
   const initialValues = {
-    type: context === "edit" ? selectedTransaction.type : transactionType,
+    type: context === "edit" ? selectedTransaction.type : "expense",
     category:
       context === "edit"
         ? {
             label: selectedTransaction.category,
             value: selectedTransaction.category,
           }
-        : { label: transactionCategory, value: transactionCategory },
+        : { label: "Select a category", value: "Select a category" },
     amount: context === "edit" ? selectedTransaction.amount : "",
-    date: context === "edit" ? selectedTransaction.date : transactionDate,
+    date: context === "edit" ? selectedTransaction.date : formattedTodayDate,
     comment: context === "edit" ? selectedTransaction.comment : "",
   };
-
-  const spanIncomeClass = transactionType === "income" ? "--income" : "";
-  const spanExpenseClass = transactionType === "expense" ? "--expense" : "";
 
   return (
     <div className="transaction-form">
       <Formik
+        innerRef={formikRef}
         initialValues={initialValues}
         validationSchema={transactionValidationSchema}
         onSubmit={
@@ -141,25 +102,35 @@ export const TransactionForm = ({ context, onModalClose }) => {
         }) => (
           <Form className="transaction-form__wrapper">
             <div className="transaction-form__type type">
-              <span className={`type__span type__span${spanIncomeClass}`}>
+              <span
+                className={`type__span ${
+                  values.type === "income" ? "type__span--income" : ""
+                }`}
+              >
                 Income
               </span>
               {context === "add" ? (
                 <Switch
-                  onChange={(event) => {
-                    handleTransactionTypeChange(event);
-                    setFieldValue("type", transactionType);
-                    setFieldValue("category", transactionCategory);
+                  checked={values.type === "expense" ? true : false}
+                  onChange={() => {
+                    setFieldValue(
+                      "type",
+                      values.type === "expense" ? "income" : "expense"
+                    );
                   }}
                 />
               ) : (
                 <p className="type__slash">/</p>
               )}
-              <span className={`type__span type__span${spanExpenseClass}`}>
+              <span
+                className={`type__span ${
+                  values.type === "expense" ? "type__span--expense" : ""
+                }`}
+              >
                 Expense
               </span>
             </div>
-            {transactionType === "expense" ? (
+            {values.type === "expense" ? (
               <div className="transaction-form__react-select react-select">
                 <Select
                   className="react-select-container"
@@ -170,7 +141,6 @@ export const TransactionForm = ({ context, onModalClose }) => {
                   onChange={(selectedOption) => {
                     handleChange("category")(selectedOption.value);
                     setFieldValue("category", selectedOption);
-                    setTransactionCategory(selectedOption.value);
                   }}
                   onBlur={() => setFieldTouched("category", true)}
                 />
@@ -202,9 +172,11 @@ export const TransactionForm = ({ context, onModalClose }) => {
                 className="transaction-form__alert transaction-form__alert--amount"
               />
               <Calendar
-                transactionType={transactionType}
-                transactionDate={transactionDate}
-                onChange={handleNewDate}
+                transactionType={values.type}
+                transactionDate={values.date}
+                onDateChange={(newDate) => {
+                  setFieldValue("date", newDate);
+                }}
               />
               {touched.date && errors.date && (
                 <div className="transaction-form__alert transaction-form__alert--date">
@@ -240,6 +212,7 @@ export const TransactionForm = ({ context, onModalClose }) => {
 };
 
 TransactionForm.propTypes = {
+  isModalOpen: PropTypes.bool.isRequired,
   context: PropTypes.string.isRequired,
   onModalClose: PropTypes.func.isRequired,
 };
