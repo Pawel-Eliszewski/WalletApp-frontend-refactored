@@ -996,13 +996,15 @@ div:focus-visible {
 }
 .transaction-form__textarea {
   background-color: transparent;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
   width: 280px;
   height: 84px;
   border: none;
   padding-left: 12px;
   padding-bottom: 50px;
   border-bottom: 1px solid var(--primary-gray-font-color);
+  resize: none;
+  overflow: hidden;
 }
 .transaction-form__textarea::-moz-placeholder {
   color: var(--primary-gray-font-color);
@@ -1139,6 +1141,7 @@ div:focus-visible {
     width: 394px;
     height: 32px;
     padding-bottom: 5px;
+    overflow-wrap: none;
   }
   .transaction-form__alert {
     width: -moz-max-content;

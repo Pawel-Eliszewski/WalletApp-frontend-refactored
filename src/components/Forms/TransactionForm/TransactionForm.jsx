@@ -93,14 +93,7 @@ export const TransactionForm = ({ isModalOpen, context, onModalClose }) => {
         }
         enableReinitialize={true}
       >
-        {({
-          errors,
-          touched,
-          values,
-          handleChange,
-          setFieldValue,
-          setFieldTouched,
-        }) => (
+        {({ errors, touched, values, handleChange, setFieldValue }) => (
           <Form className="transaction-form__wrapper">
             <div className="transaction-form__type type">
               <span
@@ -144,7 +137,6 @@ export const TransactionForm = ({ isModalOpen, context, onModalClose }) => {
                     handleChange("category")(selectedOption.value);
                     setFieldValue("category", selectedOption);
                   }}
-                  onBlur={() => setFieldTouched("category", true)}
                 />
                 {touched.category && errors.category && (
                   <div className="transaction-form__alert transaction-form__alert--category">
@@ -157,11 +149,12 @@ export const TransactionForm = ({ isModalOpen, context, onModalClose }) => {
               <Field
                 name="amount"
                 type="text"
-                pattern="[0-9]+([,\\.][0-9]+)?"
                 onInput={(e) => {
-                  e.target.value = e.target.value.replace(/[^0-9,\\.]/g, "");
-                  e.target.value = e.target.value.replace(/,/g, ".");
-                  setFieldValue(e.target.value);
+                  e.target.value = e.target.value
+                    .replace(/,/g, ".")
+                    .replace(/[^0-9.]/g, "")
+                    .replace(/(\.\d{1,2}).*/g, "$1");
+                  setFieldValue("amount", e.target.value);
                 }}
                 className="transaction-form__amount"
                 placeholder="0.00"
@@ -188,12 +181,14 @@ export const TransactionForm = ({ isModalOpen, context, onModalClose }) => {
             </div>
             <div className="transaction-form__comment">
               <Field
+                as="textarea"
                 className="transaction-form__textarea"
                 type="text"
                 name="comment"
                 placeholder="Comment"
                 initialvalue={initialValues.comment}
                 autoComplete="comment"
+                maxLength="34"
               />
               <ErrorMessage
                 name="comment"
