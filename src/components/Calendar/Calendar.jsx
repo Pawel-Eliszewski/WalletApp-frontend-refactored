@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { useMedia } from "react-use";
 import DatePicker from "react-datepicker";
 import {
   formattedTransactionDate,
@@ -13,14 +14,24 @@ export const Calendar = ({
   transactionDate,
   onDateChange,
 }) => {
-  const calendarIncomeClass = transactionType === "income" ? "--income" : "";
+  const isMobile = useMedia("(max-width: 767px)");
 
   return (
     <DatePicker
       selected={formattedTransactionDate(transactionDate)}
       onChange={(newDate) => onDateChange(handleNewDate(newDate))}
       dateFormat="dd.MM.yyyy"
-      calendarClassName={"react-datepicker" + calendarIncomeClass}
+      calendarClassName={
+        "react-datepicker" + (transactionType === "income" ? "--income" : "")
+      }
+      {...(isMobile && {
+        onFocus: () => {
+          const input = document.querySelector(
+            ".react-datepicker__input-container input"
+          );
+          input.readOnly = true;
+        },
+      })}
     />
   );
 };

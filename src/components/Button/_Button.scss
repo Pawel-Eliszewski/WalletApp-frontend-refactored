@@ -58,6 +58,7 @@ $iconExitDoorsRed: url("/assets/icon-exit-doors-red.svg");
     &--no {
         outline: 1px solid var(--household-products-diagram-color);
         color: var(--household-products-diagram-color);
+        background-color: var(--primary-background-color);
 
         &:hover,
         &:focus {

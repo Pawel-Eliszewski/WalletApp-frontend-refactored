@@ -309,6 +309,7 @@ div:focus-visible {
 .btn--cancel, .btn--no {
   outline: 1px solid var(--household-products-diagram-color);
   color: var(--household-products-diagram-color);
+  background-color: var(--primary-background-color);
 }
 .btn--cancel:hover, .btn--cancel:focus, .btn--no:hover, .btn--no:focus {
   outline: 1px solid var(--primary-font-color);

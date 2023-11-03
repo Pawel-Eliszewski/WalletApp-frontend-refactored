@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
 import { register, login, logout, refreshUser } from "./operations";
 
 const handleRejected = (state, action) => {
   state.error = action.payload;
-  toast.error(`${state.error}`);
+  console.error(state.error);
 };
 
 const initialState = {

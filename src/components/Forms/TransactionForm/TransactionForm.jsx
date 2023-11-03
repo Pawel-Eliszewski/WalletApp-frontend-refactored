@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useEffect, useRef } from "react";
+import { useMedia } from "react-use";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../../redux/session/selectors";
 import { selectTransactions } from "../../../redux/finance/selectors";
@@ -21,6 +22,7 @@ import { transactionValidationSchema } from "../../../utils/yupValidationSchemas
  */
 export const TransactionForm = ({ isModalOpen, context, onModalClose }) => {
   const dispatch = useDispatch();
+  const isMobile = useMedia("(max-width: 767px)");
   const formikRef = useRef();
   const user = useSelector(selectUser);
   const allTransactions = useSelector(selectTransactions);
@@ -132,6 +134,7 @@ export const TransactionForm = ({ isModalOpen, context, onModalClose }) => {
             {values.type === "expense" ? (
               <div className="transaction-form__react-select react-select">
                 <Select
+                  isSearchable={isMobile ? false : true}
                   className="react-select-container"
                   classNamePrefix="react-select"
                   name="category"
