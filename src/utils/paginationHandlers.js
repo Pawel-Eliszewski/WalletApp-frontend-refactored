@@ -1,10 +1,4 @@
-import { selectTransactions } from "../redux/finance/selectors";
-import { useSelector } from "react-redux";
-
-export const paginateTransactions = (page) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const transactions = useSelector(selectTransactions);
-
+export const paginateTransactions = (transactions, page) => {
   if (!transactions || transactions.length === 0) {
     return {
       pages: 0,
@@ -27,7 +21,7 @@ export const paginateTransactions = (page) => {
   let start = (currentPage - 1) * 5;
   let end = currentPage * 5;
 
-  const sortedTransactions = [...transactions]; // Tworzy kopię tablicy transactions
+  const sortedTransactions = [...transactions];
 
   sortedTransactions.sort((a, b) => {
     const dateA = new Date(a.date.split(".").reverse().join("-"));

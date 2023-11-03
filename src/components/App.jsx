@@ -23,6 +23,7 @@ export default function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
   const isLoading = useSelector(selectIsLoading);
+  const isMobile = useMedia("(max-width: 767px)");
 
   useEffect(() => {
     const func = async () => {
@@ -30,8 +31,6 @@ export default function App() {
     };
     func();
   }, [dispatch]);
-
-  const isMobile = useMedia("(max-width: 767px)");
 
   return isRefreshing || isLoading ? (
     <Loader />

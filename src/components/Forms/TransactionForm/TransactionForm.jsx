@@ -22,7 +22,6 @@ import { transactionValidationSchema } from "../../../utils/yupValidationSchemas
 export const TransactionForm = ({ isModalOpen, context, onModalClose }) => {
   const dispatch = useDispatch();
   const formikRef = useRef();
-
   const user = useSelector(selectUser);
   const allTransactions = useSelector(selectTransactions);
   const transactionId = useSelector(selectTransactionId);
@@ -36,6 +35,20 @@ export const TransactionForm = ({ isModalOpen, context, onModalClose }) => {
   const selectedTransaction = allTransactions.find(
     (transaction) => transaction._id === transactionId
   );
+
+  const initialValues = {
+    type: context === "edit" ? selectedTransaction.type : "expense",
+    category:
+      context === "edit"
+        ? {
+            label: selectedTransaction.category,
+            value: selectedTransaction.category,
+          }
+        : { label: "Select a category", value: "Select a category" },
+    amount: context === "edit" ? selectedTransaction.amount : "",
+    date: context === "edit" ? selectedTransaction.date : formattedTodayDate,
+    comment: context === "edit" ? selectedTransaction.comment : "",
+  };
 
   const handleAddTransaction = async (values) => {
     const formData = {
@@ -65,20 +78,6 @@ export const TransactionForm = ({ isModalOpen, context, onModalClose }) => {
     };
     await dispatch(updateTransaction(formData)).unwrap();
     onModalClose();
-  };
-
-  const initialValues = {
-    type: context === "edit" ? selectedTransaction.type : "expense",
-    category:
-      context === "edit"
-        ? {
-            label: selectedTransaction.category,
-            value: selectedTransaction.category,
-          }
-        : { label: "Select a category", value: "Select a category" },
-    amount: context === "edit" ? selectedTransaction.amount : "",
-    date: context === "edit" ? selectedTransaction.date : formattedTodayDate,
-    comment: context === "edit" ? selectedTransaction.comment : "",
   };
 
   return (

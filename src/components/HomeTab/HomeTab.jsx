@@ -8,18 +8,19 @@ import {
   deleteTransaction,
 } from "../../redux/finance/operations";
 import { selectUser } from "../../redux/session/selectors";
+import { selectTransactions } from "../../redux/finance/selectors";
 import { Balance } from "../Balance/Balance";
 import { Button } from "../Button/Button";
 import { Pagination } from "../Pagination/Pagination";
 import { Modal } from "../Modal/Modal";
-import { paginateTransactions } from "../../utils/pagination";
+import { paginateTransactions } from "../../utils/paginationHandlers";
 import { nanoid } from "nanoid";
 
 export const HomeTab = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
+  const allTransactions = useSelector(selectTransactions);
   const isMobile = useMedia("(max-width: 767px)");
-
   const [context, setContext] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [itemOffset, setItemOffset] = useState(0);
@@ -28,7 +29,7 @@ export const HomeTab = () => {
     dispatch(fetchTransactions(user.id));
   }, [dispatch, user.id]);
 
-  let paginationData = paginateTransactions(itemOffset);
+  let paginationData = paginateTransactions(allTransactions, itemOffset);
   let transactions = paginationData.paginatedTransactions;
   let pageCount = paginationData.pages;
 

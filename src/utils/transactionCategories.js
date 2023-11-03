@@ -1,4 +1,4 @@
-const categories = [
+const expenseCategories = [
   "Main expenses",
   "Products",
   "Car",
@@ -11,7 +11,7 @@ const categories = [
   "Entertainment",
 ];
 
-export const categoryOptions = categories.map((option) => ({
+export const categoryOptions = expenseCategories.map((option) => ({
   label: option,
   value: option,
 }));
