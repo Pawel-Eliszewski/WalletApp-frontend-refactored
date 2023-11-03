@@ -58,3 +58,22 @@ self.addEventListener("activate", (event) => {
     })
   );
 });
+
+self.addEventListener("fetch", (event) => {
+  event.respondWith(
+    caches.open(CACHE_NAME).then((cache) => {
+      return fetch(event.request)
+        .then((response) => {
+          cache.put(event.request, response.clone());
+          return response;
+        })
+        .catch(() => caches.match(event.request));
+    })
+  );
+});
+
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.action === "skipWaiting") {
+    self.skipWaiting();
+  }
+});

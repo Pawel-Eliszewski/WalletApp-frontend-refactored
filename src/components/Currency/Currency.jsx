@@ -17,7 +17,6 @@ export function Currency() {
         setCurrencyData(cachedData);
       }
     }
-
     const intervalId = setInterval(fetchData, 3600000);
 
     return () => {

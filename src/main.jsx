@@ -7,8 +7,8 @@ import { store, persistor } from "./redux/store";
 import App from "./components/App";
 
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("/service-worker.js").catch((error) => {
-    console.error("Error while registering the Service Worker:", error);
+  navigator.serviceWorker.ready.then((registration) => {
+    registration.active.postMessage({ action: "skipWaiting" });
   });
 }
 
