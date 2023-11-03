@@ -5,6 +5,7 @@ import {
   formattedTransactionDate,
   handleNewDate,
 } from "../../utils/dateHandlers";
+import { useEffect } from "react";
 /**
  * @param {{ transactionType: 'income' | 'expense',
  * transactionDate: string, onDateChange: () => void }} props
@@ -16,6 +17,17 @@ export const Calendar = ({
 }) => {
   const isMobile = useMedia("(max-width: 767px)");
 
+  const disableScreenKeyboard = () => {
+    const input = document.querySelector(
+      ".react-datepicker__input-container input"
+    );
+    input.readOnly = true;
+  };
+
+  useEffect(() => {
+    isMobile && disableScreenKeyboard();
+  }, [isMobile]);
+
   return (
     <DatePicker
       selected={formattedTransactionDate(transactionDate)}
@@ -24,14 +36,6 @@ export const Calendar = ({
       calendarClassName={
         "react-datepicker" + (transactionType === "income" ? "--income" : "")
       }
-      {...(isMobile && {
-        onFocus: () => {
-          const input = document.querySelector(
-            ".react-datepicker__input-container input"
-          );
-          input.readOnly = true;
-        },
-      })}
     />
   );
 };
