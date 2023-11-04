@@ -1,8 +1,6 @@
 $iconPen: url("/assets/icon-pen.svg");
 $iconClose: url("/assets/icon-close.svg");
-$iconCloseRed: url("/assets/icon-close-red.svg");
 $iconExitDoors: url("/assets/icon-exit-doors.svg");
-$iconExitDoorsRed: url("/assets/icon-exit-doors-red.svg");
 
 .btn {
     display: flex;
@@ -146,14 +144,16 @@ $iconExitDoorsRed: url("/assets/icon-exit-doors-red.svg");
         }
 
         &::after {
-            content: $iconClose;
+            content: "";
+            mask: $iconClose;
+            background-color: var(--primary-font-color);
             width: 18px;
             height: 18px;
         }
 
         &:hover::after,
         &:focus::after {
-            content: $iconCloseRed;
+            background-color: var(--primary-expense-color);
         }
     }
 
@@ -170,7 +170,9 @@ $iconExitDoorsRed: url("/assets/icon-exit-doors-red.svg");
         }
 
         &::before {
-            content: $iconExitDoors;
+            content: "";
+            mask: $iconExitDoors;
+            background-color: var(--primary-gray-font-color);
             width: 18px;
             height: 18px;
             margin-bottom: 2px;
@@ -189,7 +191,7 @@ $iconExitDoorsRed: url("/assets/icon-exit-doors-red.svg");
 
         &:hover::before,
         &:focus::before {
-            content: $iconExitDoorsRed;
+            background-color: var(--primary-expense-color);
         }
     }
 }

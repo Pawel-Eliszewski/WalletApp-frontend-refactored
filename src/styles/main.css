@@ -385,12 +385,15 @@ div:focus-visible {
   }
 }
 .btn--close::after {
-  content: url("/assets/icon-close.svg");
+  content: "";
+  -webkit-mask: url("/assets/icon-close.svg");
+          mask: url("/assets/icon-close.svg");
+  background-color: var(--primary-font-color);
   width: 18px;
   height: 18px;
 }
 .btn--close:hover::after, .btn--close:focus::after {
-  content: url("/assets/icon-close-red.svg");
+  background-color: var(--primary-expense-color);
 }
 .btn--logout {
   width: 18px;
@@ -406,7 +409,10 @@ div:focus-visible {
   }
 }
 .btn--logout::before {
-  content: url("/assets/icon-exit-doors.svg");
+  content: "";
+  -webkit-mask: url("/assets/icon-exit-doors.svg");
+          mask: url("/assets/icon-exit-doors.svg");
+  background-color: var(--primary-gray-font-color);
   width: 18px;
   height: 18px;
   margin-bottom: 2px;
@@ -422,7 +428,7 @@ div:focus-visible {
   transition: none;
 }
 .btn--logout:hover::before, .btn--logout:focus::before {
-  content: url("/assets/icon-exit-doors-red.svg");
+  background-color: var(--primary-expense-color);
 }
 
 .react-datepicker {
@@ -941,6 +947,7 @@ div:focus-visible {
   position: absolute;
   top: 40px;
   left: 50px;
+  max-width: 100%;
 }
 
 @media screen and (min-width: 768px) {
@@ -1019,6 +1026,7 @@ div:focus-visible {
   padding: 0;
   text-align: center;
   color: var(--primary-expense-color);
+  max-width: 100%;
 }
 .transaction-form__alert--category {
   top: 42px;

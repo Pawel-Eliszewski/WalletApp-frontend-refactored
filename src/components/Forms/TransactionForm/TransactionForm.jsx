@@ -153,6 +153,7 @@ export const TransactionForm = ({ isModalOpen, context, onModalClose }) => {
                   e.target.value = e.target.value
                     .replace(/,/g, ".")
                     .replace(/[^0-9.]/g, "")
+                    .replace(/(\..*)\./g, "$1")
                     .replace(/(\.\d{1,2}).*/g, "$1");
                   setFieldValue("amount", e.target.value);
                 }}
