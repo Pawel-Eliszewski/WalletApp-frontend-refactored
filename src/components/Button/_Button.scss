@@ -104,7 +104,9 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
         margin-right: 4px;
 
         &:hover::before {
-            transform: scale(1.3);
+            transform-origin: center;
+            transition: 300ms;
+            background-color: var(--primary-expense-color);
         }
     }
 
@@ -123,8 +125,11 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
     &--edit-mobile {
 
         &::before {
-            height: 23px;
-            content: $iconPen;
+            content: "";
+            mask: $iconPen;
+            width: 14px;
+            height: 14px;
+            background-color: var(--primary-font-color);
         }
     }
 
@@ -146,9 +151,9 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
         &::after {
             content: "";
             mask: $iconClose;
-            background-color: var(--primary-font-color);
             width: 18px;
             height: 18px;
+            background-color: var(--primary-font-color);
         }
 
         &:hover::after,
@@ -172,9 +177,9 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
         &::before {
             content: "";
             mask: $iconExitDoors;
-            background-color: var(--primary-gray-font-color);
             width: 18px;
             height: 18px;
+            background-color: var(--primary-gray-font-color);
             margin-bottom: 2px;
 
             @media screen and (min-width:768px) {

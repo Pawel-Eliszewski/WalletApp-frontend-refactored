@@ -23,8 +23,9 @@ const sessionSlice = createSlice({
     builder
       .addCase(register.fulfilled, (state, action) => {
         state.user = {
-          email: action.payload.data.email,
           id: action.payload.data._id,
+          email: action.payload.data.email,
+          firstname: action.payload.data.firstname,
         };
         state.error = null;
       })
@@ -55,6 +56,7 @@ const sessionSlice = createSlice({
         state.user = {
           id: action.payload.data._id,
           email: action.payload.data.email,
+          firstname: action.payload.data.firstname,
         };
         state.token = action.payload.data.token;
         state.isAuth = true;
