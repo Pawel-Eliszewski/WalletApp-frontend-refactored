@@ -56,7 +56,7 @@ export const TransactionForm = ({ isModalOpen, context, onModalClose }) => {
     const formData = {
       type: values.type,
       category: values.type === "income" ? "Income" : values.category.value,
-      amount: values.amount,
+      amount: parseFloat(values.amount),
       date: values.date,
       comment: values.comment,
       owner: user.id,

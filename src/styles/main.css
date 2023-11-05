@@ -1335,16 +1335,16 @@ div:focus-visible {
     display: inline;
   }
   .table__head-item--date {
-    margin-right: 55px;
+    margin-right: 52px;
   }
   .table__head-item--type {
-    margin-right: 20px;
+    margin-right: 17px;
   }
   .table__head-item--category {
     margin-right: 75px;
   }
   .table__head-item--comment {
-    margin-right: 135px;
+    margin-right: 140px;
   }
   .table__head-item--sum {
     margin-right: 45px;
@@ -1399,13 +1399,13 @@ div:focus-visible {
     color: var(--primary-income-color);
     text-align: end;
     font-weight: 700;
-    width: 80px;
+    width: 90px;
   }
   .table__body-item--sum[data-type=expense] {
     color: var(--primary-expense-color);
     text-align: end;
     font-weight: 700;
-    width: 80px;
+    width: 90px;
   }
   .table__body-item-controls {
     display: flex;

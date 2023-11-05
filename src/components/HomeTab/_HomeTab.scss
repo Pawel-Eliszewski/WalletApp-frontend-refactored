@@ -139,11 +139,11 @@
         display: inline;
 
         &--date {
-          margin-right: 55px;
+          margin-right: 52px;
         }
 
         &--type {
-          margin-right: 20px;
+          margin-right: 17px;
         }
 
         &--category {
@@ -151,7 +151,7 @@
         }
 
         &--comment {
-          margin-right: 135px;
+          margin-right: 140px;
         }
 
         &--sum {
@@ -218,14 +218,14 @@
           color: var(--primary-income-color);
           text-align: end;
           font-weight: 700;
-          width: 80px;
+          width: 90px;
         }
 
         &--sum[data-type="expense"] {
           color: var(--primary-expense-color);
           text-align: end;
           font-weight: 700;
-          width: 80px;
+          width: 90px;
         }
 
         &-controls {
