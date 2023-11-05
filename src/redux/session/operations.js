@@ -23,7 +23,7 @@ export const register = createAsyncThunk(
       return response.data;
     } catch (error) {
       error.response.data.message === "Email in use"
-        ? Notify.failure("The provided email is already in use")
+        ? Notify.failure("Email is already in use")
         : Notify.failure("Registration failed");
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -36,7 +36,7 @@ export const login = createAsyncThunk(
     try {
       const response = await instance.post("/user/login", credentials);
       setAuthHeader(response.data.data.token);
-      Notify.info(`Welcome back ${response.data.data.firstname}`);
+      Notify.info(`Welcome back, ${response.data.data.firstname}`);
       return response.data;
     } catch (error) {
       Notify.failure("Invalid email or password");

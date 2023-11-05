@@ -19,7 +19,7 @@ export const addTransaction = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const response = await instance.post("/transaction", data);
-      Notify.success("Transaction added successfully");
+      Notify.success("Transaction added");
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -32,7 +32,7 @@ export const deleteTransaction = createAsyncThunk(
   async (transactionID, thunkAPI) => {
     try {
       const response = await instance.delete(`/transaction/${transactionID}`);
-      Notify.success("Transaction deleted successfully");
+      Notify.success("Transaction deleted");
       return response.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
@@ -48,7 +48,7 @@ export const updateTransaction = createAsyncThunk(
         `/transaction/${data.transactionId}`,
         data
       );
-      Notify.success("Transaction updated successfully");
+      Notify.success("Transaction updated");
       return response.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);

@@ -65,8 +65,6 @@ div:focus-visible {
   --login-form-background-color: #ffffff66;
   --ellipse-bottom-color: #c5baff;
   --backdrop--background-color: #00000090;
-  --currency-primary-background-color: #4a56e2;
-  --currency-secondary-background-color: #6e78e8;
   --primary-expense-color: #ff6596;
   --primary-income-color: #24cca7;
   --main-expenses-diagram-color: #fed057;
@@ -625,7 +623,7 @@ div:focus-visible {
   max-width: 336px;
   min-height: 174px;
   background-image: url(/assets/currency-mobile.svg);
-  background-color: var(--currency-primary-background-color);
+  background-color: var(--household-products-diagram-color);
   background-repeat: no-repeat;
   background-position: bottom;
   color: var(--primary-background-color);
@@ -642,7 +640,7 @@ div:focus-visible {
   width: 100%;
   max-width: 336px;
   height: 50px;
-  background-color: var(--currency-secondary-background-color);
+  background-color: var(--child-care-diagram-color);
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
 }

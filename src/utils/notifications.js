@@ -1,7 +1,7 @@
 import { Notify } from "notiflix";
 
 Notify.init({
-  width: "300px",
+  width: "260px",
   position: "center-top",
   distance: "20px",
   opacity: 1,
@@ -36,7 +36,7 @@ Notify.init({
     notiflixIconColor: "#a90237",
   },
   info: {
-    background: "#7d85e8",
+    background: "#6e78e8",
     notiflixIconColor: "#c5c9ff",
   },
 });
