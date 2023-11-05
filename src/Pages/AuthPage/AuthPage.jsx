@@ -32,6 +32,7 @@ const AuthPage = ({ context }) => {
       const formData = {
         email: values.email,
         password: values.password,
+        firstname: values.firstName,
       };
       await dispatch(register(formData)).unwrap();
       navigate("/login", { replace: "true" });

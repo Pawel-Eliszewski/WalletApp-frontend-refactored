@@ -18,7 +18,7 @@ export const registerValidationSchema = object().shape({
     .oneOf([ref("password"), null], "Passwords must match")
     .required("Confirmed password is required"),
   firstName: string()
-    .max(12, "First name must not exceed 12 characters")
+    .max(10, "First name must not exceed 10 characters")
     .required("First name is required"),
 });
 
