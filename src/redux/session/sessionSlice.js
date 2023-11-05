@@ -33,6 +33,7 @@ const sessionSlice = createSlice({
         state.user = {
           id: action.payload.data.ID,
           email: action.payload.data.email,
+          firstname: action.payload.data.firstname,
         };
         state.token = action.payload.data.token;
         state.isAuth = true;
