@@ -351,8 +351,8 @@ div:focus-visible {
   height: 23px;
   margin-right: 4px;
 }
-.btn--edit:hover {
-  transform: rotate(360deg);
+.btn--edit:hover::before {
+  transform: scale(1.3);
 }
 .btn--edit-mobile {
   color: var(--primary-font-color);

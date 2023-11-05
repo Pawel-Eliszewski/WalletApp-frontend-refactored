@@ -103,8 +103,8 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
         height: 23px;
         margin-right: 4px;
 
-        &:hover {
-            transform: rotate(360deg);
+        &:hover::before {
+            transform: scale(1.3);
         }
     }
 
