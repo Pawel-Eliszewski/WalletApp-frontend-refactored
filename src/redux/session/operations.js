@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { Notify } from "notiflix";
+import Notify from "../../utils/notifications";
 
 export const instance = axios.create({
   baseURL: "https://finance-app-wallet-backend.cyclic.app",
@@ -19,12 +19,12 @@ export const register = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const response = await instance.post("/user/register", credentials);
-      Notify.success("Registration successful.");
+      Notify.info("Registration successful");
       return response.data;
     } catch (error) {
       error.response.data.message === "Email in use"
-        ? Notify.failure("The provided email is already in use.")
-        : Notify.failure("Registration failed.");
+        ? Notify.failure("The provided email is already in use")
+        : Notify.failure("Registration failed");
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -36,10 +36,10 @@ export const login = createAsyncThunk(
     try {
       const response = await instance.post("/user/login", credentials);
       setAuthHeader(response.data.data.token);
-      Notify.success("Logged in successfully.");
+      Notify.info(`Welcome back ${response.data.data.firstname}`);
       return response.data;
     } catch (error) {
-      Notify.failure("Invalid email or password.");
+      Notify.failure("Invalid email or password");
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -50,7 +50,7 @@ export const logout = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       await instance.get("/user/logout");
-      Notify.success("Logged out successfully.");
+      Notify.info("Logged out successfully");
       clearAuthHeader();
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
