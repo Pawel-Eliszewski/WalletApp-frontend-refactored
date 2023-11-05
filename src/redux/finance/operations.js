@@ -6,9 +6,7 @@ export const fetchTransactions = createAsyncThunk(
   "finance/fetchTransactions",
   async (userId, thunkAPI) => {
     try {
-      const response = await instance.get(
-        `/user/${userId}/transactions?userId=${userId}`
-      );
+      const response = await instance.get(`/user/${userId}/transactions`);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
