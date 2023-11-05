@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { Notify } from "notiflix";
 
 export const instance = axios.create({
-  baseURL: "https://wallet-app-18x3.onrender.com",
+  baseURL: "https://finance-app-wallet-backend.cyclic.app",
 });
 
 const setAuthHeader = (token) => {
