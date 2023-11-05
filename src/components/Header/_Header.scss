@@ -17,16 +17,16 @@
     color: var(--primary-gray-font-color);
 
     &-user {
-      display: none;
+      display: inline;
+      font-family: "Circe", sans-serif;
+      font-size: 18px;
+      margin: 0;
+      line-height: 27px;
+      padding-right: 5px;
+      border-right: 1px solid var(--primary-gray-font-color);
 
-      @media screen and (min-width: 480px) {
-        display: inline;
-        font-family: "Circe", sans-serif;
-        font-size: 18px;
-        margin: 0;
-        line-height: 27px;
+      @media screen and (min-width: 768px) {
         padding-right: 15px;
-        border-right: 1px solid var(--primary-gray-font-color);
       }
     }
   }
