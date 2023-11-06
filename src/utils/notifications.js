@@ -3,7 +3,7 @@ import { Notify } from "notiflix";
 Notify.init({
   width: "260px",
   position: "center-top",
-  distance: "20px",
+  distance: "10px",
   opacity: 1,
   borderRadius: "20px",
   rtl: false,
@@ -36,7 +36,7 @@ Notify.init({
     notiflixIconColor: "#a90237",
   },
   info: {
-    background: "#6e78e8",
+    background: "#4a56e2",
     notiflixIconColor: "#c5c9ff",
   },
 });
