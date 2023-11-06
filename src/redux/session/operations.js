@@ -53,6 +53,7 @@ export const logout = createAsyncThunk(
       Notify.info("Logged out successfully");
       clearAuthHeader();
     } catch (error) {
+      clearAuthHeader();
       return thunkAPI.rejectWithValue(error.message);
     }
   }
