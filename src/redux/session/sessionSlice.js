@@ -1,15 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { register, login, logout, refreshUser } from "./operations";
 
-const handleRejected = (state, action) => {
-  state.error = action.payload;
-  state.isAuth = false;
-  state.isLoading = false;
-  state.isRefreshing = false;
-  state.user = null;
-  console.error(state.error);
-};
-
 const initialState = {
   isAuth: false,
   isLoading: false,
@@ -17,6 +8,15 @@ const initialState = {
   error: null,
   token: null,
   user: null,
+};
+
+const handleRejected = (state, action) => {
+  state.error = action.payload;
+  state.isAuth = false;
+  state.isLoading = false;
+  state.isRefreshing = false;
+  state.user = null;
+  console.error(state.error);
 };
 
 const sessionSlice = createSlice({
@@ -60,7 +60,6 @@ const sessionSlice = createSlice({
       .addCase(logout.fulfilled, (state) => {
         state.isAuth = false;
         state.isLoading = false;
-        state.isRefreshing = false;
         state.error = null;
         state.token = null;
         state.user = null;
@@ -80,7 +79,11 @@ const sessionSlice = createSlice({
         state.isRefreshing = false;
         state.error = null;
       })
-      .addCase(refreshUser.rejected, handleRejected);
+      .addCase(refreshUser.rejected, (state) => {
+        state.isRefreshing = false;
+        state.isAuth = false;
+        state.token = null;
+      });
   },
 });
 

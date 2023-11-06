@@ -10,6 +10,7 @@ import { register, login, logout, refreshUser } from "../session/operations";
 const initialState = {
   totalBalance: 0,
   data: [],
+  transactionId: null,
   error: null,
 };
 
@@ -22,6 +23,12 @@ const financeSlice = createSlice({
   name: "finance",
 
   initialState,
+
+  reducers: {
+    setTransactionId(state, action) {
+      state.transactionId = action.payload;
+    },
+  },
 
   extraReducers: (builder) => {
     builder
@@ -74,4 +81,5 @@ const financeSlice = createSlice({
   },
 });
 
+export const { setTransactionId } = financeSlice.actions;
 export const financeReducer = financeSlice.reducer;

@@ -10,7 +10,7 @@ const setAuthHeader = (token) => {
   instance.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
-const clearAuthHeader = () => {
+export const clearAuthHeader = () => {
   instance.defaults.headers.common.Authorization = "";
 };
 
@@ -39,7 +39,9 @@ export const login = createAsyncThunk(
       Notify.info(`Welcome back, ${response.data.data.firstname}`);
       return response.data;
     } catch (error) {
-      Notify.failure("Invalid email or password");
+      error.message === "Cannot read properties of undefined (reading 'token')"
+        ? Notify.failure("Invalid email or password")
+        : Notify.failure("Logging failed, please try again");
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -64,17 +66,12 @@ export const refreshUser = createAsyncThunk(
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.session.token;
-
-    if (persistedToken === null) {
-      return thunkAPI.rejectWithValue("Unable to fetch user");
-    }
-
     try {
       setAuthHeader(persistedToken);
       const response = await instance.get("/user/current");
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(Notify.info("You have been logged out"));
     }
   }
 );

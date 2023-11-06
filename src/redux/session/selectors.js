@@ -1,3 +1,5 @@
+export const selectIsLoading = (state) => state.session.isLoading;
+
 export const selectIsAuth = (state) => state.session.isAuth;
 
 export const selectUser = (state) => state.session.user;

@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setIsLoading } from "../../redux/global/globalSlice";
 import { login, register } from "../../redux/session/operations";
 import { AuthForm } from "../../components/Forms/AuthForm/AuthForm";
 /**
@@ -12,35 +11,21 @@ const AuthPage = ({ context }) => {
   const navigate = useNavigate();
 
   const handleLogin = async (values) => {
-    dispatch(setIsLoading(true));
-    try {
-      const formData = {
-        email: values.email,
-        password: values.password,
-      };
-      await dispatch(login(formData)).unwrap();
-    } catch (error) {
-      console.log(error);
-    } finally {
-      dispatch(setIsLoading(false));
-    }
+    const formData = {
+      email: values.email,
+      password: values.password,
+    };
+    await dispatch(login(formData)).unwrap();
   };
 
   const handleRegister = async (values) => {
-    dispatch(setIsLoading(true));
-    try {
-      const formData = {
-        email: values.email,
-        password: values.password,
-        firstname: values.firstName,
-      };
-      await dispatch(register(formData)).unwrap();
-      navigate("/login", { replace: "true" });
-    } catch (error) {
-      console.log(error);
-    } finally {
-      dispatch(setIsLoading(false));
-    }
+    const formData = {
+      email: values.email,
+      password: values.password,
+      firstname: values.firstName,
+    };
+    await dispatch(register(formData)).unwrap();
+    navigate("/login", { replace: "true" });
   };
 
   return (

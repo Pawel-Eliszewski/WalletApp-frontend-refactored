@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { instance } from "../session/operations";
+import { instance, clearAuthHeader } from "../session/operations";
 import Notify from "../../utils/notifications";
 
 export const fetchTransactions = createAsyncThunk(
@@ -9,6 +9,12 @@ export const fetchTransactions = createAsyncThunk(
       const response = await instance.get(`/user/${userId}/transactions`);
       return response.data;
     } catch (error) {
+      if (error.message === "Request failed with status code 401") {
+        Notify.failure("Failure, please log in again");
+        clearAuthHeader();
+      } else {
+        Notify.failure("Failure, please try again");
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -22,6 +28,12 @@ export const addTransaction = createAsyncThunk(
       Notify.success("Transaction added");
       return response.data;
     } catch (error) {
+      if (error.message === "Request failed with status code 401") {
+        Notify.failure("Failure, please log in again");
+        clearAuthHeader();
+      } else {
+        Notify.failure("Failure, please try again");
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -34,8 +46,14 @@ export const deleteTransaction = createAsyncThunk(
       const response = await instance.delete(`/transaction/${transactionID}`);
       Notify.success("Transaction deleted");
       return response.data;
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
+    } catch (error) {
+      if (error.message === "Request failed with status code 401") {
+        Notify.failure("Failure, please log in again");
+        clearAuthHeader();
+      } else {
+        Notify.failure("Failure, please try again");
+      }
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -50,8 +68,14 @@ export const updateTransaction = createAsyncThunk(
       );
       Notify.success("Transaction updated");
       return response.data;
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
+    } catch (error) {
+      if (error.message === "Request failed with status code 401") {
+        Notify.failure("Failure, please log in again");
+        clearAuthHeader();
+      } else {
+        Notify.failure("Failure, please try again");
+      }
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

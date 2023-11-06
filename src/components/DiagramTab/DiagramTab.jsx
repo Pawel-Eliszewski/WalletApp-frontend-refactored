@@ -1,8 +1,6 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { selectUser } from "../../redux/session/selectors";
 import { selectTransactions } from "../../redux/finance/selectors";
-import { fetchTransactions } from "../../redux/finance/operations";
 import { Doughnut } from "react-chartjs-2";
 import { DropdownSelectYear } from "../DropdownSelect/DropdownSelect";
 import { DropdownSelectMonth } from "../DropdownSelect/DropdownSelect";
@@ -10,8 +8,6 @@ import { assignColorsToTransactions } from "../../utils/assignColorsToTransactio
 import "chart.js/auto";
 
 export const DiagramTab = () => {
-  const dispatch = useDispatch();
-  const user = useSelector(selectUser);
   const transactions = useSelector(selectTransactions);
   const [selectedMonth, setSelectedMonth] = useState("Month");
   const [selectedYear, setSelectedYear] = useState("Year");
@@ -28,10 +24,6 @@ export const DiagramTab = () => {
   const handleYearSelect = (year) => {
     setSelectedYear(year);
   };
-
-  useEffect(() => {
-    dispatch(fetchTransactions(user.id));
-  }, [dispatch, user.id]);
 
   useEffect(() => {
     const expenseTransactions = transactions.filter(

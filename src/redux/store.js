@@ -10,9 +10,8 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { financeReducer } from "./finance/financeSlice";
 import { sessionReducer } from "./session/sessionSlice";
-import { globalReducer } from "./global/globalSlice";
+import { financeReducer } from "./finance/financeSlice";
 
 const sessionPersistConfig = {
   key: "session",
@@ -24,7 +23,6 @@ export const store = configureStore({
   reducer: {
     session: persistReducer(sessionPersistConfig, sessionReducer),
     finance: financeReducer,
-    global: globalReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

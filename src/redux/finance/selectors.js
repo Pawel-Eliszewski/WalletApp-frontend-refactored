@@ -1,5 +1,7 @@
 export const selectTransactions = (state) => state.finance.data;
 
+export const selectTransactionId = (state) => state.finance.transactionId;
+
 export const selectTransactionsMonths = (state) => {
   const transactions = selectTransactions(state);
 

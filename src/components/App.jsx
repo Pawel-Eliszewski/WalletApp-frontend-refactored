@@ -1,11 +1,15 @@
 import "../../installPrompt";
-import { useEffect, Suspense, lazy } from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { useEffect, useState, Suspense, lazy } from "react";
+import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useMedia } from "react-use";
-import { selectIsRefreshing } from "../redux/session/selectors";
-import { selectIsLoading } from "../redux/global/selectors";
+import {
+  selectIsLoading,
+  selectIsRefreshing,
+  selectUser,
+} from "../redux/session/selectors";
 import { refreshUser } from "../redux/session/operations";
+import { fetchTransactions } from "../redux/finance/operations";
 import { Loader } from "./Loader/Loader";
 import { ProtectedRoute } from "./Routes/ProtectedRoute";
 import { RestrictedRoute } from "./Routes/RestrictedRoute";
@@ -21,21 +25,33 @@ const DashboardPage = lazy(() =>
 
 export default function App() {
   const dispatch = useDispatch();
-  const isRefreshing = useSelector(selectIsRefreshing);
   const isLoading = useSelector(selectIsLoading);
+  const isRefreshing = useSelector(selectIsRefreshing);
+  const user = useSelector(selectUser);
   const isMobile = useMedia("(max-width: 767px)");
+  const location = useLocation();
+  const [hasRefreshed, setHasRefreshed] = useState(false);
 
   useEffect(() => {
-    const func = async () => {
-      dispatch(refreshUser());
-    };
-    func();
-  }, [dispatch]);
+    if (!hasRefreshed) {
+      const refresh = async () => {
+        if (
+          location.pathname !== "/login" &&
+          location.pathname !== "/register"
+        ) {
+          dispatch(refreshUser());
+          setHasRefreshed(true);
+        }
+      };
+      refresh();
+    }
+    user && dispatch(fetchTransactions(user.id));
+  }, [location, user, hasRefreshed, dispatch]);
 
-  return isRefreshing || isLoading ? (
+  return isLoading || isRefreshing ? (
     <Loader />
   ) : (
-    <Suspense fallback={<Loader />}>
+    <Suspense fallback={"Loading"}>
       <Routes>
         <Route
           path="/register"

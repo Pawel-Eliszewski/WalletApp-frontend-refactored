@@ -3,8 +3,10 @@ import { useEffect, useRef } from "react";
 import { useMedia } from "react-use";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../../redux/session/selectors";
-import { selectTransactions } from "../../../redux/finance/selectors";
-import { selectTransactionId } from "../../../redux/global/selectors";
+import {
+  selectTransactions,
+  selectTransactionId,
+} from "../../../redux/finance/selectors";
 import {
   addTransaction,
   updateTransaction,
