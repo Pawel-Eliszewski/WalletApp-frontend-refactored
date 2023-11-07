@@ -80,13 +80,14 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
     &--add {
         font-family: "Roboto";
         letter-spacing: 0;
+        line-height: 44px;
+        text-align: center;
         width: 44px;
         height: 44px;
         position: fixed;
         bottom: 20px;
         right: 20px;
         font-size: 38px;
-        line-height: 1.2;
         border-radius: 50%;
         z-index: 2;
         margin-bottom: 0;
