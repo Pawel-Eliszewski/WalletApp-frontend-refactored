@@ -70,8 +70,14 @@ const financeSlice = createSlice({
         state.error = null;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.totalBalance = action.payload.data.balance;
-        state.error = null;
+        if (action.payload.tokenExpired) {
+          state.totalBalance = 0;
+          state.data = [];
+          state.error = null;
+        } else {
+          state.totalBalance = action.payload.data.balance;
+          state.error = null;
+        }
       })
       .addCase(logout.fulfilled, (state) => {
         state.totalBalance = 0;

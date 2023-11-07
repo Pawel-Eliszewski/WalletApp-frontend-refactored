@@ -69,20 +69,27 @@ const sessionSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = {
-          id: action.payload.data._id,
-          email: action.payload.data.email,
-          firstname: action.payload.data.firstname,
-        };
-        state.token = action.payload.data.token;
-        state.isAuth = true;
-        state.isRefreshing = false;
-        state.error = null;
+        if (action.payload.tokenExpired) {
+          state.isRefreshing = false;
+          state.isAuth = false;
+          state.token = null;
+          state.error = null;
+        } else {
+          state.isRefreshing = false;
+          state.isAuth = true;
+          state.token = action.payload.data.token;
+          state.user = {
+            id: action.payload.data._id,
+            email: action.payload.data.email,
+            firstname: action.payload.data.firstname,
+          };
+        }
       })
       .addCase(refreshUser.rejected, (state) => {
         state.isRefreshing = false;
         state.isAuth = false;
         state.token = null;
+        state.error = null;
       });
   },
 });

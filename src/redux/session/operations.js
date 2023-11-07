@@ -24,7 +24,7 @@ export const register = createAsyncThunk(
     } catch (error) {
       error.response.data.message === "Email in use"
         ? Notify.failure("Email is already in use")
-        : Notify.failure("Registration failed");
+        : Notify.failure("Registration failed, please try again");
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -71,7 +71,15 @@ export const refreshUser = createAsyncThunk(
       const response = await instance.get("/user/current");
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(Notify.info("You have been logged out"));
+      if (persistedToken) {
+        Notify.info("You have been logged out");
+      }
+      if (error.response && error.response.status === 401) {
+        return { tokenExpired: true };
+      } else {
+        Notify.failure("An error occurred. Please try again.");
+        return thunkAPI.rejectWithValue(error.message);
+      }
     }
   }
 );

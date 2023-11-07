@@ -1,9 +1,10 @@
 import "../../installPrompt";
-import { useEffect, useState, Suspense, lazy } from "react";
-import { Route, Routes, Navigate, useLocation } from "react-router-dom";
+import { useEffect, Suspense, lazy } from "react";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useMedia } from "react-use";
 import {
+  // selectIsAuth,
   selectIsLoading,
   selectIsRefreshing,
   selectUser,
@@ -26,27 +27,23 @@ const DashboardPage = lazy(() =>
 export default function App() {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
+  // const isAuth = useSelector(selectIsAuth);
   const isRefreshing = useSelector(selectIsRefreshing);
   const user = useSelector(selectUser);
   const isMobile = useMedia("(max-width: 767px)");
-  const location = useLocation();
-  const [hasRefreshed, setHasRefreshed] = useState(false);
 
   useEffect(() => {
-    if (!hasRefreshed) {
-      const refresh = async () => {
-        if (
-          location.pathname !== "/login" &&
-          location.pathname !== "/register"
-        ) {
-          dispatch(refreshUser());
-          setHasRefreshed(true);
-        }
-      };
-      refresh();
+    const refresh = () => {
+      dispatch(refreshUser());
+    };
+    refresh();
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (user) {
+      dispatch(fetchTransactions(user.id));
     }
-    user && dispatch(fetchTransactions(user.id));
-  }, [location, user, hasRefreshed, dispatch]);
+  }, [user, dispatch]);
 
   return isLoading || isRefreshing ? (
     <Loader />

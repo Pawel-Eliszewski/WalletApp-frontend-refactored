@@ -6,11 +6,11 @@ export function Currency() {
   const [currencyData, setCurrencyData] = useState([]);
 
   useEffect(() => {
-    const isDataFetched = localStorage.getItem("isDataFetched");
+    const isCurrencyDataFetched = localStorage.getItem("isCurrencyDataFetched");
 
-    if (isDataFetched !== "true") {
+    if (isCurrencyDataFetched !== "true") {
       fetchData();
-      localStorage.setItem("isDataFetched", "true");
+      localStorage.setItem("isCurrencyDataFetched", "true");
     } else {
       const cachedData = JSON.parse(localStorage.getItem("currencyData"));
       if (cachedData) {
