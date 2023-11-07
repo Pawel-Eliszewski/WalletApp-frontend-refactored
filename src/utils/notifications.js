@@ -36,7 +36,7 @@ Notify.init({
     notiflixIconColor: "#a90237",
   },
   info: {
-    background: "#4a56e2",
+    background: "#6e78e8",
     notiflixIconColor: "#c5c9ff",
   },
 });
