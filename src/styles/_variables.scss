@@ -6,8 +6,13 @@
     --primary-background-color: #ffffff;
     --secondary-background-color: #e7eaf2;
     --primary-gray-background-color: #f3f3f3f2;
-    --login-form-background-color: #ffffff66;
+    --auth-form-overlay-color: #ffffff66;
+    --auth-form-dark-overlay-color: #ffffff11;
+    --auth-form-dark-background-color: #1f003d;
+    --auth-form-dark-color: #110021;
     --ellipse-bottom-color: #c5baff;
+    --ellipse-bottom-dark-color: #ff659696;
+    --ellipse-top-dark-color: #ffd8d061;
     --backdrop--background-color: #00000090;
     --primary-expense-color: #ff6596;
     --primary-income-color: #24cca7;
@@ -20,4 +25,6 @@
     --education-diagram-color: #81e1ff;
     --other-expenses-diagram-color: #00ad84;
     --btn-submit-hover: #1f8b73;
+    --btn-submit-dark-hover: #1f8b7493;
+    --btn-cancel-dark-hover: #e0e0e096;
 }

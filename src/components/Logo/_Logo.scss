@@ -17,6 +17,11 @@
         font-family: "Poppins", sans-serif;
         font-weight: 700;
         font-size: 24px;
+        color: var(--primary-font-color);
+
+        @media (prefers-color-scheme: dark) {
+            color: var(--primary-background-color);
+        }
     }
 }
 

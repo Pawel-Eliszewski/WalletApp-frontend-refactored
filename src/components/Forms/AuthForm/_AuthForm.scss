@@ -28,7 +28,11 @@
         align-items: center;
 
         &:focus-within {
-            border-bottom: 1px solid var(--primary-font-color);
+            border-bottom: 2px solid var(--secondary-gray-font-color);
+
+            body[data-color-scheme='dark'] & {
+                border-bottom: 2px solid var(--primary-background-color);
+            }
         }
     }
 
@@ -55,6 +59,11 @@
         line-height: 27px;
         letter-spacing: 0em;
         text-align: left;
+        color: var(--primary-font-color);
+
+        body[data-color-scheme='dark'] & {
+            color: var(--primary-gray-font-color);
+        }
 
         &::placeholder {
             color: var(--primary-gray-font-color);
@@ -79,6 +88,10 @@
         padding-top: 40px;
         padding-bottom: 62px;
         background-color: var(--primary-background-color);
+
+        body[data-color-scheme='dark'] & {
+            background: var(--auth-form-dark-background-color);
+        }
 
         &__field {
             width: 409px;

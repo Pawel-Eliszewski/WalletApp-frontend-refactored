@@ -8,9 +8,9 @@
 
 @media screen and (min-width: 768px) {
   .auth-page {
+    background: var(--secondary-background-color);
     width: 100vw;
     height: 100vh;
-    background-color: var(--secondary-background-color);
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -19,6 +19,10 @@
     gap: 50px;
     padding-top: 60px;
     overflow: hidden;
+
+    body[data-color-scheme='dark'] & {
+      background: none;
+    }
 
     &__hero {
       &-container {
@@ -40,6 +44,10 @@
         line-height: 45px;
         font-weight: 400;
         padding-right: 50px;
+
+        body[data-color-scheme='dark'] & {
+          color: var(--primary-background-color);
+        }
       }
     }
 
@@ -59,6 +67,10 @@
         right: -31%;
         background-color: var(--products-diagram-color);
         transform: rotate(-21.94deg);
+
+        body[data-color-scheme='dark'] & {
+          background-color: var(--ellipse-top-dark-color);
+        }
       }
 
       &--bottom {
@@ -68,6 +80,10 @@
         left: -49%;
         background-color: var(--ellipse-bottom-color);
         transform: rotate(69.862deg);
+
+        body[data-color-scheme='dark'] & {
+          background-color: var(--ellipse-bottom-dark-color);
+        }
       }
     }
   }
@@ -96,8 +112,12 @@
     &__form-container {
       width: 100%;
       height: 100%;
-      background: var(--login-form-background-color);
+      background: var(--login-form-overlay-color);
       backdrop-filter: blur(25px);
+
+      body[data-color-scheme='dark'] & {
+        background: var(--auth-form-dark-overlay-color);
+      }
     }
 
     &__ellipse {

@@ -31,17 +31,27 @@ export default function App() {
   const isMobile = useMedia("(max-width: 767px)");
 
   useEffect(() => {
-    const refresh = () => {
-      dispatch(refreshUser());
-    };
-    refresh();
-  }, [dispatch]);
+    const prefersDarkMode = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+    document.body.setAttribute(
+      "data-color-scheme",
+      prefersDarkMode ? "dark" : "light"
+    );
+  }, []);
 
   useEffect(() => {
     if (user) {
       dispatch(fetchTransactions(user.id));
     }
   }, [user, dispatch]);
+
+  useEffect(() => {
+    const refresh = () => {
+      dispatch(refreshUser());
+    };
+    refresh();
+  }, [dispatch]);
 
   return isLoading || isRefreshing ? (
     <Loader />

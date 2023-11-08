@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Logo } from "../../Logo/Logo";
@@ -12,6 +13,7 @@ import {
  */
 export const AuthForm = ({ context, onSubmit }) => {
   const navigate = useNavigate();
+  const emailInputRef = useRef(null);
 
   const initialValues = {
     email: "",
@@ -20,8 +22,12 @@ export const AuthForm = ({ context, onSubmit }) => {
     firstName: "",
   };
 
-  const handleClick = () => {
+  const handleClick = (formikBag) => {
+    formikBag.resetForm();
     navigate(context === "login" ? "/register" : "/login", { replace: true });
+    if (emailInputRef.current) {
+      emailInputRef.current.focus();
+    }
   };
 
   return (
@@ -33,8 +39,9 @@ export const AuthForm = ({ context, onSubmit }) => {
           context === "login" ? loginValidationSchema : registerValidationSchema
         }
         onSubmit={onSubmit}
+        enableReinitialize={true}
       >
-        {() => (
+        {(formikBag) => (
           <Form className="auth-form__wrapper">
             <div className="auth-form__field">
               <img
@@ -50,6 +57,7 @@ export const AuthForm = ({ context, onSubmit }) => {
                 name="email"
                 placeholder="E-mail"
                 autoComplete="email"
+                innerRef={emailInputRef}
               />
               <ErrorMessage
                 name="email"
@@ -133,7 +141,7 @@ export const AuthForm = ({ context, onSubmit }) => {
               title={context === "login" ? "Register" : "Log in"}
               styles="--cancel"
               type="button"
-              onClick={handleClick}
+              onClick={() => handleClick(formikBag)}
             />
           </Form>
         )}

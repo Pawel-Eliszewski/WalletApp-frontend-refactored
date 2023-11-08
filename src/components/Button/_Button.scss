@@ -32,6 +32,16 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
         color: var(--primary-background-color);
         margin-bottom: 12px;
 
+        body[data-color-scheme='dark'] & {
+            background-color: var(--btn-submit-hover);
+
+            &:hover,
+            &:focus {
+                background-color: var(--btn-submit-dark-hover);
+            }
+
+        }
+
         @media screen and (min-width: 768px) {
             margin-bottom: 20px;
         }
@@ -57,6 +67,18 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
         outline: 1px solid var(--household-products-diagram-color);
         color: var(--household-products-diagram-color);
         background-color: var(--primary-background-color);
+
+        body[data-color-scheme='dark'] & {
+            background-color: var(--primary-gray-font-color);
+            outline: none;
+
+            &:hover,
+            &:focus {
+                background-color: var(--btn-cancel-dark-hover);
+                outline: none;
+            }
+
+        }
 
         &:hover,
         &:focus {

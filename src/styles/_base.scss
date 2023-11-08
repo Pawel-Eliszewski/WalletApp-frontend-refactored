@@ -6,6 +6,10 @@ body {
     margin: 0;
     padding: 0;
     overscroll-behavior-y: none;
+
+    &[data-color-scheme='dark'] {
+        background-color: var(--auth-form-dark-background-color);
+    }
 }
 
 body::-webkit-scrollbar {
