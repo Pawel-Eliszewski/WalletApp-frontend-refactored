@@ -15,7 +15,6 @@ export const Modal = ({ isModalOpen, context, onModalClose }) => {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
-        document.body.style.overflow = "unset";
         onModalClose();
       }
     };
@@ -27,7 +26,6 @@ export const Modal = ({ isModalOpen, context, onModalClose }) => {
 
   const handleBackdropClick = (e) => {
     if (modalRef.current && !modalRef.current.contains(e.target)) {
-      document.body.style.overflow = "unset";
       onModalClose();
     }
   };

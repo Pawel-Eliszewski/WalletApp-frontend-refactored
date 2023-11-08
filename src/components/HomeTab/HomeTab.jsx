@@ -31,20 +31,20 @@ export const HomeTab = () => {
   const openModalAdd = () => {
     setContext("add");
     setIsModalOpen(true);
-    document.body.style.overflow = "hidden";
+    document.body.classList.add("modal-open");
   };
 
   const openModalEdit = (_id) => {
     setContext("edit");
     setIsModalOpen(true);
     dispatch(setTransactionId(_id));
-    document.body.style.overflow = "hidden";
+    document.body.classList.add("modal-open");
   };
 
   const handleModalClose = () => {
     setIsModalOpen(false);
     setContext(null);
-    document.body.style.overflow = "unset";
+    document.body.classList.remove("modal-open");
   };
 
   const handleDeleteTransaction = (transactionId) => {

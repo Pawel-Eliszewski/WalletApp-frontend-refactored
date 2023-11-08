@@ -12,12 +12,12 @@ export const Header = () => {
 
   const handleLogout = () => {
     setIsModalOpen(true);
-    document.body.style.overflow = "hidden";
+    document.body.classList.add("modal-open");
   };
 
   const handleModalClose = () => {
     setIsModalOpen(false);
-    document.body.style.overflow = "unset";
+    document.body.classList.remove("modal-open");
   };
 
   return (
