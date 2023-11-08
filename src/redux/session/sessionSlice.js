@@ -15,6 +15,7 @@ const handleRejected = (state, action) => {
   state.isAuth = false;
   state.isLoading = false;
   state.isRefreshing = false;
+  state.token = null;
   state.user = null;
   console.error(state.error);
 };
