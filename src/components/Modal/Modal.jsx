@@ -48,7 +48,12 @@ export const Modal = ({ isModalOpen, context, onModalClose }) => {
           isModalOpen ? "modal__container--visible" : ""
         }`}
       >
-        <Button styles="--close" type="button" onClick={onModalClose} />
+        <Button
+          ariaLabel="close"
+          styles="--close"
+          type="button"
+          onClick={onModalClose}
+        />
         <h2 className="modal__title">
           {context === "logout"
             ? "Log out?"
