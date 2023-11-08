@@ -4,7 +4,6 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useMedia } from "react-use";
 import {
-  // selectIsAuth,
   selectIsLoading,
   selectIsRefreshing,
   selectUser,
@@ -27,7 +26,6 @@ const DashboardPage = lazy(() =>
 export default function App() {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
-  // const isAuth = useSelector(selectIsAuth);
   const isRefreshing = useSelector(selectIsRefreshing);
   const user = useSelector(selectUser);
   const isMobile = useMedia("(max-width: 767px)");
@@ -48,7 +46,7 @@ export default function App() {
   return isLoading || isRefreshing ? (
     <Loader />
   ) : (
-    <Suspense fallback={"Loading"}>
+    <Suspense fallback={<Loader />}>
       <Routes>
         <Route
           path="/register"
@@ -77,7 +75,7 @@ export default function App() {
           <Route index element={<HomeTab />} />
           <Route path="statistics" element={<DiagramTab />} />
           {isMobile && <Route path="currency" element={<Currency />} />}
-          <Route path="*" element={<Navigate to="login" />} />
+          <Route path="*" element={<Navigate to="/login" />} />
         </Route>
       </Routes>
     </Suspense>

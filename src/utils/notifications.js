@@ -1,4 +1,4 @@
-import { Notify } from "notiflix";
+import { Notify, Report } from "notiflix";
 
 Notify.init({
   width: "260px",
@@ -7,7 +7,7 @@ Notify.init({
   opacity: 1,
   borderRadius: "20px",
   rtl: false,
-  timeout: 4000,
+  timeout: 3500,
   messageMaxLength: 110,
   backOverlay: false,
   backOverlayColor: "rgba(0,0,0,0.5)",
@@ -21,7 +21,7 @@ Notify.init({
   fontFamily: "Quicksand",
   fontSize: "16px",
   cssAnimation: true,
-  cssAnimationDuration: 400,
+  cssAnimationDuration: 300,
   cssAnimationStyle: "fade",
   closeButton: false,
   useIcon: true,
@@ -41,4 +41,36 @@ Notify.init({
   },
 });
 
-export default Notify;
+Report.init({
+  className: "notiflix-report",
+  width: "320px",
+  backgroundColor: "#f8f8f8",
+  borderRadius: "25px",
+  rtl: false,
+  zindex: 4002,
+  backOverlay: true,
+  backOverlayColor: "rgba(0,0,0,0.5)",
+  backOverlayClickToClose: true,
+  fontFamily: "Quicksand",
+  svgSize: "110px",
+  plainText: true,
+  titleFontSize: "16px",
+  titleMaxLength: 34,
+  messageFontSize: "13px",
+  messageMaxLength: 400,
+  buttonFontSize: "14px",
+  buttonMaxLength: 34,
+  cssAnimation: true,
+  cssAnimationDuration: 360,
+  cssAnimationStyle: "fade",
+  failure: {
+    svgColor: "#ff6596",
+    titleColor: "#1e1e1e",
+    messageColor: "#242424",
+    buttonBackground: "#ff6596",
+    buttonColor: "#fff",
+    backOverlayColor: "#00000090",
+  },
+});
+
+export { Notify, Report };

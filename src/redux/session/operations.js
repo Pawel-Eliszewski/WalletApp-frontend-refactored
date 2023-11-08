@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import Notify from "../../utils/notifications";
+import { Notify } from "../../utils/notifications";
 
 export const instance = axios.create({
   baseURL: "https://finance-app-wallet-backend.cyclic.app",
@@ -77,7 +77,7 @@ export const refreshUser = createAsyncThunk(
       if (error.response && error.response.status === 401) {
         return { tokenExpired: true };
       } else {
-        Notify.failure("An error occurred. Please try again.");
+        Notify.failure("An error occurred. Please try again");
         return thunkAPI.rejectWithValue(error.message);
       }
     }

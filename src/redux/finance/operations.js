@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { instance, clearAuthHeader } from "../session/operations";
-import Notify from "../../utils/notifications";
+import { Notify, Report } from "../../utils/notifications";
 
 export const fetchTransactions = createAsyncThunk(
   "finance/fetchTransactions",
@@ -10,7 +10,7 @@ export const fetchTransactions = createAsyncThunk(
       return response.data;
     } catch (error) {
       if (error.message === "Request failed with status code 401") {
-        Notify.failure("Failure, please log in again");
+        Report.failure("Failure, please log in again");
         clearAuthHeader();
       } else {
         Notify.failure("Failure, please try again");
@@ -29,7 +29,14 @@ export const addTransaction = createAsyncThunk(
       return response.data;
     } catch (error) {
       if (error.message === "Request failed with status code 401") {
-        Notify.failure("Failure, please log in again");
+        Report.failure(
+          "Failure, please log in again",
+          "Your session has expired, or you have logged in on another device.",
+          "Log in",
+          () => {
+            window.location.reload();
+          }
+        );
         clearAuthHeader();
       } else {
         Notify.failure("Failure, please try again");
@@ -48,7 +55,14 @@ export const deleteTransaction = createAsyncThunk(
       return response.data;
     } catch (error) {
       if (error.message === "Request failed with status code 401") {
-        Notify.failure("Failure, please log in again");
+        Report.failure(
+          "Failure, please log in again",
+          "Your session has expired, or you have logged in on another device.",
+          "Log in",
+          () => {
+            window.location.reload();
+          }
+        );
         clearAuthHeader();
       } else {
         Notify.failure("Failure, please try again");
@@ -70,7 +84,14 @@ export const updateTransaction = createAsyncThunk(
       return response.data;
     } catch (error) {
       if (error.message === "Request failed with status code 401") {
-        Notify.failure("Failure, please log in again");
+        Report.failure(
+          "Failure, please log in again",
+          "Your session has expired, or you have logged in on another device.",
+          "Log in",
+          () => {
+            window.location.reload();
+          }
+        );
         clearAuthHeader();
       } else {
         Notify.failure("Failure, please try again");
