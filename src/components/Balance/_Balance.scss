@@ -1,11 +1,21 @@
 .balance {
+  display: flex;
+  flex-direction: column;
   background-color: var(--primary-background-color);
   border-radius: 30px;
-  padding: 8px 32px;
+  padding: 8px 40px;
   width: 100%;
   max-width: 380px;
   height: 80px;
   margin-bottom: 20px;
+
+  body[data-color-scheme='dark'] & {
+    background-color: transparent;
+
+    @media screen and (max-width: 767px) {
+      align-items: center;
+    }
+  }
 
   @media screen and (min-width: 768px) {
     min-width: 336px;
@@ -26,14 +36,20 @@
     font-size: 14px;
     line-height: 1.5;
     text-transform: uppercase;
-    padding-left: 15px;
   }
 
   &__amount {
     font-family: "Poppins", sans-serif;
     font-weight: 700;
-    font-size: 30px;
+    font-size: 26px;
     line-height: 1.5;
-    margin-right: 10px;
+
+    @media screen and (min-width: 768px) {
+      font-size: 30px;
+    }
+
+    body[data-color-scheme='dark'] & {
+      color: var(--secondary-gray-font-color);
+    }
   }
 }

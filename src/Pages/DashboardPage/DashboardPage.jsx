@@ -5,6 +5,7 @@ import { Header } from "../../components/Header/Header";
 import { Navigation } from "../../components/Navigation/Navigation";
 import { Balance } from "../../components/Balance/Balance";
 import { Currency } from "../../components/Currency/Currency";
+import { PageBackground } from "../../components/PageBackground/PageBackground";
 
 const MobileDashboard = () => {
   return (
@@ -23,6 +24,7 @@ const MobileDashboard = () => {
 const TabletDashboard = () => {
   return (
     <>
+      <PageBackground />
       <Header />
       <div className="container container--tablet">
         <Suspense fallback={null}>
@@ -43,6 +45,7 @@ const TabletDashboard = () => {
 const DesktopDashboard = () => {
   return (
     <>
+      <PageBackground />
       <Header />
       <div className="container container--desktop">
         <Suspense fallback={null}>

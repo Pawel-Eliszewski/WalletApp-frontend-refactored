@@ -61,10 +61,6 @@
         text-align: left;
         color: var(--primary-font-color);
 
-        body[data-color-scheme='dark'] & {
-            color: var(--primary-gray-font-color);
-        }
-
         &::placeholder {
             color: var(--primary-gray-font-color);
         }
@@ -90,7 +86,7 @@
         background-color: var(--primary-background-color);
 
         body[data-color-scheme='dark'] & {
-            background: var(--auth-form-dark-background-color);
+            background-color: var(--primary-dark-background-color);
         }
 
         &__field {

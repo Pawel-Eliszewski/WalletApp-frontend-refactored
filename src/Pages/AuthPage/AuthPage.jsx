@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login, register } from "../../redux/session/operations";
 import { AuthForm } from "../../components/Forms/AuthForm/AuthForm";
+import { PageBackground } from "../../components/PageBackground/PageBackground";
 /**
  * @param {{ context: 'login' | 'register' }} props
  */
@@ -30,7 +31,7 @@ const AuthPage = ({ context }) => {
 
   return (
     <div className="auth-page">
-      <div className="auth-page__ellipse auth-page__ellipse--top"></div>
+      <PageBackground />
       <div className="auth-page__hero-container">
         <img
           className="auth-page__hero-img"
@@ -49,7 +50,6 @@ const AuthPage = ({ context }) => {
           onSubmit={context === "login" ? handleLogin : handleRegister}
         />
       </div>
-      <div className="auth-page__ellipse auth-page__ellipse--bottom"></div>
     </div>
   );
 };

@@ -1,14 +1,9 @@
-.auth-page {
-  &__hero {
-    &-container {
-      display: none;
-    }
-  }
+.auth-page__hero-container {
+  display: none;
 }
 
 @media screen and (min-width: 768px) {
   .auth-page {
-    background: var(--secondary-background-color);
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -19,10 +14,6 @@
     gap: 50px;
     padding-top: 60px;
     overflow: hidden;
-
-    body[data-color-scheme='dark'] & {
-      background: none;
-    }
 
     &__hero {
       &-container {
@@ -54,38 +45,6 @@
     &__form-container {
       width: 533px;
     }
-
-    &__ellipse {
-      display: block;
-      position: absolute;
-      border-radius: 50%;
-
-      &--top {
-        width: 80%;
-        padding-top: 80%;
-        top: -19%;
-        right: -31%;
-        background-color: var(--products-diagram-color);
-        transform: rotate(-21.94deg);
-
-        body[data-color-scheme='dark'] & {
-          background-color: var(--ellipse-top-dark-color);
-        }
-      }
-
-      &--bottom {
-        width: 78%;
-        padding-top: 163%;
-        top: 40%;
-        left: -49%;
-        background-color: var(--ellipse-bottom-color);
-        transform: rotate(69.862deg);
-
-        body[data-color-scheme='dark'] & {
-          background-color: var(--ellipse-bottom-dark-color);
-        }
-      }
-    }
   }
 }
 
@@ -112,11 +71,11 @@
     &__form-container {
       width: 100%;
       height: 100%;
-      background: var(--login-form-overlay-color);
+      background-color: var(--login-form-overlay-color);
       backdrop-filter: blur(25px);
 
       body[data-color-scheme='dark'] & {
-        background: var(--auth-form-dark-overlay-color);
+        background-color: var(--auth-form-dark-overlay-color);
       }
     }
 

@@ -6,10 +6,7 @@ body {
     margin: 0;
     padding: 0;
     overscroll-behavior-y: none;
-
-    &[data-color-scheme='dark'] {
-        background-color: var(--auth-form-dark-background-color);
-    }
+    -webkit-tap-highlight-color: transparent;
 }
 
 body::-webkit-scrollbar {
@@ -61,4 +58,11 @@ div:focus-visible {
 
 div:focus-visible {
     border-radius: 4px;
+}
+
+input,
+textarea {
+    body[data-color-scheme='dark'] & {
+        color: var(--primary-background-color) !important;
+    }
 }

@@ -7,7 +7,7 @@ import { DropdownSelectMonth } from "../DropdownSelect/DropdownSelect";
 import { assignColorsToTransactions } from "../../utils/assignColorsToTransactions";
 import "chart.js/auto";
 
-export const DiagramTab = () => {
+export const StatisticsTab = () => {
   const transactions = useSelector(selectTransactions);
   const [selectedMonth, setSelectedMonth] = useState("Month");
   const [selectedYear, setSelectedYear] = useState("Year");

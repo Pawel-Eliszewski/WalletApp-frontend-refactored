@@ -5,6 +5,11 @@
   align-items: center;
   height: 100%;
   padding: 20px 20px;
+  background-color: var(--primary-background-color);
+
+  body[data-color-scheme='dark'] & {
+    background-color: var(--primary-dark-background-color);
+  }
 
   @media screen and (min-width: 768px) {
     padding-inline: 50px;

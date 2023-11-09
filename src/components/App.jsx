@@ -15,7 +15,7 @@ import { ProtectedRoute } from "./Routes/ProtectedRoute";
 import { RestrictedRoute } from "./Routes/RestrictedRoute";
 import { HomeTab } from "./HomeTab/HomeTab";
 import { Currency } from "./Currency/Currency";
-import { DiagramTab } from "./DiagramTab/DiagramTab";
+import { StatisticsTab } from "./StatisticsTab/StatisticsTab";
 import "../styles/main.css";
 
 const AuthPage = lazy(() => import("../Pages/AuthPage/AuthPage"));
@@ -83,7 +83,7 @@ export default function App() {
           }
         >
           <Route index element={<HomeTab />} />
-          <Route path="statistics" element={<DiagramTab />} />
+          <Route path="statistics" element={<StatisticsTab />} />
           {isMobile && <Route path="currency" element={<Currency />} />}
           <Route path="*" element={<Navigate to="/login" />} />
         </Route>

@@ -16,6 +16,7 @@
 		border-radius: 10px;
 		transition: 200ms;
 		fill: var(--child-care-diagram-color);
+		background-color: var(--primary-background-color);
 
 		&--active {
 			fill: var(--household-products-diagram-color);
@@ -72,6 +73,10 @@
 			line-height: 27px;
 			margin: 0;
 			transition: 100ms;
+
+			body[data-color-scheme='dark'] & {
+				color: var(--primary-background-color);
+			}
 
 			&--active {
 				font-weight: 700;

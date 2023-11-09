@@ -89,6 +89,10 @@
     &__textarea:focus {
         outline: none;
         border-bottom: 1px solid var(--primary-font-color);
+
+        body[data-color-scheme='dark'] & {
+            border-bottom: 2px solid var(--primary-background-color);
+        }
     }
 }
 
@@ -136,6 +140,10 @@
         border-bottom: 1px solid var(--primary-gray-font-color) !important;
         border-radius: 0 !important;
 
+        body[data-color-scheme='dark'] & {
+            background-color: var(--primary-dark-background-color);
+        }
+
         &:focus,
         &--is-focused,
         &--menu-is-open {
@@ -148,6 +156,10 @@
 
     &__indicator-separator {
         display: none !important;
+    }
+
+    &__single-value {
+        color: var(--primary-gray-font-color) !important;
     }
 
     &__menu {

@@ -1,0 +1,42 @@
+.background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: var(--secondary-background-color);
+    z-index: -1;
+
+    body[data-color-scheme='dark'] & {
+        background-color: var(--primary-dark-background-color);
+    }
+
+    &__ellipse {
+        display: block;
+        position: absolute;
+        border-radius: 50%;
+
+        &--top {
+            width: 50%;
+            padding-top: 50%;
+            top: -30%;
+            right: -10%;
+            background-color: var(--products-diagram-color);
+
+            body[data-color-scheme='dark'] & {
+                background-color: var(--ellipse-top-dark-color);
+            }
+        }
+
+        &--bottom {
+            width: 50%;
+            padding-top: 100%;
+            top: 15%;
+            left: -35%;
+            background-color: var(--ellipse-bottom-color);
+            transform: rotate(65deg);
+
+            body[data-color-scheme='dark'] & {
+                background-color: var(--ellipse-bottom-dark-color);
+            }
+        }
+    }
+}
