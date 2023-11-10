@@ -124,7 +124,7 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
         border-radius: 50%;
         z-index: 2;
         margin-bottom: 0;
-        box-shadow: 0px 3px 20px 0px rgba(36, 204, 167, 0.5);
+        box-shadow: 0 3px 20px rgba(36, 204, 167, 0.5);
 
         @media screen and (min-width: 768px) {
             bottom: 40px;
@@ -141,6 +141,10 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
             transform-origin: center;
             transition: 300ms;
             background-color: var(--primary-expense-color);
+
+            body[data-color-scheme='dark'] & {
+                background-color: var(--primary-expense-color);
+            }
         }
 
 
