@@ -71,7 +71,7 @@
     &__form-container {
       width: 100%;
       height: 100%;
-      background-color: var(--login-form-overlay-color);
+      background-color: var(--auth-form-overlay-color);
       backdrop-filter: blur(25px);
 
       body[data-color-scheme='dark'] & {

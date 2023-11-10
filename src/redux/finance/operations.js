@@ -9,12 +9,6 @@ export const fetchTransactions = createAsyncThunk(
       const response = await instance.get(`/user/${userId}/transactions`);
       return response.data;
     } catch (error) {
-      if (error.message === "Request failed with status code 401") {
-        Report.failure("Failure, please log in again");
-        clearAuthHeader();
-      } else {
-        Notify.failure("Failure, please try again");
-      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }

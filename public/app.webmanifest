@@ -5,7 +5,7 @@
   "start_url": "/",
   "display": "standalone",
   "orientation": "any",
-  "background_color": "#e7eaf2",
+  "background_color": "#ffffff",
   "theme_color": "#4a56e2",
   "prefer_related_applications": false,
   "icons": [
@@ -22,13 +22,13 @@
     }
   ],
   "splash_screen_light": {
-    "background_color": "#e7eaf2"
+    "background_color": "#ffffff"
   },
   "splash_screen_dark": {
     "background_color": "#110021"
   },
   "theme_light": {
-    "background_color": "#e7eaf2",
+    "background_color": "#ffffff",
     "theme_color": "#4a56e2"
   },
   "theme_dark": {

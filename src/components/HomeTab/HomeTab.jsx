@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMedia } from "react-use";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux/es/hooks/useSelector";
+import { selectUser } from "../../redux/session/selectors";
+import { fetchTransactions } from "../../redux/finance/operations";
 import { setTransactionId } from "../../redux/finance/financeSlice";
 import { deleteTransaction } from "../../redux/finance/operations";
 import { selectTransactions } from "../../redux/finance/selectors";
@@ -14,11 +16,18 @@ import { nanoid } from "nanoid";
 
 export const HomeTab = () => {
   const dispatch = useDispatch();
+  const user = useSelector(selectUser);
   const allTransactions = useSelector(selectTransactions);
   const isMobile = useMedia("(max-width: 767px)");
   const [context, setContext] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [itemOffset, setItemOffset] = useState(0);
+
+  useEffect(() => {
+    if (allTransactions === null) {
+      dispatch(fetchTransactions(user.id));
+    }
+  }, [allTransactions, user.id, dispatch]);
 
   let paginationData = paginateTransactions(allTransactions, itemOffset);
   let transactions = paginationData.paginatedTransactions;

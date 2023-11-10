@@ -33,7 +33,6 @@ const sessionSlice = createSlice({
       .addCase(register.fulfilled, (state, action) => {
         state.user = {
           id: action.payload.data._id,
-          email: action.payload.data.email,
           firstname: action.payload.data.firstname,
         };
         state.isLoading = false;
@@ -46,7 +45,6 @@ const sessionSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.user = {
           id: action.payload.data.ID,
-          email: action.payload.data.email,
           firstname: action.payload.data.firstname,
         };
         state.token = action.payload.data.token;
@@ -58,40 +56,25 @@ const sessionSlice = createSlice({
       .addCase(logout.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(logout.fulfilled, (state) => {
-        state.isAuth = false;
-        state.isLoading = false;
-        state.error = null;
-        state.token = null;
-        state.user = null;
-      })
+      .addCase(logout.fulfilled, () => initialState)
       .addCase(logout.rejected, handleRejected)
       .addCase(refreshUser.pending, (state) => {
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         if (action.payload.tokenExpired) {
-          state.isRefreshing = false;
-          state.isAuth = false;
-          state.token = null;
-          state.error = null;
+          return initialState;
         } else {
           state.isRefreshing = false;
           state.isAuth = true;
           state.token = action.payload.data.token;
           state.user = {
             id: action.payload.data._id,
-            email: action.payload.data.email,
             firstname: action.payload.data.firstname,
           };
         }
       })
-      .addCase(refreshUser.rejected, (state) => {
-        state.isRefreshing = false;
-        state.isAuth = false;
-        state.token = null;
-        state.error = null;
-      });
+      .addCase(refreshUser.rejected, handleRejected);
   },
 });
 

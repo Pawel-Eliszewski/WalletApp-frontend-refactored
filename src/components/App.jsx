@@ -6,10 +6,8 @@ import { useMedia } from "react-use";
 import {
   selectIsLoading,
   selectIsRefreshing,
-  selectUser,
 } from "../redux/session/selectors";
 import { refreshUser } from "../redux/session/operations";
-import { fetchTransactions } from "../redux/finance/operations";
 import { Loader } from "./Loader/Loader";
 import { ProtectedRoute } from "./Routes/ProtectedRoute";
 import { RestrictedRoute } from "./Routes/RestrictedRoute";
@@ -27,24 +25,21 @@ export default function App() {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
   const isRefreshing = useSelector(selectIsRefreshing);
-  const user = useSelector(selectUser);
   const isMobile = useMedia("(max-width: 767px)");
 
   useEffect(() => {
-    const prefersDarkMode = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-    document.body.setAttribute(
-      "data-color-scheme",
-      prefersDarkMode ? "dark" : "light"
-    );
-  }, []);
-
-  useEffect(() => {
-    if (user) {
-      dispatch(fetchTransactions(user.id));
+    const storedColorScheme = window.localStorage.getItem("colorScheme");
+    if (storedColorScheme) {
+      document.body.setAttribute("data-color-scheme", storedColorScheme);
+    } else {
+      const prefersDarkMode = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      const initialColorScheme = prefersDarkMode ? "dark" : "light";
+      document.body.setAttribute("data-color-scheme", initialColorScheme);
+      window.localStorage.setItem("colorScheme", initialColorScheme);
     }
-  }, [user, dispatch]);
+  }, []);
 
   useEffect(() => {
     const refresh = () => {
@@ -53,10 +48,10 @@ export default function App() {
     refresh();
   }, [dispatch]);
 
-  return isLoading || isRefreshing ? (
+  return isLoading ? (
     <Loader />
   ) : (
-    <Suspense fallback={<Loader />}>
+    <Suspense fallback={null}>
       <Routes>
         <Route
           path="/register"
