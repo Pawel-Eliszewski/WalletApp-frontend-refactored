@@ -4,11 +4,24 @@ import { selectUser } from "../../redux/session/selectors";
 import { Logo } from "../Logo/Logo";
 import { Button } from "../Button/Button";
 import { Modal } from "../Modal/Modal";
+import { Switch } from "../Switch/Switch";
 
 export const Header = () => {
   const user = useSelector(selectUser);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleChange = () => {
+    const body = document.body;
+    const currentColorScheme = body.getAttribute("data-color-scheme");
+
+    if (currentColorScheme === "dark") {
+      body.setAttribute("data-color-scheme", "light");
+      localStorage.setItem("colorScheme", "light");
+    } else {
+      body.setAttribute("data-color-scheme", "dark");
+      localStorage.setItem("colorScheme", "dark");
+    }
+  };
 
   const handleLogout = () => {
     setIsModalOpen(true);
@@ -23,6 +36,7 @@ export const Header = () => {
   return (
     <div className="header">
       <Logo />
+      <Switch context="colorScheme" onChange={handleChange} />
       <div className="header__nav">
         <p className="header__nav-user">{user.firstname}</p>
         <Button

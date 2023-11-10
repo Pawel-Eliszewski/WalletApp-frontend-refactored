@@ -78,22 +78,5 @@
         background-color: var(--auth-form-dark-overlay-color);
       }
     }
-
-    &__ellipse {
-      &--top {
-        width: 50%;
-        padding-top: 50%;
-        top: -32%;
-        right: -9%;
-      }
-
-      &--bottom {
-        width: 69%;
-        padding-top: 221%;
-        top: -54%;
-        left: -95%;
-        transform: rotate(60.862deg);
-      }
-    }
   }
 }

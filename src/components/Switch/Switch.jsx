@@ -1,10 +1,13 @@
 import PropTypes from "prop-types";
 import { useRef } from "react";
 /**
- * @param {{ checked: boolean, onChange: () => void }} props
+ * @param {{ context: 'colorScheme' | 'transactionType',
+ * checked: boolean, onChange: () => void }} props
  */
-export const Switch = ({ checked, onChange }) => {
+export const Switch = ({ context, checked, onChange }) => {
   const checkboxRef = useRef(null);
+
+  const id = `${context}-checkbox`;
 
   const handleKeyDown = (e) => {
     if (e.key === "Tab" && e.shiftKey) {
@@ -27,23 +30,24 @@ export const Switch = ({ checked, onChange }) => {
   };
 
   return (
-    <div className="switch" onKeyDown={handleKeyDown} tabIndex={0}>
-      <label className="switch__label" htmlFor="checkbox">
+    <div className={context + "-switch"} onKeyDown={handleKeyDown} tabIndex={0}>
+      <label className={context + "-switch__label"} htmlFor={id}>
         <input
+          id={id}
           ref={checkboxRef}
-          className="switch__input"
+          className={context + "-switch__input"}
           type="checkbox"
-          id="checkbox"
           onChange={onChange}
           checked={checked}
         />
-        <div className="switch__slider"></div>
+        <div className={context + "-switch__slider"}></div>
       </label>
     </div>
   );
 };
 
 Switch.propTypes = {
+  context: PropTypes.string.isRequired,
   checked: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
 };

@@ -50,10 +50,16 @@ button:focus {
 }
 
 button:focus-visible,
-div:focus-visible {
+div:focus-visible,
+li:focus-visible,
+a:focus-visible {
     border: none;
     outline: 2px solid var(--primary-font-color);
     transition: 0s;
+
+    body[data-color-scheme='dark'] & {
+        outline: 2px solid var(--secondary-gray-font-color);
+    }
 }
 
 div:focus-visible {

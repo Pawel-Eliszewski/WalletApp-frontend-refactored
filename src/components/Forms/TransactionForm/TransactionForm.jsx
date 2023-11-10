@@ -107,6 +107,7 @@ export const TransactionForm = ({ isModalOpen, context, onModalClose }) => {
               </span>
               {context === "add" ? (
                 <Switch
+                  context="transactionType"
                   checked={values.type === "expense" ? true : false}
                   onChange={() => {
                     setFieldValue(

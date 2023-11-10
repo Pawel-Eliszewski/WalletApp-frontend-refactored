@@ -30,27 +30,29 @@ const AuthPage = ({ context }) => {
   };
 
   return (
-    <div className="auth-page">
+    <>
       <PageBackground />
-      <div className="auth-page__hero-container">
-        <img
-          className="auth-page__hero-img"
-          src={
-            context === "login"
-              ? "/assets/image-hero-login.svg"
-              : "/assets/image-hero-register.svg"
-          }
-          alt="Illustration of a login page"
-        />
-        <h3 className="auth-page__hero-title">Finance App</h3>
+      <div className="auth-page">
+        <div className="auth-page__hero-container">
+          <img
+            className="auth-page__hero-img"
+            src={
+              context === "login"
+                ? "/assets/image-hero-login.svg"
+                : "/assets/image-hero-register.svg"
+            }
+            alt="Illustration of a login page"
+          />
+          <h3 className="auth-page__hero-title">Finance App</h3>
+        </div>
+        <div className="auth-page__form-container">
+          <AuthForm
+            context={context}
+            onSubmit={context === "login" ? handleLogin : handleRegister}
+          />
+        </div>
       </div>
-      <div className="auth-page__form-container">
-        <AuthForm
-          context={context}
-          onSubmit={context === "login" ? handleLogin : handleRegister}
-        />
-      </div>
-    </div>
+    </>
   );
 };
 

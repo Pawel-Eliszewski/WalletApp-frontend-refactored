@@ -21,6 +21,12 @@
       "type": "image/png"
     }
   ],
+  "splash_screen_light": {
+    "background_color": "#e7eaf2"
+  },
+  "splash_screen_dark": {
+    "background_color": "#110021"
+  },
   "theme_light": {
     "background_color": "#e7eaf2",
     "theme_color": "#4a56e2"
