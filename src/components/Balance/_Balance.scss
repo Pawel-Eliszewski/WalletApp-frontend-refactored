@@ -13,7 +13,7 @@
     background-color: transparent;
 
     @media screen and (max-width: 767px) {
-      align-items: center;
+      border: 1px solid var(--primary-gray-font-color);
     }
   }
 

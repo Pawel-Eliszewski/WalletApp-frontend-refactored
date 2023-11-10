@@ -48,10 +48,10 @@ export default function App() {
     refresh();
   }, [dispatch]);
 
-  return isLoading ? (
+  return isLoading || isRefreshing ? (
     <Loader />
   ) : (
-    <Suspense fallback={null}>
+    <Suspense fallback={<Loader />}>
       <Routes>
         <Route
           path="/register"
