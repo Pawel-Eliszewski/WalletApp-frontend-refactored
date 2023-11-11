@@ -180,11 +180,11 @@ export const StatisticsTab = () => {
   };
 
   return (
-    <div className="diagram">
-      <div className="diagram__doughnut">
-        <h2 className="diagram__doughnut-title">Statistics</h2>
-        <div className="diagram__doughnut-wrapper">
-          <span className="diagram__doughnut-balance">
+    <div className="statistics__container">
+      <div className="statistics__doughnut">
+        <h2 className="statistics__doughnut-title">Statistics</h2>
+        <div className="statistics__doughnut-wrapper">
+          <span className="statistics__doughnut-balance">
             {difference.toFixed(2)} PLN
           </span>
           <Doughnut
@@ -204,16 +204,16 @@ export const StatisticsTab = () => {
         </div>
       </div>
 
-      <div className="diagram__dropdown">
-        <div className="diagram__dropdown-wrapper">
-          <label className="diagram__dropdown-label diagram__dropdown-label--month">
+      <div className="statistics__dropdown">
+        <div className="statistics__dropdown-wrapper">
+          <label className="statistics__dropdown-label statistics__dropdown-label--month">
             <DropdownSelectMonth
               selectedYear={selectedYear}
               selectedMonth={selectedMonth}
               onSelect={handleMonthSelect}
             />
           </label>
-          <label className="diagram__dropdown-label diagram__dropdown-label--year">
+          <label className="statistics__dropdown-label statistics__dropdown-label--year">
             <DropdownSelectYear
               selectedYear={selectedYear}
               onSelect={handleYearSelect}
@@ -221,30 +221,30 @@ export const StatisticsTab = () => {
           </label>
         </div>
 
-        <div className="diagram__legend">
-          <ul className="diagram__legend-headers">
-            <li className="diagram__legend-header">Category</li>
-            <li className="diagram__legend-header">Sum</li>
+        <div className="statistics__legend">
+          <ul className="statistics__legend-headers">
+            <li className="statistics__legend-header">Category</li>
+            <li className="statistics__legend-header">Sum</li>
           </ul>
-          <ul className="diagram__legend-list">
+          <ul className="statistics__legend-list">
             {coloredTransactions?.length > 0 ? (
               coloredTransactions.map(({ _id, category, amount, color }) => (
-                <li key={_id} className="diagram__legend-item">
+                <li key={_id} className="statistics__legend-item">
                   <div
-                    className="diagram__legend-icon"
+                    className="statistics__legend-icon"
                     style={{
                       backgroundColor: `${color}`,
                     }}
                   ></div>
-                  <p className="diagram__legend-category">{category}</p>
-                  <p className="diagram__legend-amount">
+                  <p className="statistics__legend-category">{category}</p>
+                  <p className="statistics__legend-amount">
                     {amount.toFixed(2)} PLN
                   </p>
                 </li>
               ))
             ) : (
-              <li className="diagram__legend-item">
-                <p className="diagram__legend-category">
+              <li className="statistics__legend-item">
+                <p className="statistics__legend-category">
                   No expense transactions found
                 </p>
               </li>
@@ -252,17 +252,17 @@ export const StatisticsTab = () => {
           </ul>
         </div>
 
-        <div className="diagram__summary">
-          <ul className="diagram__summary-list">
-            <li className="diagram__summary-item">
-              <p className="diagram__summary-type">Expenses:</p>
-              <p className="diagram__summary-type diagram__summary-type--expense">
+        <div className="statistics__summary">
+          <ul className="statistics__summary-list">
+            <li className="statistics__summary-item">
+              <p className="statistics__summary-type">Expenses:</p>
+              <p className="statistics__summary-type statistics__summary-type--expense">
                 {expenseSum.toFixed(2)} PLN
               </p>
             </li>
-            <li className="diagram__summary-item">
-              <p className="diagram__summary-type">Income:</p>
-              <p className="diagram__summary-type diagram__summary-type--income">
+            <li className="statistics__summary-item">
+              <p className="statistics__summary-type">Income:</p>
+              <p className="statistics__summary-type statistics__summary-type--income">
                 {incomeSum.toFixed(2)} PLN
               </p>
             </li>

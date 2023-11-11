@@ -26,7 +26,7 @@ $iconCalendar: url("/assets/icon-calendar.svg");
             border-bottom: 1px solid var(--primary-font-color) !important;
 
             body[data-color-scheme='dark'] & {
-                border-bottom: 2px solid var(--primary-background-color) !important;
+                border-bottom: 1px solid var(--primary-background-color) !important;
             }
         }
 

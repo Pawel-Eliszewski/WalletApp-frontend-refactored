@@ -5,6 +5,7 @@
     align-items: center;
     width: 100%;
     max-width: 380px;
+    border: none;
   }
 
   &__placeholder {
@@ -137,18 +138,22 @@
   .home {
     &__container {
       max-width: 728px;
+      position: relative;
 
       @media screen and (min-width: 1280px) {
-        flex-shrink: 0;
-        flex-grow: 1;
-        border-left: 1px solid var(--secondary-gray-font-color);
-        box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
-        padding-left: 40px;
-        max-width: 775px;
+        &::after {
+          content: "";
+          display: block;
+          position: absolute;
+          left: -40px;
+          height: 100%;
+          border-left: 1px solid var(--secondary-gray-font-color);
+          box-shadow: -1px 0 0 rgba(255, 255, 255, 0.6);
 
-        body[data-color-scheme='dark'] & {
-          border-left: 1px solid var(--primary-gray-font-color);
-          box-shadow: none;
+          body[data-color-scheme='dark'] & {
+            border-left: none;
+            box-shadow: none;
+          }
         }
       }
     }
