@@ -175,12 +175,14 @@ export const HomeTab = () => {
         </table>
       )}
 
-      {pageCount > 1 && (
+      {pageCount > 1 ? (
         <Pagination
           isMobile={isMobile}
           pageCount={pageCount}
           onItemOffsetChange={handleItemOffset}
         />
+      ) : (
+        <div className="home__placeholder"></div>
       )}
       <Button title="+" onClick={openModalAdd} styles="--add" type="button" />
       <Modal

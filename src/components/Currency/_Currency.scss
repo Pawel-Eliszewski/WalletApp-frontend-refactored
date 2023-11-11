@@ -2,10 +2,9 @@
   width: 100%;
   max-width: 336px;
   min-height: 174px;
-  background-image: url(/assets/currency-mobile.svg);
+  background: url(/assets/background-currency.svg) center bottom no-repeat;
   background-color: var(--household-products-diagram-color);
-  background-repeat: no-repeat;
-  background-position: bottom;
+  background-size: contain;
   color: var(--primary-background-color);
   border-radius: 30px;
   overflow: hidden;
@@ -52,6 +51,7 @@
     justify-content: space-around;
     flex-direction: column;
     margin-top: 65px;
+    border-bottom-left-radius: 20px;
 
     &-row {
       display: flex;
@@ -68,7 +68,6 @@
   .currency {
     max-width: 336px;
     max-height: 182px;
-    background-image: url(/assets/currency-tablet.svg);
 
     &__table {
       position: unset;
@@ -90,7 +89,6 @@
   .currency {
     max-width: 393px;
     min-height: 331px;
-    background-image: url(/assets/currency-desktop.svg);
 
     &__table,
     &__head,

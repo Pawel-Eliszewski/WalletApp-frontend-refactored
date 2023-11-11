@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   padding: 0;
-  margin-top: 20px;
+  margin-block: 20px;
   gap: 10px;
 
   &__link,
@@ -45,8 +45,8 @@
       outline: 1px solid var(--secondary-gray-font-color);
 
       body[data-color-scheme='dark'] & {
-        color: var(--primary-font-color);
         outline: 1px solid var(--primary-font-color);
+        color: black;
       }
 
       @media (hover: hover) {
