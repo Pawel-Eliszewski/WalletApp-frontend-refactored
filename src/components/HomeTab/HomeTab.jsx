@@ -13,6 +13,7 @@ import { Pagination } from "../Pagination/Pagination";
 import { Modal } from "../Modal/Modal";
 import { paginateTransactions } from "../../utils/paginationHandlers";
 import { nanoid } from "nanoid";
+import { Loading } from "notiflix";
 
 export const HomeTab = () => {
   const dispatch = useDispatch();
@@ -56,8 +57,15 @@ export const HomeTab = () => {
     document.body.classList.remove("modal-open");
   };
 
-  const handleDeleteTransaction = (transactionId) => {
-    dispatch(deleteTransaction(transactionId));
+  const handleDeleteTransaction = async (transactionId) => {
+    try {
+      Loading.hourglass();
+      dispatch(deleteTransaction(transactionId));
+      Loading.remove();
+    } catch (error) {
+      console.error(error);
+      Loading.remove();
+    }
   };
 
   return (

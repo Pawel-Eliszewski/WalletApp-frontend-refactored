@@ -19,6 +19,7 @@ import { Calendar } from "../../Calendar/Calendar";
 import { categoryOptions } from "../../../utils/transactionCategories";
 import { formattedTodayDate } from "../../../utils/dateHandlers";
 import { transactionValidationSchema } from "../../../utils/yupValidationSchemas";
+import { Loading } from "notiflix";
 /**
  * @param {{ isModalOpen: boolean, context: 'add' | 'edit', onModalClose: () => void }} props
  */
@@ -63,8 +64,16 @@ export const TransactionForm = ({ isModalOpen, context, onModalClose }) => {
       comment: values.comment,
       owner: user.id,
     };
-    await dispatch(addTransaction(formData)).unwrap();
-    onModalClose();
+    try {
+      Loading.hourglass();
+      await dispatch(addTransaction(formData)).unwrap();
+      Loading.remove();
+      onModalClose();
+    } catch (error) {
+      console.error(error);
+      Loading.remove();
+      onModalClose();
+    }
   };
 
   const handleEditTransaction = async (values) => {
@@ -80,8 +89,16 @@ export const TransactionForm = ({ isModalOpen, context, onModalClose }) => {
       comment: values.comment,
       owner: selectedTransaction.owner,
     };
-    await dispatch(updateTransaction(formData)).unwrap();
-    onModalClose();
+    try {
+      Loading.hourglass();
+      await dispatch(updateTransaction(formData)).unwrap();
+      Loading.remove();
+      onModalClose();
+    } catch (error) {
+      console.error(error);
+      Loading.remove();
+      onModalClose();
+    }
   };
 
   return (
