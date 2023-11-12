@@ -186,7 +186,7 @@ body[data-color-scheme=dark] textarea {
 }
 .container--mobile {
   background-color: var(--secondary-background-color);
-  min-height: calc(100vh - 75px);
+  min-height: calc(100vh - 76px);
   -webkit-backdrop-filter: none;
           backdrop-filter: none;
 }
@@ -673,7 +673,7 @@ body[data-color-scheme=dark] .react-datepicker-wrapper:focus-within {
 .currency__container {
   width: 100%;
   max-width: 336px;
-  min-height: 174px;
+  height: 347 px;
   background: url(/assets/background-currency.svg) center bottom no-repeat;
   background-color: var(--household-products-diagram-color);
   background-size: contain;
@@ -713,13 +713,31 @@ body[data-color-scheme=dark] .currency__head {
   padding-left: 5px;
   padding-right: 10px;
 }
+.currency__loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  position: relative;
+}
+.currency__loading-icon {
+  font-size: 50px;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .currency__body {
   width: 100%;
   display: flex;
   justify-content: space-around;
   flex-direction: column;
   margin-top: 65px;
-  border-bottom-left-radius: 20px;
 }
 .currency__body-row {
   display: flex;
@@ -1321,9 +1339,10 @@ body[data-color-scheme=dark] .react-select__option:hover, body[data-color-scheme
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100%;
+  min-height: 76px;
   padding: 20px 20px;
   background-color: var(--primary-background-color);
+  border-bottom: 1px solid var(--primary-background-color);
 }
 body[data-color-scheme=dark] .header {
   background-color: var(--primary-dark-background-color);
@@ -1332,6 +1351,7 @@ body[data-color-scheme=dark] .header {
 @media screen and (min-width: 768px) {
   .header {
     padding-inline: 50px;
+    border: none;
   }
   body[data-color-scheme=dark] .header {
     border: none;

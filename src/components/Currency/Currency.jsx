@@ -1,90 +1,39 @@
 import { useEffect, useState } from "react";
-import { fetchCurrency } from "../../utils/currencyExchange";
+import { FiRotateCw } from "react-icons/fi";
+import { getAndStoreCurrencyData } from "../../utils/currencyDataOperations";
 import { nanoid } from "nanoid";
 
 export function Currency() {
   const [currencyData, setCurrencyData] = useState([]);
+  const [loadingData, setLoadingData] = useState(true);
 
   useEffect(() => {
-    const isCurrencyDataFetched = localStorage.getItem("isCurrencyDataFetched");
+    const fetchCurrencyData = async () => {
+      try {
+        const lastFetchTime = localStorage.getItem("lastCurrencyFetchTime");
+        const currentTime = new Date().getTime();
+        const oneHour = 3600000;
 
-    if (isCurrencyDataFetched !== "true") {
-      fetchData();
-      localStorage.setItem("isCurrencyDataFetched", "true");
-    } else {
-      const cachedData = JSON.parse(localStorage.getItem("currencyData"));
-      if (cachedData) {
-        setCurrencyData(cachedData);
+        if (!lastFetchTime || currentTime - lastFetchTime >= oneHour) {
+          const data = await getAndStoreCurrencyData();
+          setCurrencyData(data);
+          localStorage.setItem("lastCurrencyFetchTime", currentTime.toString());
+        } else {
+          const cachedData = JSON.parse(localStorage.getItem("currencyData"));
+          if (cachedData) {
+            setCurrencyData(cachedData);
+          }
+        }
+
+        setLoadingData(false);
+      } catch (error) {
+        console.error(error);
+        setLoadingData(false);
       }
-    }
-    const intervalId = setInterval(fetchData, 3600000);
-
-    return () => {
-      clearInterval(intervalId);
     };
+
+    fetchCurrencyData();
   }, []);
-
-  const fetchData = async () => {
-    try {
-      const dataEUR = await fetchCurrency("EUR");
-      const dataUSD = await fetchCurrency("USD");
-      const dataGBP = await fetchCurrency("GBP");
-      const dataCHF = await fetchCurrency("CHF");
-      const dataCZK = await fetchCurrency("CZK");
-      const dataSEK = await fetchCurrency("SEK");
-      const dataNOK = await fetchCurrency("NOK");
-
-      const modifiedDataEUR = dataEUR.map((element) => ({
-        ...element,
-        currency: "EUR",
-      }));
-
-      const modifiedDataUSD = dataUSD.map((element) => ({
-        ...element,
-        currency: "USD",
-      }));
-
-      const modifiedDataGBP = dataGBP.map((element) => ({
-        ...element,
-        currency: "GBP",
-      }));
-
-      const modifiedDataCHF = dataCHF.map((element) => ({
-        ...element,
-        currency: "CHF",
-      }));
-
-      const modifiedDataCZK = dataCZK.map((element) => ({
-        ...element,
-        currency: "CZK",
-      }));
-
-      const modifiedDataSEK = dataSEK.map((element) => ({
-        ...element,
-        currency: "SEK",
-      }));
-
-      const modifiedDataNOK = dataNOK.map((element) => ({
-        ...element,
-        currency: "NOK",
-      }));
-
-      const combinedData = [
-        ...modifiedDataEUR,
-        ...modifiedDataUSD,
-        ...modifiedDataGBP,
-        ...modifiedDataCHF,
-        ...modifiedDataCZK,
-        ...modifiedDataSEK,
-        ...modifiedDataNOK,
-      ];
-      setCurrencyData(combinedData);
-
-      localStorage.setItem("currencyData", JSON.stringify(combinedData));
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   return (
     <div className="currency__container">
@@ -97,17 +46,23 @@ export function Currency() {
           </tr>
         </thead>
         <tbody className="currency__body">
-          {currencyData.map((element) => (
-            <tr key={nanoid()} className="currency__body-row">
-              <td className="currency__item">{element.currency}</td>
-              <td className="currency__item">
-                {(Math.round(element.buy * 100) / 100).toFixed(2)}
-              </td>
-              <td className="currency__item">
-                {(Math.round(element.sale * 100) / 100).toFixed(2)}
-              </td>
-            </tr>
-          ))}
+          {loadingData ? (
+            <div className="currency__loading">
+              <FiRotateCw className="currency__loading-icon" />
+            </div>
+          ) : (
+            currencyData.map((element) => (
+              <tr key={nanoid()} className="currency__body-row">
+                <td className="currency__item">{element.currency}</td>
+                <td className="currency__item">
+                  {(Math.round(element.buy * 100) / 100).toFixed(2)}
+                </td>
+                <td className="currency__item">
+                  {(Math.round(element.sale * 100) / 100).toFixed(2)}
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>
