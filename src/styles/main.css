@@ -701,7 +701,7 @@ body[data-color-scheme=dark] .currency__container {
   border-top-right-radius: 30px;
 }
 body[data-color-scheme=dark] .currency__head {
-  background-color: rgba(67, 67, 67, 0.3);
+  background-color: rgba(67, 67, 67, 0.4);
   color: var(--secondary-gray-font-color);
 }
 .currency__head-row {
@@ -730,9 +730,13 @@ body[data-color-scheme=dark] .currency__head {
 }
 
 @media screen and (min-width: 768px) {
-  .currency {
+  .currency__container {
     max-width: 336px;
     max-height: 182px;
+    border: none;
+  }
+  body[data-color-scheme=dark] .currency__container {
+    border: none;
   }
   .currency__table {
     position: unset;
@@ -747,7 +751,7 @@ body[data-color-scheme=dark] .currency__head {
   }
 }
 @media screen and (min-width: 1280px) {
-  .currency {
+  .currency__container {
     max-width: 393px;
     min-height: 331px;
   }

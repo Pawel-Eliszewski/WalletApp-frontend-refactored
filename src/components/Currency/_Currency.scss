@@ -33,7 +33,7 @@
     border-top-right-radius: 30px;
 
     body[data-color-scheme='dark'] & {
-      background-color: rgba(67, 67, 67, 0.3);
+      background-color: rgba(67, 67, 67, 0.4);
       color: var(--secondary-gray-font-color)
     }
 
@@ -69,8 +69,15 @@
 
 @media screen and (min-width: 768px) {
   .currency {
-    max-width: 336px;
-    max-height: 182px;
+    &__container {
+      max-width: 336px;
+      max-height: 182px;
+      border: none;
+
+      body[data-color-scheme='dark'] & {
+        border: none;
+      }
+    }
 
     &__table {
       position: unset;
@@ -90,8 +97,10 @@
 
 @media screen and (min-width: 1280px) {
   .currency {
-    max-width: 393px;
-    min-height: 331px;
+    &__container {
+      max-width: 393px;
+      min-height: 331px;
+    }
 
     &__table,
     &__head,
