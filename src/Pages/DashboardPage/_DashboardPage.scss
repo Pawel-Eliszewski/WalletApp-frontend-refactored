@@ -5,7 +5,11 @@
   width: 100%;
   padding: 20px 20px 0 20px;
   min-height: calc(100vh - 80px);
-  backdrop-filter: blur(25px);
+  backdrop-filter: blur(20px);
+
+  body[data-color-scheme='dark'] & {
+    backdrop-filter: blur(60px);
+  }
 
   &--mobile {
     background-color: var(--secondary-background-color);
@@ -14,6 +18,7 @@
 
     body[data-color-scheme='dark'] & {
       background-color: var(--secondary-dark-background-color);
+      backdrop-filter: none;
     }
   }
 

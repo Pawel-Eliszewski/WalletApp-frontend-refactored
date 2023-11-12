@@ -109,10 +109,18 @@
     &__span {
         &--income {
             color: var(--primary-income-color);
+
+            body[data-color-scheme='dark'] & {
+                color: var(--btn-submit-hover);
+            }
         }
 
         &--expense {
             color: var(--primary-expense-color);
+
+            body[data-color-scheme='dark'] & {
+                color: var(--ellipse-bottom-dark-color);
+            }
         }
     }
 
