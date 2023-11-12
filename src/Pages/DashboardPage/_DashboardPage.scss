@@ -13,7 +13,7 @@
     backdrop-filter: none;
 
     body[data-color-scheme='dark'] & {
-      background-color: var(--primary-dark-background-color);
+      background-color: var(--secondary-dark-background-color);
     }
   }
 

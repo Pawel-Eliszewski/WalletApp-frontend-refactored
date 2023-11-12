@@ -1,17 +1,20 @@
 .currency {
-  width: 100%;
-  max-width: 336px;
-  min-height: 174px;
-  background: url(/assets/background-currency.svg) center bottom no-repeat;
-  background-color: var(--household-products-diagram-color);
-  background-size: contain;
-  color: var(--primary-background-color);
-  border-radius: 30px;
-  overflow: hidden;
+  &__container {
+    width: 100%;
+    max-width: 336px;
+    min-height: 174px;
+    background: url(/assets/background-currency.svg) center bottom no-repeat;
+    background-color: var(--household-products-diagram-color);
+    background-size: contain;
+    color: var(--primary-background-color);
+    border-radius: 30px;
+    overflow: hidden;
 
-  body[data-color-scheme='dark'] & {
-    background-color: var(--primary-dark-background-color);
-    color: var(--primary-gray-font-color)
+    body[data-color-scheme='dark'] & {
+      background-color: var(--primary-dark-background-color);
+      color: var(--primary-gray-font-color);
+      border: 1px solid var(--primary-dark-border-color);
+    }
   }
 
   &__table {

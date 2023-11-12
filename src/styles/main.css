@@ -76,18 +76,20 @@ body[data-color-scheme=dark] textarea {
 :root {
   --primary-font-color: #000000;
   --primary-gray-font-color: #bdbdbd;
+  --primary-dark-border-color: #383838;
   --secondary-gray-font-color: #e0e0e0;
   --primary-text-shadow-color: #00000040;
   --primary-background-color: #ffffff;
   --secondary-background-color: #e7eaf2;
   --primary-gray-background-color: #f3f3f3f2;
   --primary-dark-background-color: #110021;
+  --secondary-dark-background-color: #110021f8;
   --auth-form-overlay-color: #ffffff66;
   --auth-form-dark-overlay-color: #ffffff09;
   --ellipse-bottom-color: #c5baff;
   --ellipse-bottom-dark-color: #ae3e62;
   --ellipse-top-dark-color: #ffd8d061;
-  --backdrop--background-color: #000000b0;
+  --backdrop-background-color: #000000b0;
   --primary-expense-color: #ff6596;
   --primary-income-color: #24cca7;
   --main-expenses-diagram-color: #fed057;
@@ -189,7 +191,7 @@ body[data-color-scheme=dark] textarea {
           backdrop-filter: none;
 }
 body[data-color-scheme=dark] .container--mobile {
-  background-color: var(--primary-dark-background-color);
+  background-color: var(--secondary-dark-background-color);
 }
 .container--tablet {
   justify-content: flex-start;
@@ -227,11 +229,11 @@ body[data-color-scheme=dark] .container--mobile {
   margin-bottom: 20px;
 }
 body[data-color-scheme=dark] .balance {
-  background-color: transparent;
+  background-color: var(--primary-dark-background-color);
 }
 @media screen and (max-width: 767px) {
   body[data-color-scheme=dark] .balance {
-    border: 1px solid var(--primary-gray-font-color);
+    border: 1px solid var(--primary-dark-border-color);
   }
 }
 @media screen and (min-width: 768px) {
@@ -668,7 +670,7 @@ body[data-color-scheme=dark] .react-datepicker-wrapper:focus-within {
   background-color: var(--primary-income-color);
 }
 
-.currency {
+.currency__container {
   width: 100%;
   max-width: 336px;
   min-height: 174px;
@@ -679,9 +681,10 @@ body[data-color-scheme=dark] .react-datepicker-wrapper:focus-within {
   border-radius: 30px;
   overflow: hidden;
 }
-body[data-color-scheme=dark] .currency {
+body[data-color-scheme=dark] .currency__container {
   background-color: var(--primary-dark-background-color);
   color: var(--primary-gray-font-color);
+  border: 1px solid var(--primary-dark-border-color);
 }
 .currency__table {
   position: relative;
@@ -850,8 +853,8 @@ body[data-color-scheme=dark] .statistics__dropdown-label {
 }
 body[data-color-scheme=dark] .statistics__legend-headers {
   color: var(--primary-gray-font-color);
-  background-color: transparent;
-  border: 1px solid var(--primary-gray-font-color);
+  background-color: var(--primary-dark-background-color);
+  border: 1px solid var(--primary-dark-border-color);
 }
 .statistics__legend-item {
   position: relative;
@@ -865,7 +868,7 @@ body[data-color-scheme=dark] .statistics__legend-headers {
 }
 body[data-color-scheme=dark] .statistics__legend-item {
   color: var(--primary-gray-font-color);
-  border-bottom: 1px solid var(--primary-gray-font-color);
+  border-bottom: 1px solid var(--primary-dark-border-color);
   box-shadow: none;
 }
 .statistics__legend-icon {
@@ -1320,10 +1323,14 @@ body[data-color-scheme=dark] .react-select__option:hover, body[data-color-scheme
 }
 body[data-color-scheme=dark] .header {
   background-color: var(--primary-dark-background-color);
+  border-bottom: 1px solid var(--primary-dark-border-color);
 }
 @media screen and (min-width: 768px) {
   .header {
     padding-inline: 50px;
+  }
+  body[data-color-scheme=dark] .header {
+    border: none;
   }
 }
 .header__nav {
@@ -1379,7 +1386,7 @@ body[data-color-scheme=dark] .header {
   gap: 1px;
 }
 body[data-color-scheme=dark] .mobile-table__list {
-  border: 1px solid var(--primary-gray-font-color);
+  border: 1px solid var(--primary-dark-border-color);
   border-left: none;
 }
 body[data-color-scheme=dark] .mobile-table__list[data-type=expense] {
@@ -1445,6 +1452,9 @@ body[data-color-scheme=dark] .mobile-table__item {
 }
 .mobile-table__item:not(:last-child) {
   border-bottom: 1px solid var(--secondary-gray-font-color);
+}
+body[data-color-scheme=dark] .mobile-table__item:not(:last-child) {
+  border-bottom: 1px solid var(--primary-dark-border-color);
 }
 .mobile-table__controls {
   display: flex;
@@ -1653,7 +1663,7 @@ body[data-color-scheme=dark] .logo__title {
   pointer-events: all;
   opacity: 1;
   transition: 300ms;
-  background-color: var(--backdrop--background-color);
+  background-color: var(--backdrop-background-color);
   -webkit-backdrop-filter: blur(25px);
           backdrop-filter: blur(25px);
 }
@@ -1743,7 +1753,7 @@ body[data-color-scheme=dark] .nav__logo {
 }
 .nav__logo--active {
   fill: var(--household-products-diagram-color);
-  box-shadow: 0 2px 15px rgba(110, 120, 232, 0.7);
+  box-shadow: 0 2px 15px rgba(110, 120, 232, 0.9);
 }
 body[data-color-scheme=dark] .nav__logo--active {
   fill: var(--child-care-diagram-color);

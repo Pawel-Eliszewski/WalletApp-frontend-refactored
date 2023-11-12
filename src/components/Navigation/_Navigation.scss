@@ -23,7 +23,7 @@
 
 		&--active {
 			fill: var(--household-products-diagram-color);
-			box-shadow: 0 2px 15px rgb(110, 120, 232, 0.7);
+			box-shadow: 0 2px 15px rgb(110, 120, 232, 0.9);
 
 			body[data-color-scheme='dark'] & {
 				fill: var(--child-care-diagram-color);

@@ -103,8 +103,8 @@
 
       body[data-color-scheme='dark'] & {
         color: var(--primary-gray-font-color);
-        background-color: transparent;
-        border: 1px solid var(--primary-gray-font-color);
+        background-color: var(--primary-dark-background-color);
+        border: 1px solid var(--primary-dark-border-color);
       }
     }
 
@@ -120,7 +120,7 @@
 
       body[data-color-scheme='dark'] & {
         color: var(--primary-gray-font-color);
-        border-bottom: 1px solid var(--primary-gray-font-color);
+        border-bottom: 1px solid var(--primary-dark-border-color);
         box-shadow: none;
       }
     }

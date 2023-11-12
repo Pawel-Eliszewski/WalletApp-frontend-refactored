@@ -32,7 +32,7 @@
     gap: 1px;
 
     body[data-color-scheme='dark'] & {
-      border: 1px solid var(--primary-gray-font-color);
+      border: 1px solid var(--primary-dark-border-color);
       border-left: none;
 
       &[data-type="expense"] {
@@ -111,6 +111,10 @@
 
     &:not(:last-child) {
       border-bottom: 1px solid var(--secondary-gray-font-color);
+
+      body[data-color-scheme='dark'] & {
+        border-bottom: 1px solid var(--primary-dark-border-color);
+      }
     }
   }
 

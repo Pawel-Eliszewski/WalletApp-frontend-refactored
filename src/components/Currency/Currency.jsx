@@ -87,7 +87,7 @@ export function Currency() {
   };
 
   return (
-    <div className="currency">
+    <div className="currency__container">
       <table className="currency__table">
         <thead className="currency__head">
           <tr key={nanoid()} className="currency__head-row">
