@@ -72,8 +72,8 @@
 }
 
 .colorScheme-switch {
-    width: 65px;
-    height: 35px;
+    width: 45px;
+    height: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -81,8 +81,8 @@
     &__label {
         display: flex;
         position: relative;
-        width: 55px;
-        height: 25px;
+        width: 35px;
+        height: 15px;
     }
 
     &__input {
@@ -111,11 +111,11 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
         border-radius: 50%;
         content: "🌙";
-        font-size: 28px;
+        font-size: 20px;
         background-color: var(--primary-font-color);
         box-shadow: 0 0 15px rgba(36, 198, 204, 0.6);
         transform: translateX(-2px);
@@ -124,8 +124,44 @@
 
     &__input:checked+&__slider:before {
         content: "☀️";
-        background-color: #81e1ff;
+        background-color: var(--education-diagram-color);
         box-shadow: 0 0 10px rgba(36, 198, 204, 0.2);
-        transform: translateX(15px);
+        transform: translateX(5px);
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .colorScheme-switch {
+        width: 65px;
+        height: 35px;
+
+        &__label {
+            width: 55px;
+            height: 25px;
+        }
+
+        &__slider {
+            bottom: 0;
+            left: 0;
+            right: 0;
+            top: 0;
+            transition: 300ms;
+
+            body[data-color-scheme='dark'] & {
+                border: 1px solid rgba(67, 67, 67, 1);
+            }
+        }
+
+        &__slider:before {
+
+            width: 40px;
+            height: 40px;
+            font-size: 28px;
+            transform: translateX(-2px);
+        }
+
+        &__input:checked+&__slider:before {
+            transform: translateX(15px);
+        }
     }
 }

@@ -28,10 +28,10 @@
         align-items: center;
 
         &:focus-within {
-            border-bottom: 2px solid var(--secondary-gray-font-color);
+            border-bottom: 1px solid var(--secondary-gray-font-color);
 
             body[data-color-scheme='dark'] & {
-                border-bottom: 2px solid var(--primary-background-color);
+                border-bottom: 1px solid var(--primary-background-color);
             }
         }
     }

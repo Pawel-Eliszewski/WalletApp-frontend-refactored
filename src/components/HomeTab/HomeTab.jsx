@@ -61,10 +61,10 @@ export const HomeTab = () => {
     try {
       Loading.hourglass();
       dispatch(deleteTransaction(transactionId));
-      Loading.remove();
+      Loading.remove(600);
     } catch (error) {
       console.error(error);
-      Loading.remove();
+      Loading.remove(600);
     }
   };
 
@@ -80,27 +80,29 @@ export const HomeTab = () => {
                 className="mobile-table__list"
                 data-type={type}
               >
-                <li className="mobile-table__item">
-                  <span className="mobile-table__item-header">Date</span>
-                  {date}
+                <li key={_id} className="mobile-table__item">
+                  <h4 className="mobile-table__item-header">Date</h4>
+                  <p>{date}</p>
                 </li>
-                <li className="mobile-table__item">
-                  <span className="mobile-table__item-header">Type</span>
-                  {type === "income" ? "+" : "-"}
+                <li key={_id} className="mobile-table__item">
+                  <h4 className="mobile-table__item-header">Type</h4>
+                  <p className="mobile-table__item-type" data-type={type}>
+                    {type === "income" ? "+" : "-"}
+                  </p>
                 </li>
-                <li className="mobile-table__item">
-                  <span className="mobile-table__item-header">Category</span>
-                  {category}
+                <li key={_id} className="mobile-table__item">
+                  <h4 className="mobile-table__item-header">Category</h4>
+                  <p>{category}</p>
                 </li>
-                <li className="mobile-table__item">
-                  <span className="mobile-table__item-header">Comment</span>
-                  <span className="mobile-table__item-comment">{comment}</span>
+                <li key={_id} className="mobile-table__item">
+                  <h4 className="mobile-table__item-header">Comment</h4>
+                  <p className="mobile-table__item-comment">{comment}</p>
                 </li>
-                <li className="mobile-table__item">
-                  <span className="mobile-table__item-header">Sum</span>
-                  <span className="mobile-table__item-sum" data-type={type}>
+                <li key={_id} className="mobile-table__item">
+                  <h4 className="mobile-table__item-header">Sum</h4>
+                  <p className="mobile-table__item-sum" data-type={type}>
                     {amount.toFixed(2)}
-                  </span>
+                  </p>
                 </li>
                 <li className="mobile-table__controls">
                   <Button
@@ -145,7 +147,10 @@ export const HomeTab = () => {
               ({ _id, date, type, category, comment, amount }) => (
                 <tr key={nanoid()} className="table__body-list">
                   <td className="table__body-item body-item--date">{date}</td>
-                  <td className="table__body-item table__body-item--type">
+                  <td
+                    className="table__body-item table__body-item--type"
+                    data-type={type}
+                  >
                     {type === "income" ? "+" : "-"}
                   </td>
                   <td className="table__body-item table__body-item--category">

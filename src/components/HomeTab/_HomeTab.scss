@@ -82,6 +82,14 @@
       line-height: 27px;
     }
 
+    &-type[data-type="income"] {
+      color: var(--primary-income-color);
+    }
+
+    &-type[data-type="expense"] {
+      color: var(--primary-expense-color);
+    }
+
     &-comment {
       text-align: end;
       width: 150px;
@@ -261,6 +269,22 @@
 
         &--type {
           width: 10px;
+
+          &[data-type="income"] {
+            color: var(--primary-income-color);
+
+            body[data-color-scheme='dark'] & {
+              color: var(--primary-income-color);
+            }
+          }
+
+          &[data-type="expense"] {
+            color: var(--primary-expense-color);
+
+            body[data-color-scheme='dark'] & {
+              color: var(--primary-expense-color);
+            }
+          }
         }
 
         &--category {

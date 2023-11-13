@@ -180,7 +180,6 @@ export const TransactionForm = ({ isModalOpen, context, onModalClose }) => {
                 className="transaction-form__amount"
                 placeholder="0.00"
                 initialvalue={initialValues.amount}
-                autoComplete="amount"
               />
               <ErrorMessage
                 name="amount"
