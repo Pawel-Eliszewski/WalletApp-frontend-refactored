@@ -146,7 +146,7 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
             background-color: var(--household-products-diagram-color);
 
             body[data-color-scheme='dark'] & {
-                background-color: var(--primary-background-color);
+                background-color: var(--household-products-diagram-color);
             }
         }
 

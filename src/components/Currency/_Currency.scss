@@ -2,13 +2,14 @@
   &__container {
     width: 100%;
     max-width: 336px;
-    height: 347 px;
+    height: 347px;
     background: url(/assets/background-currency.svg) center bottom no-repeat;
     background-color: var(--household-products-diagram-color);
     background-size: contain;
     color: var(--primary-background-color);
     border-radius: 30px;
     overflow: hidden;
+    position: relative;
 
     body[data-color-scheme='dark'] & {
       background-color: var(--primary-dark-background-color);
@@ -18,13 +19,11 @@
   }
 
   &__table {
-    position: relative;
     width: 100%;
     border-collapse: collapse;
   }
 
   &__head {
-    position: absolute;
     width: 100%;
     max-width: 336px;
     height: 50px;
@@ -48,11 +47,36 @@
     }
   }
 
-  &__loading {
+  &__body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    &-row {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    &-row:first-child {
+      margin-top: 5px;
+    }
+  }
+
+  &__item {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: 40px;
+  }
+
+  &__loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
 
     &-icon {
       font-size: 50px;
@@ -69,23 +93,6 @@
       }
     }
   }
-
-  &__body {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    margin-top: 65px;
-
-    &-row {
-      display: flex;
-      justify-content: space-around;
-    }
-  }
-
-  &__item {
-    height: 40px;
-  }
 }
 
 @media screen and (min-width: 768px) {
@@ -101,7 +108,6 @@
     }
 
     &__table {
-      position: unset;
       max-height: 182px;
     }
 
@@ -120,7 +126,7 @@
   .currency {
     &__container {
       max-width: 393px;
-      min-height: 331px;
+      min-height: 320px;
     }
 
     &__table,
@@ -131,10 +137,6 @@
 
     &__table {
       min-height: 331px;
-    }
-
-    &__body {
-      margin-top: 68px;
     }
 
     &__item {

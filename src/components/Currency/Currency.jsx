@@ -28,7 +28,6 @@ export function Currency() {
         setLoadingData(false);
       } catch (error) {
         console.error(error);
-        setLoadingData(false);
       }
     };
 
@@ -47,9 +46,11 @@ export function Currency() {
         </thead>
         <tbody className="currency__body">
           {loadingData ? (
-            <div className="currency__loading">
-              <FiRotateCw className="currency__loading-icon" />
-            </div>
+            <tr key={nanoid()} className="currency__body-row">
+              <td className="currency__loading" colSpan="3">
+                <FiRotateCw className="currency__loading-icon" />
+              </td>
+            </tr>
           ) : (
             currencyData.map((element) => (
               <tr key={nanoid()} className="currency__body-row">
