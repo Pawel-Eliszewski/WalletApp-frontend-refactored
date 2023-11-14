@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { Notify } from "../../utils/notifications";
+import { Notify } from "../../utils/notiflixStyles";
 
 export const instance = axios.create({
   baseURL: "https://finance-app-wallet-backend.cyclic.app",

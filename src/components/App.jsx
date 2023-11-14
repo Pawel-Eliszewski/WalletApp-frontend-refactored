@@ -14,7 +14,7 @@ import { RestrictedRoute } from "./Routes/RestrictedRoute";
 import { HomeTab } from "./HomeTab/HomeTab";
 import { Currency } from "./Currency/Currency";
 import { StatisticsTab } from "./StatisticsTab/StatisticsTab";
-import { configureNotify } from "../utils/notifications";
+import { configureNotiflixStyles } from "../utils/notiflixStyles";
 import "../styles/main.css";
 
 const AuthPage = lazy(() => import("../Pages/AuthPage/AuthPage"));
@@ -40,7 +40,7 @@ export default function App() {
       document.body.setAttribute("data-color-scheme", initialColorScheme);
       window.localStorage.setItem("colorScheme", initialColorScheme);
     }
-    configureNotify(storedColorScheme);
+    configureNotiflixStyles(storedColorScheme);
   }, []);
 
   useEffect(() => {

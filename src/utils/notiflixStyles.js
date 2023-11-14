@@ -1,6 +1,6 @@
 import { Notify, Report } from "notiflix";
 
-export const configureNotify = (colorScheme) => {
+export const configureNotiflixStyles = (colorScheme) => {
   let notifySuccessBackground = "#24cca7";
   let notifySuccessIconColor = "#ffffff";
   let notifyFailureBackground = "#ff6596";

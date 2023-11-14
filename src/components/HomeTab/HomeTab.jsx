@@ -75,30 +75,26 @@ export const HomeTab = () => {
         <div className="home__mobile-table mobile-table">
           {transactions.map(
             ({ _id, date, type, category, comment, amount }) => (
-              <ul
-                key={nanoid()}
-                className="mobile-table__list"
-                data-type={type}
-              >
-                <li key={_id} className="mobile-table__item">
+              <ul key={_id} className="mobile-table__list" data-type={type}>
+                <li key={nanoid()} className="mobile-table__item">
                   <h4 className="mobile-table__item-header">Date</h4>
                   <p>{date}</p>
                 </li>
-                <li key={_id} className="mobile-table__item">
+                <li key={nanoid()} className="mobile-table__item">
                   <h4 className="mobile-table__item-header">Type</h4>
                   <p className="mobile-table__item-type" data-type={type}>
                     {type === "income" ? "+" : "-"}
                   </p>
                 </li>
-                <li key={_id} className="mobile-table__item">
+                <li key={nanoid()} className="mobile-table__item">
                   <h4 className="mobile-table__item-header">Category</h4>
                   <p>{category}</p>
                 </li>
-                <li key={_id} className="mobile-table__item">
+                <li key={nanoid()} className="mobile-table__item">
                   <h4 className="mobile-table__item-header">Comment</h4>
                   <p className="mobile-table__item-comment">{comment}</p>
                 </li>
-                <li key={_id} className="mobile-table__item">
+                <li key={nanoid()} className="mobile-table__item">
                   <h4 className="mobile-table__item-header">Sum</h4>
                   <p className="mobile-table__item-sum" data-type={type}>
                     {amount.toFixed(2)}

@@ -8,62 +8,41 @@
     padding-bottom: 30px;
   }
 
-  &__doughnut {
+  &__wrapper {
     width: 100%;
     max-width: 380px;
-    max-height: 600px;
+    margin-bottom: 40px;
+  }
 
-    & canvas {
-      z-index: 2;
-    }
+  &__title {
+    margin: 0 auto;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 45px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-bottom: 10px;
 
-    &-title {
-      margin: 0 auto;
-      font-size: 30px;
-      font-weight: 400;
-      line-height: 45px;
-      letter-spacing: 0em;
-      text-align: left;
-      margin-bottom: 10px;
-
-      body[data-color-scheme='dark'] & {
-        color: var(--primary-gray-font-color);
-      }
-    }
-
-    &-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      max-width: 380px;
-    }
-
-    &-balance {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 20px;
-      font-weight: 700;
-      line-height: 27px;
-      letter-spacing: 0em;
-      text-align: center;
-
-      body[data-color-scheme='dark'] & {
-        color: var(--primary-gray-font-color);
-      }
+    body[data-color-scheme='dark'] & {
+      color: var(--primary-gray-font-color);
     }
   }
 
   &__dropdown {
     &-wrapper {
       display: flex;
-      width: 100%;
-      max-width: 380px;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      gap: 20px;
+      width: 100%;
+      max-width: 336px;
+      margin-block: 20px;
+
+      @media screen and (min-width: 768px) {
+        flex-direction: row;
+        justify-content: space-between;
+      }
     }
 
     &-label {
@@ -195,17 +174,10 @@
       margin: 0;
     }
 
-    &__doughnut {
-      &-container {
-        width: 100%;
-        max-width: 336px;
-      }
-
-      &-wrapper {
-        width: 100%;
-        max-width: 380px;
-        height: 336px;
-      }
+    &__wrapper {
+      width: 100%;
+      max-width: 380px;
+      margin-bottom: 0;
     }
 
     &__dropdown {
@@ -255,15 +227,8 @@
       }
     }
 
-    &__doughnut {
-      &-wrapper {
-        width: 288px;
-        height: 288px;
-      }
-
-      &-title {
-        margin-bottom: 20px;
-      }
+    &__title {
+      margin-bottom: 20px;
     }
 
     &__dropdown {

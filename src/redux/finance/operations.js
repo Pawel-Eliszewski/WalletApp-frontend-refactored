@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { instance, clearAuthHeader } from "../session/operations";
-import { Notify, Report } from "../../utils/notifications";
+import { Notify, Report } from "../../utils/notiflixStyles";
 
 export const fetchTransactions = createAsyncThunk(
   "finance/fetchTransactions",

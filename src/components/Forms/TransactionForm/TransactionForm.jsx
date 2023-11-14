@@ -12,11 +12,11 @@ import {
   updateTransaction,
 } from "../../../redux/finance/operations";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import Select from "react-select";
 import { Button } from "../../Button/Button";
 import { Switch } from "../../Switch/Switch";
-import { Calendar } from "../../Calendar/Calendar";
-import { categoryOptions } from "../../../utils/transactionCategories";
+import { DropdownSelect } from "../../DropdownSelect/DropdownSelect";
+import { Calendar } from "./Calendar/Calendar";
+import { expenseCategories } from "../../../utils/transactionCategories";
 import { formattedTodayDate } from "../../../utils/dateHandlers";
 import { transactionValidationSchema } from "../../../utils/yupValidationSchemas";
 import { Loading } from "notiflix";
@@ -146,12 +146,12 @@ export const TransactionForm = ({ isModalOpen, context, onModalClose }) => {
             </div>
             {values.type === "expense" ? (
               <div className="transaction-form__react-select react-select">
-                <Select
+                <DropdownSelect
+                  // className="react-select-container"
+                  // classNamePrefix="react-select"
                   isSearchable={isMobile ? false : true}
-                  className="react-select-container"
-                  classNamePrefix="react-select"
                   name="category"
-                  options={categoryOptions}
+                  options={expenseCategories}
                   value={values.category}
                   onChange={(selectedOption) => {
                     handleChange("category")(selectedOption.value);

@@ -1,14 +1,12 @@
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { selectTransactions } from "../../redux/finance/selectors";
-import { Doughnut } from "react-chartjs-2";
-import { DropdownSelectYear } from "../DropdownSelect/DropdownSelect";
-import { DropdownSelectMonth } from "../DropdownSelect/DropdownSelect";
+import { StatisticsDoughnut } from "./StatisticsDoughnut/StatisticsDoughnut";
+import { DropdownSelect } from "../DropdownSelect/DropdownSelect";
 import { assignColorsToTransactions } from "../../utils/assignColorsToTransactions";
-import "chart.js/auto";
 
 export const StatisticsTab = () => {
-  const transactions = useSelector(selectTransactions);
+  const allTransactions = useSelector(selectTransactions);
   const [selectedMonth, setSelectedMonth] = useState("Month");
   const [selectedYear, setSelectedYear] = useState("Year");
   const [transactionColors, setTransactionColors] = useState({});
@@ -17,25 +15,27 @@ export const StatisticsTab = () => {
   const [incomeSum, setIncomeSum] = useState(0);
   const [difference, setDifference] = useState(0);
 
-  const handleMonthSelect = (month) => {
+  const handleSelectMonth = (month) => {
     setSelectedMonth(month);
   };
 
-  const handleYearSelect = (year) => {
+  const handleSelectYear = (year) => {
     setSelectedYear(year);
   };
 
   useEffect(() => {
-    const expenseTransactions = transactions.filter(
+    const onlyExpenseTransactions = allTransactions.filter(
       (transaction) => transaction.type !== "income"
     );
 
     const expenseTransactionsOfYear =
       selectedYear !== "Year"
-        ? expenseTransactions.filter(
+        ? onlyExpenseTransactions.filter(
             (transaction) => transaction.date.slice(6, 10) === selectedYear
           )
-        : transactions.filter((transaction) => transaction.type !== "income");
+        : allTransactions.filter(
+            (transaction) => transaction.type !== "income"
+          );
 
     let month;
 
@@ -87,8 +87,10 @@ export const StatisticsTab = () => {
         ? expenseTransactionsOfYear.filter(
             (transaction) => transaction.date.slice(3, 5) === month
           )
-        : transactions.filter((transaction) => transaction.type !== "income");
-    const incomeTransactions = transactions.filter(
+        : allTransactions.filter(
+            (transaction) => transaction.type !== "income"
+          );
+    const incomeTransactions = allTransactions.filter(
       (transaction) => transaction.type === "income"
     );
 
@@ -97,14 +99,18 @@ export const StatisticsTab = () => {
         ? incomeTransactions.filter(
             (transaction) => transaction.date.slice(6, 10) === selectedYear
           )
-        : transactions.filter((transaction) => transaction.type === "income");
+        : allTransactions.filter(
+            (transaction) => transaction.type === "income"
+          );
 
     const incomeTransactionsOfMonth =
       selectedMonth !== "Month"
         ? incomeTransactionsOfYear.filter(
             (transaction) => transaction.date.slice(3, 5) === month
           )
-        : transactions.filter((transaction) => transaction.type === "income");
+        : allTransactions.filter(
+            (transaction) => transaction.type === "income"
+          );
 
     setExpenseSum(
       expenseTransactionsOfMonth.reduce((sum, transaction) => {
@@ -148,7 +154,7 @@ export const StatisticsTab = () => {
     });
     const summedExpenseTransactions = Object.values(categorySum);
     setColoredTransactions(summedExpenseTransactions);
-  }, [transactions, selectedYear, selectedMonth, expenseSum, incomeSum]);
+  }, [allTransactions, selectedYear, selectedMonth, expenseSum, incomeSum]);
 
   useEffect(() => {}, [coloredTransactions]);
 
@@ -165,62 +171,25 @@ export const StatisticsTab = () => {
   const expensesLabels = Object.keys(expensesCategories);
   const expensesData = Object.values(expensesCategories);
 
-  const chartOptions = {
-    cutout: "70%",
-    plugins: {
-      legend: {
-        display: false,
-      },
-    },
-    elements: {
-      arc: {
-        borderWidth: 0,
-      },
-    },
-  };
-
   return (
     <div className="statistics__container">
-      <div className="statistics__doughnut">
-        <h2 className="statistics__doughnut-title">Statistics</h2>
-        <div className="statistics__doughnut-wrapper">
-          <span className="statistics__doughnut-balance">
-            {difference.toFixed(2)} PLN
-          </span>
-          <Doughnut
-            data={{
-              labels: expensesLabels.length > 0 ? expensesLabels : ["Income"],
-              datasets: [
-                {
-                  data: expensesData.length > 0 ? expensesData : [incomeSum],
-                  backgroundColor: expensesLabels.map(
-                    (category) => transactionColors[category]
-                  ),
-                },
-              ],
-            }}
-            options={chartOptions}
-          />
-        </div>
+      <div className="statistics__wrapper">
+        <h2 className="statistics__title">Statistics</h2>
+        <StatisticsDoughnut />
       </div>
-
       <div className="statistics__dropdown">
         <div className="statistics__dropdown-wrapper">
-          <label className="statistics__dropdown-label statistics__dropdown-label--month">
-            <DropdownSelectMonth
-              selectedYear={selectedYear}
-              selectedMonth={selectedMonth}
-              onSelect={handleMonthSelect}
-            />
-          </label>
-          <label className="statistics__dropdown-label statistics__dropdown-label--year">
-            <DropdownSelectYear
-              selectedYear={selectedYear}
-              onSelect={handleYearSelect}
-            />
-          </label>
+          <DropdownSelect
+            name="year"
+            isSearchable={false}
+            onChange={handleSelectYear}
+          />
+          <DropdownSelect
+            name="month"
+            isSearchable={false}
+            onChange={handleSelectMonth}
+          />
         </div>
-
         <div className="statistics__legend">
           <ul className="statistics__legend-headers">
             <li className="statistics__legend-header">Category</li>
@@ -245,13 +214,12 @@ export const StatisticsTab = () => {
             ) : (
               <li className="statistics__legend-item">
                 <p className="statistics__legend-category">
-                  No expense transactions found
+                  No expense allTransactions found
                 </p>
               </li>
             )}
           </ul>
         </div>
-
         <div className="statistics__summary">
           <ul className="statistics__summary-list">
             <li className="statistics__summary-item">
