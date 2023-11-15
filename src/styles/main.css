@@ -221,7 +221,7 @@ body[data-color-scheme=dark] .container--mobile {
 .wrapper--tablet {
   align-items: flex-end;
   justify-content: space-around;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 .wrapper--desktop {
   flex-direction: column;
@@ -809,7 +809,7 @@ body[data-color-scheme=dark] .currency__head {
   max-width: 380px;
   padding-bottom: 30px;
 }
-.statistics__wrapper {
+.statistics__doughnut-wrapper {
   width: 100%;
   max-width: 380px;
   margin-bottom: 40px;
@@ -834,26 +834,7 @@ body[data-color-scheme=dark] .statistics__title {
   gap: 20px;
   width: 100%;
   max-width: 336px;
-  margin-block: 20px;
-}
-@media screen and (min-width: 768px) {
-  .statistics__dropdown-wrapper {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-}
-.statistics__dropdown-label {
-  display: flex;
-  width: 100%;
-  justify-content: space-around;
-  align-items: center;
   margin-bottom: 20px;
-}
-body[data-color-scheme=dark] .statistics__dropdown-label {
-  color: var(--primary-gray-font-color);
-}
-.statistics__dropdown-label--month {
-  margin-top: 20px;
 }
 .statistics__legend-headers {
   display: flex;
@@ -949,25 +930,16 @@ body[data-color-scheme=dark] .statistics__summary-item {
     justify-content: space-around;
     margin: 0;
   }
-  .statistics__wrapper {
+  .statistics__doughnut-wrapper {
     width: 100%;
     max-width: 380px;
     margin-bottom: 0;
   }
-  .statistics__dropdown {
-    display: flex;
-    flex-direction: column;
+  .statistics__dropdown-wrapper {
+    flex-direction: row;
     justify-content: space-between;
     width: 100%;
     max-width: 336px;
-  }
-  .statistics__dropdown-wrapper {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-  .statistics__dropdown-label--year {
-    margin-top: 20px;
-    margin-left: 20px;
   }
 }
 @media screen and (min-width: 1280px) {
@@ -995,9 +967,6 @@ body[data-color-scheme=dark] .statistics__summary-item {
 @media screen and (min-width: 1280px) {
   .statistics__title {
     margin-bottom: 20px;
-  }
-  .statistics__dropdown-label {
-    margin-top: 0;
   }
   .statistics__legend-item {
     height: 34px;

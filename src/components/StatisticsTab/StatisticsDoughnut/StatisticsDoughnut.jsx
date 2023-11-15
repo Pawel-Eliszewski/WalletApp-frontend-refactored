@@ -1,7 +1,8 @@
+import PropTypes from "prop-types";
 import { Doughnut } from "react-chartjs-2";
 import "chart.js/auto";
 
-export const StatisticsDoughnut = () => {
+export const StatisticsDoughnut = ({ balance }) => {
   const chartOptions = {
     cutout: "70%",
     plugins: {
@@ -29,9 +30,8 @@ export const StatisticsDoughnut = () => {
 
   return (
     <div className="doughnut__box">
-      {/* <span className="doughnut__balance" role="status" aria-live="polite">{difference.toFixed(2)} PLN</span> */}
       <span className="doughnut__balance" role="status" aria-live="polite">
-        1000000 PLN
+        {balance.toFixed(2)} PLN
       </span>
       <Doughnut
         // data={{
@@ -50,4 +50,8 @@ export const StatisticsDoughnut = () => {
       />
     </div>
   );
+};
+
+StatisticsDoughnut.propTypes = {
+  balance: PropTypes.number.isRequired,
 };

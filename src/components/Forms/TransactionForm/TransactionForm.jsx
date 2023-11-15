@@ -16,7 +16,7 @@ import { Button } from "../../Button/Button";
 import { Switch } from "../../Switch/Switch";
 import { DropdownSelect } from "../../DropdownSelect/DropdownSelect";
 import { Calendar } from "./Calendar/Calendar";
-import { expenseCategories } from "../../../utils/transactionCategories";
+import { expenseCategoryNames } from "../../../utils/transactionCategories";
 import { formattedTodayDate } from "../../../utils/dateHandlers";
 import { transactionValidationSchema } from "../../../utils/yupValidationSchemas";
 import { Loading } from "notiflix";
@@ -151,7 +151,7 @@ export const TransactionForm = ({ isModalOpen, context, onModalClose }) => {
                   // classNamePrefix="react-select"
                   isSearchable={isMobile ? false : true}
                   name="category"
-                  options={expenseCategories}
+                  options={expenseCategoryNames}
                   value={values.category}
                   onChange={(selectedOption) => {
                     handleChange("category")(selectedOption.value);

@@ -1,62 +1,40 @@
 export const getMonthsForYear = (transactions, year) => {
-  let monthsAsNumbers = [];
+  const monthsSet = new Set();
 
-  transactions.map((transaction) => {
+  transactions.forEach((transaction) => {
     const yearOfTransaction = transaction.date.slice(6, 10);
+
     if (yearOfTransaction === year) {
       const month = transaction.date.slice(3, 5);
-      if (!monthsAsNumbers.includes(month)) {
-        monthsAsNumbers.push(month);
-      }
+      monthsSet.add(month);
     }
   });
 
-  monthsAsNumbers.sort();
+  const formattedMonths = Array.from(monthsSet)
+    .sort()
+    .map((month) => ({
+      label: formatMonth(month),
+      value: formatMonth(month),
+    }));
 
-  let months = [];
+  return formattedMonths;
+};
 
-  monthsAsNumbers.map((month) => {
-    switch (month) {
-      case "01":
-        months.push("January");
-        break;
-      case "02":
-        months.push("February");
-        break;
-      case "03":
-        months.push("March");
-        break;
-      case "04":
-        months.push("April");
-        break;
-      case "05":
-        months.push("May");
-        break;
-      case "06":
-        months.push("June");
-        break;
-      case "07":
-        months.push("July");
-        break;
-      case "08":
-        months.push("August");
-        break;
-      case "09":
-        months.push("September");
-        break;
-      case "10":
-        months.push("October");
-        break;
-      case "11":
-        months.push("November");
-        break;
-      case "12":
-        months.push("December");
-        break;
-      default:
-        break;
-    }
-  });
+const formatMonth = (month) => {
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
-  return months;
+  return monthNames[parseInt(month, 10) - 1] || "";
 };

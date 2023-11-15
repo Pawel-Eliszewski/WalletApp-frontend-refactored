@@ -8,7 +8,7 @@
     padding-bottom: 30px;
   }
 
-  &__wrapper {
+  &__doughnut-wrapper {
     width: 100%;
     max-width: 380px;
     margin-bottom: 40px;
@@ -28,38 +28,33 @@
     }
   }
 
-  &__dropdown {
-    &-wrapper {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-      width: 100%;
-      max-width: 336px;
-      margin-block: 20px;
+  &__dropdown-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 336px;
+    margin-bottom: 20px;
 
-      @media screen and (min-width: 768px) {
-        flex-direction: row;
-        justify-content: space-between;
-      }
-    }
+    // przenieść do react-select scss
 
-    &-label {
-      display: flex;
-      width: 100%;
-      justify-content: space-around;
-      align-items: center;
-      margin-bottom: 20px;
+    // &-label {
+    //   display: flex;
+    //   width: 100%;
+    //   justify-content: space-around;
+    //   align-items: center;
+    //   margin-bottom: 20px;
 
-      body[data-color-scheme='dark'] & {
-        color: var(--primary-gray-font-color);
-      }
+    //   body[data-color-scheme='dark'] & {
+    //     color: var(--primary-gray-font-color);
+    //   }
 
-      &--month {
-        margin-top: 20px;
-      }
-    }
+    //   &--month {
+    //     margin-top: 20px;
+    //   }
+    // }
   }
 
   &__legend {
@@ -174,30 +169,17 @@
       margin: 0;
     }
 
-    &__wrapper {
+    &__doughnut-wrapper {
       width: 100%;
       max-width: 380px;
       margin-bottom: 0;
     }
 
-    &__dropdown {
-      display: flex;
-      flex-direction: column;
+    &__dropdown-wrapper {
+      flex-direction: row;
       justify-content: space-between;
       width: 100%;
       max-width: 336px;
-
-      &-wrapper {
-        flex-direction: row;
-        align-items: flex-start;
-      }
-
-      &-label {
-        &--year {
-          margin-top: 20px;
-          margin-left: 20px;
-        }
-      }
     }
   }
 }
@@ -229,12 +211,6 @@
 
     &__title {
       margin-bottom: 20px;
-    }
-
-    &__dropdown {
-      &-label {
-        margin-top: 0;
-      }
     }
 
     &__legend {

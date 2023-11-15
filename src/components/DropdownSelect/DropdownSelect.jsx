@@ -3,6 +3,7 @@ import Select from "react-select";
 
 export const DropdownSelect = ({
   context,
+  isDisabled,
   name,
   isSearchable,
   options,
@@ -11,6 +12,7 @@ export const DropdownSelect = ({
 }) => {
   return (
     <Select
+      isDisabled={isDisabled}
       isSearchable={isSearchable}
       className="react-select-container"
       classNamePrefix="react-select"
@@ -26,6 +28,7 @@ DropdownSelect.propTypes = {
   context: PropTypes.string,
   name: PropTypes.string,
   isSearchable: PropTypes.bool,
+  isDisabled: PropTypes.bool,
   // options: PropTypes,
   // value: PropTypes,
   onChange: PropTypes.func,
