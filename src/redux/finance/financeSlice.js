@@ -39,7 +39,6 @@ const financeSlice = createSlice({
       .addCase(fetchTransactions.rejected, handleRejected)
       .addCase(addTransaction.fulfilled, (state, action) => {
         state.data.push(action.payload.data);
-        state.totalBalance = action.payload.userBalance;
         state.error = null;
       })
       .addCase(addTransaction.rejected, handleRejected)
@@ -48,7 +47,6 @@ const financeSlice = createSlice({
           (transaction) => transaction._id === action.payload.data._id
         );
         state.data.splice(index, 1);
-        state.totalBalance = action.payload.userBalance;
         state.error = null;
       })
       .addCase(deleteTransaction.rejected, handleRejected)
@@ -57,24 +55,19 @@ const financeSlice = createSlice({
           (transaction) => transaction._id === action.payload.data._id
         );
         state.data.splice(index, 1, action.payload.data);
-        state.totalBalance = action.payload.userBalance;
         state.error = null;
       })
       .addCase(updateTransaction.rejected, handleRejected)
-      .addCase(register.fulfilled, (state, action) => {
-        state.totalBalance = action.payload.data.balance;
+      .addCase(register.fulfilled, (state) => {
         state.error = null;
       })
-      .addCase(login.fulfilled, (state, action) => {
-        state.totalBalance = action.payload.data.balance;
+      .addCase(login.fulfilled, (state) => {
         state.error = null;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         if (action.payload.tokenExpired) {
-          state.totalBalance = 0;
           state.error = null;
         } else {
-          state.totalBalance = action.payload.data.balance;
           state.error = null;
         }
       })

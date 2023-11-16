@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FiRotateCw } from "react-icons/fi";
+import { SmallLoader } from "../Loader/SmallLoader/SmallLoader";
 import { getAndStoreCurrencyData } from "../../utils/currencyDataOperations";
 import { nanoid } from "nanoid";
 
@@ -24,7 +24,6 @@ export function Currency() {
             setCurrencyData(cachedData);
           }
         }
-
         setLoadingData(false);
       } catch (error) {
         console.error(error);
@@ -47,8 +46,8 @@ export function Currency() {
         <tbody className="currency__body">
           {loadingData ? (
             <tr key={nanoid()} className="currency__body-row">
-              <td className="currency__loading" colSpan="3">
-                <FiRotateCw className="currency__loading-icon" />
+              <td className="currency__loading-box">
+                <SmallLoader />
               </td>
             </tr>
           ) : (

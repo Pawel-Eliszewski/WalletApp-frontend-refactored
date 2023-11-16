@@ -1,13 +1,34 @@
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { selectBalance } from "../../redux/finance/selectors";
+import { selectTransactions } from "../../redux/finance/selectors";
+import { countTransactionsSummary } from "../../utils/transactionsDataOperations";
+import { SmallLoader } from "../Loader/SmallLoader/SmallLoader";
 
 export const Balance = () => {
-  const balance = useSelector(selectBalance);
+  const allTransactions = useSelector(selectTransactions);
+  const [loadingData, setLoadingData] = useState(true);
+  const [countedBalance, setCountedBalance] = useState(null);
+
+  useEffect(() => {
+    if (allTransactions !== null) {
+      const { balance } = countTransactionsSummary(allTransactions);
+      setCountedBalance(balance);
+      setLoadingData(false);
+    }
+  }, [allTransactions]);
 
   return (
-    <div className="balance">
+    <div className="balance__wrapper">
       <h2 className="balance__title">Your balance</h2>
-      <p className="balance__amount">{balance.toFixed(2)} PLN</p>
+      {loadingData ? (
+        <div className="balance__loading-box">
+          <SmallLoader />
+        </div>
+      ) : (
+        <p className="balance__amount">{countedBalance.toFixed(2)} PLN</p>
+      )}
     </div>
   );
 };
+
+//h2 or h1 ?

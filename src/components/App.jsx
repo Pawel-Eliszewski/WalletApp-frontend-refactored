@@ -5,8 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useMedia } from "react-use";
 import {
   selectIsLoading,
+  selectUser,
   selectIsRefreshing,
+  selectIsAuth,
 } from "../redux/session/selectors";
+import { selectTransactions } from "../redux/finance/selectors";
+import { fetchTransactions } from "../redux/finance/operations";
 import { refreshUser } from "../redux/session/operations";
 import { Loader } from "./Loader/Loader";
 import { ProtectedRoute } from "./Routes/ProtectedRoute";
@@ -24,8 +28,12 @@ const DashboardPage = lazy(() =>
 
 export default function App() {
   const dispatch = useDispatch();
+
   const isLoading = useSelector(selectIsLoading);
   const isRefreshing = useSelector(selectIsRefreshing);
+  const user = useSelector(selectUser);
+  const isAuth = useSelector(selectIsAuth);
+  const allTransactions = useSelector(selectTransactions);
   const isMobile = useMedia("(max-width: 767px)");
 
   useEffect(() => {
@@ -42,6 +50,12 @@ export default function App() {
     }
     configureNotiflixStyles(storedColorScheme);
   }, []);
+
+  useEffect(() => {
+    if (isAuth && user && allTransactions === null) {
+      dispatch(fetchTransactions(user.id));
+    }
+  }, [isAuth, user, allTransactions, dispatch]);
 
   useEffect(() => {
     const refresh = () => {

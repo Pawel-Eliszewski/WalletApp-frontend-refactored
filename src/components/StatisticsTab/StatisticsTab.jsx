@@ -1,24 +1,24 @@
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import {
-  selectTransactions,
-  selectTransactionsYears,
-  selectTransactionsSummary,
-} from "../../redux/finance/selectors";
+import { selectTransactions } from "../../redux/finance/selectors";
 import { StatisticsDoughnut } from "./StatisticsDoughnut/StatisticsDoughnut";
 import { DropdownSelect } from "../DropdownSelect/DropdownSelect";
-import { getMonthsForYear } from "../../utils/getMonthsForYear";
+import {
+  getTransactionsYears,
+  countTransactionsSummary,
+  getMonthsForSelectedYear,
+  sumExpensesWithColors,
+} from "../../utils/transactionsDataOperations";
+import { expenseCategories } from "../../utils/transactionCategories";
+import { nanoid } from "nanoid";
 
 export const StatisticsTab = () => {
   const allTransactions = useSelector(selectTransactions);
-  const allTransactionsSummary = useSelector(selectTransactionsSummary);
-  const allTransactionsYears = useSelector(selectTransactionsYears);
-
-  const [expenseSum, setExpenseSum] = useState(allTransactionsSummary.expense);
-  const [incomeSum, setIncomeSum] = useState(allTransactionsSummary.income);
-  const [balance, setBalance] = useState(
-    allTransactionsSummary.income - allTransactionsSummary.expense
+  const summedExpensesWithColors = sumExpensesWithColors(
+    allTransactions,
+    expenseCategories
   );
+
   const [selectedYear, setSelectedYear] = useState({
     label: "Select year",
     value: "",
@@ -27,12 +27,9 @@ export const StatisticsTab = () => {
     label: "Select month",
     value: "",
   });
-  const [transactionsWithColors, setTransactionsWithColors] = useState([]);
 
-  const monthsForSelectedYear = getMonthsForYear(
-    allTransactions,
-    selectedYear.value
-  );
+  const { income, expense, balance } =
+    countTransactionsSummary(allTransactions);
 
   const handleSelectYear = (year) => {
     setSelectedYear(year);
@@ -56,7 +53,7 @@ export const StatisticsTab = () => {
           <DropdownSelect
             name="year"
             isSearchable={false}
-            options={allTransactionsYears}
+            options={getTransactionsYears(allTransactions)}
             value={selectedYear}
             onChange={handleSelectYear}
           />
@@ -64,7 +61,10 @@ export const StatisticsTab = () => {
             name="month"
             isDisabled={selectedYear.value === "" ? true : false}
             isSearchable={false}
-            options={monthsForSelectedYear}
+            options={getMonthsForSelectedYear(
+              allTransactions,
+              selectedYear.value
+            )}
             value={selectedMonth}
             onChange={handleSelectMonth}
           />
@@ -75,9 +75,9 @@ export const StatisticsTab = () => {
             <li className="statistics__legend-header">Sum</li>
           </ul>
           <ul className="statistics__legend-list">
-            {transactionsWithColors?.length > 0 ? (
-              transactionsWithColors.map(({ _id, category, amount, color }) => (
-                <li key={_id} className="statistics__legend-item">
+            {summedExpensesWithColors?.length > 0 ? (
+              summedExpensesWithColors.map(({ category, amount, color }) => (
+                <li key={nanoid()} className="statistics__legend-item">
                   <div
                     className="statistics__legend-icon"
                     style={{
@@ -104,13 +104,13 @@ export const StatisticsTab = () => {
             <li className="statistics__summary-item">
               <p className="statistics__summary-type">Expenses:</p>
               <p className="statistics__summary-type statistics__summary-type--expense">
-                {expenseSum.toFixed(2)} PLN
+                {expense.toFixed(2)} PLN
               </p>
             </li>
             <li className="statistics__summary-item">
               <p className="statistics__summary-type">Income:</p>
               <p className="statistics__summary-type statistics__summary-type--income">
-                {incomeSum.toFixed(2)} PLN
+                {income.toFixed(2)} PLN
               </p>
             </li>
           </ul>
