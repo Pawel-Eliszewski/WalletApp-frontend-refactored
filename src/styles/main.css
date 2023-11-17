@@ -965,6 +965,8 @@ body[data-color-scheme=dark] .statistics__summary-item {
     margin: 0;
   }
   .statistics__doughnut-wrapper {
+    max-width: -moz-fit-content;
+    max-width: fit-content;
     margin-bottom: 0;
   }
   .statistics__content {
