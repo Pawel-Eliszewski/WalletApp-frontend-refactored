@@ -28,6 +28,16 @@
     }
   }
 
+  &__data-range {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+    body[data-color-scheme='dark'] & {
+      color: var(--primary-gray-font-color);
+    }
+  }
+
   &__dropdown-wrapper {
     display: flex;
     flex-direction: column;

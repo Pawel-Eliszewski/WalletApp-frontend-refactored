@@ -825,6 +825,14 @@ body[data-color-scheme=dark] .currency__head {
 body[data-color-scheme=dark] .statistics__title {
   color: var(--primary-gray-font-color);
 }
+.statistics__data-range {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+body[data-color-scheme=dark] .statistics__data-range {
+  color: var(--primary-gray-font-color);
+}
 .statistics__dropdown-wrapper {
   display: flex;
   flex-direction: column;

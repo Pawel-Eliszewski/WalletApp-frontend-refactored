@@ -33,21 +33,7 @@ export const StatisticsDoughnut = ({ balance }) => {
       <span className="doughnut__balance" role="status" aria-live="polite">
         {balance.toFixed(2)} PLN
       </span>
-      <Doughnut
-        // data={{
-        //   labels: expensesLabels.length > 0 ? expensesLabels : ["Income"],
-        //   datasets: [
-        //     {
-        //       data: expensesData.length > 0 ? expensesData : [incomeSum],
-        //       backgroundColor: expensesLabels.map(
-        //         (category) => transactionColors[category]
-        //       ),
-        //     },
-        //   ],
-        // }}
-        data={data}
-        options={chartOptions}
-      />
+      <Doughnut data={data} options={chartOptions} />
     </div>
   );
 };

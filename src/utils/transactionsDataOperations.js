@@ -86,7 +86,7 @@ export const getMonthsForSelectedYear = (transactions, year) => {
     .sort()
     .map((month) => ({
       label: formatMonth(month),
-      value: formatMonth(month),
+      value: month,
     }));
 
   return formattedMonths;
@@ -109,4 +109,18 @@ const formatMonth = (month) => {
   ];
 
   return monthNames[parseInt(month, 10) - 1] || "";
+};
+
+export const filterTransactions = (transactions, year, month) => {
+  const filteredTransactions = transactions.filter((transaction) => {
+    const transactionYear = transaction.date.split(".")[2];
+    const transactionMonth = transaction.date.split(".")[1];
+
+    const yearCondition = year ? transactionYear === year : true;
+    const monthCondition = month ? transactionMonth === month : true;
+
+    return yearCondition && monthCondition;
+  });
+
+  return filteredTransactions;
 };
