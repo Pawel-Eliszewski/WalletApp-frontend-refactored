@@ -92,7 +92,7 @@ body[data-color-scheme=dark] textarea {
   --auth-form-overlay-color: #ffffff66;
   --auth-form-dark-overlay-color: #ffffff09;
   --ellipse-bottom-color: #c5baff;
-  --ellipse-bottom-dark-color: #792f46;
+  --ellipse-bottom-dark-color: #85324d;
   --ellipse-top-dark-color: #ffd8d026;
   --backdrop-background-color: #000000b0;
   --primary-expense-color: #ff6596;
@@ -510,18 +510,10 @@ body[data-color-scheme=dark] .btn--close:hover::after, body[data-color-scheme=da
   font-size: 18px;
   background-color: var(--primary-background-color);
   border: 1px solid var(--primary-gray-font-color);
-  display: inline-block;
   border-radius: 20px;
 }
-.react-datepicker-popper {
-  transform: translate3d(0px, 86px, 0px) !important;
-  z-index: 1000 !important;
-  margin-top: 3px;
-}
-@media screen and (min-width: 768px) {
-  .react-datepicker-popper {
-    transform: translate3d(165px, 28.8px, 0px) !important;
-  }
+body[data-color-scheme=dark] .react-datepicker {
+  background-color: var(--primary-dark-background-color);
 }
 .react-datepicker-wrapper {
   width: 280px;
@@ -537,6 +529,16 @@ body[data-color-scheme=dark] .react-datepicker-wrapper:focus-within {
 @media screen and (min-width: 768px) {
   .react-datepicker-wrapper {
     width: 100%;
+  }
+}
+.react-datepicker-popper {
+  transform: translate3d(0px, 86px, 0px) !important;
+  z-index: 100 !important;
+  margin-top: 3px !important;
+}
+@media screen and (min-width: 768px) {
+  .react-datepicker-popper {
+    transform: translate3d(165px, 28.8px, 0px) !important;
   }
 }
 .react-datepicker__aria-live, .react-datepicker__triangle, .react-datepicker__day-names {
@@ -648,9 +650,12 @@ body[data-color-scheme=dark] .react-datepicker-wrapper:focus-within {
   padding: 8px 0;
   position: relative;
 }
+body[data-color-scheme=dark] .react-datepicker__header {
+  background-color: rgb(67, 67, 67);
+  color: var(--primary-gray-font-color) !important;
+}
 .react-datepicker__current-month {
   margin-top: 0;
-  color: var(--primary-font-color);
   font-weight: bold;
   font-size: 1rem;
 }
@@ -658,6 +663,10 @@ body[data-color-scheme=dark] .react-datepicker-wrapper:focus-within {
   margin: 0.4rem;
   text-align: center;
   background-color: var(--primary-background-color);
+}
+body[data-color-scheme=dark] .react-datepicker__month {
+  background-color: var(--primary-dark-background-color) !important;
+  color: var(--primary-gray-font-color);
 }
 .react-datepicker__day {
   display: inline-block;
@@ -671,6 +680,9 @@ body[data-color-scheme=dark] .react-datepicker-wrapper:focus-within {
 }
 .react-datepicker__day--outside-month {
   color: var(--primary-gray-font-color);
+}
+body[data-color-scheme=dark] .react-datepicker__day--outside-month {
+  color: rgb(67, 67, 67);
 }
 .react-datepicker__day--today::before {
   content: "";
@@ -686,11 +698,20 @@ body[data-color-scheme=dark] .react-datepicker-wrapper:focus-within {
   color: var(--primary-background-color);
   text-shadow: 0 -1px 0 var(--primary-text-shadow-color);
 }
+body[data-color-scheme=dark] .react-datepicker__day:hover, body[data-color-scheme=dark] .react-datepicker__day:focus, body[data-color-scheme=dark] .react-datepicker__day--today, body[data-color-scheme=dark] .react-datepicker__day--selected {
+  background-color: var(--ellipse-bottom-dark-color);
+}
 .react-datepicker__day--selected {
   outline: 2px solid var(--primary-font-color);
 }
+body[data-color-scheme=dark] .react-datepicker__day--selected {
+  outline: 2px solid var(--secondary-gray-font-color);
+}
 .react-datepicker--income .react-datepicker__day:hover, .react-datepicker--income .react-datepicker__day:focus, .react-datepicker--income .react-datepicker__day--today, .react-datepicker--income .react-datepicker__day--selected {
   background-color: var(--primary-income-color);
+}
+body[data-color-scheme=dark] .react-datepicker--income .react-datepicker__day:hover, body[data-color-scheme=dark] .react-datepicker--income .react-datepicker__day:focus, body[data-color-scheme=dark] .react-datepicker--income .react-datepicker__day--today, body[data-color-scheme=dark] .react-datepicker--income .react-datepicker__day--selected {
+  background-color: var(--btn-submit-hover);
 }
 
 .currency__container {
@@ -803,18 +824,20 @@ body[data-color-scheme=dark] .currency__head {
 .statistics__container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   position: relative;
   width: 100%;
   max-width: 380px;
   padding-bottom: 30px;
 }
 .statistics__doughnut-wrapper {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: 380px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 .statistics__title {
-  margin: 0 auto;
   font-size: 30px;
   font-weight: 400;
   line-height: 45px;
@@ -828,19 +851,23 @@ body[data-color-scheme=dark] .statistics__title {
 .statistics__data-range {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 25px;
 }
 body[data-color-scheme=dark] .statistics__data-range {
   color: var(--primary-gray-font-color);
+}
+.statistics__content {
+  width: 100%;
+  max-width: 380px;
 }
 .statistics__dropdown-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 15px;
   width: 100%;
-  max-width: 336px;
+  max-width: 380px;
   margin-bottom: 20px;
 }
 .statistics__legend-headers {
@@ -930,7 +957,7 @@ body[data-color-scheme=dark] .statistics__summary-item {
 
 @media screen and (min-width: 768px) {
   .statistics__container {
-    max-width: 728px;
+    max-width: 100%;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -938,9 +965,10 @@ body[data-color-scheme=dark] .statistics__summary-item {
     margin: 0;
   }
   .statistics__doughnut-wrapper {
-    width: 100%;
-    max-width: 380px;
     margin-bottom: 0;
+  }
+  .statistics__content {
+    max-width: 336px;
   }
   .statistics__dropdown-wrapper {
     flex-direction: row;
@@ -951,7 +979,7 @@ body[data-color-scheme=dark] .statistics__summary-item {
 }
 @media screen and (min-width: 1280px) {
   .statistics__container {
-    justify-content: flex-end;
+    justify-content: space-between;
     max-width: 728px;
     position: relative;
   }
@@ -984,6 +1012,7 @@ body[data-color-scheme=dark] .statistics__summary-item {
   justify-content: center;
   align-items: center;
   position: relative;
+  width: 100%;
   max-width: 380px;
 }
 .doughnut__box canvas {
@@ -1006,7 +1035,6 @@ body[data-color-scheme=dark] .doughnut__balance {
 
 @media screen and (min-width: 768px) {
   .doughnut__box {
-    width: 100%;
     max-width: 336px;
   }
 }
@@ -2044,18 +2072,18 @@ body[data-color-scheme=dark] .colorScheme-switch__slider {
     transform: translateX(15px);
   }
 }
-.react-select {
+.transaction-form-select {
   position: relative;
 }
-.react-select-container {
+.transaction-form-select-container {
   width: 280px !important;
 }
 @media screen and (min-width: 768px) {
-  .react-select-container {
+  .transaction-form-select-container {
     width: 394px !important;
   }
 }
-.react-select__control {
+.transaction-form-select__control {
   position: relative;
   cursor: pointer !important;
   border: none !important;
@@ -2063,65 +2091,66 @@ body[data-color-scheme=dark] .colorScheme-switch__slider {
   border-bottom: 1px solid var(--primary-gray-font-color) !important;
   border-radius: 0 !important;
 }
-body[data-color-scheme=dark] .react-select__control {
+body[data-color-scheme=dark] .transaction-form-select__control {
   background-color: var(--primary-dark-background-color) !important;
 }
-.react-select__control:focus, .react-select__control--is-focused, .react-select__control--menu-is-open {
+.transaction-form-select__control:focus, .transaction-form-select__control--is-focused, .transaction-form-select__control--menu-is-open {
   border: none !important;
   outline: none !important;
   box-shadow: none !important;
   border-bottom: 1px solid var(--primary-font-color) !important;
 }
-body[data-color-scheme=dark] .react-select__control:focus, body[data-color-scheme=dark] .react-select__control--is-focused, body[data-color-scheme=dark] .react-select__control--menu-is-open {
+body[data-color-scheme=dark] .transaction-form-select__control:focus, body[data-color-scheme=dark] .transaction-form-select__control--is-focused, body[data-color-scheme=dark] .transaction-form-select__control--menu-is-open {
   border-bottom: 1px solid var(--primary-background-color) !important;
 }
-.react-select__indicator-separator {
+.transaction-form-select__indicator-separator {
   display: none !important;
 }
-.react-select__single-value {
+.transaction-form-select__single-value {
   color: var(--primary-font-color) !important;
 }
-body[data-color-scheme=dark] .react-select__single-value {
+body[data-color-scheme=dark] .transaction-form-select__single-value {
   color: var(--secondary-gray-font-color) !important;
 }
-.react-select__menu {
+.transaction-form-select__menu {
   margin: 2px 0 0 0 !important;
   background-color: var(--primary-gray-background-color) !important;
   border-radius: 20px !important;
   height: 328px !important;
 }
-body[data-color-scheme=dark] .react-select__menu {
+body[data-color-scheme=dark] .transaction-form-select__menu {
   background-color: var(--primary-dark-background-color) !important;
 }
-.react-select__menu-list {
+.transaction-form-select__menu-list {
   box-shadow: 0px 6px 15px 0px rgba(0, 0, 0, 0.1) !important;
   border-radius: 20px !important;
   min-height: 328px !important;
 }
-.react-select__option {
+.transaction-form-select__option {
   height: 32px !important;
   font-size: 18px !important;
   color: var(--primary-font-color) !important;
   background-color: transparent !important;
   padding-left: 20px !important;
+  z-index: 2;
 }
-body[data-color-scheme=dark] .react-select__option {
+body[data-color-scheme=dark] .transaction-form-select__option {
   color: var(--primary-gray-font-color) !important;
 }
-.react-select__option:last-child {
+.transaction-form-select__option:last-child {
   border-bottom-left-radius: 20px !important;
   border-bottom-right-radius: 20px !important;
 }
-.react-select__option:hover, .react-select__option--is-selected, .react-select__option--is-focused {
+.transaction-form-select__option:hover, .transaction-form-select__option--is-selected {
   background-color: var(--primary-background-color) !important;
   color: var(--primary-expense-color) !important;
   cursor: pointer !important;
 }
-body[data-color-scheme=dark] .react-select__option:hover, body[data-color-scheme=dark] .react-select__option--is-selected, body[data-color-scheme=dark] .react-select__option--is-focused {
+body[data-color-scheme=dark] .transaction-form-select__option:hover, body[data-color-scheme=dark] .transaction-form-select__option--is-selected {
   color: var(--primary-expense-color) !important;
-  background-color: var(--primary-gray-font-color) !important;
+  background-color: transparent !important;
 }
-.react-select__option--is-selected::after {
+.transaction-form-select__option--is-selected::after {
   content: "";
   width: 9px;
   height: 13px;
@@ -2131,6 +2160,111 @@ body[data-color-scheme=dark] .react-select__option:hover, body[data-color-scheme
   display: inline-block;
   position: absolute;
   right: 15px;
+}
+body[data-color-scheme=dark] .transaction-form-select__option--is-selected::after {
+  border: solid var(--primary-expense-color);
+  border-width: 0 2px 2px 0;
+}
+
+.statistics-tab-select {
+  position: relative;
+}
+.statistics-tab-select-container {
+  width: 100% !important;
+}
+@media screen and (min-width: 768px) {
+  .statistics-tab-select-container {
+    width: 394px !important;
+  }
+}
+.statistics-tab-select__control {
+  position: relative;
+  cursor: pointer !important;
+  border: none !important;
+  outline: none !important;
+  border-radius: 30px !important;
+}
+body[data-color-scheme=dark] .statistics-tab-select__control {
+  background-color: var(--primary-dark-background-color) !important;
+  border: 1px solid var(--primary-dark-border-color) !important;
+}
+.statistics-tab-select__control:focus-visible, .statistics-tab-select__control--is-focused, .statistics-tab-select__control--menu-is-open {
+  border: none !important;
+  outline: 2px solid var(--primary-font-color) !important;
+  box-shadow: none !important;
+}
+.statistics-tab-select__control--is-disabled svg {
+  color: var(--secondary-gray-font-color) !important;
+}
+body[data-color-scheme=dark] .statistics-tab-select__control--is-disabled svg {
+  color: var(--primary-dark-border-color) !important;
+}
+body[data-color-scheme=dark] .statistics-tab-select__control--is-disabled .statistics-tab-select__indicator-separator {
+  background-color: var(--primary-dark-border-color) !important;
+}
+.statistics-tab-select__single-value {
+  color: var(--primary-font-color) !important;
+  margin-left: 10px !important;
+}
+.statistics-tab-select__single-value--is-disabled {
+  color: var(--secondary-gray-font-color) !important;
+}
+body[data-color-scheme=dark] .statistics-tab-select__single-value {
+  color: var(--secondary-gray-font-color) !important;
+}
+body[data-color-scheme=dark] .statistics-tab-select__single-value--is-disabled {
+  color: var(--primary-dark-border-color) !important;
+}
+.statistics-tab-select__menu {
+  margin: 2px 0 0 0 !important;
+  background-color: var(--primary-gray-background-color) !important;
+  border-radius: 20px !important;
+  min-height: 80px;
+}
+body[data-color-scheme=dark] .statistics-tab-select__menu {
+  background-color: var(--primary-dark-background-color) !important;
+}
+.statistics-tab-select__menu-list {
+  box-shadow: 0px 6px 15px 0px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 20px !important;
+}
+.statistics-tab-select__option {
+  height: 32px !important;
+  font-size: 18px !important;
+  color: var(--primary-font-color) !important;
+  background-color: transparent !important;
+  padding-left: 20px !important;
+}
+body[data-color-scheme=dark] .statistics-tab-select__option {
+  color: var(--primary-gray-font-color) !important;
+}
+.statistics-tab-select__option:last-child {
+  border-bottom-left-radius: 20px !important;
+  border-bottom-right-radius: 20px !important;
+}
+.statistics-tab-select__option:hover, .statistics-tab-select__option--is-selected {
+  background-color: var(--primary-background-color) !important;
+  color: var(--primary-expense-color) !important;
+  cursor: pointer !important;
+}
+body[data-color-scheme=dark] .statistics-tab-select__option:hover, body[data-color-scheme=dark] .statistics-tab-select__option--is-selected {
+  color: var(--primary-expense-color) !important;
+  background-color: transparent !important;
+}
+.statistics-tab-select__option--is-selected::after {
+  content: "";
+  width: 9px;
+  height: 13px;
+  border: solid var(--primary-font-color);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  display: inline-block;
+  position: absolute;
+  right: 20px;
+}
+body[data-color-scheme=dark] .statistics-tab-select__option--is-selected::after {
+  border: solid var(--primary-expense-color);
+  border-width: 0 2px 2px 0;
 }
 
 .loader-small__box {

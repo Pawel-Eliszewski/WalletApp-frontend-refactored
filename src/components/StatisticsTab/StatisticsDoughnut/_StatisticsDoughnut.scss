@@ -4,6 +4,7 @@
         justify-content: center;
         align-items: center;
         position: relative;
+        width: 100%;
         max-width: 380px;
 
         & canvas {
@@ -31,7 +32,6 @@
 @media screen and (min-width: 768px) {
     .doughnut {
         &__box {
-            width: 100%;
             max-width: 336px;
         }
     }

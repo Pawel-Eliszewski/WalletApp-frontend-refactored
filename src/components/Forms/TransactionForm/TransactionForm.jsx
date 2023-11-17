@@ -147,12 +147,11 @@ export const TransactionForm = ({ isModalOpen, context, onModalClose }) => {
             {values.type === "expense" ? (
               <div className="transaction-form__react-select react-select">
                 <DropdownSelect
-                  // className="react-select-container"
-                  // classNamePrefix="react-select"
-                  isSearchable={isMobile ? false : true}
                   name="category"
                   options={expenseCategoryNames}
                   value={values.category}
+                  styles="transaction-form"
+                  isSearchable={isMobile ? false : true}
                   onChange={(selectedOption) => {
                     handleChange("category")(selectedOption.value);
                     setFieldValue("category", selectedOption);

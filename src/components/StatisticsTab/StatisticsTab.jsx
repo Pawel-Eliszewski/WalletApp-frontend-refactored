@@ -82,19 +82,20 @@ export const StatisticsTab = () => {
       <div className="statistics__doughnut-wrapper">
         <h2 className="statistics__title">Statistics</h2>
         <StatisticsDoughnut balance={balance} data={summedExpensesWithColors} />
-        <span className="statistics__data-range">
-          {"Statistics for: "}
+        <h4 className="statistics__data-range">
+          {"Data range: "}
           {selectedYear.value === "" ? "all-time" : selectedYear.value}{" "}
           {selectedMonth.value === "" && selectedYear.value !== ""
             ? "all-year"
             : selectedMonth.label === "Month"
             ? null
             : selectedMonth.label}
-        </span>
+        </h4>
       </div>
       <div className="statistics__content">
         <div className="statistics__dropdown-wrapper">
           <DropdownSelect
+            styles="statistics-tab"
             isClearable={selectedYear.value !== "" ? true : false}
             name="year"
             isSearchable={false}
@@ -103,6 +104,7 @@ export const StatisticsTab = () => {
             onChange={handleSelectYear}
           />
           <DropdownSelect
+            styles="statistics-tab"
             isClearable={selectedMonth.value !== "" ? true : false}
             name="month"
             isDisabled={selectedYear.value === "" ? true : false}

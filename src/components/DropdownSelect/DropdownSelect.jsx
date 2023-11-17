@@ -2,10 +2,10 @@ import PropTypes from "prop-types";
 import Select from "react-select";
 
 export const DropdownSelect = ({
-  context,
   name,
   options,
   value,
+  styles,
   isSearchable,
   isClearable,
   isDisabled,
@@ -13,11 +13,12 @@ export const DropdownSelect = ({
 }) => {
   return (
     <Select
-      className="react-select-container"
-      classNamePrefix="react-select"
+      className={styles + "-select-container"}
+      classNamePrefix={styles + "-select"}
       name={name}
       options={options}
       value={value}
+      initialValue={null}
       isSearchable={isSearchable}
       isClearable={isClearable}
       isDisabled={isDisabled}
@@ -27,12 +28,12 @@ export const DropdownSelect = ({
 };
 
 DropdownSelect.propTypes = {
-  context: PropTypes.string,
-  name: PropTypes.string,
-  isSearchable: PropTypes.bool,
+  name: PropTypes.string.isRequired,
+  options: PropTypes.array.isRequired,
+  styles: PropTypes.string.isRequired,
+  value: PropTypes.object,
+  isSearchable: PropTypes.bool.isRequired,
   isClearable: PropTypes.bool,
   isDisabled: PropTypes.bool,
-  // options: PropTypes,
-  // value: PropTypes,
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
 };
