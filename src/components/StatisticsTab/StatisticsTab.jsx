@@ -20,11 +20,11 @@ export const StatisticsTab = () => {
     useState(allTransactions);
 
   const [selectedYear, setSelectedYear] = useState({
-    label: "Select year",
+    label: "Year",
     value: "",
   });
   const [selectedMonth, setSelectedMonth] = useState({
-    label: "Select month",
+    label: "Month",
     value: "",
   });
 
@@ -38,40 +38,64 @@ export const StatisticsTab = () => {
   );
 
   const handleSelectYear = (year) => {
-    setSelectedYear(year);
-    setSelectedMonth({
-      label: "Select month",
-      value: "",
-    });
-    setSelectedRangeTransactions(
-      filterTransactions(allTransactions, year.value)
-    );
+    if (year !== null) {
+      setSelectedYear(year);
+      setSelectedMonth({
+        label: "Month",
+        value: "",
+      });
+      setSelectedRangeTransactions(
+        filterTransactions(allTransactions, year.value)
+      );
+    } else {
+      setSelectedYear({
+        label: "Year",
+        value: "",
+      });
+      setSelectedMonth({
+        label: "Month",
+        value: "",
+      });
+      setSelectedRangeTransactions(allTransactions);
+    }
   };
 
   const handleSelectMonth = (month) => {
-    setSelectedMonth(month);
-    setSelectedRangeTransactions(
-      filterTransactions(allTransactions, selectedYear.value, month.value)
-    );
+    if (month !== null) {
+      setSelectedMonth(month);
+      setSelectedRangeTransactions(
+        filterTransactions(allTransactions, selectedYear.value, month.value)
+      );
+    } else {
+      setSelectedMonth({
+        label: "Month",
+        value: "",
+      });
+      setSelectedRangeTransactions(
+        filterTransactions(allTransactions, selectedYear.value)
+      );
+    }
   };
-
-  // const expensesLabels = Object.keys(expensesCategories);
-  // const expensesData = Object.values(expensesCategories);
 
   return (
     <div className="statistics__container">
       <div className="statistics__doughnut-wrapper">
         <h2 className="statistics__title">Statistics</h2>
-        <StatisticsDoughnut balance={balance} />
+        <StatisticsDoughnut balance={balance} data={summedExpensesWithColors} />
         <span className="statistics__data-range">
           {"Statistics for: "}
-          {selectedMonth.value === "" ? "all-year" : selectedMonth.label}{" "}
-          {selectedYear.value === "" ? "all-time" : selectedYear.value}
+          {selectedYear.value === "" ? "all-time" : selectedYear.value}{" "}
+          {selectedMonth.value === "" && selectedYear.value !== ""
+            ? "all-year"
+            : selectedMonth.label === "Month"
+            ? null
+            : selectedMonth.label}
         </span>
       </div>
       <div className="statistics__content">
         <div className="statistics__dropdown-wrapper">
           <DropdownSelect
+            isClearable={selectedYear.value !== "" ? true : false}
             name="year"
             isSearchable={false}
             options={getTransactionsYears(allTransactions)}
@@ -79,6 +103,7 @@ export const StatisticsTab = () => {
             onChange={handleSelectYear}
           />
           <DropdownSelect
+            isClearable={selectedMonth.value !== "" ? true : false}
             name="month"
             isDisabled={selectedYear.value === "" ? true : false}
             isSearchable={false}

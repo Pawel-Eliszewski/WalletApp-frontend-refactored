@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { Doughnut } from "react-chartjs-2";
 import "chart.js/auto";
 
-export const StatisticsDoughnut = ({ balance }) => {
+export const StatisticsDoughnut = ({ balance, data }) => {
   const chartOptions = {
     cutout: "70%",
     plugins: {
@@ -17,13 +17,12 @@ export const StatisticsDoughnut = ({ balance }) => {
     },
   };
 
-  const data = {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+  const doughnutData = {
+    labels: data.map((element) => element.category),
     datasets: [
       {
-        label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: ["red", "blue", "yellow", "green", "purple", "orange"],
+        data: data.map((element) => element.amount),
+        backgroundColor: data.map((element) => element.color),
       },
     ],
   };
@@ -33,11 +32,12 @@ export const StatisticsDoughnut = ({ balance }) => {
       <span className="doughnut__balance" role="status" aria-live="polite">
         {balance.toFixed(2)} PLN
       </span>
-      <Doughnut data={data} options={chartOptions} />
+      <Doughnut data={doughnutData} options={chartOptions} />
     </div>
   );
 };
 
 StatisticsDoughnut.propTypes = {
   balance: PropTypes.number.isRequired,
+  data: PropTypes.array,
 };

@@ -67,7 +67,11 @@ export const sumExpensesWithColors = (transactions, expenseCategories) => {
     };
   });
 
-  return summedExpensesWithColors;
+  const sortedExpensesWithColors = summedExpensesWithColors.sort(
+    (a, b) => b.amount - a.amount
+  );
+
+  return sortedExpensesWithColors;
 };
 
 export const getMonthsForSelectedYear = (transactions, year) => {
