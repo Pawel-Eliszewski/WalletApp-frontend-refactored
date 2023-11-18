@@ -27,12 +27,13 @@ export const Header = () => {
       body.setAttribute("data-color-scheme", "light");
       localStorage.setItem("colorScheme", "light");
       setColorScheme("light");
+      configureNotiflixStyles("light");
     } else {
       body.setAttribute("data-color-scheme", "dark");
       localStorage.setItem("colorScheme", "dark");
       setColorScheme("dark");
+      configureNotiflixStyles("dark");
     }
-    configureNotiflixStyles(colorScheme);
   };
 
   const handleLogout = () => {
