@@ -2218,16 +2218,17 @@ body[data-color-scheme=dark] .statistics-tab-select__single-value--is-disabled {
   color: var(--primary-dark-border-color) !important;
 }
 .statistics-tab-select__menu {
-  margin: 2px 0 0 0 !important;
+  margin: 3px 0 0 0 !important;
   background-color: var(--primary-gray-background-color) !important;
   border-radius: 20px !important;
-  min-height: 80px;
+  box-shadow: 0px 6px 15px 0px rgba(0, 0, 0, 0.3) !important;
+  min-height: 73px !important;
 }
 body[data-color-scheme=dark] .statistics-tab-select__menu {
   background-color: var(--primary-dark-background-color) !important;
+  border: 1px solid var(--primary-dark-border-color) !important;
 }
 .statistics-tab-select__menu-list {
-  box-shadow: 0px 6px 15px 0px rgba(0, 0, 0, 0.1) !important;
   border-radius: 20px !important;
 }
 .statistics-tab-select__option {
@@ -2239,10 +2240,6 @@ body[data-color-scheme=dark] .statistics-tab-select__menu {
 }
 body[data-color-scheme=dark] .statistics-tab-select__option {
   color: var(--primary-gray-font-color) !important;
-}
-.statistics-tab-select__option:last-child {
-  border-bottom-left-radius: 20px !important;
-  border-bottom-right-radius: 20px !important;
 }
 .statistics-tab-select__option:hover, .statistics-tab-select__option--is-selected {
   background-color: var(--primary-background-color) !important;
