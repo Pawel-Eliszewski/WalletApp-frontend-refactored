@@ -317,25 +317,25 @@ body[data-color-scheme=dark] .balance__amount {
     width: 300px;
   }
 }
-.btn--submit, .btn--delete, .btn--add, .btn--yes {
+.btn--submit, .btn--delete, .btn--add, .btn--yes, .btn--search {
   background-color: var(--primary-income-color);
   color: var(--primary-background-color);
   margin-bottom: 12px;
 }
-body[data-color-scheme=dark] .btn--submit, body[data-color-scheme=dark] .btn--delete, body[data-color-scheme=dark] .btn--add, body[data-color-scheme=dark] .btn--yes {
+body[data-color-scheme=dark] .btn--submit, body[data-color-scheme=dark] .btn--delete, body[data-color-scheme=dark] .btn--add, body[data-color-scheme=dark] .btn--yes, body[data-color-scheme=dark] .btn--search {
   background-color: var(--btn-submit-hover);
 }
 @media (hover: hover) {
-  body[data-color-scheme=dark] .btn--submit:hover, body[data-color-scheme=dark] .btn--submit:focus, body[data-color-scheme=dark] .btn--delete:hover, body[data-color-scheme=dark] .btn--delete:focus, body[data-color-scheme=dark] .btn--add:hover, body[data-color-scheme=dark] .btn--add:focus, body[data-color-scheme=dark] .btn--yes:hover, body[data-color-scheme=dark] .btn--yes:focus {
+  body[data-color-scheme=dark] .btn--submit:hover, body[data-color-scheme=dark] .btn--submit:focus, body[data-color-scheme=dark] .btn--delete:hover, body[data-color-scheme=dark] .btn--delete:focus, body[data-color-scheme=dark] .btn--add:hover, body[data-color-scheme=dark] .btn--add:focus, body[data-color-scheme=dark] .btn--yes:hover, body[data-color-scheme=dark] .btn--yes:focus, body[data-color-scheme=dark] .btn--search:hover, body[data-color-scheme=dark] .btn--search:focus {
     background-color: var(--btn-submit-dark-hover);
   }
 }
 @media screen and (min-width: 768px) {
-  .btn--submit, .btn--delete, .btn--add, .btn--yes {
+  .btn--submit, .btn--delete, .btn--add, .btn--yes, .btn--search {
     margin-bottom: 20px;
   }
 }
-.btn--submit:hover, .btn--submit:focus, .btn--delete:hover, .btn--delete:focus, .btn--add:hover, .btn--add:focus, .btn--yes:hover, .btn--yes:focus {
+.btn--submit:hover, .btn--submit:focus, .btn--delete:hover, .btn--delete:focus, .btn--add:hover, .btn--add:focus, .btn--yes:hover, .btn--yes:focus, .btn--search:hover, .btn--search:focus {
   background-color: var(--btn-submit-hover);
 }
 .btn--delete {
@@ -382,7 +382,7 @@ body[data-color-scheme=dark] .btn--cancel, body[data-color-scheme=dark] .btn--no
   height: 40px;
   margin-bottom: 0;
 }
-.btn--add {
+.btn--add, .btn--search {
   font-family: "Roboto";
   letter-spacing: 0;
   line-height: 44px;
@@ -398,10 +398,23 @@ body[data-color-scheme=dark] .btn--cancel, body[data-color-scheme=dark] .btn--no
   margin-bottom: 0;
   box-shadow: 0px 2px 15px rgba(36, 204, 167, 0.5);
 }
-@media screen and (min-width: 1280px) {
-  .btn--add {
-    bottom: 40px;
-    right: 40px;
+@media screen and (min-width: 768px) {
+  .btn--add, .btn--search {
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+  }
+}
+.btn--search {
+  bottom: 18px;
+  left: 18px;
+  font-size: 26px;
+}
+@media screen and (min-width: 768px) {
+  .btn--search {
+    position: absolute;
+    bottom: 20px;
+    left: 10px;
   }
 }
 .btn--edit {

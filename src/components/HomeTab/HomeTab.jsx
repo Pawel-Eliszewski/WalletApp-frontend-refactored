@@ -11,6 +11,7 @@ import { Modal } from "../Modal/Modal";
 import { paginateTransactions } from "../../utils/paginationHandlers";
 import { nanoid } from "nanoid";
 import { Loading } from "notiflix";
+import { IoIosSearch } from "react-icons/io";
 
 export const HomeTab = () => {
   const dispatch = useDispatch();
@@ -182,7 +183,13 @@ export const HomeTab = () => {
       ) : (
         <div className="home__placeholder"></div>
       )}
-      <Button title="+" onClick={openModalAdd} styles="--add" type="button" />
+      <Button
+        icon={<IoIosSearch />}
+        styles="--search"
+        type="button"
+        // onClick={openModalAdd}
+      />
+      <Button icon="+" styles="--add" type="button" onClick={openModalAdd} />
       <Modal
         isModalOpen={isModalOpen}
         context={context}
