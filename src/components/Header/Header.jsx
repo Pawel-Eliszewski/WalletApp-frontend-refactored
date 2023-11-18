@@ -5,11 +5,12 @@ import { Logo } from "../Logo/Logo";
 import { Switch } from "../Switch/Switch";
 import { Button } from "../Button/Button";
 import { Modal } from "../Modal/Modal";
+import { configureNotiflixStyles } from "../../utils/notiflixStyles";
 
 export const Header = () => {
   const user = useSelector(selectUser);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [colorScheme, setColorScheme] = useState("dark");
+  const [colorScheme, setColorScheme] = useState("light");
 
   useEffect(() => {
     const storedColorScheme = localStorage.getItem("colorScheme");
@@ -31,7 +32,7 @@ export const Header = () => {
       localStorage.setItem("colorScheme", "dark");
       setColorScheme("dark");
     }
-    // location.reload();
+    configureNotiflixStyles(colorScheme);
   };
 
   const handleLogout = () => {

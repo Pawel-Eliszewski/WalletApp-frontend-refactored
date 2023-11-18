@@ -1,12 +1,11 @@
 import "../../installPrompt";
-import { useEffect, Suspense, lazy } from "react";
+import { useEffect, useState, Suspense, lazy } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useMedia } from "react-use";
 import {
   selectIsLoading,
   selectUser,
-  selectIsRefreshing,
   selectIsAuth,
 } from "../redux/session/selectors";
 import { selectTransactions } from "../redux/finance/selectors";
@@ -30,11 +29,21 @@ export default function App() {
   const dispatch = useDispatch();
 
   const isLoading = useSelector(selectIsLoading);
-  const isRefreshing = useSelector(selectIsRefreshing);
   const user = useSelector(selectUser);
   const isAuth = useSelector(selectIsAuth);
   const allTransactions = useSelector(selectTransactions);
   const isMobile = useMedia("(max-width: 767px)");
+  const [delayedLoading, setDelayedLoading] = useState(false);
+
+  useEffect(() => {
+    let timeout;
+    isLoading
+      ? setDelayedLoading(true)
+      : (timeout = setTimeout(() => {
+          setDelayedLoading(false);
+        }, 500));
+    return () => clearTimeout(timeout);
+  }, [isLoading]);
 
   useEffect(() => {
     const storedColorScheme = window.localStorage.getItem("colorScheme");
@@ -64,10 +73,10 @@ export default function App() {
     refresh();
   }, [dispatch]);
 
-  return isLoading || isRefreshing ? (
+  return delayedLoading ? (
     <Loader />
   ) : (
-    <Suspense fallback={<Loader />}>
+    <Suspense fallback={null}>
       <Routes>
         <Route
           path="/register"

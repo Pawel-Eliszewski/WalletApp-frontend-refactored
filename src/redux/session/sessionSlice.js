@@ -59,13 +59,13 @@ const sessionSlice = createSlice({
       .addCase(logout.fulfilled, () => initialState)
       .addCase(logout.rejected, handleRejected)
       .addCase(refreshUser.pending, (state) => {
-        state.isRefreshing = true;
+        state.isLoading = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         if (action.payload.tokenExpired) {
           return initialState;
         } else {
-          state.isRefreshing = false;
+          state.isLoading = false;
           state.isAuth = true;
           state.token = action.payload.data.token;
           state.user = {
