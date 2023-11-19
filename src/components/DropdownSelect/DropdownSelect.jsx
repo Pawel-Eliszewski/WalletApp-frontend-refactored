@@ -6,6 +6,7 @@ export const DropdownSelect = ({
   options,
   value,
   styles,
+  isMulti,
   isSearchable,
   isClearable,
   isDisabled,
@@ -19,6 +20,7 @@ export const DropdownSelect = ({
       options={options}
       value={value}
       initialValue={null}
+      isMulti={isMulti}
       isSearchable={isSearchable}
       isClearable={isClearable}
       isDisabled={isDisabled}
@@ -32,6 +34,7 @@ DropdownSelect.propTypes = {
   options: PropTypes.array.isRequired,
   styles: PropTypes.string.isRequired,
   value: PropTypes.object,
+  isMulti: PropTypes.bool,
   isSearchable: PropTypes.bool.isRequired,
   isClearable: PropTypes.bool,
   isDisabled: PropTypes.bool,

@@ -137,11 +137,17 @@ export const AuthForm = ({ context, onSubmit }) => {
               </>
             ) : null}
             <Button
+              ariaLabel={
+                context === "login" ? "submit logging in" : "submit register"
+              }
               title={context === "login" ? "Log in" : "Register"}
               styles="--submit"
               type="submit"
             />
             <Button
+              ariaLabel={
+                context === "login" ? "go to register" : "go to logging in"
+              }
               title={context === "login" ? "Register" : "Log in"}
               styles="--cancel"
               type="button"

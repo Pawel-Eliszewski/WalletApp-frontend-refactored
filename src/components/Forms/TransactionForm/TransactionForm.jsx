@@ -168,6 +168,7 @@ export const TransactionForm = ({ isModalOpen, context, onModalClose }) => {
               <Field
                 name="amount"
                 type="text"
+                inputMode="numeric"
                 onInput={(e) => {
                   e.target.value = e.target.value
                     .replace(/,/g, ".")
@@ -216,6 +217,11 @@ export const TransactionForm = ({ isModalOpen, context, onModalClose }) => {
               />
             </div>
             <Button
+              ariaLabel={
+                context === "add"
+                  ? "add transaction"
+                  : "save changes in transaction"
+              }
               title={context === "add" ? "Add" : "Save"}
               styles="--submit"
               type="submit"

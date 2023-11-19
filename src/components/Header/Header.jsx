@@ -57,19 +57,17 @@ export const Header = () => {
       <div className="header__nav">
         <p className="header__nav-user">{user.firstname}</p>
         <Button
-          ariaLabel="Exit"
+          ariaLabel="log out from application"
           title={window.innerWidth >= 768 ? "Exit" : ""}
           styles="--logout"
           type="button"
           onClick={handleLogout}
         />
-        {isModalOpen && (
-          <Modal
-            isModalOpen={isModalOpen}
-            onModalClose={handleModalClose}
-            context="logout"
-          />
-        )}
+        <Modal
+          isModalOpen={isModalOpen}
+          context="logout"
+          onModalClose={handleModalClose}
+        />
       </div>
     </div>
   );

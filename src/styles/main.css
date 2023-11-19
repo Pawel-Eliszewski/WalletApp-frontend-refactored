@@ -2304,4 +2304,11 @@ body[data-color-scheme=dark] .statistics-tab-select__option--is-selected::after 
   100% {
     transform: rotate(360deg);
   }
+}
+
+.search-form__radio-group {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 12px;
 }/*# sourceMappingURL=main.css.map */

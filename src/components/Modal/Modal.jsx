@@ -3,9 +3,10 @@ import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/session/operations";
 import { TransactionForm } from "../Forms/TransactionForm/TransactionForm";
+import { SearchForm } from "../Forms/SearchForm/SearchForm";
 import { Button } from "../Button/Button";
 /**
- * @param {{ isModalOpen: boolean, context?: 'add' | 'edit' | 'logout',
+ * @param {{ isModalOpen: boolean, context?: 'add' | 'edit' | 'search' | 'logout',
  * onModalClose: () => void }} props
  */
 export const Modal = ({ isModalOpen, context, onModalClose }) => {
@@ -49,7 +50,7 @@ export const Modal = ({ isModalOpen, context, onModalClose }) => {
         }`}
       >
         <Button
-          ariaLabel="close"
+          ariaLabel="cancel and close modal"
           styles="--close"
           type="button"
           onClick={onModalClose}
@@ -59,7 +60,11 @@ export const Modal = ({ isModalOpen, context, onModalClose }) => {
             ? "Log out?"
             : context === "add"
             ? "Add transaction"
-            : "Edit transaction"}
+            : context === "edit"
+            ? "Edit transaction"
+            : context === "search"
+            ? "Search transactions"
+            : ""}
         </h2>
         {context === "add" || context === "edit" ? (
           <>
@@ -69,6 +74,23 @@ export const Modal = ({ isModalOpen, context, onModalClose }) => {
               onModalClose={onModalClose}
             />
             <Button
+              ariaLabel="cancel and close modal"
+              title="Cancel"
+              styles="--cancel"
+              type="button"
+              onClick={onModalClose}
+            />
+          </>
+        ) : null}
+        {context === "search" ? (
+          <>
+            <SearchForm
+              isModalOpen={isModalOpen}
+              context={context}
+              onModalClose={onModalClose}
+            />
+            <Button
+              ariaLabel="cancel and close modal"
               title="Cancel"
               styles="--cancel"
               type="button"
@@ -79,12 +101,14 @@ export const Modal = ({ isModalOpen, context, onModalClose }) => {
         {context === "logout" && (
           <div className="modal__controls">
             <Button
+              ariaLabel="submit logging out"
               title="Yes"
               styles="--yes"
               type="button"
               onClick={handleLogout}
             />
             <Button
+              ariaLabel="cancel and close modal"
               title="No"
               styles="--no"
               type="button"

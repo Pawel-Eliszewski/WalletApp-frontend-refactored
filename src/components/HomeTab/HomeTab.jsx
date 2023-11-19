@@ -42,6 +42,12 @@ export const HomeTab = () => {
     document.body.classList.add("modal-open");
   };
 
+  const openModalSearch = () => {
+    setContext("search");
+    setIsModalOpen(true);
+    document.body.classList.add("modal-open");
+  };
+
   const handleModalClose = () => {
     setIsModalOpen(false);
     setContext(null);
@@ -92,16 +98,18 @@ export const HomeTab = () => {
                 </li>
                 <li className="mobile-table__controls">
                   <Button
+                    ariaLabel="delete selected transaction"
                     title="Delete"
-                    onClick={() => handleDeleteTransaction(_id)}
                     styles="--delete"
                     type="button"
+                    onClick={() => handleDeleteTransaction(_id)}
                   />
                   <Button
+                    ariaLabel="open modal to edit selected transaction"
                     title="Edit"
-                    onClick={() => openModalEdit(_id)}
                     styles="--edit-mobile"
                     type="button"
+                    onClick={() => openModalEdit(_id)}
                   />
                 </li>
               </ul>
@@ -154,16 +162,17 @@ export const HomeTab = () => {
                   <td className="table__body-item">
                     <div className="table__body-item-controls">
                       <Button
-                        ariaLabel="Edit"
-                        onClick={() => openModalEdit(_id)}
+                        ariaLabel="open modal to edit selected transaction"
                         styles="--edit"
                         type="button"
+                        onClick={() => openModalEdit(_id)}
                       />
                       <Button
+                        ariaLabel="delete selected transaction"
                         title="Delete"
-                        onClick={() => handleDeleteTransaction(_id)}
                         styles="--delete"
                         type="button"
+                        onClick={() => handleDeleteTransaction(_id)}
                       />
                     </div>
                   </td>
@@ -184,12 +193,19 @@ export const HomeTab = () => {
         <div className="home__placeholder"></div>
       )}
       <Button
+        ariaLabel="open modal to search transactions"
         icon={<IoIosSearch />}
         styles="--search"
         type="button"
-        // onClick={openModalAdd}
+        onClick={openModalSearch}
       />
-      <Button icon="+" styles="--add" type="button" onClick={openModalAdd} />
+      <Button
+        ariaLabel="open modal to add transaction "
+        icon="+"
+        styles="--add"
+        type="button"
+        onClick={openModalAdd}
+      />
       <Modal
         isModalOpen={isModalOpen}
         context={context}
