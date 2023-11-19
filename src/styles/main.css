@@ -2131,7 +2131,7 @@ body[data-color-scheme=dark] .transaction-form-select__single-value {
   margin: 2px 0 0 0 !important;
   background-color: var(--primary-gray-background-color) !important;
   border-radius: 20px !important;
-  height: 328px !important;
+  max-height: 360px !important;
 }
 body[data-color-scheme=dark] .transaction-form-select__menu {
   background-color: var(--primary-dark-background-color) !important;
@@ -2139,7 +2139,7 @@ body[data-color-scheme=dark] .transaction-form-select__menu {
 .transaction-form-select__menu-list {
   box-shadow: 0px 6px 15px 0px rgba(0, 0, 0, 0.1) !important;
   border-radius: 20px !important;
-  min-height: 328px !important;
+  max-height: 370px !important;
 }
 .transaction-form-select__option {
   height: 32px !important;
@@ -2306,9 +2306,23 @@ body[data-color-scheme=dark] .statistics-tab-select__option--is-selected::after 
   }
 }
 
+.search-form {
+  font-family: "Circe", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+}
+.search-form__wrapper {
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
 .search-form__radio-group {
   display: flex;
   justify-content: center;
   width: 100%;
   gap: 12px;
+  margin-top: 30px;
 }/*# sourceMappingURL=main.css.map */

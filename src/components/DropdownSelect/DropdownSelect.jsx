@@ -3,13 +3,15 @@ import Select from "react-select";
 
 export const DropdownSelect = ({
   name,
-  options,
+  defaultValue,
   value,
+  options,
   styles,
   isMulti,
   isSearchable,
   isClearable,
   isDisabled,
+  placeholder,
   onChange,
 }) => {
   return (
@@ -17,13 +19,14 @@ export const DropdownSelect = ({
       className={styles + "-select-container"}
       classNamePrefix={styles + "-select"}
       name={name}
-      options={options}
+      defaultValue={defaultValue}
       value={value}
-      initialValue={null}
+      options={options}
       isMulti={isMulti}
       isSearchable={isSearchable}
       isClearable={isClearable}
       isDisabled={isDisabled}
+      placeholder={placeholder}
       onChange={onChange}
     />
   );
@@ -31,12 +34,14 @@ export const DropdownSelect = ({
 
 DropdownSelect.propTypes = {
   name: PropTypes.string.isRequired,
+  defaultValue: PropTypes.object,
+  value: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   options: PropTypes.array.isRequired,
   styles: PropTypes.string.isRequired,
-  value: PropTypes.object,
   isMulti: PropTypes.bool,
   isSearchable: PropTypes.bool.isRequired,
   isClearable: PropTypes.bool,
   isDisabled: PropTypes.bool,
+  placeholder: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 };

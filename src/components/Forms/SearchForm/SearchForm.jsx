@@ -23,9 +23,13 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
     }
   }, [isModalOpen]);
 
+  const expenseCategoryNamesWithAll = [
+    { label: "All categories", value: "all" },
+    ...expenseCategoryNames,
+  ];
+
   const initialValues = {
     type: "all",
-    categories: { label: "all", value: "all" },
     minAmount: "",
     maxAmount: "",
     date: "",
@@ -34,36 +38,36 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
 
   const handleSearchTransactions = async (values) => {
     const formData = {
-      type: values.type.value,
-      categories: values.category.value,
-      minAmount: parseFloat(values.amount),
-      maxAmount: parseFloat(values.amount),
+      type: values.type,
+      categories: values.categories.map((category) => category.value),
+      minAmount: parseFloat(values.minAmount),
+      maxAmount: parseFloat(values.maxAmount),
       date: values.date,
       comment: values.comment,
     };
-    try {
-      Loading.hourglass();
-      Loading.remove();
-      onModalClose();
-    } catch (error) {
-      console.error(error);
-      Loading.remove();
-      onModalClose();
-    }
+    console.log(formData);
+    // try {
+    //   Loading.hourglass();
+    //   Loading.remove();
+    //   onModalClose();
+    // } catch (error) {
+    //   console.error(error);
+    //   Loading.remove();
+    //   onModalClose();
+    // }
   };
 
   return (
-    <div className="transaction-form">
+    <div className="search-form">
       <Formik
         innerRef={formikRef}
         initialValues={initialValues}
-        validationSchema={transactionValidationSchema}
+        // validationSchema={transactionValidationSchema}
         onSubmit={handleSearchTransactions}
         enableReinitialize={true}
       >
-        {({ errors, touched, values, handleChange, setFieldValue }) => (
+        {({ errors, touched, values, setFieldValue }) => (
           <Form className="search-form__wrapper">
-            <p>Transactions type</p>
             <div className="search-form__radio-group">
               <label>
                 <Field type="radio" name="type" value="all" />
@@ -78,30 +82,33 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
                 <span className="type__span type__span--expense"> Expense</span>
               </label>
             </div>
-            <div className="transaction-form__react-select react-select">
-              <p>Transactions categories</p>
-              <DropdownSelect
-                name="category"
-                options={expenseCategoryNames}
-                value={values.category}
-                styles="transaction-form"
-                isMulti={true}
-                isSearchable={isMobile ? false : true}
-                onChange={(selectedOption) => {
-                  handleChange("category")(selectedOption.value);
-                  setFieldValue("category", selectedOption);
-                }}
-              />
-              {touched.category && errors.category && (
-                <div className="transaction-form__alert transaction-form__alert--category">
-                  {errors.category}
+            {values.type === "expense" || values.type === "all" ? (
+              <div className="transaction-form__react-select react-select">
+                <div className="search-form__div">
+                  <DropdownSelect
+                    name="categories"
+                    value={values.categories}
+                    options={expenseCategoryNamesWithAll}
+                    styles="transaction-form"
+                    isMulti={true}
+                    isSearchable={!isMobile}
+                    placeholder="Select a category"
+                    onChange={(selectedOptions) => {
+                      console.log(selectedOptions);
+                    }}
+                  />
+                  {touched.categories && errors.categories && (
+                    <div className="transaction-form__alert transaction-form__alert--category">
+                      {errors.categories}
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
+              </div>
+            ) : null}
             <div className="search-form__inputs">
               <Field
-                name="amount"
-                inputMode="numeric"
+                name="minAmount"
+                inputMode="decimal"
                 type="text"
                 onInput={(e) => {
                   e.target.value = e.target.value
@@ -113,7 +120,6 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
                 }}
                 className="search-form__amount"
                 placeholder="0.00"
-                initialvalue={initialValues.amount}
               />
               <ErrorMessage
                 name="amount"
@@ -121,8 +127,8 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
                 className="transaction-form__alert transaction-form__alert--amount"
               />
               <Field
-                name="amount"
-                inputMode="numeric"
+                name="maxAmount"
+                inputMode="decimal"
                 type="text"
                 onInput={(e) => {
                   e.target.value = e.target.value
@@ -134,25 +140,12 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
                 }}
                 className="search-form__amount"
                 placeholder="0.00"
-                initialvalue={initialValues.amount}
               />
               <ErrorMessage
                 name="amount"
                 component="div"
                 className="transaction-form__alert transaction-form__alert--amount"
               />
-              {/* <Calendar
-                transactionType={values.type}
-                transactionDate={values.date}
-                onDateChange={(newDate) => {
-                  setFieldValue("date", newDate);
-                }}
-              />
-              {touched.date && errors.date && (
-                <div className="transaction-form__alert transaction-form__alert--date">
-                  {errors.date}
-                </div>
-              )} */}
             </div>
             <div className="search-form__inputs">
               <Field
@@ -161,7 +154,6 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
                 name="comment"
                 placeholder="Comment"
                 initialvalue={initialValues.comment}
-                autoComplete="comment"
                 maxLength="34"
               />
               <ErrorMessage

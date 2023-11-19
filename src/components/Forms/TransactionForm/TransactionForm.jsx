@@ -151,7 +151,7 @@ export const TransactionForm = ({ isModalOpen, context, onModalClose }) => {
                   options={expenseCategoryNames}
                   value={values.category}
                   styles="transaction-form"
-                  isSearchable={isMobile ? false : true}
+                  isSearchable={!isMobile}
                   onChange={(selectedOption) => {
                     handleChange("category")(selectedOption.value);
                     setFieldValue("category", selectedOption);
@@ -168,7 +168,7 @@ export const TransactionForm = ({ isModalOpen, context, onModalClose }) => {
               <Field
                 name="amount"
                 type="text"
-                inputMode="numeric"
+                inputMode="decimal"
                 onInput={(e) => {
                   e.target.value = e.target.value
                     .replace(/,/g, ".")

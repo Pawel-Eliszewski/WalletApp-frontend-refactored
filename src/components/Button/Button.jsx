@@ -25,7 +25,7 @@ Button.displayName = "Button";
 
 Button.propTypes = {
   ariaLabel: PropTypes.string.isRequired,
-  icon: PropTypes.object || PropTypes.string,
+  icon: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   title: PropTypes.string,
   styles: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
