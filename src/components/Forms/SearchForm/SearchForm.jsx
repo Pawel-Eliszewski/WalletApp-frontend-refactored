@@ -32,7 +32,8 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
     type: "all",
     minAmount: "",
     maxAmount: "",
-    date: "",
+    minDate: "",
+    maxDate: "",
     comment: "",
   };
 
@@ -42,7 +43,8 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
       categories: values.categories.map((category) => category.value),
       minAmount: parseFloat(values.minAmount),
       maxAmount: parseFloat(values.maxAmount),
-      date: values.date,
+      minDate: values.minDate,
+      maxDate: values.maxDate,
       comment: values.comment,
     };
     console.log(formData);
@@ -82,7 +84,7 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
                 <span className="type__span type__span--expense"> Expense</span>
               </label>
             </div>
-            {values.type === "expense" || values.type === "all" ? (
+            {values.type === "all" || values.type === "expense" ? (
               <div className="transaction-form__react-select react-select">
                 <div className="search-form__div">
                   <DropdownSelect
@@ -94,7 +96,23 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
                     isSearchable={!isMobile}
                     placeholder="Select a category"
                     onChange={(selectedOptions) => {
-                      console.log(selectedOptions);
+                      const selectedValues = selectedOptions.map(
+                        (option) => option.value
+                      );
+                      const hasAllCategories = selectedValues.includes("all");
+                      if (hasAllCategories) {
+                        formikRef.current.setFieldValue(
+                          "categories",
+                          selectedOptions.filter(
+                            (option) => option.value === "all"
+                          )
+                        );
+                      } else {
+                        formikRef.current.setFieldValue(
+                          "categories",
+                          selectedOptions
+                        );
+                      }
                     }}
                   />
                   {touched.categories && errors.categories && (
@@ -106,6 +124,7 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
               </div>
             ) : null}
             <div className="search-form__inputs">
+              <label htmlFor="minAmount">Amount From:</label>
               <Field
                 name="minAmount"
                 inputMode="decimal"
@@ -126,6 +145,9 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
                 component="div"
                 className="transaction-form__alert transaction-form__alert--amount"
               />
+            </div>
+            <div className="search-form__inputs">
+              <label htmlFor="maxAmount">Amount To:</label>
               <Field
                 name="maxAmount"
                 inputMode="decimal"
@@ -143,6 +165,52 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
               />
               <ErrorMessage
                 name="amount"
+                component="div"
+                className="transaction-form__alert transaction-form__alert--amount"
+              />
+            </div>
+            <div className="search-form__inputs">
+              <label htmlFor="minDate">Date From:</label>
+              <Field
+                name="minDate"
+                inputMode="date"
+                type="text"
+                // onInput={(e) => {
+                //   e.target.value = e.target.value
+                //     .replace(/,/g, ".")
+                //     .replace(/[^0-9.]/g, "")
+                //     .replace(/(\..*)\./g, "$1")
+                //     .replace(/(\.\d{1,2}).*/g, "$1");
+                //   setFieldValue("amount", e.target.value);
+                // }}
+                className="search-form__date"
+                placeholder="DD/MM/YYYY"
+              />
+              <ErrorMessage
+                name="minDate"
+                component="div"
+                className="transaction-form__alert transaction-form__alert--amount"
+              />
+            </div>
+            <div className="search-form__inputs">
+              <label htmlFor="maxDate">Date To:</label>
+              <Field
+                name="maxDate"
+                inputMode="date"
+                type="text"
+                // onInput={(e) => {
+                //   e.target.value = e.target.value
+                //     .replace(/,/g, ".")
+                //     .replace(/[^0-9.]/g, "")
+                //     .replace(/(\..*)\./g, "$1")
+                //     .replace(/(\.\d{1,2}).*/g, "$1");
+                //   setFieldValue("amount", e.target.value);
+                // }}
+                className="search-form__date"
+                placeholder="DD/MM/YYYY"
+              />
+              <ErrorMessage
+                name="maxDate"
                 component="div"
                 className="transaction-form__alert transaction-form__alert--amount"
               />

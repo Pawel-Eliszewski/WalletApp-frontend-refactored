@@ -20,5 +20,17 @@
         margin-top: 30px;
     }
 
-    &__div {}
+    &__inputs {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__amount {
+        width: 100px;
+    }
+
+    &__date {
+        width: 130px;
+    }
 }

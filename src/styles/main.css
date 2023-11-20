@@ -2325,4 +2325,15 @@ body[data-color-scheme=dark] .statistics-tab-select__option--is-selected::after 
   width: 100%;
   gap: 12px;
   margin-top: 30px;
+}
+.search-form__inputs {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.search-form__amount {
+  width: 100px;
+}
+.search-form__date {
+  width: 130px;
 }/*# sourceMappingURL=main.css.map */
