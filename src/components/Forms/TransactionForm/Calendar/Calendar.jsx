@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import { useEffect } from "react";
-import { useMedia } from "react-use";
 import DatePicker from "react-datepicker";
 import { Button } from "../../../Button/Button";
 import {
@@ -8,33 +7,32 @@ import {
   handleNewDate,
 } from "../../../../utils/dateHandlers";
 /**
- * @param {{ transactionType: 'income' | 'expense',
- * transactionDate: string, onDateChange: () => void }} props
+ * @param {{ id: string, placeholder?: string, transactionType: 'income' | 'expense',
+ * transactionDate: string, isMobile: boll, onDateChange: () => void }} props
  */
 export const Calendar = ({
   id,
   placeholder,
   transactionType,
   transactionDate,
+  isMobile,
   onDateChange,
 }) => {
-  const isMobile = useMedia("(max-width: 767px)");
-
-  const disableScreenKeyboard = () => {
-    const input = document.querySelector(
-      ".react-datepicker__input-container input"
-    );
-    input.readOnly = true;
-  };
-
   useEffect(() => {
-    isMobile && disableScreenKeyboard();
-  }, [isMobile]);
+    const disableScreenKeyboard = () => {
+      if (id && isMobile) {
+        const input = document.querySelector(
+          `.react-datepicker__input-container input#${id}`
+        );
+        input.readOnly = true;
+      }
+    };
+    disableScreenKeyboard();
+  }, [id, isMobile]);
 
   return (
     <DatePicker
       id={id}
-      // popperPlacement="auto"
       placeholderText={placeholder}
       calendarStartDay={1}
       selected={formattedTransactionDate(transactionDate)}
@@ -54,9 +52,10 @@ export const Calendar = ({
 };
 
 Calendar.propTypes = {
-  id: PropTypes.string,
-  placeholder: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   transactionType: PropTypes.string.isRequired,
   transactionDate: PropTypes.string,
+  isMobile: PropTypes.bool.isRequired,
   onDateChange: PropTypes.func.isRequired,
 };

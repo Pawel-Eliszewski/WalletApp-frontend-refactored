@@ -188,6 +188,7 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
                   placeholder="DD.MM.YYYY"
                   transactionType={values.type}
                   transactionDate={values.minDate}
+                  isMobile={isMobile}
                   onDateChange={(newDate) => {
                     setFieldValue("minDate", newDate);
                   }}
@@ -209,6 +210,7 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
                   placeholder="DD.MM.YYYY"
                   transactionType={values.type}
                   transactionDate={values.maxDate}
+                  isMobile={isMobile}
                   onDateChange={(newDate) => {
                     setFieldValue("maxDate", newDate);
                   }}

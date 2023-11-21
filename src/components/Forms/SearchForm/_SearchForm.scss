@@ -58,10 +58,6 @@
         border-bottom: 1px solid var(--primary-gray-font-color);
         padding-bottom: 5px;
         background-color: transparent;
-
-        body[data-color-scheme='dark'] & {
-            // border-bottom: 1px solid var(--primary-background-color);
-        }
     }
 
     &__amount:focus,

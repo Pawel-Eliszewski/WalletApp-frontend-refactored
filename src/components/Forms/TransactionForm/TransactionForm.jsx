@@ -187,8 +187,10 @@ export const TransactionForm = ({ isModalOpen, context, onModalClose }) => {
                 className="transaction-form__alert transaction-form__alert--amount"
               />
               <Calendar
+                id="transaction-form"
                 transactionType={values.type}
                 transactionDate={values.date}
+                isMobile={isMobile}
                 onDateChange={(newDate) => {
                   setFieldValue("date", newDate);
                 }}
