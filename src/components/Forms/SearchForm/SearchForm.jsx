@@ -9,6 +9,7 @@ import { DropdownSelect } from "../../DropdownSelect/DropdownSelect";
 import { expenseCategoryNames } from "../../../utils/transactionCategories";
 import { transactionValidationSchema } from "../../../utils/yupValidationSchemas";
 import { Loading } from "notiflix";
+import { formattedTransactionDate } from "../../../utils/dateHandlers";
 /**
  * @param {{ isModalOpen: boolean, context: 'search', onModalClose: () => void }} props
  */
@@ -170,49 +171,43 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
               />
             </div>
             <div className="search-form__inputs">
-              <label htmlFor="minDate">Date From:</label>
-              <Field
+              <label htmlFor="minDate">Min Date:</label>
+              {/* <MobileDatepicker
                 name="minDate"
-                inputMode="date"
-                type="text"
-                // onInput={(e) => {
-                //   e.target.value = e.target.value
-                //     .replace(/,/g, ".")
-                //     .replace(/[^0-9.]/g, "")
-                //     .replace(/(\..*)\./g, "$1")
-                //     .replace(/(\.\d{1,2}).*/g, "$1");
-                //   setFieldValue("amount", e.target.value);
-                // }}
-                className="search-form__date"
-                placeholder="DD/MM/YYYY"
-              />
+                selected={values.minDate ? new Date(values.minDate) : null}
+                onChange={(date) => setFieldValue("minDate", date)}
+                dateFormat="dd.MM.yyyy"
+                showMonthDropdown
+                showYearDropdown
+                dropdownMode="select"
+                isClearable
+                calendarClassName="datepicker-mobile"
+              /> */}
               <ErrorMessage
                 name="minDate"
                 component="div"
-                className="transaction-form__alert transaction-form__alert--amount"
+                className="transaction-form__alert transaction-form__alert--min-date"
               />
             </div>
             <div className="search-form__inputs">
-              <label htmlFor="maxDate">Date To:</label>
-              <Field
+              <label htmlFor="maxDate">Max Date:</label>
+              <input type="date"></input>
+              {/* <MobileDatepicker
                 name="maxDate"
-                inputMode="date"
-                type="text"
-                // onInput={(e) => {
-                //   e.target.value = e.target.value
-                //     .replace(/,/g, ".")
-                //     .replace(/[^0-9.]/g, "")
-                //     .replace(/(\..*)\./g, "$1")
-                //     .replace(/(\.\d{1,2}).*/g, "$1");
-                //   setFieldValue("amount", e.target.value);
-                // }}
-                className="search-form__date"
-                placeholder="DD/MM/YYYY"
-              />
+                selected={values.maxDate ? new Date(values.maxDate) : null}
+                onChange={(date) => setFieldValue("maxDate", date)}
+                dateFormat="dd.MM.yyyy"
+                showMonthDropdown
+                showYearDropdown
+                dropdownMode="select"
+                isClearable
+                calendarClassName="datepicker-mobile"
+                onFocus={(e) => (e.target.readOnly = true)}
+              /> */}
               <ErrorMessage
                 name="maxDate"
                 component="div"
-                className="transaction-form__alert transaction-form__alert--amount"
+                className="transaction-form__alert transaction-form__alert--max-date"
               />
             </div>
             <div className="search-form__inputs">

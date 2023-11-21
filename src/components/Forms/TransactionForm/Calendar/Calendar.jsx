@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
+import { useEffect } from "react";
 import { useMedia } from "react-use";
 import DatePicker from "react-datepicker";
 import {
   formattedTransactionDate,
   handleNewDate,
 } from "../../../../utils/dateHandlers";
-import { useEffect } from "react";
 /**
  * @param {{ transactionType: 'income' | 'expense',
  * transactionDate: string, onDateChange: () => void }} props
@@ -30,6 +30,8 @@ export const Calendar = ({
 
   return (
     <DatePicker
+      calendarStartDay={1}
+      // todayButton="Today"
       selected={formattedTransactionDate(transactionDate)}
       onChange={(newDate) => onDateChange(handleNewDate(newDate))}
       dateFormat="dd.MM.yyyy"
