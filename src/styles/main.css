@@ -382,6 +382,28 @@ body[data-color-scheme=dark] .btn--cancel, body[data-color-scheme=dark] .btn--no
   height: 40px;
   margin-bottom: 0;
 }
+.btn--today {
+  width: 75px;
+  height: 30px;
+  font-size: 12px;
+  margin: 0 auto;
+  background-color: var(--secondary-gray-font-color);
+  color: var(--primary-font-color);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+body[data-color-scheme=dark] .btn--today {
+  background-color: rgb(67, 67, 67);
+  color: var(--primary-gray-font-color);
+}
+@media (hover: hover) {
+  .btn--today:hover, .btn--today:focus {
+    background-color: var(--primary-gray-font-color);
+  }
+  body[data-color-scheme=dark] .btn--today:hover, body[data-color-scheme=dark] .btn--today:focus {
+    background-color: rgb(46, 46, 46);
+  }
+}
 .btn--add, .btn--search {
   font-family: "Roboto";
   letter-spacing: 0;
@@ -524,12 +546,14 @@ body[data-color-scheme=dark] .btn--close:hover::after, body[data-color-scheme=da
   background-color: var(--primary-background-color);
   border: 1px solid var(--primary-gray-font-color);
   border-radius: 20px;
+  margin-block: 5px;
 }
 body[data-color-scheme=dark] .react-datepicker {
   background-color: var(--primary-dark-background-color);
 }
 .react-datepicker-wrapper {
-  width: 280px;
+  width: 100%;
+  max-width: 280px;
   border-bottom: 1px solid var(--primary-gray-font-color);
   padding-bottom: 5px;
 }
@@ -545,14 +569,7 @@ body[data-color-scheme=dark] .react-datepicker-wrapper:focus-within {
   }
 }
 .react-datepicker-popper {
-  transform: translate3d(0px, 86px, 0px) !important;
-  z-index: 100 !important;
-  margin-top: 3px !important;
-}
-@media screen and (min-width: 768px) {
-  .react-datepicker-popper {
-    transform: translate3d(165px, 28.8px, 0px) !important;
-  }
+  z-index: 1000 !important;
 }
 .react-datepicker__aria-live, .react-datepicker__triangle, .react-datepicker__day-names {
   display: none;
@@ -561,12 +578,19 @@ body[data-color-scheme=dark] .react-datepicker-wrapper:focus-within {
   position: relative;
 }
 .react-datepicker__input-container input {
-  width: 280px;
+  width: 100%;
+  max-width: 280px;
   border: none;
   outline: none;
   background-color: transparent;
   padding-left: 12px;
   cursor: pointer;
+}
+.react-datepicker__input-container input::-moz-placeholder {
+  font-size: 16px;
+}
+.react-datepicker__input-container input::placeholder {
+  font-size: 16px;
 }
 @media screen and (min-width: 768px) {
   .react-datepicker__input-container input {
@@ -664,7 +688,7 @@ body[data-color-scheme=dark] .react-datepicker-wrapper:focus-within {
   position: relative;
 }
 body[data-color-scheme=dark] .react-datepicker__header {
-  background-color: rgb(67, 67, 67);
+  background-color: rgb(67, 67, 67) !important;
   color: var(--primary-gray-font-color) !important;
 }
 .react-datepicker__current-month {
@@ -1264,7 +1288,6 @@ body[data-color-scheme=dark] .type__span--expense {
 @media screen and (min-width: 768px) {
   .transaction-form__wrapper {
     width: 394px;
-    font-size: 18px;
   }
   .transaction-form__inputs {
     flex-direction: row;
@@ -2311,6 +2334,9 @@ body[data-color-scheme=dark] .statistics-tab-select__option--is-selected::after 
   font-size: 18px;
   font-weight: 400;
 }
+body[data-color-scheme=dark] .search-form {
+  color: var(--primary-gray-font-color);
+}
 .search-form__wrapper {
   width: 280px;
   display: flex;
@@ -2319,21 +2345,48 @@ body[data-color-scheme=dark] .statistics-tab-select__option--is-selected::after 
   justify-content: center;
   gap: 30px;
 }
+@media screen and (min-width: 768px) {
+  .search-form__wrapper {
+    width: 394px;
+  }
+}
 .search-form__radio-group {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   width: 100%;
-  gap: 12px;
   margin-top: 30px;
 }
 .search-form__inputs {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
-.search-form__amount {
-  width: 100px;
+.search-form__label {
+  width: 140px;
 }
 .search-form__date {
-  width: 130px;
+  width: 160px;
+}
+.search-form__amount {
+  text-align: center;
+}
+.search-form__comment {
+  padding-left: 10px;
+}
+.search-form__amount, .search-form__comment {
+  width: 160px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid var(--primary-gray-font-color);
+  padding-bottom: 5px;
+  background-color: transparent;
+}
+.search-form__amount:focus, .search-form__comment:focus {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid var(--primary-font-color);
+}
+body[data-color-scheme=dark] .search-form__amount:focus, body[data-color-scheme=dark] .search-form__comment:focus {
+  border-bottom: 1px solid var(--primary-background-color);
 }/*# sourceMappingURL=main.css.map */

@@ -10,6 +10,7 @@ import { expenseCategoryNames } from "../../../utils/transactionCategories";
 import { transactionValidationSchema } from "../../../utils/yupValidationSchemas";
 import { Loading } from "notiflix";
 import { formattedTransactionDate } from "../../../utils/dateHandlers";
+import { Calendar } from "../TransactionForm/Calendar/Calendar";
 /**
  * @param {{ isModalOpen: boolean, context: 'search', onModalClose: () => void }} props
  */
@@ -95,6 +96,7 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
                     styles="transaction-form"
                     isMulti={true}
                     isSearchable={!isMobile}
+                    isClearable={false}
                     placeholder="Select a category"
                     onChange={(selectedOptions) => {
                       const selectedValues = selectedOptions.map(
@@ -125,7 +127,9 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
               </div>
             ) : null}
             <div className="search-form__inputs">
-              <label htmlFor="minAmount">Amount From:</label>
+              <label className="search-form__label" htmlFor="minAmount">
+                Amount min:
+              </label>
               <Field
                 name="minAmount"
                 inputMode="decimal"
@@ -140,6 +144,7 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
                 }}
                 className="search-form__amount"
                 placeholder="0.00"
+                autoComplete="off"
               />
               <ErrorMessage
                 name="amount"
@@ -148,7 +153,9 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
               />
             </div>
             <div className="search-form__inputs">
-              <label htmlFor="maxAmount">Amount To:</label>
+              <label className="search-form__label" htmlFor="maxAmount">
+                Amount max:
+              </label>
               <Field
                 name="maxAmount"
                 inputMode="decimal"
@@ -163,6 +170,7 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
                 }}
                 className="search-form__amount"
                 placeholder="0.00"
+                autoComplete="off"
               />
               <ErrorMessage
                 name="amount"
@@ -171,53 +179,58 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
               />
             </div>
             <div className="search-form__inputs">
-              <label htmlFor="minDate">Min Date:</label>
-              {/* <MobileDatepicker
-                name="minDate"
-                selected={values.minDate ? new Date(values.minDate) : null}
-                onChange={(date) => setFieldValue("minDate", date)}
-                dateFormat="dd.MM.yyyy"
-                showMonthDropdown
-                showYearDropdown
-                dropdownMode="select"
-                isClearable
-                calendarClassName="datepicker-mobile"
-              /> */}
-              <ErrorMessage
-                name="minDate"
-                component="div"
-                className="transaction-form__alert transaction-form__alert--min-date"
-              />
+              <label className="search-form__label" htmlFor="minDate">
+                Date from:
+              </label>
+              <div className="search-form__date">
+                <Calendar
+                  id="minDate"
+                  placeholder="DD.MM.YYYY"
+                  transactionType={values.type}
+                  transactionDate={values.minDate}
+                  onDateChange={(newDate) => {
+                    setFieldValue("minDate", newDate);
+                  }}
+                />
+                {touched.date && errors.date && (
+                  <div className="transaction-form__alert transaction-form__alert--date">
+                    {errors.date}
+                  </div>
+                )}
+              </div>
             </div>
             <div className="search-form__inputs">
-              <label htmlFor="maxDate">Max Date:</label>
-              <input type="date"></input>
-              {/* <MobileDatepicker
-                name="maxDate"
-                selected={values.maxDate ? new Date(values.maxDate) : null}
-                onChange={(date) => setFieldValue("maxDate", date)}
-                dateFormat="dd.MM.yyyy"
-                showMonthDropdown
-                showYearDropdown
-                dropdownMode="select"
-                isClearable
-                calendarClassName="datepicker-mobile"
-                onFocus={(e) => (e.target.readOnly = true)}
-              /> */}
-              <ErrorMessage
-                name="maxDate"
-                component="div"
-                className="transaction-form__alert transaction-form__alert--max-date"
-              />
+              <label className="search-form__label" htmlFor="maxDate">
+                Date to:
+              </label>
+              <div className="search-form__date">
+                <Calendar
+                  id="maxDate"
+                  placeholder="DD.MM.YYYY"
+                  transactionType={values.type}
+                  transactionDate={values.maxDate}
+                  onDateChange={(newDate) => {
+                    setFieldValue("maxDate", newDate);
+                  }}
+                />
+                {touched.date && errors.date && (
+                  <div className="transaction-form__alert transaction-form__alert--date">
+                    {errors.date}
+                  </div>
+                )}
+              </div>
             </div>
             <div className="search-form__inputs">
+              <label className="search-form__label" htmlFor="maxDate">
+                Comment:
+              </label>
               <Field
                 className="search-form__comment"
                 type="text"
                 name="comment"
-                placeholder="Comment"
-                initialvalue={initialValues.comment}
+                placeholder="Type word"
                 maxLength="34"
+                autoComplete="off"
               />
               <ErrorMessage
                 name="comment"

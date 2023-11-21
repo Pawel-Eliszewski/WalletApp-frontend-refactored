@@ -114,6 +114,34 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
         margin-bottom: 0;
     }
 
+    &--today {
+        width: 75px;
+        height: 30px;
+        font-size: 12px;
+        margin: 0 auto;
+        background-color: var(--secondary-gray-font-color);
+        color: var(--primary-font-color);
+        font-weight: 600;
+        margin-bottom: 10px;
+
+        body[data-color-scheme='dark'] & {
+            background-color: rgba(67, 67, 67);
+            color: var(--primary-gray-font-color);
+        }
+
+        @media (hover: hover) {
+
+            &:hover,
+            &:focus {
+                background-color: var(--primary-gray-font-color);
+
+                body[data-color-scheme='dark'] & {
+                    background-color: rgb(46, 46, 46);
+                }
+            }
+        }
+    }
+
     &--add,
     &--search {
         font-family: "Roboto";

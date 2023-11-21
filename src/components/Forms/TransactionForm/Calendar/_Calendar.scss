@@ -5,13 +5,15 @@ $iconCalendar: url("/assets/icon-calendar.svg");
     background-color: var(--primary-background-color);
     border: 1px solid var(--primary-gray-font-color);
     border-radius: 20px;
+    margin-block: 5px;
 
     body[data-color-scheme='dark'] & {
         background-color: var(--primary-dark-background-color);
     }
 
     &-wrapper {
-        width: 280px;
+        width: 100%;
+        max-width: 280px;
         border-bottom: 1px solid var(--primary-gray-font-color);
         padding-bottom: 5px;
 
@@ -29,12 +31,15 @@ $iconCalendar: url("/assets/icon-calendar.svg");
     }
 
     &-popper {
-        transform: translate3d(0px, 86px, 0px) !important;
-        z-index: 100 !important;
-        margin-top: 3px !important;
+        z-index: 1000 !important;
+        // position: fixed !important;
+        // left: 50% !important;
+        // top: 50% !important;
+        // transform: translate(-50%, -50%) !important;
 
         @media screen and (min-width:768px) {
-            transform: translate3d(165px, 28.8px, 0px) !important;
+            // transform: translate3d(165px, 28.8px, 0px) !important;
+            // margin-top: 3px !important;
         }
     }
 
@@ -48,12 +53,17 @@ $iconCalendar: url("/assets/icon-calendar.svg");
         position: relative;
 
         & input {
-            width: 280px;
+            width: 100%;
+            max-width: 280px;
             border: none;
             outline: none;
             background-color: transparent;
             padding-left: 12px;
             cursor: pointer;
+
+            &::placeholder {
+                font-size: 16px;
+            }
 
             @media screen and (min-width:768px) {
                 width: 174px;
@@ -168,7 +178,7 @@ $iconCalendar: url("/assets/icon-calendar.svg");
         position: relative;
 
         body[data-color-scheme='dark'] & {
-            background-color: rgba(67, 67, 67);
+            background-color: rgba(67, 67, 67) !important;
             color: var(--primary-gray-font-color) !important;
         }
     }
