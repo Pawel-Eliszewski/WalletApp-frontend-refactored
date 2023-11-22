@@ -31,7 +31,6 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
     &--search {
         background-color: var(--primary-income-color);
         color: var(--primary-background-color);
-        margin-bottom: 12px;
 
         body[data-color-scheme='dark'] & {
             background-color: var(--btn-submit-hover);
@@ -44,10 +43,6 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
                 }
             }
 
-        }
-
-        @media screen and (min-width: 768px) {
-            margin-bottom: 20px;
         }
 
         &:hover,
@@ -63,7 +58,6 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
         letter-spacing: 0em;
         width: 67px;
         height: 26px;
-        margin-bottom: 0;
 
         body[data-color-scheme='dark'] & {
             color: var(--secondary-gray-font-color);
@@ -74,18 +68,17 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
     &--no {
         outline: 1px solid var(--household-products-diagram-color);
         color: var(--household-products-diagram-color);
-        background-color: var(--primary-background-color);
+        background-color: transparent;
 
         body[data-color-scheme='dark'] & {
-            background-color: var(--btn-cancel-dark-hover);
-            outline: 2px solid transparent;
-            color: var(--primary-dark-background-color);
+            outline: 1px solid var(--secondary-gray-font-color);
+            color: var(--secondary-gray-font-color);
 
             @media (hover: hover) {
 
                 &:hover,
                 &:focus {
-                    outline: 2px solid var(--ellipse-bottom-dark-color);
+                    outline: 1px solid var(--ellipse-bottom-dark-color);
                     color: var(--ellipse-bottom-dark-color);
                 }
             }
@@ -105,24 +98,20 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
     &--yes {
         width: 100px;
         height: 40px;
-        margin-bottom: 0;
     }
 
     &--no {
         width: 100px;
         height: 40px;
-        margin-bottom: 0;
     }
 
     &--today {
         width: 75px;
         height: 30px;
         font-size: 12px;
-        margin: 0 auto;
         background-color: var(--secondary-gray-font-color);
         color: var(--primary-font-color);
         font-weight: 600;
-        margin-bottom: 10px;
 
         body[data-color-scheme='dark'] & {
             background-color: rgba(67, 67, 67);
@@ -156,7 +145,6 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
         font-size: 38px;
         border-radius: 50%;
         z-index: 2;
-        margin-bottom: 0;
         box-shadow: 0px 2px 15px rgba(36, 204, 167, 0.5);
 
         @media screen and (min-width: 768px) {

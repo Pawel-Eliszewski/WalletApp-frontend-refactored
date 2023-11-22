@@ -7,23 +7,24 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Button } from "../../Button/Button";
 import { DropdownSelect } from "../../DropdownSelect/DropdownSelect";
 import { expenseCategoryNames } from "../../../utils/transactionCategories";
-import { transactionValidationSchema } from "../../../utils/yupValidationSchemas";
+// import { transactionValidationSchema } from "../../../utils/yupValidationSchemas";
 import { Loading } from "notiflix";
-import { formattedTransactionDate } from "../../../utils/dateHandlers";
+import { filterQueryTransactions } from "../../../utils/transactionsDataOperations";
 import { Calendar } from "../TransactionForm/Calendar/Calendar";
 /**
- * @param {{ isModalOpen: boolean, context: 'search', onModalClose: () => void }} props
+ * @param {{ isModalOpen: boolean, context: 'search',
+ * onFormClear: () => void, onModalClose: () => void }} props
  */
-export const SearchForm = ({ isModalOpen, onModalClose }) => {
+export const SearchForm = ({ isModalOpen, onFormClear, onModalClose }) => {
   const isMobile = useMedia("(max-width: 767px)");
   const formikRef = useRef();
   const allTransactions = useSelector(selectTransactions);
 
-  useEffect(() => {
-    if (isModalOpen) {
-      formikRef.current?.resetForm();
-    }
-  }, [isModalOpen]);
+  // useEffect(() => {
+  //   if (isModalOpen) {
+  //     formikRef.current?.resetForm();
+  //   }
+  // }, [isModalOpen]);
 
   const expenseCategoryNamesWithAll = [
     { label: "All categories", value: "all" },
@@ -32,6 +33,7 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
 
   const initialValues = {
     type: "all",
+    categories: [],
     minAmount: "",
     maxAmount: "",
     minDate: "",
@@ -40,16 +42,10 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
   };
 
   const handleSearchTransactions = async (values) => {
-    const formData = {
-      type: values.type,
-      categories: values.categories.map((category) => category.value),
-      minAmount: parseFloat(values.minAmount),
-      maxAmount: parseFloat(values.maxAmount),
-      minDate: values.minDate,
-      maxDate: values.maxDate,
-      comment: values.comment,
-    };
-    console.log(formData);
+    const filteredQueryTransactions = filterQueryTransactions(
+      allTransactions,
+      values
+    );
     // try {
     //   Loading.hourglass();
     //   Loading.remove();
@@ -61,6 +57,10 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
     // }
   };
 
+  const handleSearchFormClear = () => {
+    formikRef.current.resetForm();
+  };
+
   return (
     <div className="search-form">
       <Formik
@@ -68,7 +68,7 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
         initialValues={initialValues}
         // validationSchema={transactionValidationSchema}
         onSubmit={handleSearchTransactions}
-        enableReinitialize={true}
+        // enableReinitialize={true}
       >
         {({ errors, touched, values, setFieldValue }) => (
           <Form className="search-form__wrapper">
@@ -131,6 +131,7 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
                 Amount min:
               </label>
               <Field
+                id="minAmount"
                 name="minAmount"
                 inputMode="decimal"
                 type="text"
@@ -157,6 +158,7 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
                 Amount max:
               </label>
               <Field
+                id="maxAmount"
                 name="maxAmount"
                 inputMode="decimal"
                 type="text"
@@ -246,6 +248,13 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
               styles="--submit"
               type="submit"
             />
+            <Button
+              ariaLabel="clear filters"
+              title="Clear"
+              styles="--cancel"
+              type="button"
+              onClick={handleSearchFormClear}
+            />
           </Form>
         )}
       </Formik>
@@ -255,5 +264,6 @@ export const SearchForm = ({ isModalOpen, onModalClose }) => {
 
 SearchForm.propTypes = {
   isModalOpen: PropTypes.bool.isRequired,
+  onFormClear: PropTypes.func.isRequired,
   onModalClose: PropTypes.func.isRequired,
 };

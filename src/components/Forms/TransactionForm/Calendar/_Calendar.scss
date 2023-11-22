@@ -200,6 +200,14 @@ $iconCalendar: url("/assets/icon-calendar.svg");
         }
     }
 
+    &__children-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 10px;
+    }
+
     &__day {
         display: inline-block;
         position: relative;

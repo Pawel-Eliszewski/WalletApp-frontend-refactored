@@ -9,19 +9,16 @@ export const formattedTransactionDate = (transactionDate) => {
   if (!transactionDate || typeof transactionDate !== "string") {
     return null;
   }
-
   const dateParts = transactionDate.split(".");
 
   if (dateParts.length !== 3) {
     return null;
   }
-
   const date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
 
   if (isNaN(date.getTime())) {
     return null;
   }
-
   return date;
 };
 

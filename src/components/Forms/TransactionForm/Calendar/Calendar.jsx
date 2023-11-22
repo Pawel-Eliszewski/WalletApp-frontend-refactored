@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import DatePicker from "react-datepicker";
 import { Button } from "../../../Button/Button";
 import {
+  formattedTodayDate,
   formattedTransactionDate,
   handleNewDate,
 } from "../../../../utils/dateHandlers";
@@ -18,6 +19,8 @@ export const Calendar = ({
   isMobile,
   onDateChange,
 }) => {
+  const datePickerRef = useRef(null);
+
   useEffect(() => {
     const disableScreenKeyboard = () => {
       if (id && isMobile) {
@@ -30,8 +33,23 @@ export const Calendar = ({
     disableScreenKeyboard();
   }, [id, isMobile]);
 
+  const handleDateToday = () => {
+    onDateChange(formattedTodayDate);
+    if (datePickerRef.current) {
+      datePickerRef.current.setOpen(false);
+    }
+  };
+
+  const handleDateClear = () => {
+    onDateChange(null);
+    if (datePickerRef.current) {
+      datePickerRef.current.setOpen(false);
+    }
+  };
+
   return (
     <DatePicker
+      ref={datePickerRef}
       id={id}
       placeholderText={placeholder}
       calendarStartDay={1}
@@ -46,6 +64,14 @@ export const Calendar = ({
         title="Today"
         styles="--today"
         type="button"
+        onClick={handleDateToday}
+      />
+      <Button
+        ariaLabel="clear date"
+        title="Clear"
+        styles="--today"
+        type="button"
+        onClick={handleDateClear}
       />
     </DatePicker>
   );

@@ -1,3 +1,5 @@
+import { formattedTransactionDate } from "./dateHandlers";
+
 export const countTransactionsSummary = (transactions) => {
   let transactionsSummary = {
     expense: 0,
@@ -126,5 +128,72 @@ export const filterTransactions = (transactions, year, month) => {
     return yearCondition && monthCondition;
   });
 
+  return filteredTransactions;
+};
+
+export const filterQueryTransactions = (transactions, values) => {
+  let filteredTransactions = [...transactions];
+
+  const formData = {
+    minDate:
+      values.minDate !== "" ? formattedTransactionDate(values.minDate) : "",
+    maxDate:
+      values.maxDate !== "" ? formattedTransactionDate(values.maxDate) : "",
+  };
+
+  if (values.type !== "all") {
+    filteredTransactions = filteredTransactions.filter(
+      (transaction) => transaction.type === values.type
+    );
+  }
+
+  if (
+    values.categories &&
+    values.categories.length > 0 &&
+    values.categories[0].value !== "all"
+  ) {
+    const selectedCategories = values.categories.map(
+      (category) => category.value
+    );
+    filteredTransactions = filteredTransactions.filter((transaction) =>
+      selectedCategories.includes(transaction.category)
+    );
+  }
+
+  if (values.minAmount !== "") {
+    filteredTransactions = filteredTransactions.filter(
+      (transaction) => transaction.amount >= values.minAmount
+    );
+  }
+
+  if (values.maxAmount !== "") {
+    filteredTransactions = filteredTransactions.filter(
+      (transaction) => transaction.amount <= values.maxAmount
+    );
+  }
+
+  if (formData.minDate !== "") {
+    filteredTransactions = filteredTransactions.filter(
+      (transaction) =>
+        formattedTransactionDate(transaction.date) >= formData.minDate
+    );
+  }
+
+  if (formData.maxDate !== "") {
+    const maxDatePlusOne = new Date(formData.maxDate);
+    maxDatePlusOne.setDate(maxDatePlusOne.getDate() + 1);
+
+    filteredTransactions = filteredTransactions.filter(
+      (transaction) =>
+        formattedTransactionDate(transaction.date) < maxDatePlusOne
+    );
+  }
+
+  if (values.comment !== "") {
+    filteredTransactions = filteredTransactions.filter((transaction) =>
+      transaction.comment.toLowerCase().includes(values.comment.toLowerCase())
+    );
+  }
+  console.log(filteredTransactions);
   return filteredTransactions;
 };
