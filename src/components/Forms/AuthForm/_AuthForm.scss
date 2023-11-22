@@ -16,12 +16,14 @@
         align-items: center;
         flex-direction: column;
         margin-top: 50px;
+        // margin-bottom: 20px;
+        gap: 20px;
     }
 
     &__field {
         width: 100%;
         border-bottom: 1px solid var(--primary-gray-font-color);
-        margin-bottom: 30px;
+        margin-bottom: 10px;
         padding-bottom: 5px;
         position: relative;
         display: flex;
