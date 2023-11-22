@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux/es/hooks/useSelector";
+import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../redux/session/selectors";
+import { setIsModalOpen, setContext } from "../../redux/global/globalSlice";
 import { Logo } from "../Logo/Logo";
 import { Switch } from "../Switch/Switch";
 import { Button } from "../Button/Button";
-import { Modal } from "../Modal/Modal";
 import { configureNotiflixStyles } from "../../utils/notiflixStyles";
 
 export const Header = () => {
+  const dispatch = useDispatch();
   const user = useSelector(selectUser);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [colorScheme, setColorScheme] = useState("light");
 
   useEffect(() => {
@@ -37,13 +37,9 @@ export const Header = () => {
   };
 
   const handleLogout = () => {
-    setIsModalOpen(true);
+    dispatch(setContext("logout"));
+    dispatch(setIsModalOpen(true));
     document.body.classList.add("modal-open");
-  };
-
-  const handleModalClose = () => {
-    setIsModalOpen(false);
-    document.body.classList.remove("modal-open");
   };
 
   return (
@@ -62,11 +58,6 @@ export const Header = () => {
           styles="--logout"
           type="button"
           onClick={handleLogout}
-        />
-        <Modal
-          isModalOpen={isModalOpen}
-          context="logout"
-          onModalClose={handleModalClose}
         />
       </div>
     </div>

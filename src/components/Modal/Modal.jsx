@@ -1,39 +1,54 @@
-import PropTypes from "prop-types";
 import { useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { selectContext, selectIsModalOpen } from "../../redux/global/selectors";
+import { setContext, setIsModalOpen } from "../../redux/global/globalSlice";
 import { logout } from "../../redux/session/operations";
 import { TransactionForm } from "../Forms/TransactionForm/TransactionForm";
 import { SearchForm } from "../Forms/SearchForm/SearchForm";
 import { Button } from "../Button/Button";
-/**
- * @param {{ isModalOpen: boolean, context?: 'add' | 'edit' | 'search' | 'logout',
- * onModalClose: () => void }} props
- */
-export const Modal = ({ isModalOpen, context, onModalClose }) => {
+
+export const Modal = () => {
   const dispatch = useDispatch();
   const modalRef = useRef(null);
+  const context = useSelector(selectContext);
+  const isModalOpen = useSelector(selectIsModalOpen);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
-        onModalClose();
+        dispatch(setIsModalOpen(false));
       }
     };
     document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [onModalClose]);
+  }, [dispatch]);
 
   const handleBackdropClick = (e) => {
     if (modalRef.current && !modalRef.current.contains(e.target)) {
-      onModalClose();
+      dispatch(setIsModalOpen(false));
+      const modalChildren = modalRef.current.querySelectorAll("*");
+      modalChildren.forEach((child) => {
+        child.setAttribute("tabIndex", "-1");
+      });
+      document.body.classList.remove("modal-open");
     }
   };
 
   const handleLogout = () => {
     dispatch(logout());
-    onModalClose();
+    dispatch(setIsModalOpen(false));
+    dispatch(setContext(null));
+  };
+
+  const handleModalClose = () => {
+    dispatch(setIsModalOpen(false));
+    const modalChildren = modalRef.current.querySelectorAll("*");
+    modalChildren.forEach((child) => {
+      child.setAttribute("tabIndex", "-1");
+    });
+    document.body.classList.remove("modal-open");
   };
 
   return (
@@ -53,7 +68,7 @@ export const Modal = ({ isModalOpen, context, onModalClose }) => {
           ariaLabel="cancel and close modal"
           styles="--close"
           type="button"
-          onClick={onModalClose}
+          onClick={handleModalClose}
         />
         <h2 className="modal__title">
           {context === "logout"
@@ -68,17 +83,13 @@ export const Modal = ({ isModalOpen, context, onModalClose }) => {
         </h2>
         {context === "add" || context === "edit" ? (
           <>
-            <TransactionForm
-              isModalOpen={isModalOpen}
-              context={context}
-              onModalClose={onModalClose}
-            />
+            <TransactionForm onModalClose={handleModalClose} />
             <Button
               ariaLabel="cancel and close modal"
               title="Cancel"
               styles="--cancel"
               type="button"
-              onClick={onModalClose}
+              onClick={handleModalClose}
             />
           </>
         ) : null}
@@ -87,14 +98,14 @@ export const Modal = ({ isModalOpen, context, onModalClose }) => {
             <SearchForm
               isModalOpen={isModalOpen}
               context={context}
-              onModalClose={onModalClose}
+              onModalClose={handleModalClose}
             />
             <Button
               ariaLabel="cancel and close modal"
               title="Cancel"
               styles="--cancel"
               type="button"
-              onClick={onModalClose}
+              onClick={handleModalClose}
             />
           </>
         ) : null}
@@ -112,17 +123,11 @@ export const Modal = ({ isModalOpen, context, onModalClose }) => {
               title="No"
               styles="--no"
               type="button"
-              onClick={onModalClose}
+              onClick={handleModalClose}
             />
           </div>
         )}
       </div>
     </div>
   );
-};
-
-Modal.propTypes = {
-  isModalOpen: PropTypes.bool.isRequired,
-  context: PropTypes.string,
-  onModalClose: PropTypes.func.isRequired,
 };

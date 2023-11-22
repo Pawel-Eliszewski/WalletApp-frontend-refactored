@@ -73,6 +73,8 @@ div:focus-visible {
 
 input,
 textarea {
+    border-radius: 0;
+
     body[data-color-scheme='dark'] & {
         color: var(--primary-background-color) !important;
     }

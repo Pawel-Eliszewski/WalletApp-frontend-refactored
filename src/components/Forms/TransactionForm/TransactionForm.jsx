@@ -8,6 +8,10 @@ import {
   selectTransactionId,
 } from "../../../redux/finance/selectors";
 import {
+  selectContext,
+  selectIsModalOpen,
+} from "../../../redux/global/selectors";
+import {
   addTransaction,
   updateTransaction,
 } from "../../../redux/finance/operations";
@@ -21,21 +25,21 @@ import { formattedTodayDate } from "../../../utils/dateHandlers";
 import { transactionValidationSchema } from "../../../utils/yupValidationSchemas";
 import { Loading } from "notiflix";
 /**
- * @param {{ isModalOpen: boolean, context: 'add' | 'edit', onModalClose: () => void }} props
+ * @param {{ onModalClose: () => void }} props
  */
-export const TransactionForm = ({ isModalOpen, context, onModalClose }) => {
+export const TransactionForm = ({ onModalClose }) => {
   const dispatch = useDispatch();
   const isMobile = useMedia("(max-width: 767px)");
   const formikRef = useRef();
+  const context = useSelector(selectContext);
   const user = useSelector(selectUser);
+  const isModalOpen = useSelector(selectIsModalOpen);
   const allTransactions = useSelector(selectTransactions);
   const transactionId = useSelector(selectTransactionId);
 
   useEffect(() => {
-    if (isModalOpen) {
-      formikRef.current?.resetForm();
-    }
-  }, [isModalOpen, context]);
+    formikRef.current?.resetForm();
+  }, [isModalOpen]);
 
   const selectedTransaction = allTransactions.find(
     (transaction) => transaction._id === transactionId
@@ -236,7 +240,5 @@ export const TransactionForm = ({ isModalOpen, context, onModalClose }) => {
 };
 
 TransactionForm.propTypes = {
-  isModalOpen: PropTypes.bool.isRequired,
-  context: PropTypes.string.isRequired,
   onModalClose: PropTypes.func.isRequired,
 };

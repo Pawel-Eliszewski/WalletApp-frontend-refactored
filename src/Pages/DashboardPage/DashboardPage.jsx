@@ -6,6 +6,7 @@ import { Navigation } from "../../components/Navigation/Navigation";
 import { Balance } from "../../components/Balance/Balance";
 import { Currency } from "../../components/Currency/Currency";
 import { PageBackground } from "../../components/PageBackground/PageBackground";
+import { Modal } from "../../components/Modal/Modal";
 
 const MobileDashboard = () => {
   const location = useLocation();
@@ -14,6 +15,7 @@ const MobileDashboard = () => {
   return (
     <>
       <Header />
+      <Modal />
       <div className="container container--mobile">
         <Suspense fallback={null}>
           <Navigation />
@@ -30,6 +32,7 @@ const TabletDashboard = () => {
     <>
       <PageBackground />
       <Header />
+      <Modal />
       <div className="container container--tablet">
         <Suspense fallback={null}>
           <div className="wrapper wrapper--tablet">
@@ -51,6 +54,7 @@ const DesktopDashboard = () => {
     <>
       <PageBackground />
       <Header />
+      <Modal />
       <div className="container container--desktop">
         <Suspense fallback={null}>
           <div className="wrapper wrapper--desktop">

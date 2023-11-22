@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { useMedia } from "react-use";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux/es/hooks/useSelector";
+import { useSelector, useDispatch } from "react-redux";
+import { setIsModalOpen, setContext } from "../../redux/global/globalSlice";
 import { setTransactionId } from "../../redux/finance/financeSlice";
 import { deleteTransaction } from "../../redux/finance/operations";
 import { selectTransactions } from "../../redux/finance/selectors";
 import { Button } from "../Button/Button";
 import { Pagination } from "../Pagination/Pagination";
-import { Modal } from "../Modal/Modal";
 import { paginateTransactions } from "../../utils/paginationHandlers";
 import { nanoid } from "nanoid";
 import { Loading } from "notiflix";
@@ -17,8 +16,6 @@ export const HomeTab = () => {
   const dispatch = useDispatch();
   const allTransactions = useSelector(selectTransactions);
   const isMobile = useMedia("(max-width: 767px)");
-  const [context, setContext] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [itemOffset, setItemOffset] = useState(0);
 
   let paginationData = paginateTransactions(allTransactions, itemOffset);
@@ -30,28 +27,22 @@ export const HomeTab = () => {
   };
 
   const openModalAdd = () => {
-    setContext("add");
-    setIsModalOpen(true);
+    dispatch(setContext("add"));
+    dispatch(setIsModalOpen(true));
     document.body.classList.add("modal-open");
   };
 
   const openModalEdit = (_id) => {
-    setContext("edit");
-    setIsModalOpen(true);
+    dispatch(setContext("edit"));
     dispatch(setTransactionId(_id));
+    dispatch(setIsModalOpen(true));
     document.body.classList.add("modal-open");
   };
 
   const openModalSearch = () => {
-    setContext("search");
-    setIsModalOpen(true);
+    dispatch(setContext("search"));
+    dispatch(setIsModalOpen(true));
     document.body.classList.add("modal-open");
-  };
-
-  const handleModalClose = () => {
-    setIsModalOpen(false);
-    setContext(null);
-    document.body.classList.remove("modal-open");
   };
 
   const handleDeleteTransaction = async (transactionId) => {
@@ -205,11 +196,6 @@ export const HomeTab = () => {
         styles="--add"
         type="button"
         onClick={openModalAdd}
-      />
-      <Modal
-        isModalOpen={isModalOpen}
-        context={context}
-        onModalClose={handleModalClose}
       />
     </div>
   );

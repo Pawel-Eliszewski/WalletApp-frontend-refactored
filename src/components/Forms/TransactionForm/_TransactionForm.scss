@@ -21,6 +21,10 @@
         word-wrap: break-word;
     }
 
+    &__react-select {
+        position: relative;
+    }
+
     &__amount {
         width: 280px;
         border: none;

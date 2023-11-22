@@ -73,6 +73,10 @@ div:focus-visible {
   border-radius: 4px;
 }
 
+input,
+textarea {
+  border-radius: 0;
+}
 body[data-color-scheme=dark] input,
 body[data-color-scheme=dark] textarea {
   color: var(--primary-background-color) !important;
@@ -186,6 +190,7 @@ body[data-color-scheme=dark] textarea {
   width: 100%;
   padding: 20px 20px 0 20px;
   min-height: calc(100vh - 80px);
+  height: 100%;
   -webkit-backdrop-filter: blur(20px);
           backdrop-filter: blur(20px);
 }
@@ -1186,6 +1191,9 @@ body[data-color-scheme=dark] .auth-form__field:focus-within {
   gap: 30px;
   word-wrap: break-word;
 }
+.transaction-form__react-select {
+  position: relative;
+}
 .transaction-form__amount {
   width: 280px;
   border: none;
@@ -1683,7 +1691,7 @@ body[data-color-scheme=dark] .logo__title {
   top: 0;
   width: 100%;
   height: 100%;
-  z-index: 1000;
+  z-index: 3;
   pointer-events: none;
   opacity: 0;
   transition: 300ms;
@@ -1695,6 +1703,7 @@ body[data-color-scheme=dark] .logo__title {
   background-color: var(--backdrop-background-color);
   -webkit-backdrop-filter: blur(25px);
           backdrop-filter: blur(25px);
+  overflow: visible;
 }
 .modal__container {
   display: flex;
@@ -1713,6 +1722,7 @@ body[data-color-scheme=dark] .logo__title {
   border-radius: 20px;
   scale: 0;
   transition: 500ms;
+  z-index: 4;
 }
 body[data-color-scheme=dark] .modal__container {
   background-color: var(--primary-dark-background-color);
@@ -2106,9 +2116,6 @@ body[data-color-scheme=dark] .colorScheme-switch__slider {
     transform: translateX(15px);
   }
 }
-.transaction-form-select {
-  position: relative;
-}
 .transaction-form-select-container {
   width: 280px !important;
 }
@@ -2118,7 +2125,7 @@ body[data-color-scheme=dark] .colorScheme-switch__slider {
   }
 }
 .transaction-form-select__control {
-  position: relative;
+  position: relative !important;
   cursor: pointer !important;
   border: none !important;
   outline: none !important;
@@ -2200,9 +2207,6 @@ body[data-color-scheme=dark] .transaction-form-select__option--is-selected::afte
   border-width: 0 2px 2px 0;
 }
 
-.statistics-tab-select {
-  position: relative;
-}
 .statistics-tab-select-container {
   width: 100% !important;
 }
@@ -2212,7 +2216,7 @@ body[data-color-scheme=dark] .transaction-form-select__option--is-selected::afte
   }
 }
 .statistics-tab-select__control {
-  position: relative;
+  position: relative !important;
   cursor: pointer !important;
   border: none !important;
   outline: none !important;

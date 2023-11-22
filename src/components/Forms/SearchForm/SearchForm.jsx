@@ -15,7 +15,7 @@ import { Calendar } from "../TransactionForm/Calendar/Calendar";
  * @param {{ isModalOpen: boolean, context: 'search',
  * onFormClear: () => void, onModalClose: () => void }} props
  */
-export const SearchForm = ({ isModalOpen, onFormClear, onModalClose }) => {
+export const SearchForm = ({ onFormClear, onModalClose }) => {
   const isMobile = useMedia("(max-width: 767px)");
   const formikRef = useRef();
   const allTransactions = useSelector(selectTransactions);
@@ -263,7 +263,6 @@ export const SearchForm = ({ isModalOpen, onFormClear, onModalClose }) => {
 };
 
 SearchForm.propTypes = {
-  isModalOpen: PropTypes.bool.isRequired,
   onFormClear: PropTypes.func.isRequired,
   onModalClose: PropTypes.func.isRequired,
 };
