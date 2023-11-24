@@ -71,12 +71,12 @@ export const TransactionForm = ({ onModalClose }) => {
     try {
       Loading.hourglass();
       await dispatch(addTransaction(formData)).unwrap();
-      Loading.remove();
       onModalClose();
+      Loading.remove();
     } catch (error) {
-      console.error(error);
-      Loading.remove();
       onModalClose();
+      Loading.remove();
+      console.error(error);
     }
   };
 
@@ -96,12 +96,12 @@ export const TransactionForm = ({ onModalClose }) => {
     try {
       Loading.hourglass();
       await dispatch(updateTransaction(formData)).unwrap();
-      Loading.remove();
       onModalClose();
+      Loading.remove();
     } catch (error) {
-      console.error(error);
-      Loading.remove();
       onModalClose();
+      Loading.remove();
+      console.error(error);
     }
   };
 
@@ -184,6 +184,7 @@ export const TransactionForm = ({ onModalClose }) => {
                 className="transaction-form__amount"
                 placeholder="0.00"
                 initialvalue={initialValues.amount}
+                autoComplete="off"
               />
               <ErrorMessage
                 name="amount"
@@ -213,7 +214,7 @@ export const TransactionForm = ({ onModalClose }) => {
                 name="comment"
                 placeholder="Comment"
                 initialvalue={initialValues.comment}
-                autoComplete="comment"
+                autoComplete="off"
                 maxLength="34"
               />
               <ErrorMessage

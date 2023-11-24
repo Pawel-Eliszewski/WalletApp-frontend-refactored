@@ -17,6 +17,7 @@ export const Modal = () => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
         dispatch(setIsModalOpen(false));
+        dispatch(setContext(null));
       }
     };
     document.addEventListener("keydown", handleKeyDown);
@@ -28,6 +29,7 @@ export const Modal = () => {
   const handleBackdropClick = (e) => {
     if (modalRef.current && !modalRef.current.contains(e.target)) {
       dispatch(setIsModalOpen(false));
+      dispatch(setContext(null));
       const modalChildren = modalRef.current.querySelectorAll("*");
       modalChildren.forEach((child) => {
         child.setAttribute("tabIndex", "-1");
@@ -44,6 +46,7 @@ export const Modal = () => {
 
   const handleModalClose = () => {
     dispatch(setIsModalOpen(false));
+    dispatch(setContext(null));
     const modalChildren = modalRef.current.querySelectorAll("*");
     modalChildren.forEach((child) => {
       child.setAttribute("tabIndex", "-1");

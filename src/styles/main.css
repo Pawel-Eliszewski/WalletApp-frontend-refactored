@@ -45,7 +45,7 @@ li {
 }
 
 button:hover {
-  transition: 300ms;
+  transition: 250ms;
   cursor: pointer;
 }
 
@@ -322,22 +322,22 @@ body[data-color-scheme=dark] .balance__amount {
     width: 300px;
   }
 }
-.btn--submit, .btn--delete, .btn--add, .btn--yes, .btn--search {
+.btn--submit, .btn--delete, .btn--add, .btn--yes, .btn--search, .btn--reset {
   background-color: var(--primary-income-color);
   color: var(--primary-background-color);
 }
-body[data-color-scheme=dark] .btn--submit, body[data-color-scheme=dark] .btn--delete, body[data-color-scheme=dark] .btn--add, body[data-color-scheme=dark] .btn--yes, body[data-color-scheme=dark] .btn--search {
+body[data-color-scheme=dark] .btn--submit, body[data-color-scheme=dark] .btn--delete, body[data-color-scheme=dark] .btn--add, body[data-color-scheme=dark] .btn--yes, body[data-color-scheme=dark] .btn--search, body[data-color-scheme=dark] .btn--reset {
   background-color: var(--btn-submit-hover);
 }
 @media (hover: hover) {
-  body[data-color-scheme=dark] .btn--submit:hover, body[data-color-scheme=dark] .btn--submit:focus, body[data-color-scheme=dark] .btn--delete:hover, body[data-color-scheme=dark] .btn--delete:focus, body[data-color-scheme=dark] .btn--add:hover, body[data-color-scheme=dark] .btn--add:focus, body[data-color-scheme=dark] .btn--yes:hover, body[data-color-scheme=dark] .btn--yes:focus, body[data-color-scheme=dark] .btn--search:hover, body[data-color-scheme=dark] .btn--search:focus {
+  body[data-color-scheme=dark] .btn--submit:hover, body[data-color-scheme=dark] .btn--submit:focus, body[data-color-scheme=dark] .btn--delete:hover, body[data-color-scheme=dark] .btn--delete:focus, body[data-color-scheme=dark] .btn--add:hover, body[data-color-scheme=dark] .btn--add:focus, body[data-color-scheme=dark] .btn--yes:hover, body[data-color-scheme=dark] .btn--yes:focus, body[data-color-scheme=dark] .btn--search:hover, body[data-color-scheme=dark] .btn--search:focus, body[data-color-scheme=dark] .btn--reset:hover, body[data-color-scheme=dark] .btn--reset:focus {
     background-color: var(--btn-submit-dark-hover);
   }
 }
-.btn--submit:hover, .btn--submit:focus, .btn--delete:hover, .btn--delete:focus, .btn--add:hover, .btn--add:focus, .btn--yes:hover, .btn--yes:focus, .btn--search:hover, .btn--search:focus {
+.btn--submit:hover, .btn--submit:focus, .btn--delete:hover, .btn--delete:focus, .btn--add:hover, .btn--add:focus, .btn--yes:hover, .btn--yes:focus, .btn--search:hover, .btn--search:focus, .btn--reset:hover, .btn--reset:focus {
   background-color: var(--btn-submit-hover);
 }
-.btn--delete {
+.btn--delete, .btn--reset {
   text-transform: none;
   font-size: 12px;
   line-height: 21px;
@@ -345,8 +345,20 @@ body[data-color-scheme=dark] .btn--submit, body[data-color-scheme=dark] .btn--de
   width: 67px;
   height: 26px;
 }
-body[data-color-scheme=dark] .btn--delete {
+body[data-color-scheme=dark] .btn--delete, body[data-color-scheme=dark] .btn--reset {
   color: var(--secondary-gray-font-color);
+}
+.btn--reset {
+  position: fixed;
+  bottom: 71px;
+  left: 9px;
+}
+@media screen and (min-width: 768px) {
+  .btn--reset {
+    position: absolute;
+    bottom: 27px;
+    left: 70px;
+  }
 }
 .btn--cancel, .btn--no {
   outline: 1px solid var(--household-products-diagram-color);
@@ -438,7 +450,7 @@ body[data-color-scheme=dark] .btn--today {
 }
 .btn--edit:hover::before {
   transform-origin: center;
-  transition: 300ms;
+  transition: 250ms;
   background-color: var(--household-products-diagram-color);
 }
 body[data-color-scheme=dark] .btn--edit:hover::before {
@@ -455,7 +467,7 @@ body[data-color-scheme=dark] .btn--edit:hover::before {
   text-transform: none;
 }
 body[data-color-scheme=dark] .btn--edit-mobile {
-  color: var(--primary-gray-font-color);
+  color: var(--primary-background-color);
 }
 .btn--edit::before, .btn--edit-mobile::before {
   content: "";
@@ -466,7 +478,7 @@ body[data-color-scheme=dark] .btn--edit-mobile {
   background-color: var(--primary-dark-background-color);
 }
 body[data-color-scheme=dark] .btn--edit::before, body[data-color-scheme=dark] .btn--edit-mobile::before {
-  background-color: var(--primary-gray-font-color);
+  background-color: var(--primary-background-color);
 }
 .btn--close {
   display: flex;
@@ -1694,12 +1706,12 @@ body[data-color-scheme=dark] .logo__title {
   z-index: 3;
   pointer-events: none;
   opacity: 0;
-  transition: 300ms;
+  transition: 250ms;
 }
 .modal__backdrop--visible {
   pointer-events: all;
   opacity: 1;
-  transition: 300ms;
+  transition: 250ms;
   background-color: var(--backdrop-background-color);
   -webkit-backdrop-filter: blur(25px);
           backdrop-filter: blur(25px);
@@ -1854,7 +1866,8 @@ body[data-color-scheme=dark] .nav__logo--active {
   display: flex;
   justify-content: space-between;
   padding: 0;
-  margin-block: 20px;
+  margin-top: 20px;
+  margin-bottom: 55px;
   gap: 10px;
 }
 .pagination__link, .pagination__link--outermost {
@@ -1863,14 +1876,14 @@ body[data-color-scheme=dark] .nav__logo--active {
   border-radius: 50px;
   color: var(--primary-font-color);
   text-decoration: none;
-  transition: 300ms;
+  transition: 250ms;
 }
 @media (hover: hover) {
   .pagination__link:hover, .pagination__link:focus, .pagination__link--outermost:hover, .pagination__link--outermost:focus {
     color: var(--primary-background-color);
     background-color: var(--btn-submit-hover);
     outline: none;
-    transition: 300ms;
+    transition: 250ms;
   }
   body[data-color-scheme=dark] .pagination__link:hover, body[data-color-scheme=dark] .pagination__link:focus, body[data-color-scheme=dark] .pagination__link--outermost:hover, body[data-color-scheme=dark] .pagination__link--outermost:focus {
     background-color: var(--btn-submit-dark-hover);
@@ -1919,6 +1932,7 @@ body[data-color-scheme=dark] .pagination__link a--disabled a {
 @media screen and (min-width: 768px) {
   .pagination {
     justify-content: center;
+    margin-bottom: 20px;
   }
   .pagination__link--outermost {
     display: none;
@@ -1997,7 +2011,7 @@ body[data-color-scheme=dark] .background__ellipse--bottom {
   left: 0;
   right: 0;
   top: 0;
-  transition: 300ms;
+  transition: 250ms;
 }
 body[data-color-scheme=dark] .transactionType-switch__slider {
   border: 1px solid var(--primary-gray-font-color);
@@ -2017,7 +2031,7 @@ body[data-color-scheme=dark] .transactionType-switch__slider {
   background-color: var(--primary-income-color);
   box-shadow: 0px 3px 20px 0px rgba(36, 204, 167, 0.5);
   transform: translateX(-1px);
-  transition: 300ms;
+  transition: 250ms;
 }
 body[data-color-scheme=dark] .transactionType-switch__slider:before {
   background-color: var(--btn-submit-hover);
@@ -2061,7 +2075,7 @@ body[data-color-scheme=dark] .transactionType-switch__input:checked + .transacti
   left: 0;
   right: 0;
   top: 0;
-  transition: 300ms;
+  transition: 250ms;
 }
 body[data-color-scheme=dark] .colorScheme-switch__slider {
   border: 1px solid rgb(67, 67, 67);
@@ -2078,7 +2092,7 @@ body[data-color-scheme=dark] .colorScheme-switch__slider {
   background-color: var(--primary-font-color);
   box-shadow: 0 0 15px rgba(36, 198, 204, 0.6);
   transform: translateX(-2px);
-  transition: 300ms;
+  transition: 250ms;
 }
 .colorScheme-switch__input:checked + .colorScheme-switch__slider:before {
   content: "☀️";
@@ -2101,7 +2115,7 @@ body[data-color-scheme=dark] .colorScheme-switch__slider {
     left: 0;
     right: 0;
     top: 0;
-    transition: 300ms;
+    transition: 250ms;
   }
   body[data-color-scheme=dark] .colorScheme-switch__slider {
     border: 1px solid rgb(67, 67, 67);

@@ -194,6 +194,5 @@ export const filterQueryTransactions = (transactions, values) => {
       transaction.comment.toLowerCase().includes(values.comment.toLowerCase())
     );
   }
-  console.log(filteredTransactions);
   return filteredTransactions;
 };

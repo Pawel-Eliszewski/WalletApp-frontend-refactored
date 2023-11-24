@@ -17,6 +17,13 @@
   left: 0;
   animation: zast 2s linear;
   z-index: 999999999;
+  opacity: 1;
+  transition: opacity 5s ease;
+}
+
+.s.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 @keyframes zast {

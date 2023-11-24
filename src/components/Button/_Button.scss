@@ -28,7 +28,8 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
     &--delete,
     &--add,
     &--yes,
-    &--search {
+    &--search,
+    &--reset {
         background-color: var(--primary-income-color);
         color: var(--primary-background-color);
 
@@ -51,7 +52,8 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
         }
     }
 
-    &--delete {
+    &--delete,
+    &--reset {
         text-transform: none;
         font-size: 12px;
         line-height: 21px;
@@ -61,6 +63,18 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
 
         body[data-color-scheme='dark'] & {
             color: var(--secondary-gray-font-color);
+        }
+    }
+
+    &--reset {
+        position: fixed;
+        bottom: 71px;
+        left: 9px;
+
+        @media screen and (min-width: 768px) {
+            position: absolute;
+            bottom: 27px;
+            left: 70px;
         }
     }
 
@@ -173,7 +187,7 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
 
         &:hover::before {
             transform-origin: center;
-            transition: 300ms;
+            transition: 250ms;
             background-color: var(--household-products-diagram-color);
 
             body[data-color-scheme='dark'] & {
@@ -195,7 +209,7 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
         text-transform: none;
 
         body[data-color-scheme='dark'] & {
-            color: var(--primary-gray-font-color);
+            color: var(--primary-background-color);
         }
     }
 
@@ -210,7 +224,7 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
             background-color: var(--primary-dark-background-color);
 
             body[data-color-scheme='dark'] & {
-                background-color: var(--primary-gray-font-color);
+                background-color: var(--primary-background-color);
             }
         }
     }

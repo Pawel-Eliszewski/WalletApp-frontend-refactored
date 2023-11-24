@@ -9,12 +9,12 @@
         z-index: 3;
         pointer-events: none;
         opacity: 0;
-        transition: 300ms;
+        transition: 250ms;
 
         &--visible {
             pointer-events: all;
             opacity: 1;
-            transition: 300ms;
+            transition: 250ms;
             background-color: var(--backdrop-background-color);
             backdrop-filter: blur(25px);
             overflow: visible;

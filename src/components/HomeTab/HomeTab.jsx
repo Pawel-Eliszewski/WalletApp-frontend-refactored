@@ -1,24 +1,49 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMedia } from "react-use";
 import { useSelector, useDispatch } from "react-redux";
+import {
+  selectTransactionsFilters,
+  selectFilteredTransactions,
+  selectTransactions,
+} from "../../redux/finance/selectors";
 import { setIsModalOpen, setContext } from "../../redux/global/globalSlice";
-import { setTransactionId } from "../../redux/finance/financeSlice";
+import {
+  setFilteredTransactions,
+  setTransactionId,
+  setTransactionsFilters,
+} from "../../redux/finance/financeSlice";
 import { deleteTransaction } from "../../redux/finance/operations";
-import { selectTransactions } from "../../redux/finance/selectors";
 import { Button } from "../Button/Button";
 import { Pagination } from "../Pagination/Pagination";
 import { paginateTransactions } from "../../utils/paginationHandlers";
+import { filterQueryTransactions } from "../../utils/transactionsDataOperations";
 import { nanoid } from "nanoid";
 import { Loading } from "notiflix";
 import { IoIosSearch } from "react-icons/io";
 
 export const HomeTab = () => {
   const dispatch = useDispatch();
+
   const allTransactions = useSelector(selectTransactions);
+  const transactionsFilters = useSelector(selectTransactionsFilters);
+  const filteredTransactions = useSelector(selectFilteredTransactions);
   const isMobile = useMedia("(max-width: 767px)");
   const [itemOffset, setItemOffset] = useState(0);
 
-  let paginationData = paginateTransactions(allTransactions, itemOffset);
+  useEffect(() => {
+    if (transactionsFilters !== null) {
+      dispatch(
+        setFilteredTransactions(
+          filterQueryTransactions(allTransactions, transactionsFilters)
+        )
+      );
+    }
+  }, [allTransactions, transactionsFilters, dispatch]);
+
+  const transactionsToShow =
+    filteredTransactions !== null ? filteredTransactions : allTransactions;
+
+  let paginationData = paginateTransactions(transactionsToShow, itemOffset);
   let transactions = paginationData.paginatedTransactions;
   let pageCount = paginationData.pages;
 
@@ -51,9 +76,16 @@ export const HomeTab = () => {
       dispatch(deleteTransaction(transactionId));
       Loading.remove(600);
     } catch (error) {
-      console.error(error);
       Loading.remove(600);
+      console.error(error);
     }
+  };
+
+  const handleTransactionFiltersReset = () => {
+    Loading.hourglass();
+    dispatch(setTransactionsFilters(null));
+    dispatch(setFilteredTransactions(null));
+    Loading.remove(600);
   };
 
   return (
@@ -190,8 +222,17 @@ export const HomeTab = () => {
         type="button"
         onClick={openModalSearch}
       />
+      {transactionsFilters && (
+        <Button
+          ariaLabel="reset all transactions filters"
+          title="Reset"
+          styles="--reset"
+          type="button"
+          onClick={handleTransactionFiltersReset}
+        />
+      )}
       <Button
-        ariaLabel="open modal to add transaction "
+        ariaLabel="open modal to add transaction"
         icon="+"
         styles="--add"
         type="button"

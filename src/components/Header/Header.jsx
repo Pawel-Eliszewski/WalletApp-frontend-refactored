@@ -53,7 +53,7 @@ export const Header = () => {
       <div className="header__nav">
         <p className="header__nav-user">{user.firstname}</p>
         <Button
-          ariaLabel="log out from application"
+          ariaLabel="exit and log out from application"
           title={window.innerWidth >= 768 ? "Exit" : ""}
           styles="--logout"
           type="button"

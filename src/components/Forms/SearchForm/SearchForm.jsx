@@ -1,64 +1,65 @@
 import PropTypes from "prop-types";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useMedia } from "react-use";
-import { useSelector } from "react-redux";
-import { selectTransactions } from "../../../redux/finance/selectors";
+import { useSelector, useDispatch } from "react-redux";
+import { selectTransactionsFilters } from "../../../redux/finance/selectors";
+import {
+  setTransactionsFilters,
+  setFilteredTransactions,
+} from "../../../redux/finance/financeSlice";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Button } from "../../Button/Button";
 import { DropdownSelect } from "../../DropdownSelect/DropdownSelect";
+import { Calendar } from "../TransactionForm/Calendar/Calendar";
 import { expenseCategoryNames } from "../../../utils/transactionCategories";
 // import { transactionValidationSchema } from "../../../utils/yupValidationSchemas";
 import { Loading } from "notiflix";
-import { filterQueryTransactions } from "../../../utils/transactionsDataOperations";
-import { Calendar } from "../TransactionForm/Calendar/Calendar";
 /**
- * @param {{ isModalOpen: boolean, context: 'search',
- * onFormClear: () => void, onModalClose: () => void }} props
+ * @param {{ onModalClose: () => void }} props
  */
-export const SearchForm = ({ onFormClear, onModalClose }) => {
+export const SearchForm = ({ onModalClose }) => {
+  const dispatch = useDispatch();
+
+  const transactionsFilters = useSelector(selectTransactionsFilters);
   const isMobile = useMedia("(max-width: 767px)");
   const formikRef = useRef();
-  const allTransactions = useSelector(selectTransactions);
-
-  // useEffect(() => {
-  //   if (isModalOpen) {
-  //     formikRef.current?.resetForm();
-  //   }
-  // }, [isModalOpen]);
 
   const expenseCategoryNamesWithAll = [
     { label: "All categories", value: "all" },
     ...expenseCategoryNames,
   ];
 
-  const initialValues = {
-    type: "all",
-    categories: [],
-    minAmount: "",
-    maxAmount: "",
-    minDate: "",
-    maxDate: "",
-    comment: "",
-  };
+  const initialValues =
+    transactionsFilters === null
+      ? {
+          type: "all",
+          categories: [],
+          minAmount: "",
+          maxAmount: "",
+          minDate: "",
+          maxDate: "",
+          comment: "",
+        }
+      : transactionsFilters;
 
-  const handleSearchTransactions = async (values) => {
-    const filteredQueryTransactions = filterQueryTransactions(
-      allTransactions,
-      values
-    );
-    // try {
-    //   Loading.hourglass();
-    //   Loading.remove();
-    //   onModalClose();
-    // } catch (error) {
-    //   console.error(error);
-    //   Loading.remove();
-    //   onModalClose();
-    // }
+  const handleSearchTransactions = (values) => {
+    try {
+      Loading.hourglass();
+      dispatch(setTransactionsFilters(values));
+      Loading.remove(600);
+      onModalClose();
+    } catch (error) {
+      dispatch(setTransactionsFilters(null));
+      onModalClose();
+      Loading.remove();
+      console.error(error);
+    }
   };
 
   const handleSearchFormClear = () => {
     formikRef.current.resetForm();
+    dispatch(setTransactionsFilters(null));
+    dispatch(setFilteredTransactions(null));
   };
 
   return (
@@ -87,7 +88,7 @@ export const SearchForm = ({ onFormClear, onModalClose }) => {
               </label>
             </div>
             {values.type === "all" || values.type === "expense" ? (
-              <div className="transaction-form__react-select react-select">
+              <div className="search-form__react-select react-select">
                 <div className="search-form__div">
                   <DropdownSelect
                     name="categories"
@@ -263,6 +264,5 @@ export const SearchForm = ({ onFormClear, onModalClose }) => {
 };
 
 SearchForm.propTypes = {
-  onFormClear: PropTypes.func.isRequired,
   onModalClose: PropTypes.func.isRequired,
 };

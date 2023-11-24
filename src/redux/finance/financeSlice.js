@@ -9,7 +9,9 @@ import { register, login, logout, refreshUser } from "../session/operations";
 
 const initialState = {
   totalBalance: 0,
-  data: null,
+  transactions: null,
+  transactionsFilters: null,
+  filteredTransactions: null,
   transactionId: null,
   error: null,
 };
@@ -25,6 +27,12 @@ const financeSlice = createSlice({
   initialState,
 
   reducers: {
+    setTransactionsFilters(state, action) {
+      state.transactionsFilters = action.payload;
+    },
+    setFilteredTransactions(state, action) {
+      state.filteredTransactions = action.payload;
+    },
     setTransactionId(state, action) {
       state.transactionId = action.payload;
     },
@@ -33,28 +41,28 @@ const financeSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchTransactions.fulfilled, (state, action) => {
-        state.data = action.payload.data;
+        state.transactions = action.payload.data;
         state.error = null;
       })
       .addCase(fetchTransactions.rejected, handleRejected)
       .addCase(addTransaction.fulfilled, (state, action) => {
-        state.data.push(action.payload.data);
+        state.transactions.push(action.payload.data);
         state.error = null;
       })
       .addCase(addTransaction.rejected, handleRejected)
       .addCase(deleteTransaction.fulfilled, (state, action) => {
-        const index = state.data.findIndex(
+        const index = state.transactions.findIndex(
           (transaction) => transaction._id === action.payload.data._id
         );
-        state.data.splice(index, 1);
+        state.transactions.splice(index, 1);
         state.error = null;
       })
       .addCase(deleteTransaction.rejected, handleRejected)
       .addCase(updateTransaction.fulfilled, (state, action) => {
-        const index = state.data.findIndex(
+        const index = state.transactions.findIndex(
           (transaction) => transaction._id === action.payload.data._id
         );
-        state.data.splice(index, 1, action.payload.data);
+        state.transactions.splice(index, 1, action.payload.data);
         state.error = null;
       })
       .addCase(updateTransaction.rejected, handleRejected)
@@ -75,5 +83,9 @@ const financeSlice = createSlice({
   },
 });
 
-export const { setTransactionId } = financeSlice.actions;
+export const {
+  setTransactionsFilters,
+  setFilteredTransactions,
+  setTransactionId,
+} = financeSlice.actions;
 export const financeReducer = financeSlice.reducer;
