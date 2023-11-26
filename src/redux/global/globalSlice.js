@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  //   isLoading: false,
+  isLoading: false,
+  colorScheme: null,
   isModalOpen: false,
   context: null,
 };
@@ -12,25 +13,22 @@ const globalSlice = createSlice({
   initialState,
 
   reducers: {
-    // setIsLoading(state, action) {
-    //   state.isLoading = action.payload;
-    // },
+    setIsLoading(state, action) {
+      state.isLoading = action.payload;
+    },
+    setColorScheme(state, action) {
+      state.colorScheme = action.payload;
+    },
     setIsModalOpen(state, action) {
       state.isModalOpen = action.payload;
     },
     setContext(state, action) {
       state.context = action.payload;
     },
-    // setTransactionId(state, action) {
-    //   state.transactionId = action.payload;
-    // },
   },
 });
 
-export const {
-  //   setIsLoading,
-  setIsModalOpen,
-  setContext,
-} = globalSlice.actions;
+export const { setIsLoading, setColorScheme, setIsModalOpen, setContext } =
+  globalSlice.actions;
 
 export const globalReducer = globalSlice.reducer;

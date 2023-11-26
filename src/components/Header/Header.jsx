@@ -1,7 +1,11 @@
-import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../redux/session/selectors";
-import { setIsModalOpen, setContext } from "../../redux/global/globalSlice";
+import { selectColorScheme } from "../../redux/global/selectors";
+import {
+  setColorScheme,
+  setIsModalOpen,
+  setContext,
+} from "../../redux/global/globalSlice";
 import { Logo } from "../Logo/Logo";
 import { Switch } from "../Switch/Switch";
 import { Button } from "../Button/Button";
@@ -9,29 +13,20 @@ import { configureNotiflixStyles } from "../../utils/notiflixStyles";
 
 export const Header = () => {
   const dispatch = useDispatch();
+
   const user = useSelector(selectUser);
-  const [colorScheme, setColorScheme] = useState("light");
+  const colorScheme = useSelector(selectColorScheme);
 
-  useEffect(() => {
-    const storedColorScheme = localStorage.getItem("colorScheme");
-    if (storedColorScheme) {
-      setColorScheme(storedColorScheme);
-    }
-  }, []);
-
-  const handleChange = () => {
-    const body = document.body;
-    const currentColorScheme = body.getAttribute("data-color-scheme");
-
-    if (currentColorScheme === "dark") {
-      body.setAttribute("data-color-scheme", "light");
+  const handleColorSchemeChange = () => {
+    if (colorScheme === "dark") {
+      document.body.setAttribute("data-color-scheme", "light");
       localStorage.setItem("colorScheme", "light");
-      setColorScheme("light");
+      dispatch(setColorScheme("light"));
       configureNotiflixStyles("light");
     } else {
-      body.setAttribute("data-color-scheme", "dark");
+      document.body.setAttribute("data-color-scheme", "dark");
       localStorage.setItem("colorScheme", "dark");
-      setColorScheme("dark");
+      dispatch(setColorScheme("dark"));
       configureNotiflixStyles("dark");
     }
   };
@@ -48,7 +43,7 @@ export const Header = () => {
       <Switch
         context="colorScheme"
         checked={colorScheme === "light"}
-        onChange={handleChange}
+        onChange={handleColorSchemeChange}
       />
       <div className="header__nav">
         <p className="header__nav-user">{user.firstname}</p>

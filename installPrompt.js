@@ -9,5 +9,7 @@ window.addEventListener("beforeinstallprompt", (event) => {
 });
 
 function showInstallPrompt() {
-  alert("You can install this application on your device");
+  alert(
+    "You can install this application on your device. It is recommended for ultimate user experience"
+  );
 }

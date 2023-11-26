@@ -3,11 +3,9 @@ import { useEffect, useState, Suspense, lazy } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useMedia } from "react-use";
-import {
-  selectIsLoading,
-  selectUser,
-  selectIsAuth,
-} from "../redux/session/selectors";
+import { selectColorScheme, selectIsLoading } from "../redux/global/selectors";
+import { selectUser, selectIsAuth } from "../redux/session/selectors";
+import { setColorScheme } from "../redux/global/globalSlice";
 import { selectTransactions } from "../redux/finance/selectors";
 import { fetchTransactions } from "../redux/finance/operations";
 import { refreshUser } from "../redux/session/operations";
@@ -29,6 +27,7 @@ export default function App() {
   const dispatch = useDispatch();
 
   const isLoading = useSelector(selectIsLoading);
+  const colorScheme = useSelector(selectColorScheme);
   const user = useSelector(selectUser);
   const isAuth = useSelector(selectIsAuth);
   const allTransactions = useSelector(selectTransactions);
@@ -46,19 +45,21 @@ export default function App() {
   }, [isLoading]);
 
   useEffect(() => {
-    const storedColorScheme = window.localStorage.getItem("colorScheme");
+    const storedColorScheme = localStorage.getItem("colorScheme");
     if (storedColorScheme) {
       document.body.setAttribute("data-color-scheme", storedColorScheme);
+      dispatch(setColorScheme(storedColorScheme));
     } else {
       const prefersDarkMode = window.matchMedia(
         "(prefers-color-scheme: dark)"
       ).matches;
       const initialColorScheme = prefersDarkMode ? "dark" : "light";
       document.body.setAttribute("data-color-scheme", initialColorScheme);
-      window.localStorage.setItem("colorScheme", initialColorScheme);
+      localStorage.setItem("colorScheme", initialColorScheme);
+      dispatch(setColorScheme(initialColorScheme));
     }
-    configureNotiflixStyles(storedColorScheme);
-  }, []);
+    configureNotiflixStyles(colorScheme);
+  }, [colorScheme, dispatch]);
 
   useEffect(() => {
     if (isAuth && user && allTransactions === null) {
