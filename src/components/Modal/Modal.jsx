@@ -18,6 +18,7 @@ export const Modal = () => {
       if (e.key === "Escape") {
         dispatch(setIsModalOpen(false));
         dispatch(setContext(null));
+        document.body.classList.remove("modal-open");
       }
     };
     document.addEventListener("keydown", handleKeyDown);
@@ -42,6 +43,7 @@ export const Modal = () => {
     dispatch(logout());
     dispatch(setIsModalOpen(false));
     dispatch(setContext(null));
+    document.body.classList.remove("modal-open");
   };
 
   const handleModalClose = () => {

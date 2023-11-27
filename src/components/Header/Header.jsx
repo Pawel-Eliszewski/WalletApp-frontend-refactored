@@ -31,7 +31,7 @@ export const Header = () => {
     }
   };
 
-  const handleLogout = () => {
+  const openModalLogout = () => {
     dispatch(setContext("logout"));
     dispatch(setIsModalOpen(true));
     document.body.classList.add("modal-open");
@@ -52,7 +52,7 @@ export const Header = () => {
           title={window.innerWidth >= 768 ? "Exit" : ""}
           styles="--logout"
           type="button"
-          onClick={handleLogout}
+          onClick={openModalLogout}
         />
       </div>
     </div>
