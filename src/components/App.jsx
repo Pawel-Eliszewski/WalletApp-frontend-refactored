@@ -1,9 +1,9 @@
 import "../../installPrompt";
-import { useEffect, useState, Suspense, lazy } from "react";
+import { useEffect, Suspense, lazy } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { useMedia } from "react-use";
 import { useDispatch, useSelector } from "react-redux";
-import { selectColorScheme, selectIsLoading } from "../redux/global/selectors";
+import { selectColorScheme } from "../redux/global/selectors";
 import { selectUser, selectIsAuth } from "../redux/session/selectors";
 import { setColorScheme } from "../redux/global/globalSlice";
 import { selectTransactions } from "../redux/finance/selectors";
@@ -26,23 +26,11 @@ const DashboardPage = lazy(() =>
 export default function App() {
   const dispatch = useDispatch();
 
-  const isLoading = useSelector(selectIsLoading);
   const colorScheme = useSelector(selectColorScheme);
   const user = useSelector(selectUser);
   const isAuth = useSelector(selectIsAuth);
   const allTransactions = useSelector(selectTransactions);
   const isMobile = useMedia("(max-width: 767px)");
-  const [delayedLoading, setDelayedLoading] = useState(false);
-
-  useEffect(() => {
-    let timeout;
-    isLoading
-      ? setDelayedLoading(true)
-      : (timeout = setTimeout(() => {
-          setDelayedLoading(false);
-        }, 500));
-    return () => clearTimeout(timeout);
-  }, [isLoading]);
 
   useEffect(() => {
     const storedColorScheme = localStorage.getItem("colorScheme");
@@ -74,10 +62,9 @@ export default function App() {
     refresh();
   }, [dispatch]);
 
-  return delayedLoading ? (
-    <Loader />
-  ) : (
-    <Suspense fallback={null}>
+  return (
+    <Suspense fallback={<Loader />}>
+      <Loader />
       <Routes>
         <Route
           path="/register"
