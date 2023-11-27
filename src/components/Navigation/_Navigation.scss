@@ -5,10 +5,10 @@
 	margin-bottom: 20px;
 
 	&__item {
+		display: flex;
 		cursor: pointer;
 		height: fit-content;
 		color: var(--primary-font-color);
-		padding-inline: 5px;
 	}
 
 	&__logo {
@@ -47,6 +47,7 @@
 			display: flex;
 			align-items: center;
 			transition: 100ms;
+			padding-inline: 5px;
 
 			&:hover .nav__description,
 			&:focus .nav__description {
