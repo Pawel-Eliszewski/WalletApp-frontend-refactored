@@ -63,6 +63,8 @@ export const SearchForm = ({ onModalClose }) => {
     formikRef.current.resetForm();
     dispatch(setTransactionsFilters(null));
     dispatch(setFilteredTransactions(null));
+    const clearButton = document.querySelector(".btn.btn--cancel");
+    clearButton.blur();
   };
 
   return (
