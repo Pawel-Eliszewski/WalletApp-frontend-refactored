@@ -77,6 +77,11 @@ body[data-color-scheme=dark] textarea {
   color: var(--primary-background-color) !important;
 }
 
+.notiflix-report-overlay {
+  -webkit-backdrop-filter: blur(25px);
+          backdrop-filter: blur(25px);
+}
+
 :root {
   --primary-font-color: #000000;
   --primary-gray-font-color: #bdbdbd;
@@ -336,6 +341,7 @@ body[data-color-scheme=dark] .btn--submit, body[data-color-scheme=dark] .btn--de
 }
 .btn--submit:active, .btn--delete:active, .btn--add:active, .btn--yes:active, .btn--search:active, .btn--reset:active {
   background-color: var(--btn-submit-hover);
+  transition: none;
 }
 body[data-color-scheme=dark] .btn--submit:active, body[data-color-scheme=dark] .btn--delete:active, body[data-color-scheme=dark] .btn--add:active, body[data-color-scheme=dark] .btn--yes:active, body[data-color-scheme=dark] .btn--search:active, body[data-color-scheme=dark] .btn--reset:active {
   background-color: var(--btn-submit-dark-hover);
@@ -387,6 +393,7 @@ body[data-color-scheme=dark] .btn--cancel, body[data-color-scheme=dark] .btn--no
 .btn--cancel:active, .btn--no:active {
   outline: 1px solid var(--primary-font-color);
   color: var(--primary-font-color);
+  transition: none;
 }
 body[data-color-scheme=dark] .btn--cancel:active, body[data-color-scheme=dark] .btn--no:active {
   outline: 1px solid var(--ellipse-bottom-dark-color);

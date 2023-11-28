@@ -7,6 +7,10 @@ export const configureNotiflixStyles = (colorScheme) => {
   let notifyFailureIconColor = "#a90237";
   let notifyInfoBackground = "#6e78e8";
   let notifyInfoIconColor = "#c5c9ff";
+  let reportFailureBackground = "#f8f8f8";
+  let reportFailureSvgColor = "#ff6596";
+  let reportFailureButtonColor = "#ffffff";
+  let reportFontColor = "#1e1e1e";
 
   if (colorScheme === "dark") {
     notifySuccessBackground = "#1f7e56";
@@ -15,6 +19,10 @@ export const configureNotiflixStyles = (colorScheme) => {
     notifyFailureIconColor = "#ff6596";
     notifyInfoBackground = "#404b9d";
     notifyInfoIconColor = "#c5c9ff";
+    reportFailureBackground = "#202020";
+    reportFailureSvgColor = "#85324d";
+    reportFailureButtonColor = "#bdbdbd";
+    reportFontColor = "#bdbdbd";
   }
 
   Notify.init({
@@ -59,12 +67,11 @@ export const configureNotiflixStyles = (colorScheme) => {
   Report.init({
     className: "notiflix-report",
     width: "320px",
-    backgroundColor: "#f8f8f8",
     borderRadius: "25px",
     rtl: false,
     zindex: 4002,
+    backgroundColor: reportFailureBackground,
     backOverlay: true,
-    backOverlayColor: "rgba(0,0,0,0.5)",
     backOverlayClickToClose: true,
     fontFamily: "Quicksand",
     svgSize: "110px",
@@ -79,12 +86,12 @@ export const configureNotiflixStyles = (colorScheme) => {
     cssAnimationDuration: 360,
     cssAnimationStyle: "fade",
     failure: {
-      svgColor: "#ff6596",
-      titleColor: "#1e1e1e",
-      messageColor: "#242424",
-      buttonBackground: "#ff6596",
-      buttonColor: "#fff",
-      backOverlayColor: `${colorScheme === "dark" ? "#00000090" : "#00000050"}`,
+      svgColor: reportFailureSvgColor,
+      titleColor: reportFontColor,
+      messageColor: reportFontColor,
+      buttonBackground: reportFailureSvgColor,
+      buttonColor: reportFailureButtonColor,
+      backOverlayColor: "#000000b0",
     },
   });
 };

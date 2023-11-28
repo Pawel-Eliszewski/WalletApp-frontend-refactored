@@ -55,6 +55,7 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
 
         &:active {
             background-color: var(--btn-submit-hover);
+            transition: none;
 
             body[data-color-scheme='dark'] & {
                 background-color: var(--btn-submit-dark-hover);
@@ -120,6 +121,7 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
         &:active {
             outline: 1px solid var(--primary-font-color);
             color: var(--primary-font-color);
+            transition: none;
 
             body[data-color-scheme='dark'] & {
                 outline: 1px solid var(--ellipse-bottom-dark-color);
