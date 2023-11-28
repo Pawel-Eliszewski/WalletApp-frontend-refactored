@@ -12,8 +12,8 @@ import { Button } from "../../Button/Button";
 import { DropdownSelect } from "../../DropdownSelect/DropdownSelect";
 import { Calendar } from "../TransactionForm/Calendar/Calendar";
 import { expenseCategoryNames } from "../../../utils/transactionCategories";
-// import { transactionValidationSchema } from "../../../utils/yupValidationSchemas";
-import { Loading } from "notiflix";
+import { transactionsFiltersValidationSchema } from "../../../utils/yupValidationSchemas";
+import { Loading, Notify } from "notiflix";
 /**
  * @param {{ onModalClose: () => void }} props
  */
@@ -43,17 +43,20 @@ export const SearchForm = ({ onModalClose }) => {
       : transactionsFilters;
 
   const handleSearchTransactions = (values) => {
-    try {
-      Loading.hourglass();
-      dispatch(setTransactionsFilters(values));
-      Loading.remove(600);
-      onModalClose();
-    } catch (error) {
-      dispatch(setTransactionsFilters(null));
-      onModalClose();
-      Loading.remove();
-      console.error(error);
-    }
+    if (values === initialValues) {
+      return Notify.info("Please select at least 1 filter");
+    } else
+      try {
+        Loading.hourglass();
+        dispatch(setTransactionsFilters(values));
+        Loading.remove(600);
+        onModalClose();
+      } catch (error) {
+        dispatch(setTransactionsFilters(null));
+        onModalClose();
+        Loading.remove();
+        console.error(error);
+      }
   };
 
   const handleSearchFormClear = () => {
@@ -67,9 +70,9 @@ export const SearchForm = ({ onModalClose }) => {
       <Formik
         innerRef={formikRef}
         initialValues={initialValues}
-        // validationSchema={transactionValidationSchema}
+        validationSchema={transactionsFiltersValidationSchema}
         onSubmit={handleSearchTransactions}
-        // enableReinitialize={true}
+        enableReinitialize={true}
       >
         {({ errors, touched, values, setFieldValue }) => (
           <Form className="search-form__wrapper">
@@ -120,7 +123,7 @@ export const SearchForm = ({ onModalClose }) => {
                     }}
                   />
                   {touched.categories && errors.categories && (
-                    <div className="transaction-form__alert transaction-form__alert--category">
+                    <div className="search-form__alert search-form__alert--category">
                       {errors.categories}
                     </div>
                   )}
@@ -149,9 +152,9 @@ export const SearchForm = ({ onModalClose }) => {
                 autoComplete="off"
               />
               <ErrorMessage
-                name="amount"
+                name="minAmount"
                 component="div"
-                className="transaction-form__alert transaction-form__alert--amount"
+                className="search-form__alert search-form__alert--amount"
               />
             </div>
             <div className="search-form__inputs">
@@ -176,9 +179,9 @@ export const SearchForm = ({ onModalClose }) => {
                 autoComplete="off"
               />
               <ErrorMessage
-                name="amount"
+                name="maxAmount"
                 component="div"
-                className="transaction-form__alert transaction-form__alert--amount"
+                className="search-form__alert search-form__alert--amount"
               />
             </div>
             <div className="search-form__inputs">
@@ -250,7 +253,7 @@ export const SearchForm = ({ onModalClose }) => {
               type="submit"
             />
             <Button
-              ariaLabel="clear filters"
+              ariaLabel="clear transactions filters"
               title="Clear"
               styles="--cancel"
               type="button"

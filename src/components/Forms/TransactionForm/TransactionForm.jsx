@@ -65,7 +65,7 @@ export const TransactionForm = ({ onModalClose }) => {
       category: values.type === "income" ? "Income" : values.category.value,
       amount: parseFloat(values.amount),
       date: values.date,
-      comment: values.comment,
+      comment: values.comment.trim(),
       owner: user.id,
     };
     try {
@@ -90,7 +90,7 @@ export const TransactionForm = ({ onModalClose }) => {
           : values.category.value,
       amount: parseFloat(values.amount),
       date: values.date,
-      comment: values.comment,
+      comment: values.comment.trim(),
       owner: selectedTransaction.owner,
     };
     try {

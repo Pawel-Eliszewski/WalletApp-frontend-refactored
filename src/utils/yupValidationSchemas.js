@@ -50,3 +50,27 @@ export const transactionValidationSchema = object().shape({
     }),
   comment: string().max(34, "Comment must be less than 34 characters"),
 });
+
+export const transactionsFiltersValidationSchema = object().shape({
+  minAmount: number().test(
+    "minAmount",
+    "Min must be less than or equal to Max",
+    function (value) {
+      const { maxAmount } = this.parent;
+      return (
+        value === undefined || maxAmount === undefined || value <= maxAmount
+      );
+    }
+  ),
+
+  maxAmount: number().test(
+    "maxAmount",
+    "Max must be greater than or equal to Min",
+    function (value) {
+      const { minAmount } = this.parent;
+      return (
+        value === undefined || minAmount === undefined || value >= minAmount
+      );
+    }
+  ),
+});

@@ -2377,6 +2377,7 @@ body[data-color-scheme=dark] .search-form {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 .search-form__label {
   width: 120px;
@@ -2405,6 +2406,19 @@ body[data-color-scheme=dark] .search-form {
 }
 body[data-color-scheme=dark] .search-form__amount:focus, body[data-color-scheme=dark] .search-form__comment:focus {
   border-bottom: 1px solid var(--primary-background-color);
+}
+.search-form__alert {
+  position: absolute;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: var(--primary-expense-color);
+  max-width: 100%;
+}
+.search-form__alert--amount {
+  top: 30px;
+  right: 0px;
 }
 
 .loader__container {

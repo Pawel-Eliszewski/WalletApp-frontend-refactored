@@ -33,6 +33,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        position: relative;
     }
 
     &__label {
@@ -49,7 +50,6 @@
 
     &__comment {
         text-align: center;
-        // padding-left: 10px;
     }
 
     &__amount,
@@ -70,6 +70,21 @@
 
         body[data-color-scheme='dark'] & {
             border-bottom: 1px solid var(--primary-background-color);
+        }
+    }
+
+    &__alert {
+        position: absolute;
+        font-size: 14px;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        color: var(--primary-expense-color);
+        max-width: 100%;
+
+        &--amount {
+            top: 30px;
+            right: 0px;
         }
     }
 }
