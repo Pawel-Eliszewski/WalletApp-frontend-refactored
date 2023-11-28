@@ -44,7 +44,7 @@ export const SearchForm = ({ onModalClose }) => {
 
   const handleSearchTransactions = (values) => {
     if (values === initialValues) {
-      return Notify.info("Please select at least 1 filter");
+      return Notify.info("Please use at least 1 filter");
     } else
       try {
         Loading.hourglass();
@@ -64,7 +64,7 @@ export const SearchForm = ({ onModalClose }) => {
     dispatch(setTransactionsFilters(null));
     dispatch(setFilteredTransactions(null));
     const clearButton = document.querySelector(".btn.btn--cancel");
-    clearButton.blur();
+    !isMobile && clearButton.blur();
   };
 
   return (

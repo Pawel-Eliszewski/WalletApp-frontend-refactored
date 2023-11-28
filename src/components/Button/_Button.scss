@@ -43,12 +43,22 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
                     background-color: var(--btn-submit-dark-hover);
                 }
             }
-
         }
 
-        &:hover,
-        &:focus {
+        @media (hover: hover) {
+
+            &:hover,
+            &:focus {
+                background-color: var(--btn-submit-hover);
+            }
+        }
+
+        &:active {
             background-color: var(--btn-submit-hover);
+
+            body[data-color-scheme='dark'] & {
+                background-color: var(--btn-submit-dark-hover);
+            }
         }
     }
 
@@ -96,7 +106,6 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
                     color: var(--ellipse-bottom-dark-color);
                 }
             }
-
         }
 
         @media (hover: hover) {
@@ -105,6 +114,16 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
             &:focus {
                 outline: 1px solid var(--primary-font-color);
                 color: var(--primary-font-color);
+            }
+        }
+
+        &:active {
+            outline: 1px solid var(--primary-font-color);
+            color: var(--primary-font-color);
+
+            body[data-color-scheme='dark'] & {
+                outline: 1px solid var(--ellipse-bottom-dark-color);
+                color: var(--ellipse-bottom-dark-color);
             }
         }
     }

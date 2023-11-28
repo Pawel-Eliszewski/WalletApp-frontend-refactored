@@ -49,11 +49,6 @@ button:hover {
   cursor: pointer;
 }
 
-button:focus {
-  border: none;
-  outline: none;
-}
-
 button:focus-visible,
 div:focus-visible,
 li:focus-visible,
@@ -334,8 +329,16 @@ body[data-color-scheme=dark] .btn--submit, body[data-color-scheme=dark] .btn--de
     background-color: var(--btn-submit-dark-hover);
   }
 }
-.btn--submit:hover, .btn--submit:focus, .btn--delete:hover, .btn--delete:focus, .btn--add:hover, .btn--add:focus, .btn--yes:hover, .btn--yes:focus, .btn--search:hover, .btn--search:focus, .btn--reset:hover, .btn--reset:focus {
+@media (hover: hover) {
+  .btn--submit:hover, .btn--submit:focus, .btn--delete:hover, .btn--delete:focus, .btn--add:hover, .btn--add:focus, .btn--yes:hover, .btn--yes:focus, .btn--search:hover, .btn--search:focus, .btn--reset:hover, .btn--reset:focus {
+    background-color: var(--btn-submit-hover);
+  }
+}
+.btn--submit:active, .btn--delete:active, .btn--add:active, .btn--yes:active, .btn--search:active, .btn--reset:active {
   background-color: var(--btn-submit-hover);
+}
+body[data-color-scheme=dark] .btn--submit:active, body[data-color-scheme=dark] .btn--delete:active, body[data-color-scheme=dark] .btn--add:active, body[data-color-scheme=dark] .btn--yes:active, body[data-color-scheme=dark] .btn--search:active, body[data-color-scheme=dark] .btn--reset:active {
+  background-color: var(--btn-submit-dark-hover);
 }
 .btn--delete, .btn--reset {
   text-transform: none;
@@ -380,6 +383,14 @@ body[data-color-scheme=dark] .btn--cancel, body[data-color-scheme=dark] .btn--no
     outline: 1px solid var(--primary-font-color);
     color: var(--primary-font-color);
   }
+}
+.btn--cancel:active, .btn--no:active {
+  outline: 1px solid var(--primary-font-color);
+  color: var(--primary-font-color);
+}
+body[data-color-scheme=dark] .btn--cancel:active, body[data-color-scheme=dark] .btn--no:active {
+  outline: 1px solid var(--ellipse-bottom-dark-color);
+  color: var(--ellipse-bottom-dark-color);
 }
 .btn--yes {
   width: 100px;
