@@ -21,8 +21,6 @@ import { nanoid } from "nanoid";
 import { Loading } from "notiflix";
 import { IoIosSearch } from "react-icons/io";
 
-import { Report } from "../../utils/notiflixStyles";
-
 export const HomeTab = () => {
   const dispatch = useDispatch();
 
@@ -33,15 +31,6 @@ export const HomeTab = () => {
   const [itemOffset, setItemOffset] = useState(0);
 
   useEffect(() => {
-    Report.failure(
-      "Failure, please log in again",
-      "Your session has expired, or you have logged in on another device.",
-      "Log in",
-      () => {
-        window.location.reload();
-      }
-    );
-
     if (transactionsFilters !== null) {
       dispatch(
         setFilteredTransactions(
