@@ -102,13 +102,13 @@
       white-space: pre-line;
     }
 
-    &-sum[data-type="income"] {
+    &-amount[data-type="income"] {
       color: var(--primary-income-color);
       text-align: end;
       font-weight: 700;
     }
 
-    &-sum[data-type="expense"] {
+    &-amount[data-type="expense"] {
       color: var(--primary-expense-color);
       text-align: end;
       font-weight: 700;
@@ -214,10 +214,10 @@
         }
 
         &--comment {
-          margin-right: 140px;
+          margin-right: 120px;
         }
 
-        &--sum {
+        &--amount {
           margin-right: 45px;
         }
 
@@ -302,7 +302,7 @@
           white-space: pre-line;
         }
 
-        &--sum[data-type="income"] {
+        &--amount[data-type="income"] {
           color: var(--primary-income-color);
           text-align: end;
           font-weight: 700;
@@ -313,7 +313,7 @@
           }
         }
 
-        &--sum[data-type="expense"] {
+        &--amount[data-type="expense"] {
           color: var(--primary-expense-color);
           text-align: end;
           font-weight: 700;

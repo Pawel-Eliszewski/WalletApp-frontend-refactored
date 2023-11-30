@@ -901,7 +901,7 @@ body[data-color-scheme=dark] .currency__head {
   flex-direction: column;
   width: 100%;
   max-width: 380px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 .statistics__title {
   font-size: 30px;
@@ -914,10 +914,22 @@ body[data-color-scheme=dark] .currency__head {
 body[data-color-scheme=dark] .statistics__title {
   color: var(--primary-gray-font-color);
 }
+.statistics__data-range-wrapper {
+  border-radius: 30px;
+  background-color: var(--primary-background-color);
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 25px;
+}
+body[data-color-scheme=dark] .statistics__data-range-wrapper {
+  background-color: var(--primary-dark-background-color);
+  border: 1px solid var(--primary-dark-border-color);
+}
 .statistics__data-range {
   display: flex;
   justify-content: center;
-  margin-top: 25px;
 }
 body[data-color-scheme=dark] .statistics__data-range {
   color: var(--primary-gray-font-color);
@@ -996,13 +1008,31 @@ body[data-color-scheme=dark] .statistics__legend-item {
   letter-spacing: 0em;
   text-align: end;
 }
-.statistics__summary-list {
+.statistics__summary {
+  border-radius: 30px;
+  background-color: var(--primary-background-color);
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 20px;
   margin-top: 20px;
+}
+body[data-color-scheme=dark] .statistics__summary {
+  background-color: var(--primary-dark-background-color);
+  border: 1px solid var(--primary-dark-border-color);
+}
+.statistics__summary-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
 }
 .statistics__summary-item {
   display: flex;
   justify-content: space-between;
-  padding-inline: 10px;
+  align-items: center;
 }
 body[data-color-scheme=dark] .statistics__summary-item {
   color: var(--primary-gray-font-color);
@@ -1015,7 +1045,6 @@ body[data-color-scheme=dark] .statistics__summary-item {
 }
 .statistics__summary-type--expense {
   color: var(--primary-expense-color);
-  margin-bottom: 10px;
 }
 .statistics__summary-type--income {
   color: var(--primary-income-color);
@@ -1494,12 +1523,12 @@ body[data-color-scheme=dark] .mobile-table__item {
   text-overflow: ellipsis;
   white-space: pre-line;
 }
-.mobile-table__item-sum[data-type=income] {
+.mobile-table__item-amount[data-type=income] {
   color: var(--primary-income-color);
   text-align: end;
   font-weight: 700;
 }
-.mobile-table__item-sum[data-type=expense] {
+.mobile-table__item-amount[data-type=expense] {
   color: var(--primary-expense-color);
   text-align: end;
   font-weight: 700;
@@ -1590,9 +1619,9 @@ body[data-color-scheme=dark] .mobile-table__controls {
     margin-right: 75px;
   }
   .table__head-item--comment {
-    margin-right: 140px;
+    margin-right: 120px;
   }
-  .table__head-item--sum {
+  .table__head-item--amount {
     margin-right: 45px;
   }
   .table__head-item--controls {
@@ -1660,22 +1689,22 @@ body[data-color-scheme=dark] .mobile-table__controls {
     text-overflow: ellipsis;
     white-space: pre-line;
   }
-  .table__body-item--sum[data-type=income] {
+  .table__body-item--amount[data-type=income] {
     color: var(--primary-income-color);
     text-align: end;
     font-weight: 700;
     width: 90px;
   }
-  body[data-color-scheme=dark] .table__body-item--sum[data-type=income] {
+  body[data-color-scheme=dark] .table__body-item--amount[data-type=income] {
     color: var(--primary-income-color);
   }
-  .table__body-item--sum[data-type=expense] {
+  .table__body-item--amount[data-type=expense] {
     color: var(--primary-expense-color);
     text-align: end;
     font-weight: 700;
     width: 90px;
   }
-  body[data-color-scheme=dark] .table__body-item--sum[data-type=expense] {
+  body[data-color-scheme=dark] .table__body-item--amount[data-type=expense] {
     color: var(--primary-expense-color);
   }
   .table__body-item-controls {

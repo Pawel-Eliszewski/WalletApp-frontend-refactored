@@ -114,8 +114,8 @@ export const HomeTab = () => {
                   <p className="mobile-table__item-comment">{comment}</p>
                 </li>
                 <li key={nanoid()} className="mobile-table__item">
-                  <h4 className="mobile-table__item-header">Sum</h4>
-                  <p className="mobile-table__item-sum" data-type={type}>
+                  <h4 className="mobile-table__item-header">Amount</h4>
+                  <p className="mobile-table__item-amount" data-type={type}>
                     {amount.toFixed(2)}
                   </p>
                 </li>
@@ -153,7 +153,9 @@ export const HomeTab = () => {
               <th className="table__head-item table__head-item--comment">
                 Comment
               </th>
-              <th className="table__head-item table__head-item--sum">Sum</th>
+              <th className="table__head-item table__head-item--amount">
+                Amount
+              </th>
               <th className="table__head-item table__head-item--controls">
                 Controls
               </th>
@@ -177,7 +179,7 @@ export const HomeTab = () => {
                     {comment}
                   </td>
                   <td
-                    className="table__body-item table__body-item--sum"
+                    className="table__body-item table__body-item--amount"
                     data-type={type}
                   >
                     {amount.toFixed(2)}

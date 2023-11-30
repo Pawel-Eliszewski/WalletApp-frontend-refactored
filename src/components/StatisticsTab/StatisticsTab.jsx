@@ -82,15 +82,17 @@ export const StatisticsTab = () => {
       <div className="statistics__doughnut-wrapper">
         <h2 className="statistics__title">Statistics</h2>
         <StatisticsDoughnut balance={balance} data={summedExpensesWithColors} />
-        <h4 className="statistics__data-range">
-          {"Data range: "}
-          {selectedYear.value === "" ? "all-time" : selectedYear.value}{" "}
-          {selectedMonth.value === "" && selectedYear.value !== ""
-            ? "all-year"
-            : selectedMonth.label === "Month"
-            ? null
-            : selectedMonth.label}
-        </h4>
+        <div className="statistics__data-range-wrapper">
+          <h4 className="statistics__data-range">
+            {"Data range: "}
+            {selectedYear.value === "" ? "all-time" : selectedYear.value}{" "}
+            {selectedMonth.value === "" && selectedYear.value !== ""
+              ? "all-year"
+              : selectedMonth.label === "Month"
+              ? null
+              : selectedMonth.label}
+          </h4>
+        </div>
       </div>
       <div className="statistics__content">
         <div className="statistics__dropdown-wrapper">
