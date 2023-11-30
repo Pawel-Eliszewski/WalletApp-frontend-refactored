@@ -39,13 +39,6 @@ export const Modal = () => {
     }
   };
 
-  const handleLogout = () => {
-    dispatch(logout());
-    dispatch(setIsModalOpen(false));
-    dispatch(setContext(null));
-    document.body.classList.remove("modal-open");
-  };
-
   const handleModalClose = () => {
     dispatch(setIsModalOpen(false));
     dispatch(setContext(null));
@@ -53,6 +46,13 @@ export const Modal = () => {
     modalChildren.forEach((child) => {
       child.setAttribute("tabIndex", "-1");
     });
+    document.body.classList.remove("modal-open");
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    dispatch(setIsModalOpen(false));
+    dispatch(setContext(null));
     document.body.classList.remove("modal-open");
   };
 
