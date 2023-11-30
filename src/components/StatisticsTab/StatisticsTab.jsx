@@ -1,3 +1,4 @@
+import { useMedia } from "react-use";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { selectTransactions } from "../../redux/finance/selectors";
@@ -14,17 +15,18 @@ import { expenseCategories } from "../../utils/transactionCategories";
 import { nanoid } from "nanoid";
 
 export const StatisticsTab = () => {
+  const isMobile = useMedia("(max-width: 767px)");
   const allTransactions = useSelector(selectTransactions);
 
   const [selectedRangeTransactions, setSelectedRangeTransactions] =
     useState(allTransactions);
 
   const [selectedYear, setSelectedYear] = useState({
-    label: "Year",
+    label: isMobile ? "Select Year" : "Year",
     value: "",
   });
   const [selectedMonth, setSelectedMonth] = useState({
-    label: "Month",
+    label: isMobile ? "Select Month" : "Month",
     value: "",
   });
 
@@ -41,7 +43,7 @@ export const StatisticsTab = () => {
     if (year !== null) {
       setSelectedYear(year);
       setSelectedMonth({
-        label: "Month",
+        label: isMobile ? "Select Month" : "Month",
         value: "",
       });
       setSelectedRangeTransactions(
@@ -49,11 +51,11 @@ export const StatisticsTab = () => {
       );
     } else {
       setSelectedYear({
-        label: "Year",
+        label: isMobile ? "Select Year" : "Year",
         value: "",
       });
       setSelectedMonth({
-        label: "Month",
+        label: isMobile ? "Select Month" : "Month",
         value: "",
       });
       setSelectedRangeTransactions(allTransactions);
@@ -68,7 +70,7 @@ export const StatisticsTab = () => {
       );
     } else {
       setSelectedMonth({
-        label: "Month",
+        label: isMobile ? "Select Month" : "Month",
         value: "",
       });
       setSelectedRangeTransactions(
@@ -88,7 +90,8 @@ export const StatisticsTab = () => {
             {selectedYear.value === "" ? "all-time" : selectedYear.value}{" "}
             {selectedMonth.value === "" && selectedYear.value !== ""
               ? "all-year"
-              : selectedMonth.label === "Month"
+              : selectedMonth.label === "Month" ||
+                selectedMonth.label === "Select Month"
               ? null
               : selectedMonth.label}
           </h4>

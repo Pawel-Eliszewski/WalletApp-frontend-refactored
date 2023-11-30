@@ -211,6 +211,7 @@ export const HomeTab = () => {
       {pageCount > 1 ? (
         <Pagination
           isMobile={isMobile}
+          transactionsFilters={transactionsFilters}
           pageCount={pageCount}
           onItemOffsetChange={handleItemOffset}
         />

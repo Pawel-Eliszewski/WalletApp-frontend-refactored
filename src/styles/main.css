@@ -1883,8 +1883,11 @@ body[data-color-scheme=dark] .nav__logo--active {
   justify-content: space-between;
   padding: 0;
   margin-top: 20px;
-  margin-bottom: 55px;
+  margin-bottom: 20px;
   gap: 10px;
+}
+.pagination--reset-btn {
+  margin-bottom: 55px;
 }
 .pagination__link, .pagination__link--outermost {
   outline: 1px solid var(--primary-gray-font-color);

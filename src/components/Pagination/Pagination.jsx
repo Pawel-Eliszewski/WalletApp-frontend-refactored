@@ -2,9 +2,15 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import ReactPaginate from "react-paginate";
 /**
- * @param {{ isMobile: boolean, pageCount?: number, onItemOffsetChange?: () => void }} props
+ * @param {{ isMobile: boolean, transactionsFilters: boolean,
+ * pageCount?: number, onItemOffsetChange?: () => void }} props
  */
-export const Pagination = ({ isMobile, pageCount, onItemOffsetChange }) => {
+export const Pagination = ({
+  isMobile,
+  transactionsFilters,
+  pageCount,
+  onItemOffsetChange,
+}) => {
   const [currentPage, setCurrentPage] = useState(0);
 
   const handlePageClick = (event) => {
@@ -22,7 +28,11 @@ export const Pagination = ({ isMobile, pageCount, onItemOffsetChange }) => {
         pageCount={pageCount}
         previousLabel={<span className="pagination-arrow">&#8592;</span>}
         nextLabel={<span className="pagination-arrow">&#8594;</span>}
-        containerClassName="pagination"
+        containerClassName={
+          transactionsFilters
+            ? "pagination pagination--reset-btn"
+            : "pagination"
+        }
         previousClassName="pagination__link pagination__link--outermost"
         nextClassName="pagination__link pagination__link--outermost"
         breakClassName="pagination__link"
@@ -37,6 +47,7 @@ export const Pagination = ({ isMobile, pageCount, onItemOffsetChange }) => {
 
 Pagination.propTypes = {
   isMobile: PropTypes.bool.isRequired,
+  transactionsFilters: PropTypes.bool.isRequired,
   pageCount: PropTypes.number,
   onItemOffsetChange: PropTypes.func,
 };

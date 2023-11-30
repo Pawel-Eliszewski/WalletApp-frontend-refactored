@@ -26,11 +26,11 @@ const DashboardPage = lazy(() =>
 export default function App() {
   const dispatch = useDispatch();
 
+  const isMobile = useMedia("(max-width: 767px)");
   const colorScheme = useSelector(selectColorScheme);
   const user = useSelector(selectUser);
   const isAuth = useSelector(selectIsAuth);
   const allTransactions = useSelector(selectTransactions);
-  const isMobile = useMedia("(max-width: 767px)");
 
   useEffect(() => {
     const storedColorScheme = localStorage.getItem("colorScheme");
