@@ -1,5 +1,5 @@
 import { object, string, number, ref } from "yup";
-import { formattedTransactionDate, handleNewDate } from "./dateHandlers";
+import { formattedTransactionDate } from "./dateHandlers";
 
 const isNullOrUndefined = (value) => value === null || value === undefined;
 
@@ -80,12 +80,13 @@ export const transactionsFiltersValidationSchema = object().shape({
     "'From' must be earlier than or equal to 'to'",
     function (value) {
       const { maxDate } = this.parent;
-      const formattedValue = handleNewDate(value);
-      const formattedMaxDate = handleNewDate(maxDate);
+      const parsedMinDate = formattedTransactionDate(value);
+      const parsedMaxDate = formattedTransactionDate(maxDate);
+
       return (
-        isNullOrUndefined(value) ||
-        isNullOrUndefined(maxDate) ||
-        formattedValue <= formattedMaxDate
+        isNullOrUndefined(parsedMinDate) ||
+        isNullOrUndefined(parsedMaxDate) ||
+        parsedMinDate <= parsedMaxDate
       );
     }
   ),
@@ -95,12 +96,13 @@ export const transactionsFiltersValidationSchema = object().shape({
     "'To' must be later than or equal to 'from'",
     function (value) {
       const { minDate } = this.parent;
-      const formattedValue = handleNewDate(value);
-      const formattedMinDate = handleNewDate(minDate);
+      const parsedMinDate = formattedTransactionDate(minDate);
+      const parsedMaxDate = formattedTransactionDate(value);
+
       return (
-        isNullOrUndefined(value) ||
-        isNullOrUndefined(minDate) ||
-        formattedValue >= formattedMinDate
+        isNullOrUndefined(parsedMinDate) ||
+        isNullOrUndefined(parsedMaxDate) ||
+        parsedMaxDate >= parsedMinDate
       );
     }
   ),
