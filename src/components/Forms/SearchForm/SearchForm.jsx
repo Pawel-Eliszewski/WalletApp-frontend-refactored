@@ -10,7 +10,7 @@ import {
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Button } from "../../Button/Button";
 import { DropdownSelect } from "../../DropdownSelect/DropdownSelect";
-import { Calendar } from "../TransactionForm/Calendar/Calendar";
+import { Calendar } from "../../Calendar/Calendar";
 import { expenseCategoryNames } from "../../../utils/transactionCategories";
 import { transactionsFiltersValidationSchema } from "../../../utils/yupValidationSchemas";
 import { Loading, Notify } from "notiflix";

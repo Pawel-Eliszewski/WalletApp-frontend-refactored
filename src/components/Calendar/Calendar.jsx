@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
 import { useEffect, useRef } from "react";
 import DatePicker from "react-datepicker";
-import { Button } from "../../../Button/Button";
+import { Button } from "../Button/Button";
 import {
   formattedTodayDate,
   formattedTransactionDate,
   handleNewDate,
-} from "../../../../utils/dateHandlers";
+} from "../../utils/dateHandlers";
 /**
  * @param {{ id: string, placeholder?: string, transactionType: 'income' | 'expense',
  * transactionDate: string, isMobile: boll, onDateChange: () => void }} props
