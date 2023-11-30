@@ -230,7 +230,7 @@ export const SearchForm = ({ onModalClose }) => {
                 )}
               </div>
             </div>
-            <div className="search-form__inputs">
+            <div className="search-form__inputs search-form__inputs--last">
               <label className="search-form__label" htmlFor="maxDate">
                 Comment:
               </label>

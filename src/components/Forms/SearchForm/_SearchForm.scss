@@ -34,6 +34,10 @@
         justify-content: space-between;
         align-items: center;
         position: relative;
+
+        &--last {
+            margin-bottom: 15px;
+        }
     }
 
     &__label {
@@ -50,7 +54,6 @@
 
     &__comment {
         text-align: center;
-        margin-bottom: 15px;
     }
 
     &__amount,

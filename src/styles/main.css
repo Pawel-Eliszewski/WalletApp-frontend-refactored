@@ -2402,6 +2402,9 @@ body[data-color-scheme=dark] .search-form {
   align-items: center;
   position: relative;
 }
+.search-form__inputs--last {
+  margin-bottom: 15px;
+}
 .search-form__label {
   width: 120px;
 }
@@ -2413,7 +2416,6 @@ body[data-color-scheme=dark] .search-form {
 }
 .search-form__comment {
   text-align: center;
-  margin-bottom: 15px;
 }
 .search-form__amount, .search-form__comment {
   width: 160px;
