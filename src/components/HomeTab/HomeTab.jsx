@@ -213,7 +213,11 @@ export const HomeTab = () => {
           onItemOffsetChange={handleItemOffset}
         />
       ) : (
-        <div className="home__placeholder"></div>
+        <div
+          className={`home__placeholder ${
+            transactionsFilters ? "home__placeholder--reset-btn" : ""
+          }`}
+        ></div>
       )}
       <Button
         ariaLabel="open modal to search transactions"
