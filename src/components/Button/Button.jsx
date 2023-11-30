@@ -4,7 +4,7 @@ import { forwardRef } from "react";
  * @param {{ ariaLabel?: string, icon?: {} | string, title?: string,
  *  styles: '--submit' | '--cancel' | '--add' | '--edit' | '--edit-mobile'
  * | '--delete' | '--yes' | '--no' | '--close' | '--search', type: 'submit' | 'button',
- *   onClick?: (ev?: import('react').MouseEvent) => void, }} props
+ *   onClick?: () => void, }} props
  */
 export const Button = forwardRef(
   ({ ariaLabel, icon, title, styles, type, onClick }, ref) => (

@@ -70,7 +70,7 @@ export const HomeTab = () => {
     document.body.classList.add("modal-open");
   };
 
-  const handleDeleteTransaction = async (transactionId) => {
+  const handleDeleteTransaction = (transactionId) => {
     try {
       Loading.hourglass();
       dispatch(deleteTransaction(transactionId));

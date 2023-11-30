@@ -1,5 +1,8 @@
+import PropTypes from "prop-types";
 import { motion } from "framer-motion";
-
+/**
+ * @param {{ children: {}, onClick: () => void }} props
+ */
 export const Backdrop = ({ children, onClick }) => {
   return (
     <motion.div
@@ -12,4 +15,9 @@ export const Backdrop = ({ children, onClick }) => {
       {children}
     </motion.div>
   );
+};
+
+Backdrop.propTypes = {
+  children: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired,
 };

@@ -782,7 +782,7 @@ body[data-color-scheme=dark] .react-datepicker--income .react-datepicker__day:ho
 
 .currency__container {
   width: 100%;
-  max-width: 336px;
+  max-width: 380px;
   height: 347px;
   background: url(/assets/background-currency.svg) center bottom no-repeat;
   background-color: var(--household-products-diagram-color);
@@ -803,7 +803,7 @@ body[data-color-scheme=dark] .currency__container {
 }
 .currency__head {
   width: 100%;
-  max-width: 336px;
+  max-width: 380px;
   height: 50px;
   background-color: var(--child-care-diagram-color);
   border-top-left-radius: 30px;
@@ -1726,7 +1726,6 @@ body[data-color-scheme=dark] .logo__title {
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
-  margin: 0 auto;
   background-color: var(--primary-background-color);
   padding-block: 20px;
   border-radius: 20px;

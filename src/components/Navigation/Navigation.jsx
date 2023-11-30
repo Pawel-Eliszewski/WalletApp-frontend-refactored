@@ -1,12 +1,12 @@
+import { useMedia } from "react-use";
 import { NavLink, useLocation } from "react-router-dom";
-import { useMediaQuery } from "@react-hook/media-query";
 import IconHome from "../../../public/assets/icon-home.svg?react";
 import IconStatistics from "../../../public/assets/icon-statistics.svg?react";
 import IconDollar from "../../../public/assets/icon-dollar.svg?react";
 
 export const Navigation = () => {
   const location = useLocation();
-  const isMax767px = useMediaQuery("(max-width: 767px)");
+  const isMobile = useMedia("(max-width: 767px)");
 
   const navItems = [
     { path: "/", label: "Home", icon: <IconHome /> },
@@ -15,7 +15,7 @@ export const Navigation = () => {
       label: "Statistics",
       icon: <IconStatistics />,
     },
-    ...(isMax767px
+    ...(isMobile
       ? [
           {
             path: "/currency",
