@@ -60,7 +60,7 @@ export const Calendar = ({
       autoComplete="off"
     >
       <Button
-        ariaLabel="set date for today"
+        ariaLabel="set today`s date"
         title="Today"
         styles="--today"
         type="button"

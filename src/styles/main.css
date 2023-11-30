@@ -1218,8 +1218,6 @@ body[data-color-scheme=dark] .auth-form__field:focus-within {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 30px;
-  word-wrap: break-word;
 }
 .transaction-form__react-select {
   position: relative;
@@ -1232,6 +1230,7 @@ body[data-color-scheme=dark] .auth-form__field:focus-within {
   border-bottom: 1px solid var(--primary-gray-font-color);
   font-weight: 600;
   background-color: transparent;
+  margin-bottom: 30px;
 }
 .transaction-form__amount::-moz-placeholder {
   color: var(--primary-gray-font-color);
@@ -1268,6 +1267,7 @@ body[data-color-scheme=dark] .auth-form__field:focus-within {
   text-align: center;
   color: var(--primary-expense-color);
   max-width: 100%;
+  word-wrap: break-word;
 }
 .transaction-form__alert--category {
   top: 42px;
@@ -1326,11 +1326,13 @@ body[data-color-scheme=dark] .type__span--expense {
   .transaction-form__inputs {
     flex-direction: row;
     width: 394px;
+    gap: 30px;
   }
   .transaction-form__amount {
     width: 190px;
     padding-left: 0;
     text-align: center;
+    margin-bottom: 0;
   }
   .transaction-form__textarea {
     width: 394px;
@@ -1352,7 +1354,7 @@ body[data-color-scheme=dark] .type__span--expense {
   }
   .transaction-form__alert--date {
     top: 32px;
-    left: 200px;
+    left: 250px;
   }
   .transaction-form__alert--comment {
     top: 36px;
