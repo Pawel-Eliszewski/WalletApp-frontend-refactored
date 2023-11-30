@@ -13,8 +13,8 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 20px;
-        margin-bottom: 20px;
+        gap: 15px;
+        margin-bottom: 15px;
 
         @media screen and (min-width:768px) {
             width: 360px;
@@ -50,6 +50,7 @@
 
     &__comment {
         text-align: center;
+        margin-bottom: 15px;
     }
 
     &__amount,
