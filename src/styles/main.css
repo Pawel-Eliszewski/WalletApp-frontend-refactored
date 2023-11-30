@@ -901,7 +901,7 @@ body[data-color-scheme=dark] .currency__head {
   flex-direction: column;
   width: 100%;
   max-width: 380px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 .statistics__title {
   font-size: 30px;
@@ -917,7 +917,7 @@ body[data-color-scheme=dark] .statistics__title {
 .statistics__data-range-wrapper {
   border-radius: 30px;
   background-color: var(--primary-background-color);
-  height: 40px;
+  height: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -946,7 +946,7 @@ body[data-color-scheme=dark] .statistics__data-range {
   gap: 15px;
   width: 100%;
   max-width: 380px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 .statistics__legend-headers {
   display: flex;
@@ -1033,15 +1033,13 @@ body[data-color-scheme=dark] .statistics__summary {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 24px;
 }
 body[data-color-scheme=dark] .statistics__summary-item {
   color: var(--primary-gray-font-color);
-}
-.statistics__summary-type {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 24px;
 }
 .statistics__summary-type--expense {
   color: var(--primary-expense-color);

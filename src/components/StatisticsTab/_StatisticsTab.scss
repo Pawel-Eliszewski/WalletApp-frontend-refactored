@@ -14,7 +14,7 @@
     flex-direction: column;
     width: 100%;
     max-width: 380px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
 
   &__title {
@@ -33,7 +33,7 @@
   &__data-range-wrapper {
     border-radius: 30px;
     background-color: var(--primary-background-color);
-    height: 40px;
+    height: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -67,7 +67,7 @@
     gap: 15px;
     width: 100%;
     max-width: 380px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
 
   &__legend {
@@ -165,6 +165,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 24px;
 
       body[data-color-scheme='dark'] & {
         color: var(--primary-gray-font-color);
@@ -172,11 +176,6 @@
     }
 
     &-type {
-      font-style: normal;
-      font-weight: bold;
-      font-size: 16px;
-      line-height: 24px;
-
       &--expense {
         color: var(--primary-expense-color);
       }
