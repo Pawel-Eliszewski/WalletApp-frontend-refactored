@@ -1,15 +1,16 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectContext, selectIsModalOpen } from "../../redux/global/selectors";
 import { setContext, setIsModalOpen } from "../../redux/global/globalSlice";
 import { logout } from "../../redux/session/operations";
+import { motion } from "framer-motion";
+import { Backdrop } from "./Backdrop/Backdrop";
 import { TransactionForm } from "../Forms/TransactionForm/TransactionForm";
 import { SearchForm } from "../Forms/SearchForm/SearchForm";
 import { Button } from "../Button/Button";
 
 export const Modal = () => {
   const dispatch = useDispatch();
-  const modalRef = useRef(null);
   const context = useSelector(selectContext);
   const isModalOpen = useSelector(selectIsModalOpen);
 
@@ -27,25 +28,9 @@ export const Modal = () => {
     };
   }, [dispatch]);
 
-  const handleBackdropClick = (e) => {
-    if (modalRef.current && !modalRef.current.contains(e.target)) {
-      dispatch(setIsModalOpen(false));
-      dispatch(setContext(null));
-      const modalChildren = modalRef.current.querySelectorAll("*");
-      modalChildren.forEach((child) => {
-        child.setAttribute("tabIndex", "-1");
-      });
-      document.body.classList.remove("modal-open");
-    }
-  };
-
   const handleModalClose = () => {
     dispatch(setIsModalOpen(false));
     dispatch(setContext(null));
-    const modalChildren = modalRef.current.querySelectorAll("*");
-    modalChildren.forEach((child) => {
-      child.setAttribute("tabIndex", "-1");
-    });
     document.body.classList.remove("modal-open");
   };
 
@@ -56,83 +41,106 @@ export const Modal = () => {
     document.body.classList.remove("modal-open");
   };
 
+  const flip = {
+    hidden: {
+      transform: "scale(0) rotateX(-360deg)",
+      opacity: 0,
+      transition: {
+        delay: 0.3,
+      },
+    },
+    visible: {
+      transform: " scale(1) rotateX(0deg)",
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+      },
+    },
+    exit: {
+      transform: "scale(0) rotateX(360deg)",
+      opacity: 0,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
+
   return (
-    <div
-      className={`modal__backdrop ${
-        isModalOpen ? "modal__backdrop--visible" : ""
-      }`}
-      onClick={handleBackdropClick}
-    >
-      <div
-        ref={modalRef}
-        className={`modal__container ${
-          isModalOpen ? "modal__container--visible" : ""
-        }`}
-      >
-        <Button
-          ariaLabel="cancel and close modal"
-          styles="--close"
-          type="button"
-          onClick={handleModalClose}
-        />
-        <h2 className="modal__title">
-          {context === "logout"
-            ? "Log out?"
-            : context === "add"
-            ? "Add transaction"
-            : context === "edit"
-            ? "Edit transaction"
-            : context === "search"
-            ? "Search transactions"
-            : ""}
-        </h2>
-        {context === "add" || context === "edit" ? (
-          <>
-            <TransactionForm onModalClose={handleModalClose} />
-            <Button
-              ariaLabel="cancel and close modal"
-              title="Cancel"
-              styles="--cancel"
-              type="button"
-              onClick={handleModalClose}
-            />
-          </>
-        ) : null}
-        {context === "search" ? (
-          <>
-            <SearchForm
-              isModalOpen={isModalOpen}
-              context={context}
-              onModalClose={handleModalClose}
-            />
-            <Button
-              ariaLabel="cancel and close modal"
-              title="Cancel"
-              styles="--cancel"
-              type="button"
-              onClick={handleModalClose}
-            />
-          </>
-        ) : null}
-        {context === "logout" && (
-          <div className="modal__controls">
-            <Button
-              ariaLabel="submit logging out"
-              title="Yes"
-              styles="--yes"
-              type="button"
-              onClick={handleLogout}
-            />
-            <Button
-              ariaLabel="cancel and close modal"
-              title="No"
-              styles="--no"
-              type="button"
-              onClick={handleModalClose}
-            />
-          </div>
-        )}
-      </div>
-    </div>
+    isModalOpen && (
+      <Backdrop onClick={handleModalClose}>
+        <motion.div
+          onClick={(e) => e.stopPropagation()}
+          className="modal__container"
+          variants={flip}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+        >
+          <Button
+            ariaLabel="cancel and close modal"
+            styles="--close"
+            type="button"
+            onClick={handleModalClose}
+          />
+          <h2 className="modal__title">
+            {context === "logout"
+              ? "Log out?"
+              : context === "add"
+              ? "Add transaction"
+              : context === "edit"
+              ? "Edit transaction"
+              : context === "search"
+              ? "Search transactions"
+              : ""}
+          </h2>
+          {context === "add" || context === "edit" ? (
+            <>
+              <TransactionForm onModalClose={handleModalClose} />
+              <Button
+                ariaLabel="cancel and close modal"
+                title="Cancel"
+                styles="--cancel"
+                type="button"
+                onClick={handleModalClose}
+              />
+            </>
+          ) : null}
+          {context === "search" ? (
+            <>
+              <SearchForm
+                isModalOpen={isModalOpen}
+                context={context}
+                onModalClose={handleModalClose}
+              />
+              <Button
+                ariaLabel="cancel and close modal"
+                title="Cancel"
+                styles="--cancel"
+                type="button"
+                onClick={handleModalClose}
+              />
+            </>
+          ) : null}
+          {context === "logout" && (
+            <div className="modal__controls">
+              <Button
+                ariaLabel="submit logging out"
+                title="Yes"
+                styles="--yes"
+                type="button"
+                onClick={handleLogout}
+              />
+              <Button
+                ariaLabel="cancel and close modal"
+                title="No"
+                styles="--no"
+                type="button"
+                onClick={handleModalClose}
+              />
+            </div>
+          )}
+        </motion.div>
+      </Backdrop>
+    )
   );
 };

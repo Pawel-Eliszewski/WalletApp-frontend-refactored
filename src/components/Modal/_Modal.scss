@@ -1,32 +1,6 @@
 .modal {
-    &__backdrop {
-        display: block;
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 3;
-        pointer-events: none;
-        opacity: 0;
-        transition: 250ms;
-
-        &--visible {
-            pointer-events: all;
-            opacity: 1;
-            transition: 250ms;
-            background-color: var(--backdrop-background-color);
-            backdrop-filter: blur(25px);
-            overflow: visible;
-        }
-    }
-
     &__container {
         display: flex;
-        position: fixed;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
         width: 100%;
         max-width: 380px;
         justify-content: space-around;
@@ -36,17 +10,10 @@
         background-color: var(--primary-background-color);
         padding-block: 20px;
         border-radius: 20px;
-        scale: 0;
-        transition: 500ms;
         z-index: 4;
 
         body[data-color-scheme='dark'] & {
             background-color: var(--primary-dark-background-color);
-        }
-
-        &--visible {
-            scale: 1;
-            transition: 500ms;
         }
     }
 
@@ -77,11 +44,6 @@
 @media screen and (min-width: 768px) {
     .modal {
         &__container {
-            position: fixed;
-            z-index: 4;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
             padding-top: 40px;
             padding-bottom: 60px;
             max-width: 540px;
