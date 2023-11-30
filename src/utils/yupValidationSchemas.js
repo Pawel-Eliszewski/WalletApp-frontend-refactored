@@ -1,4 +1,7 @@
 import { object, string, number, ref } from "yup";
+import { formattedTransactionDate, handleNewDate } from "./dateHandlers";
+
+const isNullOrUndefined = (value) => value === null || value === undefined;
 
 export const loginValidationSchema = object().shape({
   email: string().email("Invalid email address").required("Email is required"),
@@ -37,16 +40,10 @@ export const transactionValidationSchema = object().shape({
   amount: number().required("Amount is required"),
   date: string()
     .required("Date is required")
-    .test("is-valid-date", "Date format must be DD.MM.YYYY", function (value) {
+    .test("is-valid-date", "Invalid date format", function (value) {
       if (!value) return true;
-      if (!/^\d{2}\.\d{2}\.\d{4}$/.test(value)) return false;
-      const parts = value.split(".");
-      const day = parseInt(parts[0], 10);
-      const month = parseInt(parts[1], 10);
-      // eslint-disable-next-line no-unused-vars
-      const year = parseInt(parts[2], 10);
-      if (day < 1 || day > 31 || month < 1 || month > 12) return false;
-      return true;
+      const parsedDate = formattedTransactionDate(value);
+      return parsedDate !== null;
     }),
   comment: string().max(34, "Comment must be less than 34 characters"),
 });
@@ -58,7 +55,9 @@ export const transactionsFiltersValidationSchema = object().shape({
     function (value) {
       const { maxAmount } = this.parent;
       return (
-        value === undefined || maxAmount === undefined || value <= maxAmount
+        isNullOrUndefined(value) ||
+        isNullOrUndefined(maxAmount) ||
+        value <= maxAmount
       );
     }
   ),
@@ -69,7 +68,39 @@ export const transactionsFiltersValidationSchema = object().shape({
     function (value) {
       const { minAmount } = this.parent;
       return (
-        value === undefined || minAmount === undefined || value >= minAmount
+        isNullOrUndefined(value) ||
+        isNullOrUndefined(minAmount) ||
+        value >= minAmount
+      );
+    }
+  ),
+
+  minDate: string().test(
+    "minDate",
+    "'From' must be earlier than or equal to 'to'",
+    function (value) {
+      const { maxDate } = this.parent;
+      const formattedValue = handleNewDate(value);
+      const formattedMaxDate = handleNewDate(maxDate);
+      return (
+        isNullOrUndefined(value) ||
+        isNullOrUndefined(maxDate) ||
+        formattedValue <= formattedMaxDate
+      );
+    }
+  ),
+
+  maxDate: string().test(
+    "maxDate",
+    "'To' must be later than or equal to 'from'",
+    function (value) {
+      const { minDate } = this.parent;
+      const formattedValue = handleNewDate(value);
+      const formattedMinDate = handleNewDate(minDate);
+      return (
+        isNullOrUndefined(value) ||
+        isNullOrUndefined(minDate) ||
+        formattedValue >= formattedMinDate
       );
     }
   ),

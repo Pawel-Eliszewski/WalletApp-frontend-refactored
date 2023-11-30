@@ -23,20 +23,26 @@ export const formattedTransactionDate = (transactionDate) => {
 };
 
 export const handleNewDate = (newDate) => {
-  if (newDate !== null) {
-    const day = newDate.getDate();
-    const month = newDate.getMonth() + 1;
-    const year = newDate.getFullYear();
+  if (newDate !== null && typeof newDate !== "undefined") {
+    const date = new Date(newDate);
 
-    const dateString =
-      (day < 10 ? "0" : "") +
-      day +
-      "." +
-      (month < 10 ? "0" : "") +
-      month +
-      "." +
-      year;
+    if (!isNaN(date.getTime())) {
+      const day = date.getDate();
+      const month = date.getMonth() + 1;
+      const year = date.getFullYear();
 
-    return dateString;
+      const dateString =
+        (day < 10 ? "0" : "") +
+        day +
+        "." +
+        (month < 10 ? "0" : "") +
+        month +
+        "." +
+        year;
+
+      return dateString;
+    }
   }
+
+  return null;
 };

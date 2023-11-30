@@ -41,7 +41,7 @@ export const Calendar = ({
   };
 
   const handleDateClear = () => {
-    onDateChange(null);
+    onDateChange("");
     if (datePickerRef.current) {
       datePickerRef.current.setOpen(false);
     }

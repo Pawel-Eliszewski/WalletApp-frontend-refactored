@@ -201,9 +201,9 @@ export const SearchForm = ({ onModalClose }) => {
                     setFieldValue("minDate", newDate);
                   }}
                 />
-                {touched.date && errors.date && (
-                  <div className="transaction-form__alert transaction-form__alert--date">
-                    {errors.date}
+                {touched.minDate && errors.minDate && (
+                  <div className="search-form__alert search-form__alert--date">
+                    {errors.minDate}
                   </div>
                 )}
               </div>
@@ -223,9 +223,9 @@ export const SearchForm = ({ onModalClose }) => {
                     setFieldValue("maxDate", newDate);
                   }}
                 />
-                {touched.date && errors.date && (
-                  <div className="transaction-form__alert transaction-form__alert--date">
-                    {errors.date}
+                {touched.maxDate && errors.maxDate && (
+                  <div className="search-form__alert search-form__alert--date">
+                    {errors.maxDate}
                   </div>
                 )}
               </div>
@@ -245,7 +245,7 @@ export const SearchForm = ({ onModalClose }) => {
               <ErrorMessage
                 name="comment"
                 component="div"
-                className="transaction-form__alert transaction-form__alert--comment"
+                className="search-form__alert search-form__alert--comment"
               />
             </div>
             <Button
