@@ -47,7 +47,7 @@ export const Pagination = ({
 
 Pagination.propTypes = {
   isMobile: PropTypes.bool.isRequired,
-  transactionsFilters: PropTypes.bool.isRequired,
+  transactionsFilters: PropTypes.bool,
   pageCount: PropTypes.number,
   onItemOffsetChange: PropTypes.func,
 };
