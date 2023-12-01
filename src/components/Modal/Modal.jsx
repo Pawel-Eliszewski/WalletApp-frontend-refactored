@@ -9,6 +9,7 @@ import { Backdrop } from "./Backdrop/Backdrop";
 import { TransactionForm } from "../Forms/TransactionForm/TransactionForm";
 import { SearchForm } from "../Forms/SearchForm/SearchForm";
 import { Button } from "../Button/Button";
+import { dropIn, flip } from "../../utils/framerMotionStyles";
 
 export const Modal = () => {
   const dispatch = useDispatch();
@@ -41,54 +42,6 @@ export const Modal = () => {
     dispatch(setIsModalOpen(false));
     dispatch(setContext(null));
     document.body.classList.remove("modal-open");
-  };
-
-  const dropIn = {
-    hidden: {
-      y: "-100vh",
-      opacity: 0,
-    },
-    visible: {
-      y: "0",
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        type: "spring",
-        damping: 15,
-        stiffness: 150,
-      },
-    },
-    exit: {
-      y: "100vh",
-      opacity: 0,
-      transition: {
-        duration: 0.4,
-      },
-    },
-  };
-
-  const flip = {
-    hidden: {
-      transform: "scale(0) rotateX(-360deg)",
-      opacity: 0,
-      transition: {
-        delay: 0.3,
-      },
-    },
-    visible: {
-      transform: " scale(1) rotateX(0deg)",
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-      },
-    },
-    exit: {
-      transform: "scale(0) rotateX(360deg)",
-      opacity: 0,
-      transition: {
-        duration: 0.5,
-      },
-    },
   };
 
   return (
