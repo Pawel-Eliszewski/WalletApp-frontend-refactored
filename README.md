@@ -6,9 +6,13 @@ Currently, I am working on expanding it with additional features:
 
 - Upgrade to Progressive Web App (mobile & desktop);
 - Accessibility (f.e., navigation with only a keyboard);
+- Refactor from css.modules to BEM & Sass;
+- New Project Structure + refactor majority of Components - new fun
 - Dark/Light Color Schemes;
 - Polish and English language versions to choose from;
 - Searach Form with transactions filters (amount, date, type, category, comment);
 - 5 consecutive currencies in the Currency component;
 - Google authorization;
 - New StatisticsTab chart types;
+- Framer-Motion for Modal animations;
+- React-Select for Dropdown;
