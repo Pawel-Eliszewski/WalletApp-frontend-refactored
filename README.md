@@ -14,5 +14,6 @@ Currently, I am working on expanding it with additional features:
 - Utilize Framer-Motion for modal animations;
 - Use React-Select for dropdowns;
 - Offer Polish and English language versions for users to choose from (work in progress);
+- Time Countdown Function for Next Payday (work in progress);
 - Implement Google authorization (work in progress);
 - Introduce new chart types for the StatisticsTab (work in progress);
