@@ -1,4 +1,4 @@
-This repository contains my extended frontend version of the "Wallet" application, originally created by a fantastic team where I served as a Team Lead. The original project can be found here.
+This repository contains my extended frontend version of the "Wallet" application, originally created by a fantastic team where I served as a Team Lead. The original project can be found <a href="https://github.com/Pawel-Eliszewski/WalletApp-frontend">here</a>.
 
 ===
 
