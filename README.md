@@ -1,14 +1,17 @@
 **README for WalletApp Frontend refactored**
+
 This repository contains my extended frontend version of the "Wallet" application, originally created by a fantastic team where I served as a Team Lead. The original project can be found <a href="https://github.com/Pawel-Eliszewski/WalletApp-frontend">here</a>.
 
 ===
 
 **Project Overview**
+
 I am currently working on expanding the application with additional features, focusing on both functionality and user experience improvements.
 
 ===
 
 **Completed Features**
+
 - Progressive Web App (PWA):
 Upgraded the application to a Progressive Web App, ensuring seamless user experience on both mobile and desktop platforms.
 
@@ -39,6 +42,7 @@ Integrated React-Select for improved dropdown functionality.
 ===
 
 **Work in Progress**
+
 - Multilingual Support:
 Currently implementing Polish and English language versions, allowing users to choose their preferred language.
 
@@ -54,9 +58,11 @@ Introducing new chart types for enhanced visualization in the StatisticsTab.
 ===
 
 **How to Contribute**
+
 Feel free to contribute to the project by forking the repository, making your changes, and submitting a pull request. Your contributions are highly appreciated!
 
 ===
 
 **License**
+
 This project is licensed under the MIT License.
