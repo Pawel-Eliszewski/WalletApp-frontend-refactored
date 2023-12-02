@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { useIntl, FormattedMessage } from "react-intl";
 import { useRef } from "react";
 import { useMedia } from "react-use";
 import { useSelector, useDispatch } from "react-redux";
@@ -18,14 +19,19 @@ import { Loading, Notify } from "notiflix";
  * @param {{ onModalClose: () => void }} props
  */
 export const SearchForm = ({ onModalClose }) => {
+  const intl = useIntl();
   const dispatch = useDispatch();
 
   const transactionsFilters = useSelector(selectTransactionsFilters);
   const isMobile = useMedia("(max-width: 767px)");
   const formikRef = useRef();
 
+  const placeholderDate = intl.formatMessage({ id: "placeholderDate" });
+  const placeholderComment = intl.formatMessage({ id: "placeholderTypeWord" });
+  const translatedMsg = intl.formatMessage({ id: "notifyOneFilter" });
+
   const expenseCategoryNamesWithAll = [
-    { label: "All categories", value: "all" },
+    { label: <FormattedMessage id="expenseCategories0" />, value: 0 },
     ...expenseCategoryNames,
   ];
 
@@ -44,7 +50,7 @@ export const SearchForm = ({ onModalClose }) => {
 
   const handleSearchTransactions = (values) => {
     if (values === initialValues) {
-      return Notify.info("Please use at least 1 filter");
+      return Notify.info(translatedMsg);
     } else
       try {
         Loading.hourglass();
@@ -81,15 +87,24 @@ export const SearchForm = ({ onModalClose }) => {
             <div className="search-form__radio-group">
               <label>
                 <Field type="radio" name="type" value="all" />
-                <span className="type__span"> All</span>
+                <span className="type__span">
+                  {" "}
+                  <FormattedMessage id="labelAll" />
+                </span>
               </label>
               <label>
                 <Field type="radio" name="type" value="income" />
-                <span className="type__span type__span--income"> Income</span>
+                <span className="type__span type__span--income">
+                  {" "}
+                  <FormattedMessage id="labelIncomes" />
+                </span>
               </label>
               <label>
                 <Field type="radio" name="type" value="expense" />
-                <span className="type__span type__span--expense"> Expense</span>
+                <span className="type__span type__span--expense">
+                  {" "}
+                  <FormattedMessage id="labelExpenses" />
+                </span>
               </label>
             </div>
             {values.type === "all" || values.type === "expense" ? (
@@ -103,7 +118,7 @@ export const SearchForm = ({ onModalClose }) => {
                     isMulti={true}
                     isSearchable={!isMobile}
                     isClearable={false}
-                    placeholder="Select a category"
+                    placeholder={<FormattedMessage id="labelSelectCategory" />}
                     onChange={(selectedOptions) => {
                       const selectedValues = selectedOptions.map(
                         (option) => option.value
@@ -134,7 +149,7 @@ export const SearchForm = ({ onModalClose }) => {
             ) : null}
             <div className="search-form__inputs">
               <label className="search-form__label" htmlFor="minAmount">
-                Amount min:
+                <FormattedMessage id="headerAmount" /> min:
               </label>
               <Field
                 id="minAmount"
@@ -161,7 +176,7 @@ export const SearchForm = ({ onModalClose }) => {
             </div>
             <div className="search-form__inputs">
               <label className="search-form__label" htmlFor="maxAmount">
-                Amount max:
+                <FormattedMessage id="headerAmount" /> max:
               </label>
               <Field
                 id="maxAmount"
@@ -188,12 +203,12 @@ export const SearchForm = ({ onModalClose }) => {
             </div>
             <div className="search-form__inputs">
               <label className="search-form__label" htmlFor="minDate">
-                Date from:
+                <FormattedMessage id="labelDateFrom" />:
               </label>
               <div className="search-form__date">
                 <Calendar
                   id="minDate"
-                  placeholder="DD.MM.YYYY"
+                  placeholder={placeholderDate}
                   transactionType={values.type}
                   transactionDate={values.minDate}
                   isMobile={isMobile}
@@ -210,12 +225,12 @@ export const SearchForm = ({ onModalClose }) => {
             </div>
             <div className="search-form__inputs">
               <label className="search-form__label" htmlFor="maxDate">
-                Date to:
+                <FormattedMessage id="labelDateTo" />:
               </label>
               <div className="search-form__date">
                 <Calendar
                   id="maxDate"
-                  placeholder="DD.MM.YYYY"
+                  placeholder={placeholderDate}
                   transactionType={values.type}
                   transactionDate={values.maxDate}
                   isMobile={isMobile}
@@ -232,13 +247,13 @@ export const SearchForm = ({ onModalClose }) => {
             </div>
             <div className="search-form__inputs search-form__inputs--last">
               <label className="search-form__label" htmlFor="maxDate">
-                Comment:
+                <FormattedMessage id="headerComment" />:
               </label>
               <Field
                 className="search-form__comment"
                 type="text"
                 name="comment"
-                placeholder="Type word"
+                placeholder={placeholderComment}
                 maxLength="34"
                 autoComplete="off"
               />
@@ -250,13 +265,13 @@ export const SearchForm = ({ onModalClose }) => {
             </div>
             <Button
               ariaLabel="submit searching transactions"
-              title="Search"
+              title={<FormattedMessage id="titleSearch" />}
               styles="--submit"
               type="submit"
             />
             <Button
               ariaLabel="clear transactions filters"
-              title="Clear"
+              title={<FormattedMessage id="titleClear" />}
               styles="--cancel"
               type="button"
               onClick={handleSearchFormClear}

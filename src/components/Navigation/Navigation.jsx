@@ -1,5 +1,6 @@
 import { useMedia } from "react-use";
 import { NavLink, useLocation } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
 import IconHome from "../../../public/assets/icon-home.svg?react";
 import IconStatistics from "../../../public/assets/icon-statistics.svg?react";
 import IconDollar from "../../../public/assets/icon-dollar.svg?react";
@@ -9,10 +10,15 @@ export const Navigation = () => {
   const isMobile = useMedia("(max-width: 767px)");
 
   const navItems = [
-    { path: "/", label: "Home", icon: <IconHome /> },
+    {
+      path: "/",
+      label: <FormattedMessage id="linkHome" />,
+      icon: <IconHome />,
+    },
     {
       path: "/statistics",
-      label: "Statistics",
+      label: <FormattedMessage id="linkStatistics" />,
+
       icon: <IconStatistics />,
     },
     ...(isMobile

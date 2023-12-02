@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useMedia } from "react-use";
+import { FormattedMessage } from "react-intl";
 import { useSelector, useDispatch } from "react-redux";
 import { selectContext, selectIsModalOpen } from "../../redux/global/selectors";
 import { setContext, setIsModalOpen } from "../../redux/global/globalSlice";
@@ -63,22 +64,24 @@ export const Modal = () => {
               onClick={handleModalClose}
             />
             <h2 className="modal__title">
-              {context === "logout"
-                ? "Log out?"
-                : context === "add"
-                ? "Add transaction"
-                : context === "edit"
-                ? "Edit transaction"
-                : context === "search"
-                ? "Search transactions"
-                : ""}
+              {context === "logout" ? (
+                <FormattedMessage id="titleLogOut" />
+              ) : context === "add" ? (
+                <FormattedMessage id="titleAddTransaction" />
+              ) : context === "edit" ? (
+                <FormattedMessage id="titleEditTransaction" />
+              ) : context === "search" ? (
+                <FormattedMessage id="titleSearchTransactions" />
+              ) : (
+                ""
+              )}
             </h2>
             {context === "add" || context === "edit" ? (
               <>
                 <TransactionForm onModalClose={handleModalClose} />
                 <Button
                   ariaLabel="cancel and close modal"
-                  title="Cancel"
+                  title={<FormattedMessage id="titleCancel" />}
                   styles="--cancel"
                   type="button"
                   onClick={handleModalClose}
@@ -94,7 +97,7 @@ export const Modal = () => {
                 />
                 <Button
                   ariaLabel="cancel and close modal"
-                  title="Cancel"
+                  title={<FormattedMessage id="titleCancel" />}
                   styles="--cancel"
                   type="button"
                   onClick={handleModalClose}
@@ -105,14 +108,14 @@ export const Modal = () => {
               <div className="modal__controls">
                 <Button
                   ariaLabel="submit logging out"
-                  title="Yes"
+                  title={<FormattedMessage id="titleYes" />}
                   styles="--yes"
                   type="button"
                   onClick={handleLogout}
                 />
                 <Button
                   ariaLabel="cancel and close modal"
-                  title="No"
+                  title={<FormattedMessage id="titleNo" />}
                   styles="--no"
                   type="button"
                   onClick={handleModalClose}

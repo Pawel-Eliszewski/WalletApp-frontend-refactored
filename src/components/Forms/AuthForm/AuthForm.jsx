@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { useIntl, FormattedMessage } from "react-intl";
 import { useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -12,8 +13,8 @@ import {
  * @param {{ context: 'login' | 'register', onSubmit: () => void }} props
  */
 export const AuthForm = ({ context, onSubmit }) => {
+  const intl = useIntl();
   const navigate = useNavigate();
-  const emailInputRef = useRef(null);
   const btnRef = useRef(null);
 
   useEffect(() => {
@@ -21,6 +22,18 @@ export const AuthForm = ({ context, onSubmit }) => {
       btnRef.current.blur();
     }
   }, [context]);
+
+  const placeholderPassword = intl.formatMessage({
+    id: "placeholderPassword",
+  });
+
+  const placeholderConfirmPassword = intl.formatMessage({
+    id: "placeholderConfirmPassword",
+  });
+
+  const placeholderFirstName = intl.formatMessage({
+    id: "placeholderFirstName",
+  });
 
   const initialValues = {
     email: "",
@@ -61,7 +74,6 @@ export const AuthForm = ({ context, onSubmit }) => {
                 name="email"
                 placeholder="E-mail"
                 autoComplete="email"
-                innerRef={emailInputRef}
               />
               <ErrorMessage
                 name="email"
@@ -81,7 +93,7 @@ export const AuthForm = ({ context, onSubmit }) => {
                 className="auth-form__input"
                 type="password"
                 name="password"
-                placeholder="Password"
+                placeholder={placeholderPassword}
                 autoComplete="new-password"
               />
               <ErrorMessage
@@ -104,7 +116,7 @@ export const AuthForm = ({ context, onSubmit }) => {
                     className="auth-form__input"
                     type="password"
                     name="confirmPassword"
-                    placeholder="Confirm password"
+                    placeholder={placeholderConfirmPassword}
                     autoComplete="new-password"
                   />
                   <ErrorMessage
@@ -125,7 +137,7 @@ export const AuthForm = ({ context, onSubmit }) => {
                     className="auth-form__input"
                     type="name"
                     name="firstName"
-                    placeholder="First name"
+                    placeholder={placeholderFirstName}
                     autoComplete="name"
                   />
                   <ErrorMessage
@@ -140,7 +152,13 @@ export const AuthForm = ({ context, onSubmit }) => {
               ariaLabel={
                 context === "login" ? "submit logging in" : "submit register"
               }
-              title={context === "login" ? "Log in" : "Register"}
+              title={
+                context === "login" ? (
+                  <FormattedMessage id="titleLogin" />
+                ) : (
+                  <FormattedMessage id="titleRegister" />
+                )
+              }
               styles="--submit"
               type="submit"
             />
@@ -148,7 +166,13 @@ export const AuthForm = ({ context, onSubmit }) => {
               ariaLabel={
                 context === "login" ? "go to register" : "go to logging in"
               }
-              title={context === "login" ? "Register" : "Log in"}
+              title={
+                context === "login" ? (
+                  <FormattedMessage id="titleRegister" />
+                ) : (
+                  <FormattedMessage id="titleLogin" />
+                )
+              }
               styles="--cancel"
               type="button"
               onClick={() => handleClick(formikBag)}

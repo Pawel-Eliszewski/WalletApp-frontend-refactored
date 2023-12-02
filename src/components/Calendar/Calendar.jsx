@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { FormattedMessage } from "react-intl";
 import { useEffect, useRef } from "react";
 import DatePicker from "react-datepicker";
 import { Button } from "../Button/Button";
@@ -61,14 +62,14 @@ export const Calendar = ({
     >
       <Button
         ariaLabel="set today`s date"
-        title="Today"
+        title={<FormattedMessage id="titleToday" />}
         styles="--today"
         type="button"
         onClick={handleDateToday}
       />
       <Button
         ariaLabel="clear date"
-        title="Clear"
+        title={<FormattedMessage id="titleClear" />}
         styles="--today"
         type="button"
         onClick={handleDateClear}

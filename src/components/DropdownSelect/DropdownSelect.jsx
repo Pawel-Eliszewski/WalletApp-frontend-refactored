@@ -42,6 +42,6 @@ DropdownSelect.propTypes = {
   isSearchable: PropTypes.bool.isRequired,
   isClearable: PropTypes.bool,
   isDisabled: PropTypes.bool,
-  placeholder: PropTypes.string,
+  placeholder: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   onChange: PropTypes.func.isRequired,
 };

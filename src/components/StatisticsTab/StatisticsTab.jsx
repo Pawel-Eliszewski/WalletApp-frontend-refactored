@@ -1,4 +1,5 @@
 import { useMedia } from "react-use";
+import { FormattedMessage } from "react-intl";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { selectTransactions } from "../../redux/finance/selectors";
@@ -22,11 +23,19 @@ export const StatisticsTab = () => {
     useState(allTransactions);
 
   const [selectedYear, setSelectedYear] = useState({
-    label: isMobile ? "Select Year" : "Year",
+    label: isMobile ? (
+      <FormattedMessage id="labelSelectYear" />
+    ) : (
+      <FormattedMessage id="labelYear" />
+    ),
     value: "",
   });
   const [selectedMonth, setSelectedMonth] = useState({
-    label: isMobile ? "Select Month" : "Month",
+    label: isMobile ? (
+      <FormattedMessage id="labelSelectMonth" />
+    ) : (
+      <FormattedMessage id="labelMonth" />
+    ),
     value: "",
   });
 
@@ -43,7 +52,11 @@ export const StatisticsTab = () => {
     if (year !== null) {
       setSelectedYear(year);
       setSelectedMonth({
-        label: isMobile ? "Select Month" : "Month",
+        label: isMobile ? (
+          <FormattedMessage id="labelSelectMonth" />
+        ) : (
+          <FormattedMessage id="labelMonth" />
+        ),
         value: "",
       });
       setSelectedRangeTransactions(
@@ -51,11 +64,19 @@ export const StatisticsTab = () => {
       );
     } else {
       setSelectedYear({
-        label: isMobile ? "Select Year" : "Year",
+        label: isMobile ? (
+          <FormattedMessage id="labelSelectYear" />
+        ) : (
+          <FormattedMessage id="labelYear" />
+        ),
         value: "",
       });
       setSelectedMonth({
-        label: isMobile ? "Select Month" : "Month",
+        label: isMobile ? (
+          <FormattedMessage id="labelSelectMonth" />
+        ) : (
+          <FormattedMessage id="labelMonth" />
+        ),
         value: "",
       });
       setSelectedRangeTransactions(allTransactions);
@@ -70,7 +91,11 @@ export const StatisticsTab = () => {
       );
     } else {
       setSelectedMonth({
-        label: isMobile ? "Select Month" : "Month",
+        label: isMobile ? (
+          <FormattedMessage id="labelSelectMonth" />
+        ) : (
+          <FormattedMessage id="labelMonth" />
+        ),
         value: "",
       });
       setSelectedRangeTransactions(
@@ -82,18 +107,23 @@ export const StatisticsTab = () => {
   return (
     <div className="statistics__container">
       <div className="statistics__doughnut-wrapper">
-        <h2 className="statistics__title">Statistics</h2>
+        <h2 className="statistics__title">
+          <FormattedMessage id="linkStatistics" />
+        </h2>
         <StatisticsDoughnut balance={balance} data={summedExpensesWithColors} />
         <div className="statistics__data-range-wrapper">
           <h4 className="statistics__data-range">
-            {"Data range: "}
-            {selectedYear.value === "" ? "all-time" : selectedYear.value}{" "}
-            {selectedMonth.value === "" && selectedYear.value !== ""
-              ? "all-year"
-              : selectedMonth.label === "Month" ||
-                selectedMonth.label === "Select Month"
-              ? null
-              : selectedMonth.label}
+            <FormattedMessage id="labelDateRange" />:{" "}
+            {selectedYear.value === "" ? (
+              <FormattedMessage id="labelAllTime" />
+            ) : (
+              selectedYear.value
+            )}{" "}
+            {selectedMonth.value === "" && selectedYear.value !== "" ? (
+              <FormattedMessage id="labelFullYear" />
+            ) : selectedMonth.value === "" ? null : (
+              selectedMonth.label
+            )}
           </h4>
         </div>
       </div>
@@ -124,8 +154,12 @@ export const StatisticsTab = () => {
         </div>
         <div className="statistics__legend">
           <ul className="statistics__legend-headers">
-            <li className="statistics__legend-header">Category</li>
-            <li className="statistics__legend-header">Sum</li>
+            <li className="statistics__legend-header">
+              <FormattedMessage id="headerCategory" />
+            </li>
+            <li className="statistics__legend-header">
+              <FormattedMessage id="headerSum" />
+            </li>
           </ul>
           <ul className="statistics__legend-list">
             {summedExpensesWithColors?.length > 0 ? (
@@ -145,8 +179,8 @@ export const StatisticsTab = () => {
               ))
             ) : (
               <li className="statistics__legend-item">
-                <p className="statistics__legend-category">
-                  No expense transactions for selected date
+                <p className="statistics__legend-info">
+                  <FormattedMessage id="statisticsLegendInfo" />
                 </p>
               </li>
             )}
@@ -155,13 +189,17 @@ export const StatisticsTab = () => {
         <div className="statistics__summary">
           <ul className="statistics__summary-list">
             <li className="statistics__summary-item">
-              <p className="statistics__summary-type">Expenses:</p>
+              <p className="statistics__summary-type">
+                <FormattedMessage id="labelExpenses" />:
+              </p>
               <p className="statistics__summary-type statistics__summary-type--expense">
                 {expense.toFixed(2)} PLN
               </p>
             </li>
             <li className="statistics__summary-item">
-              <p className="statistics__summary-type">Income:</p>
+              <p className="statistics__summary-type">
+                <FormattedMessage id="labelIncomes" />:
+              </p>
               <p className="statistics__summary-type statistics__summary-type--income">
                 {income.toFixed(2)} PLN
               </p>

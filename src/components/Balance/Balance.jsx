@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { FormattedMessage } from "react-intl";
 import { selectTransactions } from "../../redux/finance/selectors";
 import { countTransactionsSummary } from "../../utils/transactionsDataOperations";
 import { SmallLoader } from "../Loader/SmallLoader/SmallLoader";
@@ -19,7 +20,9 @@ export const Balance = () => {
 
   return (
     <div className="balance__wrapper">
-      <h2 className="balance__title">Your balance</h2>
+      <h2 className="balance__title">
+        <FormattedMessage id="totalBalance" />
+      </h2>
       {loadingData ? (
         <div className="balance__loading-box">
           <SmallLoader />

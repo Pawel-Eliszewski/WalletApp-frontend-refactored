@@ -1,3 +1,4 @@
+import { FormattedMessage } from "react-intl";
 import { formattedTransactionDate } from "./dateHandlers";
 
 export const countTransactionsSummary = (transactions) => {
@@ -100,21 +101,21 @@ export const getMonthsForSelectedYear = (transactions, year) => {
 
 const formatMonth = (month) => {
   const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "monthsJanuary",
+    "monthsFebruary",
+    "monthsMarch",
+    "monthsApril",
+    "monthsMay",
+    "monthsJune",
+    "monthsJuly",
+    "monthsAugust",
+    "monthsSeptember",
+    "monthsOctober",
+    "monthsNovember",
+    "monthsDecember",
   ];
 
-  return monthNames[parseInt(month, 10) - 1] || "";
+  return <FormattedMessage id={monthNames[parseInt(month, 10) - 1]} />;
 };
 
 export const filterTransactions = (transactions, year, month) => {

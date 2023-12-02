@@ -32,7 +32,7 @@ export const transactionValidationSchema = object().shape({
     then: () =>
       object()
         .test("isValidCategory", "Category is required", (value) => {
-          return value.label !== "Select a category";
+          return value.value !== "Select a category";
         })
         .required("Category is required"),
     otherwise: () => object(),

@@ -13,7 +13,7 @@ const AuthPage = ({ context }) => {
 
   const handleLogin = async (values) => {
     const formData = {
-      email: values.email,
+      email: values.email.trim(),
       password: values.password,
     };
     await dispatch(login(formData)).unwrap();
@@ -21,9 +21,9 @@ const AuthPage = ({ context }) => {
 
   const handleRegister = async (values) => {
     const formData = {
-      email: values.email,
+      email: values.email.trim(),
       password: values.password,
-      firstname: values.firstName,
+      firstname: values.firstName.trim(),
     };
     await dispatch(register(formData)).unwrap();
     navigate("/login", { replace: "true" });

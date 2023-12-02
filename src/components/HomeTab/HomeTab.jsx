@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useMedia } from "react-use";
+import { FormattedMessage } from "react-intl";
 import { useSelector, useDispatch } from "react-redux";
 import {
   selectTransactionsFilters,
@@ -96,25 +97,37 @@ export const HomeTab = () => {
             ({ _id, date, type, category, comment, amount }) => (
               <ul key={_id} className="mobile-table__list" data-type={type}>
                 <li key={nanoid()} className="mobile-table__item">
-                  <h4 className="mobile-table__item-header">Date</h4>
+                  <h4 className="mobile-table__item-header">
+                    <FormattedMessage id="headerDate" />
+                  </h4>
                   <p>{date}</p>
                 </li>
                 <li key={nanoid()} className="mobile-table__item">
-                  <h4 className="mobile-table__item-header">Type</h4>
+                  <h4 className="mobile-table__item-header">
+                    <FormattedMessage id="headerType" />
+                  </h4>
                   <p className="mobile-table__item-type" data-type={type}>
                     {type === "income" ? "+" : "-"}
                   </p>
                 </li>
                 <li key={nanoid()} className="mobile-table__item">
-                  <h4 className="mobile-table__item-header">Category</h4>
-                  <p>{category}</p>
+                  <h4 className="mobile-table__item-header">
+                    <FormattedMessage id="headerCategory" />
+                  </h4>
+                  <p>
+                    <FormattedMessage id={`expenseCategories${category}`} />
+                  </p>
                 </li>
                 <li key={nanoid()} className="mobile-table__item">
-                  <h4 className="mobile-table__item-header">Comment</h4>
+                  <h4 className="mobile-table__item-header">
+                    <FormattedMessage id="headerComment" />
+                  </h4>
                   <p className="mobile-table__item-comment">{comment}</p>
                 </li>
                 <li key={nanoid()} className="mobile-table__item">
-                  <h4 className="mobile-table__item-header">Amount</h4>
+                  <h4 className="mobile-table__item-header">
+                    <FormattedMessage id="headerAmount" />
+                  </h4>
                   <p className="mobile-table__item-amount" data-type={type}>
                     {amount.toFixed(2)}
                   </p>
@@ -122,14 +135,14 @@ export const HomeTab = () => {
                 <li className="mobile-table__controls">
                   <Button
                     ariaLabel="delete selected transaction"
-                    title="Delete"
+                    title={<FormattedMessage id="titleDelete" />}
                     styles="--delete"
                     type="button"
                     onClick={() => handleDeleteTransaction(_id)}
                   />
                   <Button
                     ariaLabel="open modal to edit selected transaction"
-                    title="Edit"
+                    title={<FormattedMessage id="titleEdit" />}
                     styles="--edit-mobile"
                     type="button"
                     onClick={() => openModalEdit(_id)}
@@ -145,16 +158,20 @@ export const HomeTab = () => {
         <table className="home__table table">
           <thead className="table__head">
             <tr key={nanoid()} className="table__head-list">
-              <th className="table__head-item table__head-item--date">Date</th>
-              <th className="table__head-item table__head-item--type">Type</th>
+              <th className="table__head-item table__head-item--date">
+                <FormattedMessage id="headerDate" />
+              </th>
+              <th className="table__head-item table__head-item--type">
+                <FormattedMessage id="headerType" />
+              </th>
               <th className="table__head-item table__head-item--category">
-                Category
+                <FormattedMessage id="headerCategory" />
               </th>
               <th className="table__head-item table__head-item--comment">
-                Comment
+                <FormattedMessage id="headerComment" />
               </th>
               <th className="table__head-item table__head-item--amount">
-                Amount
+                <FormattedMessage id="headerAmount" />
               </th>
               <th className="table__head-item table__head-item--controls">
                 Controls
@@ -173,7 +190,7 @@ export const HomeTab = () => {
                     {type === "income" ? "+" : "-"}
                   </td>
                   <td className="table__body-item table__body-item--category">
-                    {category}
+                    <FormattedMessage id={`expenseCategories${category}`} />
                   </td>
                   <td className="table__body-item table__body-item--comment">
                     {comment}
@@ -194,7 +211,7 @@ export const HomeTab = () => {
                       />
                       <Button
                         ariaLabel="delete selected transaction"
-                        title="Delete"
+                        title={<FormattedMessage id="titleDelete" />}
                         styles="--delete"
                         type="button"
                         onClick={() => handleDeleteTransaction(_id)}

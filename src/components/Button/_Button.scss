@@ -141,7 +141,7 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
     }
 
     &--today {
-        width: 75px;
+        width: 85px;
         height: 30px;
         font-size: 12px;
         background-color: var(--secondary-gray-font-color);
@@ -224,10 +224,11 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 52px;
         height: 18px;
         font-size: 14px;
         text-transform: none;
+        width: fit-content;
+        gap: 7px;
 
         body[data-color-scheme='dark'] & {
             color: var(--primary-background-color);

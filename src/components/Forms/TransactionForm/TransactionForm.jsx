@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useEffect, useRef } from "react";
+import { useIntl, FormattedMessage } from "react-intl";
 import { useMedia } from "react-use";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../../redux/session/selectors";
@@ -7,10 +7,7 @@ import {
   selectTransactions,
   selectTransactionId,
 } from "../../../redux/finance/selectors";
-import {
-  selectContext,
-  selectIsModalOpen,
-} from "../../../redux/global/selectors";
+import { selectContext } from "../../../redux/global/selectors";
 import {
   addTransaction,
   updateTransaction,
@@ -28,18 +25,17 @@ import { Loading } from "notiflix";
  * @param {{ onModalClose: () => void }} props
  */
 export const TransactionForm = ({ onModalClose }) => {
+  const intl = useIntl();
   const dispatch = useDispatch();
   const isMobile = useMedia("(max-width: 767px)");
-  const formikRef = useRef();
   const context = useSelector(selectContext);
   const user = useSelector(selectUser);
-  const isModalOpen = useSelector(selectIsModalOpen);
   const allTransactions = useSelector(selectTransactions);
   const transactionId = useSelector(selectTransactionId);
 
-  useEffect(() => {
-    formikRef.current?.resetForm();
-  }, [isModalOpen]);
+  const placeholderComment = intl.formatMessage({
+    id: "headerComment",
+  });
 
   const selectedTransaction = allTransactions.find(
     (transaction) => transaction._id === transactionId
@@ -50,10 +46,17 @@ export const TransactionForm = ({ onModalClose }) => {
     category:
       context === "edit"
         ? {
-            label: selectedTransaction.category,
+            label: (
+              <FormattedMessage
+                id={`expenseCategories${selectedTransaction.category}`}
+              />
+            ),
             value: selectedTransaction.category,
           }
-        : { label: "Select a category", value: "Select a category" },
+        : {
+            label: <FormattedMessage id="labelSelectCategory" />,
+            value: "Select a category",
+          },
     amount: context === "edit" ? selectedTransaction.amount : "",
     date: context === "edit" ? selectedTransaction.date : formattedTodayDate,
     comment: context === "edit" ? selectedTransaction.comment : "",
@@ -62,7 +65,7 @@ export const TransactionForm = ({ onModalClose }) => {
   const handleAddTransaction = async (values) => {
     const formData = {
       type: values.type,
-      category: values.type === "income" ? "Income" : values.category.value,
+      category: values.type === "income" ? 0 : values.category.value,
       amount: parseFloat(values.amount),
       date: values.date,
       comment: values.comment.trim(),
@@ -85,9 +88,7 @@ export const TransactionForm = ({ onModalClose }) => {
       transactionId: selectedTransaction._id,
       type: selectedTransaction.type,
       category:
-        selectedTransaction.type === "income"
-          ? "Income"
-          : values.category.value,
+        selectedTransaction.type === "income" ? 0 : values.category.value,
       amount: parseFloat(values.amount),
       date: values.date,
       comment: values.comment.trim(),
@@ -108,7 +109,6 @@ export const TransactionForm = ({ onModalClose }) => {
   return (
     <div className="transaction-form">
       <Formik
-        innerRef={formikRef}
         initialValues={initialValues}
         validationSchema={transactionValidationSchema}
         onSubmit={
@@ -116,7 +116,7 @@ export const TransactionForm = ({ onModalClose }) => {
         }
         enableReinitialize={true}
       >
-        {({ errors, touched, values, handleChange, setFieldValue }) => (
+        {({ errors, touched, values, setFieldValue }) => (
           <Form className="transaction-form__wrapper">
             <div className="transaction-form__type type">
               <span
@@ -124,7 +124,7 @@ export const TransactionForm = ({ onModalClose }) => {
                   values.type === "income" ? "type__span--income" : ""
                 }`}
               >
-                Income
+                <FormattedMessage id="labelIncome" />
               </span>
               {context === "add" ? (
                 <Switch
@@ -145,7 +145,7 @@ export const TransactionForm = ({ onModalClose }) => {
                   values.type === "expense" ? "type__span--expense" : ""
                 }`}
               >
-                Expense
+                <FormattedMessage id="labelExpense" />
               </span>
             </div>
             {values.type === "expense" ? (
@@ -157,7 +157,6 @@ export const TransactionForm = ({ onModalClose }) => {
                   styles="transaction-form"
                   isSearchable={!isMobile}
                   onChange={(selectedOption) => {
-                    handleChange("category")(selectedOption.value);
                     setFieldValue("category", selectedOption);
                   }}
                 />
@@ -212,7 +211,7 @@ export const TransactionForm = ({ onModalClose }) => {
                 className="transaction-form__textarea"
                 type="text"
                 name="comment"
-                placeholder="Comment"
+                placeholder={placeholderComment}
                 initialvalue={initialValues.comment}
                 autoComplete="off"
                 maxLength="34"
@@ -229,7 +228,13 @@ export const TransactionForm = ({ onModalClose }) => {
                   ? "add transaction"
                   : "save changes in transaction"
               }
-              title={context === "add" ? "Add" : "Save"}
+              title={
+                context === "add" ? (
+                  <FormattedMessage id="titleAdd" />
+                ) : (
+                  <FormattedMessage id="titleSave" />
+                )
+              }
               styles="--submit"
               type="submit"
             />

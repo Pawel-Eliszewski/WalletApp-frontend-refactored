@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { FormattedMessage } from "react-intl";
 import { SmallLoader } from "../Loader/SmallLoader/SmallLoader";
 import { getAndStoreCurrencyData } from "../../utils/currencyDataOperations";
 import { nanoid } from "nanoid";
@@ -38,9 +39,15 @@ export function Currency() {
       <table className="currency__table">
         <thead className="currency__head">
           <tr key={nanoid()} className="currency__head-row">
-            <th className="currency__header">Currency</th>
-            <th className="currency__header">Purchase</th>
-            <th className="currency__header">Sale</th>
+            <th className="currency__header">
+              <FormattedMessage id="headerCurrency" />
+            </th>
+            <th className="currency__header">
+              <FormattedMessage id="headerPurchase" />
+            </th>
+            <th className="currency__header">
+              <FormattedMessage id="headerSale" />
+            </th>
           </tr>
         </thead>
         <tbody className="currency__body">
