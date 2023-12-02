@@ -171,7 +171,10 @@ export const StatisticsTab = () => {
                       backgroundColor: `${color}`,
                     }}
                   ></div>
-                  <p className="statistics__legend-category">{category}</p>
+                  <p className="statistics__legend-category">
+                    {" "}
+                    <FormattedMessage id={`expenseCategories${category}`} />
+                  </p>
                   <p className="statistics__legend-amount">
                     {amount.toFixed(2)} PLN
                   </p>
