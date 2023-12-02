@@ -12,7 +12,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Button } from "../../Button/Button";
 import { DropdownSelect } from "../../DropdownSelect/DropdownSelect";
 import { Calendar } from "../../Calendar/Calendar";
-import { expenseCategoryNames } from "../../../utils/transactionCategories";
+import { expenseCategoryOptions } from "../../../utils/transactionCategories";
 import { transactionsFiltersValidationSchema } from "../../../utils/yupValidationSchemas";
 import { Loading, Notify } from "notiflix";
 /**
@@ -30,9 +30,9 @@ export const SearchForm = ({ onModalClose }) => {
   const placeholderComment = intl.formatMessage({ id: "placeholderTypeWord" });
   const translatedMsg = intl.formatMessage({ id: "notifyOneFilter" });
 
-  const expenseCategoryNamesWithAll = [
-    { label: <FormattedMessage id="expenseCategories0" />, value: 0 },
-    ...expenseCategoryNames,
+  const expenseCategoryOptionsWithAll = [
+    { label: <FormattedMessage id="expenseCategoriesAll" />, value: "all" },
+    ...expenseCategoryOptions,
   ];
 
   const initialValues =
@@ -113,7 +113,7 @@ export const SearchForm = ({ onModalClose }) => {
                   <DropdownSelect
                     name="categories"
                     value={values.categories}
-                    options={expenseCategoryNamesWithAll}
+                    options={expenseCategoryOptionsWithAll}
                     styles="transaction-form"
                     isMulti={true}
                     isSearchable={!isMobile}

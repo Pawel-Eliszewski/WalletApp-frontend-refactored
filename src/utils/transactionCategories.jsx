@@ -58,7 +58,7 @@ export const expenseCategories = [
   },
 ];
 
-export const expenseCategoryNames = expenseCategories
+export const expenseCategoryOptions = expenseCategories
   .filter((option) => option.id !== 0)
   .map((option) => ({
     label: option.category,

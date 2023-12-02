@@ -1,8 +1,11 @@
 import PropTypes from "prop-types";
+import { useIntl } from "react-intl";
 import { Doughnut } from "react-chartjs-2";
 import "chart.js/auto";
 
 export const StatisticsDoughnut = ({ balance, data }) => {
+  const intl = useIntl();
+
   const chartOptions = {
     cutout: "70%",
     plugins: {
@@ -18,7 +21,9 @@ export const StatisticsDoughnut = ({ balance, data }) => {
   };
 
   const doughnutData = {
-    labels: data.map((element) => element.category),
+    labels: data.map((element) =>
+      intl.formatMessage({ id: `expenseCategories${element.category}` })
+    ),
     datasets: [
       {
         data: data.map((element) => element.amount),

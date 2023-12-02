@@ -228,7 +228,7 @@ export const HomeTab = () => {
       {pageCount > 1 ? (
         <Pagination
           isMobile={isMobile}
-          transactionsFilters={transactionsFilters}
+          resetBtn={transactionsFilters ? true : false}
           pageCount={pageCount}
           onItemOffsetChange={handleItemOffset}
         />
@@ -249,7 +249,7 @@ export const HomeTab = () => {
       {transactionsFilters && (
         <Button
           ariaLabel="reset all transactions filters"
-          title="Reset"
+          title={<FormattedMessage id="titleReset" />}
           styles="--reset"
           type="button"
           onClick={handleTransactionFiltersReset}

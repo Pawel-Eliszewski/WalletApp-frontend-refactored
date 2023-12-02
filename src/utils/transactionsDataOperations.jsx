@@ -60,7 +60,7 @@ export const sumExpensesWithColors = (transactions, expenseCategories) => {
   const summedExpensesWithColors = summedExpenses.map((summedExpense) => {
     const { category, amount } = summedExpense;
     const matchingCategory = expenseCategories.find(
-      (expenseCategory) => expenseCategory.category === category
+      (expenseCategory) => expenseCategory.id === category
     );
 
     return {
