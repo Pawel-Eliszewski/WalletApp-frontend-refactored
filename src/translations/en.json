@@ -73,5 +73,6 @@
   "monthsOctober": "October",
   "monthsNovember": "November",
   "monthsDecember": "December",
-  "notifyOneFilter": "Please use at least 1 filter"
+  "notifyOneFilter": "Please use at least 1 filter",
+  "notifyAdded": "Transaction added"
 }
