@@ -88,7 +88,11 @@ export default function App() {
   return (
     <Suspense fallback={<Loader />}>
       <Loader />
-      <IntlProvider locale={appLanguage} messages={messages[appLanguage]}>
+      <IntlProvider
+        defaultLocale="en"
+        locale={appLanguage ? appLanguage : "en"}
+        messages={messages[appLanguage]}
+      >
         <Routes>
           <Route
             path="/register"
