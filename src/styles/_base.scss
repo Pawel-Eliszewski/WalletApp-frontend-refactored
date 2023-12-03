@@ -75,6 +75,13 @@ textarea {
     }
 }
 
+input:focus,
+textarea:focus {
+    &::placeholder {
+        visibility: hidden;
+    }
+}
+
 .notiflix-report-overlay {
     backdrop-filter: blur(25px);
 }

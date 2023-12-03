@@ -22,6 +22,16 @@ export const Header = () => {
   const colorScheme = useSelector(selectColorScheme);
   const user = useSelector(selectUser);
 
+  const handleAppLanguageChange = () => {
+    if (appLanguage === "pl") {
+      localStorage.setItem("appLanguage", "en");
+      dispatch(setAppLanguage("en"));
+    } else {
+      localStorage.setItem("appLanguage", "pl");
+      dispatch(setAppLanguage("pl"));
+    }
+  };
+
   const handleColorSchemeChange = () => {
     if (colorScheme === "dark") {
       document.body.setAttribute("data-color-scheme", "light");
@@ -33,16 +43,6 @@ export const Header = () => {
       localStorage.setItem("colorScheme", "dark");
       dispatch(setColorScheme("dark"));
       configureNotiflixStyles("dark");
-    }
-  };
-
-  const handleAppLanguageChange = () => {
-    if (appLanguage === "pl") {
-      localStorage.setItem("appLanguage", "en");
-      dispatch(setAppLanguage("en"));
-    } else {
-      localStorage.setItem("appLanguage", "pl");
-      dispatch(setAppLanguage("pl"));
     }
   };
 

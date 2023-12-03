@@ -77,6 +77,15 @@ body[data-color-scheme=dark] textarea {
   color: var(--primary-background-color) !important;
 }
 
+input:focus::-moz-placeholder, textarea:focus::-moz-placeholder {
+  visibility: hidden;
+}
+
+input:focus::placeholder,
+textarea:focus::placeholder {
+  visibility: hidden;
+}
+
 .notiflix-report-overlay {
   -webkit-backdrop-filter: blur(25px);
           backdrop-filter: blur(25px);
@@ -96,7 +105,7 @@ body[data-color-scheme=dark] textarea {
   --auth-form-overlay-color: #ffffff66;
   --auth-form-dark-overlay-color: #ffffff09;
   --ellipse-bottom-color: #c5baff;
-  --ellipse-bottom-dark-color: #85324d;
+  --ellipse-bottom-dark-color: #983656;
   --ellipse-top-dark-color: #ffd8d026;
   --backdrop-background-color: #000000b0;
   --primary-expense-color: #ff6596;
@@ -821,8 +830,6 @@ body[data-color-scheme=dark] .currency__head {
   align-items: center;
   width: 100%;
   height: 50px;
-  padding-left: 5px;
-  padding-right: 10px;
 }
 .currency__body {
   width: 100%;
@@ -1073,6 +1080,9 @@ body[data-color-scheme=dark] .statistics__summary-item {
     justify-content: space-between;
     width: 100%;
     max-width: 336px;
+  }
+  .statistics__legend-icon {
+    border: 1px solid var(--primary-font-color);
   }
 }
 @media screen and (min-width: 1280px) {
@@ -1329,9 +1339,12 @@ body[data-color-scheme=dark] .transaction-form__amount:focus, body[data-color-sc
   align-items: center;
   width: 257px;
   padding-block: 30px;
-  color: var(--secondary-gray-font-color);
+  color: var(--primary-gray-font-color);
   font-size: 16px;
   font-weight: 600;
+}
+body[data-color-scheme=dark] .type {
+  color: var(--primary-dark-border-color);
 }
 .type__span--income {
   color: var(--primary-income-color);
@@ -1969,29 +1982,6 @@ body[data-color-scheme=dark] .background {
 }
 .background__ellipse {
   display: none;
-  position: absolute;
-  border-radius: 50%;
-}
-.background__ellipse--top {
-  width: 50%;
-  padding-top: 50%;
-  top: -30%;
-  right: -10%;
-  background-color: var(--products-diagram-color);
-}
-body[data-color-scheme=dark] .background__ellipse--top {
-  background-color: var(--ellipse-top-dark-color);
-}
-.background__ellipse--bottom {
-  width: 50%;
-  padding-top: 100%;
-  top: 15%;
-  left: -35%;
-  background-color: var(--ellipse-bottom-color);
-  transform: rotate(65deg);
-}
-body[data-color-scheme=dark] .background__ellipse--bottom {
-  background-color: var(--ellipse-bottom-dark-color);
 }
 
 @media screen and (min-width: 768px) {
@@ -2000,6 +1990,29 @@ body[data-color-scheme=dark] .background__ellipse--bottom {
   }
   .background__ellipse {
     display: block;
+    position: absolute;
+    border-radius: 50%;
+  }
+  .background__ellipse--top {
+    width: 50%;
+    padding-top: 50%;
+    top: -35%;
+    right: -15%;
+    background-color: var(--products-diagram-color);
+  }
+  body[data-color-scheme=dark] .background__ellipse--top {
+    background-color: var(--ellipse-top-dark-color);
+  }
+  .background__ellipse--bottom {
+    width: 50%;
+    padding-top: 100%;
+    top: 15%;
+    left: -35%;
+    background-color: var(--ellipse-bottom-color);
+    transform: rotate(65deg);
+  }
+  body[data-color-scheme=dark] .background__ellipse--bottom {
+    background-color: var(--ellipse-bottom-dark-color);
   }
 }
 .transactionType-switch {
@@ -2130,18 +2143,26 @@ body[data-color-scheme=dark] .appLanguage-switch__slider {
 }
 
 .appLanguage-switch__slider:before {
-  content: "GB";
-  background-color: white;
-  border: 1px solid black;
+  content: "EN";
+  background-color: var(--secondary-background-color);
+  color: var(--primary-font-color);
   box-shadow: none;
-  font-size: 16px;
+  font-size: 14px;
+}
+body[data-color-scheme=dark] .appLanguage-switch__slider:before {
+  background-color: var(--primary-dark-border-color);
+  color: var(--secondary-gray-font-color);
 }
 .appLanguage-switch__input:checked + .appLanguage-switch__slider:before {
   content: "PL";
-  background-color: white;
-  border: 1px solid black;
+  background-color: var(--secondary-background-color);
+  color: var(--primary-font-color);
   box-shadow: none;
-  font-size: 16px;
+  font-size: 14px;
+}
+body[data-color-scheme=dark] .appLanguage-switch__input:checked + .appLanguage-switch__slider:before {
+  background-color: var(--primary-dark-border-color);
+  color: var(--secondary-gray-font-color);
 }
 
 @media screen and (min-width: 768px) {
@@ -2179,6 +2200,12 @@ body[data-color-scheme=dark] .appLanguage-switch__slider {
   .appLanguage-switch__input:checked + .colorScheme-switch__slider:before,
   .appLanguage-switch__input:checked + .appLanguage-switch__slider:before {
     transform: translateX(15px);
+  }
+  .appLanguage-switch__slider:before {
+    font-size: 16px;
+  }
+  .appLanguage-switch__input:checked + .appLanguage-switch__slider:before {
+    font-size: 16px;
   }
 }
 .transaction-form-select-container {

@@ -107,9 +107,13 @@
     align-items: center;
     width: 257px;
     padding-block: 30px;
-    color: var(--secondary-gray-font-color);
+    color: var(--primary-gray-font-color);
     font-size: 16px;
     font-weight: 600;
+
+    body[data-color-scheme='dark'] & {
+        color: var(--primary-dark-border-color);
+    }
 
     &__span {
         &--income {
