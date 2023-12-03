@@ -1,5 +1,8 @@
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 import { FormattedMessage } from "react-intl";
+import { selectAppLanguage } from "../../redux/global/selectors";
+import pl from "date-fns/locale/pl";
 import { useEffect, useRef } from "react";
 import DatePicker from "react-datepicker";
 import { Button } from "../Button/Button";
@@ -20,6 +23,7 @@ export const Calendar = ({
   isMobile,
   onDateChange,
 }) => {
+  const appLanguage = useSelector(selectAppLanguage);
   const datePickerRef = useRef(null);
 
   useEffect(() => {
@@ -59,6 +63,7 @@ export const Calendar = ({
       dateFormat="dd.MM.yyyy"
       calendarClassName={transactionType === "income" ? "--income" : ""}
       autoComplete="off"
+      locale={appLanguage === "pl" ? pl : null}
     >
       <Button
         ariaLabel="set today`s date"
