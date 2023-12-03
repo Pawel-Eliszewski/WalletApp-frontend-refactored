@@ -1,7 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../redux/session/selectors";
-import { selectColorScheme } from "../../redux/global/selectors";
 import {
+  selectAppLanguage,
+  selectColorScheme,
+} from "../../redux/global/selectors";
+import {
+  setAppLanguage,
   setColorScheme,
   setIsModalOpen,
   setContext,
@@ -14,8 +18,9 @@ import { configureNotiflixStyles } from "../../utils/notiflixStyles";
 export const Header = () => {
   const dispatch = useDispatch();
 
-  const user = useSelector(selectUser);
+  const appLanguage = useSelector(selectAppLanguage);
   const colorScheme = useSelector(selectColorScheme);
+  const user = useSelector(selectUser);
 
   const handleColorSchemeChange = () => {
     if (colorScheme === "dark") {
@@ -28,6 +33,16 @@ export const Header = () => {
       localStorage.setItem("colorScheme", "dark");
       dispatch(setColorScheme("dark"));
       configureNotiflixStyles("dark");
+    }
+  };
+
+  const handleAppLanguageChange = () => {
+    if (appLanguage === "pl") {
+      localStorage.setItem("appLanguage", "en");
+      dispatch(setAppLanguage("en"));
+    } else {
+      localStorage.setItem("appLanguage", "pl");
+      dispatch(setAppLanguage("pl"));
     }
   };
 
@@ -44,6 +59,11 @@ export const Header = () => {
         context="colorScheme"
         checked={colorScheme === "light"}
         onChange={handleColorSchemeChange}
+      />
+      <Switch
+        context="appLanguage"
+        checked={appLanguage === "pl"}
+        onChange={handleAppLanguageChange}
       />
       <div className="header__nav">
         <p className="header__nav-user">{user.firstname}</p>

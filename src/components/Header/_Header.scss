@@ -3,8 +3,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 76px;
-  padding: 20px 20px;
+  height: 56px;
+  padding-inline: 10px;
   background-color: var(--primary-background-color);
   border-bottom: 1px solid var(--primary-background-color);
 
@@ -14,6 +14,7 @@
   }
 
   @media screen and (min-width: 768px) {
+    height: 76px;
     padding-inline: 50px;
     border: none;
 

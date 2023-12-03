@@ -71,7 +71,8 @@
     }
 }
 
-.colorScheme-switch {
+.colorScheme-switch,
+.appLanguage-switch {
     width: 45px;
     height: 25px;
     display: flex;
@@ -130,8 +131,28 @@
     }
 }
 
+.appLanguage-switch {
+    &__slider:before {
+        content: "GB";
+        background-color: white;
+        border: 1px solid black;
+        box-shadow: none;
+        font-size: 16px;
+    }
+
+    &__input:checked+&__slider:before {
+        content: "PL";
+        background-color: white;
+        border: 1px solid black;
+        box-shadow: none;
+        font-size: 16px;
+    }
+}
+
 @media screen and (min-width: 768px) {
-    .colorScheme-switch {
+
+    .colorScheme-switch,
+    .appLanguage-switch {
         width: 65px;
         height: 35px;
 
@@ -153,7 +174,6 @@
         }
 
         &__slider:before {
-
             width: 40px;
             height: 40px;
             font-size: 28px;

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isLoading: false,
+  appLanguage: null,
   colorScheme: null,
   isModalOpen: false,
   context: null,
@@ -16,6 +17,9 @@ const globalSlice = createSlice({
     setIsLoading(state, action) {
       state.isLoading = action.payload;
     },
+    setAppLanguage(state, action) {
+      state.appLanguage = action.payload;
+    },
     setColorScheme(state, action) {
       state.colorScheme = action.payload;
     },
@@ -28,7 +32,12 @@ const globalSlice = createSlice({
   },
 });
 
-export const { setIsLoading, setColorScheme, setIsModalOpen, setContext } =
-  globalSlice.actions;
+export const {
+  setIsLoading,
+  setAppLanguage,
+  setColorScheme,
+  setIsModalOpen,
+  setContext,
+} = globalSlice.actions;
 
 export const globalReducer = globalSlice.reducer;

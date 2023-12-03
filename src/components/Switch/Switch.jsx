@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useRef } from "react";
 /**
- * @param {{ context: 'colorScheme' | 'transactionType',
+ * @param {{ context: 'colorScheme' | 'transactionType' | 'appLanguage',
  * checked: boolean, onChange: () => void }} props
  */
 export const Switch = ({ context, checked, onChange }) => {

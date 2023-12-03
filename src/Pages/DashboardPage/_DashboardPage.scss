@@ -14,7 +14,7 @@
 
   &--mobile {
     background-color: var(--secondary-background-color);
-    min-height: calc(100vh - 76px);
+    min-height: calc(100vh - 56px);
     backdrop-filter: none;
 
     body[data-color-scheme='dark'] & {
