@@ -51,7 +51,7 @@ export const transactionValidationSchema = object().shape({
 export const transactionsFiltersValidationSchema = object().shape({
   minAmount: number().test(
     "minAmount",
-    "Min must be less than or equal to Max",
+    "'min' must be less than or equal to 'max'",
     function (value) {
       const { maxAmount } = this.parent;
       return (
@@ -64,7 +64,7 @@ export const transactionsFiltersValidationSchema = object().shape({
 
   maxAmount: number().test(
     "maxAmount",
-    "Max must be greater than or equal to Min",
+    "'max' must be greater than or equal to 'min'",
     function (value) {
       const { minAmount } = this.parent;
       return (
@@ -77,7 +77,7 @@ export const transactionsFiltersValidationSchema = object().shape({
 
   minDate: string().test(
     "minDate",
-    "'From' must be earlier than or equal to 'to'",
+    "'from' must be earlier than or equal to 'to'",
     function (value) {
       const { maxDate } = this.parent;
       const parsedMinDate = formattedTransactionDate(value);
@@ -93,7 +93,7 @@ export const transactionsFiltersValidationSchema = object().shape({
 
   maxDate: string().test(
     "maxDate",
-    "'To' must be later than or equal to 'from'",
+    "'to' must be later than or equal to 'from'",
     function (value) {
       const { minDate } = this.parent;
       const parsedMinDate = formattedTransactionDate(minDate);
