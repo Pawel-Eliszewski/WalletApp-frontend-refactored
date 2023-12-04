@@ -1174,8 +1174,10 @@ body[data-color-scheme=dark] .doughnut__balance {
 }
 .auth-form__field {
   width: 100%;
+  height: 35px;
   border-bottom: 1px solid var(--primary-gray-font-color);
   padding-bottom: 5px;
+  margin-bottom: 5px;
   position: relative;
   display: flex;
   align-items: center;
@@ -1198,6 +1200,7 @@ body[data-color-scheme=dark] .auth-form__field:focus-within {
 }
 .auth-form__input {
   width: 100%;
+  height: 29px;
   border: none;
   outline: none;
   background-color: transparent;
@@ -1215,12 +1218,12 @@ body[data-color-scheme=dark] .auth-form__field:focus-within {
   color: var(--primary-gray-font-color);
 }
 .auth-form__alert {
+  position: absolute;
   color: var(--primary-expense-color);
   font-size: 12px;
-  position: absolute;
+  max-width: 100%;
   top: 37px;
   left: 50px;
-  max-width: 100%;
 }
 
 @media screen and (min-width: 768px) {

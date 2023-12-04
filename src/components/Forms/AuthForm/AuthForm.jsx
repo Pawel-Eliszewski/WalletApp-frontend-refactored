@@ -81,7 +81,7 @@ export const AuthForm = ({ context, onSubmit }) => {
               />
               <ErrorMessage
                 name="email"
-                component="div"
+                component="span"
                 className="auth-form__alert"
               />
             </div>
@@ -102,7 +102,7 @@ export const AuthForm = ({ context, onSubmit }) => {
               />
               <ErrorMessage
                 name="password"
-                component="div"
+                component="span"
                 className="auth-form__alert"
               />
             </div>
@@ -125,7 +125,7 @@ export const AuthForm = ({ context, onSubmit }) => {
                   />
                   <ErrorMessage
                     name="confirmPassword"
-                    component="div"
+                    component="span"
                     className="auth-form__alert"
                   />
                 </div>
@@ -146,7 +146,7 @@ export const AuthForm = ({ context, onSubmit }) => {
                   />
                   <ErrorMessage
                     name="firstName"
-                    component="div"
+                    component="span"
                     className="auth-form__alert"
                   />
                 </div>
