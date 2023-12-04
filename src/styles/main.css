@@ -1175,7 +1175,6 @@ body[data-color-scheme=dark] .doughnut__balance {
 .auth-form__field {
   width: 100%;
   border-bottom: 1px solid var(--primary-gray-font-color);
-  margin-bottom: 10px;
   padding-bottom: 5px;
   position: relative;
   display: flex;
@@ -1219,7 +1218,7 @@ body[data-color-scheme=dark] .auth-form__field:focus-within {
   color: var(--primary-expense-color);
   font-size: 12px;
   position: absolute;
-  top: 40px;
+  top: 37px;
   left: 50px;
   max-width: 100%;
 }
