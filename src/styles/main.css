@@ -1314,7 +1314,7 @@ body[data-color-scheme=dark] .auth-form__field:focus-within {
   word-wrap: break-word;
 }
 .transaction-form__alert--category {
-  top: 42px;
+  top: 32px;
   left: 8px;
 }
 .transaction-form__alert--amount {
