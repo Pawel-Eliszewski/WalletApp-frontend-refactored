@@ -47,7 +47,7 @@
   "placeholderTypeWord": "Type word",
   "placeholderPassword": "Password",
   "placeholderConfirmPassword": "Confirm password",
-  "placeholderFirstName": "First name",
+  "placeholderName": "Name",
   "placeholderDate": "DD.MM.YYYY",
   "expenseCategoriesAll": "All categories",
   "expenseCategories0": "Income",

@@ -161,9 +161,9 @@ export const TransactionForm = ({ onModalClose }) => {
                   }}
                 />
                 {touched.category && errors.category && (
-                  <div className="transaction-form__alert transaction-form__alert--category">
+                  <span className="transaction-form__alert transaction-form__alert--category">
                     {errors.category}
-                  </div>
+                  </span>
                 )}
               </div>
             ) : null}
@@ -187,7 +187,7 @@ export const TransactionForm = ({ onModalClose }) => {
               />
               <ErrorMessage
                 name="amount"
-                component="div"
+                component="span"
                 className="transaction-form__alert transaction-form__alert--amount"
               />
               <Calendar
@@ -200,9 +200,9 @@ export const TransactionForm = ({ onModalClose }) => {
                 }}
               />
               {touched.date && errors.date && (
-                <div className="transaction-form__alert transaction-form__alert--date">
+                <span className="transaction-form__alert transaction-form__alert--date">
                   {errors.date}
-                </div>
+                </span>
               )}
             </div>
             <div className="transaction-form__comment">
@@ -218,7 +218,7 @@ export const TransactionForm = ({ onModalClose }) => {
               />
               <ErrorMessage
                 name="comment"
-                component="div"
+                component="span"
                 className="transaction-form__alert transaction-form__alert--comment"
               />
             </div>

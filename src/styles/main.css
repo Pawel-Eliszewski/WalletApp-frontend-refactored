@@ -586,6 +586,7 @@ body[data-color-scheme=dark] .react-datepicker {
 }
 .react-datepicker-wrapper {
   width: 100%;
+  height: 30px;
   max-width: 280px;
   border-bottom: 1px solid var(--primary-gray-font-color);
   padding-bottom: 5px;
@@ -1266,6 +1267,7 @@ body[data-color-scheme=dark] .auth-form__field:focus-within {
 }
 .transaction-form__amount {
   width: 280px;
+  height: 30px;
   border: none;
   padding-left: 12px;
   padding-bottom: 5px;
@@ -1390,7 +1392,7 @@ body[data-color-scheme=dark] .type__span--expense {
     width: max-content;
   }
   .transaction-form__alert--category {
-    top: 41px;
+    top: 32px;
     left: 12px;
   }
   .transaction-form__alert--amount {
@@ -2210,58 +2212,94 @@ body[data-color-scheme=dark] .appLanguage-switch__input:checked + .appLanguage-s
     font-size: 16px;
   }
 }
-.transaction-form-select-container {
+.transaction-form-select-container,
+.search-form-select-container {
   width: 280px !important;
+  min-height: 30px !important;
 }
 @media screen and (min-width: 768px) {
-  .transaction-form-select-container {
+  .transaction-form-select-container,
+  .search-form-select-container {
     width: 394px !important;
   }
 }
-.transaction-form-select__control {
+.transaction-form-select__control,
+.search-form-select__control {
   position: relative !important;
   cursor: pointer !important;
   border: none !important;
   outline: none !important;
   border-bottom: 1px solid var(--primary-gray-font-color) !important;
   border-radius: 0 !important;
+  min-height: 30px !important;
 }
-body[data-color-scheme=dark] .transaction-form-select__control {
+body[data-color-scheme=dark] .transaction-form-select__control,
+body[data-color-scheme=dark] .search-form-select__control {
   background-color: var(--primary-dark-background-color) !important;
 }
-.transaction-form-select__control:focus, .transaction-form-select__control--is-focused, .transaction-form-select__control--menu-is-open {
+.transaction-form-select__control:focus, .transaction-form-select__control--is-focused, .transaction-form-select__control--menu-is-open,
+.search-form-select__control:focus,
+.search-form-select__control--is-focused,
+.search-form-select__control--menu-is-open {
   border: none !important;
   outline: none !important;
   box-shadow: none !important;
   border-bottom: 1px solid var(--primary-font-color) !important;
 }
-body[data-color-scheme=dark] .transaction-form-select__control:focus, body[data-color-scheme=dark] .transaction-form-select__control--is-focused, body[data-color-scheme=dark] .transaction-form-select__control--menu-is-open {
+body[data-color-scheme=dark] .transaction-form-select__control:focus, body[data-color-scheme=dark] .transaction-form-select__control--is-focused, body[data-color-scheme=dark] .transaction-form-select__control--menu-is-open,
+body[data-color-scheme=dark] .search-form-select__control:focus,
+body[data-color-scheme=dark] .search-form-select__control--is-focused,
+body[data-color-scheme=dark] .search-form-select__control--menu-is-open {
   border-bottom: 1px solid var(--primary-background-color) !important;
 }
-.transaction-form-select__indicator-separator {
+.transaction-form-select__indicators,
+.search-form-select__indicators {
+  height: 30px !important;
+}
+.transaction-form-select__indicator,
+.search-form-select__indicator {
+  padding-block: 4px !important;
+}
+.transaction-form-select__indicator-separator,
+.search-form-select__indicator-separator {
   display: none !important;
 }
-.transaction-form-select__single-value {
+.transaction-form-select__single-value,
+.search-form-select__single-value {
   color: var(--primary-font-color) !important;
 }
-body[data-color-scheme=dark] .transaction-form-select__single-value {
+body[data-color-scheme=dark] .transaction-form-select__single-value,
+body[data-color-scheme=dark] .search-form-select__single-value {
   color: var(--secondary-gray-font-color) !important;
 }
-.transaction-form-select__menu {
+.transaction-form-select__input-container,
+.search-form-select__input-container {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.transaction-form-select__value-container,
+.search-form-select__value-container {
+  padding-bottom: 5px !important;
+}
+.transaction-form-select__menu,
+.search-form-select__menu {
   margin: 2px 0 0 0 !important;
   background-color: var(--primary-gray-background-color) !important;
   border-radius: 20px !important;
   max-height: 360px !important;
 }
-body[data-color-scheme=dark] .transaction-form-select__menu {
+body[data-color-scheme=dark] .transaction-form-select__menu,
+body[data-color-scheme=dark] .search-form-select__menu {
   background-color: var(--primary-dark-background-color) !important;
 }
-.transaction-form-select__menu-list {
+.transaction-form-select__menu-list,
+.search-form-select__menu-list {
   box-shadow: 0px 6px 15px 0px rgba(0, 0, 0, 0.1) !important;
   border-radius: 20px !important;
   max-height: 370px !important;
 }
-.transaction-form-select__option {
+.transaction-form-select__option,
+.search-form-select__option {
   height: 32px !important;
   font-size: 18px !important;
   color: var(--primary-font-color) !important;
@@ -2269,23 +2307,30 @@ body[data-color-scheme=dark] .transaction-form-select__menu {
   padding-left: 20px !important;
   z-index: 2;
 }
-body[data-color-scheme=dark] .transaction-form-select__option {
+body[data-color-scheme=dark] .transaction-form-select__option,
+body[data-color-scheme=dark] .search-form-select__option {
   color: var(--primary-gray-font-color) !important;
 }
-.transaction-form-select__option:last-child {
+.transaction-form-select__option:last-child,
+.search-form-select__option:last-child {
   border-bottom-left-radius: 20px !important;
   border-bottom-right-radius: 20px !important;
 }
-.transaction-form-select__option:hover, .transaction-form-select__option--is-selected {
+.transaction-form-select__option:hover, .transaction-form-select__option--is-selected,
+.search-form-select__option:hover,
+.search-form-select__option--is-selected {
   background-color: var(--primary-background-color) !important;
   color: var(--primary-expense-color) !important;
   cursor: pointer !important;
 }
-body[data-color-scheme=dark] .transaction-form-select__option:hover, body[data-color-scheme=dark] .transaction-form-select__option--is-selected {
+body[data-color-scheme=dark] .transaction-form-select__option:hover, body[data-color-scheme=dark] .transaction-form-select__option--is-selected,
+body[data-color-scheme=dark] .search-form-select__option:hover,
+body[data-color-scheme=dark] .search-form-select__option--is-selected {
   color: var(--primary-expense-color) !important;
   background-color: transparent !important;
 }
-.transaction-form-select__option--is-selected::after {
+.transaction-form-select__option--is-selected::after,
+.search-form-select__option--is-selected::after {
   content: "";
   width: 9px;
   height: 13px;
@@ -2296,9 +2341,17 @@ body[data-color-scheme=dark] .transaction-form-select__option:hover, body[data-c
   position: absolute;
   right: 15px;
 }
-body[data-color-scheme=dark] .transaction-form-select__option--is-selected::after {
+body[data-color-scheme=dark] .transaction-form-select__option--is-selected::after,
+body[data-color-scheme=dark] .search-form-select__option--is-selected::after {
   border: solid var(--primary-expense-color);
   border-width: 0 2px 2px 0;
+}
+
+.search-form-select-container {
+  min-height: 36px !important;
+}
+.search-form-select__control {
+  min-height: 36px !important;
 }
 
 .statistics-tab-select-container {
@@ -2453,6 +2506,7 @@ body[data-color-scheme=dark] .search-form {
 }
 .search-form__inputs {
   width: 100%;
+  height: 31px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -2497,14 +2551,8 @@ body[data-color-scheme=dark] .search-form__amount:focus, body[data-color-scheme=
   text-align: center;
   color: var(--primary-expense-color);
   max-width: 100%;
-}
-.search-form__alert--amount {
-  top: 28px;
-  right: 0px;
-}
-.search-form__alert--date {
-  top: 28px;
-  right: 0px;
+  top: 30px;
+  right: 0;
 }
 
 .loader__container {

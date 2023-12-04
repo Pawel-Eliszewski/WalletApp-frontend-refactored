@@ -35,15 +35,15 @@ export const AuthForm = ({ context, onSubmit }) => {
     id: "placeholderConfirmPassword",
   });
 
-  const placeholderFirstName = intl.formatMessage({
-    id: "placeholderFirstName",
+  const placeholderName = intl.formatMessage({
+    id: "placeholderName",
   });
 
   const initialValues = {
     email: "",
     password: "",
     confirmPassword: "",
-    firstName: "",
+    name: "",
   };
 
   const handleClick = (formikBag) => {
@@ -140,12 +140,12 @@ export const AuthForm = ({ context, onSubmit }) => {
                   <Field
                     className="auth-form__input"
                     type="name"
-                    name="firstName"
-                    placeholder={placeholderFirstName}
+                    name="name"
+                    placeholder={placeholderName}
                     autoComplete="off"
                   />
                   <ErrorMessage
-                    name="firstName"
+                    name="name"
                     component="span"
                     className="auth-form__alert"
                   />

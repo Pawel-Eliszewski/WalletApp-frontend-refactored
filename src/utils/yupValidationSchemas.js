@@ -20,9 +20,9 @@ export const registerValidationSchema = object().shape({
   confirmPassword: string()
     .oneOf([ref("password"), null], "Passwords must match")
     .required("Confirmed password is required"),
-  firstName: string()
-    .max(10, "First name must not exceed 10 characters")
-    .required("First name is required"),
+  name: string()
+    .max(10, "Name must not exceed 10 characters")
+    .required("Name is required"),
 });
 
 export const transactionValidationSchema = object().shape({
@@ -51,7 +51,7 @@ export const transactionValidationSchema = object().shape({
 export const transactionsFiltersValidationSchema = object().shape({
   minAmount: number().test(
     "minAmount",
-    "'min' must be less than or equal to 'max'",
+    "'min' must be equal or less than 'max'",
     function (value) {
       const { maxAmount } = this.parent;
       return (
@@ -64,7 +64,7 @@ export const transactionsFiltersValidationSchema = object().shape({
 
   maxAmount: number().test(
     "maxAmount",
-    "'max' must be greater than or equal to 'min'",
+    "'max' must be equal or greater than 'min'",
     function (value) {
       const { minAmount } = this.parent;
       return (
@@ -77,7 +77,7 @@ export const transactionsFiltersValidationSchema = object().shape({
 
   minDate: string().test(
     "minDate",
-    "'from' must be earlier than or equal to 'to'",
+    "'from' must be equal or earlier than 'to'",
     function (value) {
       const { maxDate } = this.parent;
       const parsedMinDate = formattedTransactionDate(value);
@@ -93,7 +93,7 @@ export const transactionsFiltersValidationSchema = object().shape({
 
   maxDate: string().test(
     "maxDate",
-    "'to' must be later than or equal to 'from'",
+    "'to' must be equal or later than 'from'",
     function (value) {
       const { minDate } = this.parent;
       const parsedMinDate = formattedTransactionDate(minDate);

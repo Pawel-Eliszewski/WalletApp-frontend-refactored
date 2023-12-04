@@ -1,6 +1,8 @@
-.transaction-form-select {
+.transaction-form-select,
+.search-form-select {
     &-container {
         width: 280px !important;
+        min-height: 30px !important;
 
         @media screen and (min-width: 768px) {
             width: 394px !important;
@@ -14,6 +16,7 @@
         outline: none !important;
         border-bottom: 1px solid var(--primary-gray-font-color) !important;
         border-radius: 0 !important;
+        min-height: 30px !important;
 
         body[data-color-scheme='dark'] & {
             background-color: var(--primary-dark-background-color) !important;
@@ -33,6 +36,14 @@
         }
     }
 
+    &__indicators {
+        height: 30px !important;
+    }
+
+    &__indicator {
+        padding-block: 4px !important;
+    }
+
     &__indicator-separator {
         display: none !important;
     }
@@ -43,6 +54,15 @@
         body[data-color-scheme='dark'] & {
             color: var(--secondary-gray-font-color) !important;
         }
+    }
+
+    &__input-container {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    &__value-container {
+        padding-bottom: 5px !important;
     }
 
     &__menu {
@@ -109,6 +129,16 @@
                 }
             }
         }
+    }
+}
+
+.search-form-select {
+    &-container {
+        min-height: 36px !important;
+    }
+
+    &__control {
+        min-height: 36px !important;
     }
 }
 

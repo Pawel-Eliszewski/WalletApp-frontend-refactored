@@ -114,7 +114,7 @@ export const SearchForm = ({ onModalClose }) => {
                     name="categories"
                     value={values.categories}
                     options={expenseCategoryOptionsWithAll}
-                    styles="transaction-form"
+                    styles="search-form"
                     isMulti={true}
                     isSearchable={!isMobile}
                     isClearable={false}
@@ -170,8 +170,8 @@ export const SearchForm = ({ onModalClose }) => {
               />
               <ErrorMessage
                 name="minAmount"
-                component="div"
-                className="search-form__alert search-form__alert--amount"
+                component="span"
+                className="search-form__alert"
               />
             </div>
             <div className="search-form__inputs">
@@ -197,8 +197,8 @@ export const SearchForm = ({ onModalClose }) => {
               />
               <ErrorMessage
                 name="maxAmount"
-                component="div"
-                className="search-form__alert search-form__alert--amount"
+                component="span"
+                className="search-form__alert"
               />
             </div>
             <div className="search-form__inputs">
@@ -217,9 +217,7 @@ export const SearchForm = ({ onModalClose }) => {
                   }}
                 />
                 {touched.minDate && errors.minDate && (
-                  <div className="search-form__alert search-form__alert--date">
-                    {errors.minDate}
-                  </div>
+                  <span className="search-form__alert">{errors.minDate}</span>
                 )}
               </div>
             </div>
@@ -239,9 +237,9 @@ export const SearchForm = ({ onModalClose }) => {
                   }}
                 />
                 {touched.maxDate && errors.maxDate && (
-                  <div className="search-form__alert search-form__alert--date">
+                  <span className="search-form__alert search-form__alert--date">
                     {errors.maxDate}
-                  </div>
+                  </span>
                 )}
               </div>
             </div>
