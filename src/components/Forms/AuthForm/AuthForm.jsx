@@ -19,9 +19,9 @@ export const AuthForm = ({ context, onSubmit }) => {
   const btnRef = useRef(null);
 
   useEffect(() => {
-    if (formRef.current) {
-      formRef.current.getFieldProps("email").onBlur();
-    }
+    // if (formRef.current) {
+    //   formRef.current.onBlur();
+    // }
     if (btnRef.current) {
       btnRef.current.blur();
     }
