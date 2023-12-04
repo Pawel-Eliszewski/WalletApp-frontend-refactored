@@ -15,13 +15,9 @@ import {
 export const AuthForm = ({ context, onSubmit }) => {
   const intl = useIntl();
   const navigate = useNavigate();
-  const formRef = useRef(null);
   const btnRef = useRef(null);
 
   useEffect(() => {
-    // if (formRef.current) {
-    //   formRef.current.onBlur();
-    // }
     if (btnRef.current) {
       btnRef.current.blur();
     }
@@ -61,9 +57,6 @@ export const AuthForm = ({ context, onSubmit }) => {
         }
         onSubmit={onSubmit}
         enableReinitialize={true}
-        innerRef={(formikRef) => {
-          formRef.current = formikRef;
-        }}
       >
         {(formikBag) => (
           <Form className="auth-form__wrapper">
@@ -80,7 +73,7 @@ export const AuthForm = ({ context, onSubmit }) => {
                 type="email"
                 name="email"
                 placeholder="E-mail"
-                autoComplete="email"
+                autoComplete="off"
               />
               <ErrorMessage
                 name="email"
@@ -101,7 +94,7 @@ export const AuthForm = ({ context, onSubmit }) => {
                 type="password"
                 name="password"
                 placeholder={placeholderPassword}
-                autoComplete="new-password"
+                autoComplete="password"
               />
               <ErrorMessage
                 name="password"
