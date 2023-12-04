@@ -15,9 +15,13 @@ import {
 export const AuthForm = ({ context, onSubmit }) => {
   const intl = useIntl();
   const navigate = useNavigate();
+  const formRef = useRef(null);
   const btnRef = useRef(null);
 
   useEffect(() => {
+    if (formRef.current) {
+      formRef.current.blur();
+    }
     if (btnRef.current) {
       btnRef.current.blur();
     }
@@ -51,6 +55,7 @@ export const AuthForm = ({ context, onSubmit }) => {
     <div className="auth-form">
       <Logo />
       <Formik
+        ref={formRef}
         initialValues={initialValues}
         validationSchema={
           context === "login" ? loginValidationSchema : registerValidationSchema
