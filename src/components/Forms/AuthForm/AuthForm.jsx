@@ -20,7 +20,7 @@ export const AuthForm = ({ context, onSubmit }) => {
 
   useEffect(() => {
     if (formRef.current) {
-      formRef.current.blur();
+      formRef.current.getFieldProps("email").onBlur();
     }
     if (btnRef.current) {
       btnRef.current.blur();
@@ -55,13 +55,15 @@ export const AuthForm = ({ context, onSubmit }) => {
     <div className="auth-form">
       <Logo />
       <Formik
-        ref={formRef}
         initialValues={initialValues}
         validationSchema={
           context === "login" ? loginValidationSchema : registerValidationSchema
         }
         onSubmit={onSubmit}
         enableReinitialize={true}
+        innerRef={(formikRef) => {
+          formRef.current = formikRef;
+        }}
       >
         {(formikBag) => (
           <Form className="auth-form__wrapper">
