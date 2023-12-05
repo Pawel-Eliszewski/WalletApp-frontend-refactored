@@ -367,9 +367,9 @@ body[data-color-scheme=dark] .btn--delete, body[data-color-scheme=dark] .btn--re
   color: var(--secondary-gray-font-color);
 }
 .btn--reset {
-  position: fixed;
+  position: absolute;
   bottom: 71px;
-  left: 9px;
+  left: -10px;
 }
 @media screen and (min-width: 768px) {
   .btn--reset {
@@ -460,8 +460,9 @@ body[data-color-scheme=dark] .btn--today {
 }
 .btn--search {
   bottom: 18px;
-  left: 18px;
+  left: 0px;
   font-size: 26px;
+  position: absolute;
 }
 @media screen and (min-width: 768px) {
   .btn--search {
@@ -1460,6 +1461,7 @@ body[data-color-scheme=dark] .header {
   width: 100%;
   max-width: 380px;
   border: none;
+  position: relative;
 }
 .home__info {
   margin-top: 20px;

@@ -78,9 +78,9 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
     }
 
     &--reset {
-        position: fixed;
+        position: absolute;
         bottom: 71px;
-        left: 9px;
+        left: -10px;
 
         @media screen and (min-width: 768px) {
             position: absolute;
@@ -191,8 +191,9 @@ $iconExitDoors: url("/assets/icon-exit-doors.svg");
 
     &--search {
         bottom: 18px;
-        left: 18px;
+        left: 0px;
         font-size: 26px;
+        position: absolute;
 
         @media screen and (min-width: 768px) {
             position: absolute;
