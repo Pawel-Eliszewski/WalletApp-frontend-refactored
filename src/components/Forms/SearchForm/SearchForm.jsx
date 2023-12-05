@@ -130,22 +130,37 @@ export const SearchForm = ({ onModalClose }) => {
           <Form className="search-form__wrapper">
             <div className="search-form__radio-group">
               <label>
-                <Field type="radio" name="type" value="all" />
-                <span className="type__span">
+                <Field
+                  className="search-form__radio"
+                  type="radio"
+                  name="type"
+                  value="all"
+                />
+                <span className="search-form__radio type__span">
                   {" "}
                   <FormattedMessage id="labelAll" />
                 </span>
               </label>
               <label>
-                <Field type="radio" name="type" value="income" />
-                <span className="type__span type__span--income">
+                <Field
+                  className="search-form__radio"
+                  type="radio"
+                  name="type"
+                  value="income"
+                />
+                <span className="search-form__radio type__span type__span--income">
                   {" "}
                   <FormattedMessage id="labelIncomes" />
                 </span>
               </label>
               <label>
-                <Field type="radio" name="type" value="expense" />
-                <span className="type__span type__span--expense">
+                <Field
+                  className="search-form__radio"
+                  type="radio"
+                  name="type"
+                  value="expense"
+                />
+                <span className="search-form__radio type__span type__span--expense">
                   {" "}
                   <FormattedMessage id="labelExpenses" />
                 </span>
