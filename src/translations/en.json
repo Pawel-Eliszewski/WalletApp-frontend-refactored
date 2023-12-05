@@ -73,6 +73,7 @@
   "monthsOctober": "October",
   "monthsNovember": "November",
   "monthsDecember": "December",
+  "homeTabInfo": "No transactions for selected filters",
   "notifyOneFilter": "Please use at least 1 filter",
   "notifyAdded": "Transaction added"
 }

@@ -93,63 +93,69 @@ export const HomeTab = () => {
     <div className="home__container">
       {isMobile && (
         <div className="home__mobile-table mobile-table">
-          {transactions.map(
-            ({ _id, date, type, category, comment, amount }) => (
-              <ul key={_id} className="mobile-table__list" data-type={type}>
-                <li key={nanoid()} className="mobile-table__item">
-                  <h4 className="mobile-table__item-header">
-                    <FormattedMessage id="headerDate" />
-                  </h4>
-                  <p>{date}</p>
-                </li>
-                <li key={nanoid()} className="mobile-table__item">
-                  <h4 className="mobile-table__item-header">
-                    <FormattedMessage id="headerType" />
-                  </h4>
-                  <p className="mobile-table__item-type" data-type={type}>
-                    {type === "income" ? "+" : "-"}
-                  </p>
-                </li>
-                <li key={nanoid()} className="mobile-table__item">
-                  <h4 className="mobile-table__item-header">
-                    <FormattedMessage id="headerCategory" />
-                  </h4>
-                  <p>
-                    <FormattedMessage id={`expenseCategories${category}`} />
-                  </p>
-                </li>
-                <li key={nanoid()} className="mobile-table__item">
-                  <h4 className="mobile-table__item-header">
-                    <FormattedMessage id="headerComment" />
-                  </h4>
-                  <p className="mobile-table__item-comment">{comment}</p>
-                </li>
-                <li key={nanoid()} className="mobile-table__item">
-                  <h4 className="mobile-table__item-header">
-                    <FormattedMessage id="headerAmount" />
-                  </h4>
-                  <p className="mobile-table__item-amount" data-type={type}>
-                    {amount.toFixed(2)}
-                  </p>
-                </li>
-                <li className="mobile-table__controls">
-                  <Button
-                    ariaLabel="delete selected transaction"
-                    title={<FormattedMessage id="titleDelete" />}
-                    styles="--delete"
-                    type="button"
-                    onClick={() => handleDeleteTransaction(_id)}
-                  />
-                  <Button
-                    ariaLabel="open modal to edit selected transaction"
-                    title={<FormattedMessage id="titleEdit" />}
-                    styles="--edit-mobile"
-                    type="button"
-                    onClick={() => openModalEdit(_id)}
-                  />
-                </li>
-              </ul>
+          {transactions.length > 0 ? (
+            transactions.map(
+              ({ _id, date, type, category, comment, amount }) => (
+                <ul key={_id} className="mobile-table__list" data-type={type}>
+                  <li key={nanoid()} className="mobile-table__item">
+                    <h4 className="mobile-table__item-header">
+                      <FormattedMessage id="headerDate" />
+                    </h4>
+                    <p>{date}</p>
+                  </li>
+                  <li key={nanoid()} className="mobile-table__item">
+                    <h4 className="mobile-table__item-header">
+                      <FormattedMessage id="headerType" />
+                    </h4>
+                    <p className="mobile-table__item-type" data-type={type}>
+                      {type === "income" ? "+" : "-"}
+                    </p>
+                  </li>
+                  <li key={nanoid()} className="mobile-table__item">
+                    <h4 className="mobile-table__item-header">
+                      <FormattedMessage id="headerCategory" />
+                    </h4>
+                    <p>
+                      <FormattedMessage id={`expenseCategories${category}`} />
+                    </p>
+                  </li>
+                  <li key={nanoid()} className="mobile-table__item">
+                    <h4 className="mobile-table__item-header">
+                      <FormattedMessage id="headerComment" />
+                    </h4>
+                    <p className="mobile-table__item-comment">{comment}</p>
+                  </li>
+                  <li key={nanoid()} className="mobile-table__item">
+                    <h4 className="mobile-table__item-header">
+                      <FormattedMessage id="headerAmount" />
+                    </h4>
+                    <p className="mobile-table__item-amount" data-type={type}>
+                      {amount.toFixed(2)}
+                    </p>
+                  </li>
+                  <li className="mobile-table__controls">
+                    <Button
+                      ariaLabel="delete selected transaction"
+                      title={<FormattedMessage id="titleDelete" />}
+                      styles="--delete"
+                      type="button"
+                      onClick={() => handleDeleteTransaction(_id)}
+                    />
+                    <Button
+                      ariaLabel="open modal to edit selected transaction"
+                      title={<FormattedMessage id="titleEdit" />}
+                      styles="--edit-mobile"
+                      type="button"
+                      onClick={() => openModalEdit(_id)}
+                    />
+                  </li>
+                </ul>
+              )
             )
+          ) : (
+            <p className="home__info">
+              <FormattedMessage id="homeTabInfo" />
+            </p>
           )}
         </div>
       )}
@@ -179,47 +185,53 @@ export const HomeTab = () => {
             </tr>
           </thead>
           <tbody className="table__body">
-            {transactions.map(
-              ({ _id, date, type, category, comment, amount }) => (
-                <tr key={nanoid()} className="table__body-list">
-                  <td className="table__body-item body-item--date">{date}</td>
-                  <td
-                    className="table__body-item table__body-item--type"
-                    data-type={type}
-                  >
-                    {type === "income" ? "+" : "-"}
-                  </td>
-                  <td className="table__body-item table__body-item--category">
-                    <FormattedMessage id={`expenseCategories${category}`} />
-                  </td>
-                  <td className="table__body-item table__body-item--comment">
-                    {comment}
-                  </td>
-                  <td
-                    className="table__body-item table__body-item--amount"
-                    data-type={type}
-                  >
-                    {amount.toFixed(2)}
-                  </td>
-                  <td className="table__body-item">
-                    <div className="table__body-item-controls">
-                      <Button
-                        ariaLabel="open modal to edit selected transaction"
-                        styles="--edit"
-                        type="button"
-                        onClick={() => openModalEdit(_id)}
-                      />
-                      <Button
-                        ariaLabel="delete selected transaction"
-                        title={<FormattedMessage id="titleDelete" />}
-                        styles="--delete"
-                        type="button"
-                        onClick={() => handleDeleteTransaction(_id)}
-                      />
-                    </div>
-                  </td>
-                </tr>
+            {transactions.length > 0 ? (
+              transactions.map(
+                ({ _id, date, type, category, comment, amount }) => (
+                  <tr key={nanoid()} className="table__body-list">
+                    <td className="table__body-item body-item--date">{date}</td>
+                    <td
+                      className="table__body-item table__body-item--type"
+                      data-type={type}
+                    >
+                      {type === "income" ? "+" : "-"}
+                    </td>
+                    <td className="table__body-item table__body-item--category">
+                      <FormattedMessage id={`expenseCategories${category}`} />
+                    </td>
+                    <td className="table__body-item table__body-item--comment">
+                      {comment}
+                    </td>
+                    <td
+                      className="table__body-item table__body-item--amount"
+                      data-type={type}
+                    >
+                      {amount.toFixed(2)}
+                    </td>
+                    <td className="table__body-item">
+                      <div className="table__body-item-controls">
+                        <Button
+                          ariaLabel="open modal to edit selected transaction"
+                          styles="--edit"
+                          type="button"
+                          onClick={() => openModalEdit(_id)}
+                        />
+                        <Button
+                          ariaLabel="delete selected transaction"
+                          title={<FormattedMessage id="titleDelete" />}
+                          styles="--delete"
+                          type="button"
+                          onClick={() => handleDeleteTransaction(_id)}
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                )
               )
+            ) : (
+              <p className="home__info">
+                <FormattedMessage id="homeTabInfo" />
+              </p>
             )}
           </tbody>
         </table>

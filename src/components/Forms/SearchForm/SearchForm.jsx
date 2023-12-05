@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   selectTransactions,
   selectTransactionsFilters,
+  selectFilteredTransactions,
 } from "../../../redux/finance/selectors";
 import {
   setTransactionsFilters,
@@ -28,6 +29,7 @@ export const SearchForm = ({ onModalClose }) => {
 
   const allTransactions = useSelector(selectTransactions);
   const transactionsFilters = useSelector(selectTransactionsFilters);
+  const filteredTransactions = useSelector(selectFilteredTransactions);
   const isMobile = useMedia("(max-width: 767px)");
   const formikRef = useRef();
 
@@ -97,10 +99,14 @@ export const SearchForm = ({ onModalClose }) => {
       return Notify.info(translatedMsg);
     } else
       try {
-        Loading.hourglass();
         dispatch(setTransactionsFilters(formData));
-        Loading.remove(600);
-        onModalClose();
+        if (transactionsFilters && filteredTransactions.length === 0) {
+          return Notify.info("brak");
+        } else {
+          Loading.hourglass();
+          Loading.remove(600);
+          onModalClose();
+        }
       } catch (error) {
         dispatch(setTransactionsFilters(null));
         onModalClose();
