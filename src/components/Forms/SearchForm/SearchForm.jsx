@@ -3,7 +3,10 @@ import { useIntl, FormattedMessage } from "react-intl";
 import { useRef } from "react";
 import { useMedia } from "react-use";
 import { useSelector, useDispatch } from "react-redux";
-import { selectTransactionsFilters } from "../../../redux/finance/selectors";
+import {
+  selectTransactions,
+  selectTransactionsFilters,
+} from "../../../redux/finance/selectors";
 import {
   setTransactionsFilters,
   setFilteredTransactions,
@@ -12,6 +15,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Button } from "../../Button/Button";
 import { DropdownSelect } from "../../DropdownSelect/DropdownSelect";
 import { Calendar } from "../../Calendar/Calendar";
+import { getTransactionsCategories } from "../../../utils/transactionsDataOperations";
 import { expenseCategoryOptions } from "../../../utils/transactionCategories";
 import { transactionsFiltersValidationSchema } from "../../../utils/yupValidationSchemas";
 import { Loading, Notify } from "notiflix";
@@ -22,6 +26,7 @@ export const SearchForm = ({ onModalClose }) => {
   const intl = useIntl();
   const dispatch = useDispatch();
 
+  const allTransactions = useSelector(selectTransactions);
   const transactionsFilters = useSelector(selectTransactionsFilters);
   const isMobile = useMedia("(max-width: 767px)");
   const formikRef = useRef();
@@ -30,31 +35,70 @@ export const SearchForm = ({ onModalClose }) => {
   const placeholderComment = intl.formatMessage({ id: "placeholderTypeWord" });
   const translatedMsg = intl.formatMessage({ id: "notifyOneFilter" });
 
+  const usedExpenseCategories = getTransactionsCategories(allTransactions);
+
   const expenseCategoryOptionsWithAll = [
     { label: <FormattedMessage id="expenseCategoriesAll" />, value: "all" },
-    ...expenseCategoryOptions,
+    ...expenseCategoryOptions.filter((option) =>
+      usedExpenseCategories.includes(option.value)
+    ),
   ];
 
-  const initialValues =
-    transactionsFilters === null
-      ? {
-          type: "all",
-          categories: [],
-          minAmount: "",
-          maxAmount: "",
-          minDate: "",
-          maxDate: "",
-          comment: "",
-        }
-      : transactionsFilters;
+  const initialValues = {
+    type: transactionsFilters ? transactionsFilters.type : "all",
+    categories:
+      !transactionsFilters || transactionsFilters.categories.includes("all")
+        ? [expenseCategoryOptionsWithAll[0]]
+        : expenseCategoryOptions.filter((option) =>
+            transactionsFilters.categories.includes(option.value)
+          ),
+    minAmount: transactionsFilters ? transactionsFilters.minAmount : "",
+    maxAmount: transactionsFilters ? transactionsFilters.maxAmount : "",
+    minDate: transactionsFilters ? transactionsFilters.minDate : "",
+    maxDate: transactionsFilters ? transactionsFilters.maxDate : "",
+    comment: transactionsFilters ? transactionsFilters.comment : "",
+  };
+
+  const handleCategoriesChange = (selectedOptions) => {
+    const hasAllCategories = selectedOptions.some(
+      (option) => option.value === "all"
+    );
+    const isFirstElementAll =
+      selectedOptions.length > 0 && selectedOptions[0].value === "all";
+    if (isFirstElementAll) {
+      const updatedOptions = selectedOptions.slice(1);
+      formikRef.current.setFieldValue("categories", updatedOptions);
+    } else if (hasAllCategories) {
+      formikRef.current.setFieldValue("categories", [
+        selectedOptions.find((option) => option.value === "all"),
+      ]);
+    } else if (selectedOptions.length === 0) {
+      const allOption = {
+        label: <FormattedMessage id="expenseCategoriesAll" />,
+        value: "all",
+      };
+      formikRef.current.setFieldValue("categories", [allOption]);
+    } else {
+      formikRef.current.setFieldValue("categories", selectedOptions);
+    }
+  };
 
   const handleSearchTransactions = (values) => {
+    const formData = {
+      type: values.type,
+      categories: values.categories.map((option) => option.value),
+      minAmount: values.minAmount,
+      maxAmount: values.maxAmount,
+      minDate: values.minDate,
+      maxDate: values.maxDate,
+      comment: values.comment,
+    };
     if (values === initialValues) {
       return Notify.info(translatedMsg);
     } else
       try {
         Loading.hourglass();
-        dispatch(setTransactionsFilters(values));
+        dispatch(setTransactionsFilters(formData));
         Loading.remove(600);
         onModalClose();
       } catch (error) {
@@ -107,7 +151,7 @@ export const SearchForm = ({ onModalClose }) => {
                 </span>
               </label>
             </div>
-            {values.type === "all" || values.type === "expense" ? (
+            {values.type === "expense" ? (
               <div className="search-form__react-select react-select">
                 <div className="search-form__div">
                   <DropdownSelect
@@ -119,25 +163,7 @@ export const SearchForm = ({ onModalClose }) => {
                     isSearchable={!isMobile}
                     isClearable={false}
                     placeholder={<FormattedMessage id="labelSelectCategory" />}
-                    onChange={(selectedOptions) => {
-                      const selectedValues = selectedOptions.map(
-                        (option) => option.value
-                      );
-                      const hasAllCategories = selectedValues.includes("all");
-                      if (hasAllCategories) {
-                        formikRef.current.setFieldValue(
-                          "categories",
-                          selectedOptions.filter(
-                            (option) => option.value === "all"
-                          )
-                        );
-                      } else {
-                        formikRef.current.setFieldValue(
-                          "categories",
-                          selectedOptions
-                        );
-                      }
-                    }}
+                    onChange={handleCategoriesChange}
                   />
                   {touched.categories && errors.categories && (
                     <div className="search-form__alert search-form__alert--category">

@@ -40,6 +40,19 @@ export const getTransactionsYears = (transactions) => {
   }));
 };
 
+export const getTransactionsCategories = (transactions) => {
+  const categoriesSet = new Set();
+
+  transactions.forEach((transaction) => {
+    const category = transaction.category;
+    if (typeof category === "number") {
+      categoriesSet.add(category);
+    }
+  });
+
+  return Array.from(categoriesSet);
+};
+
 export const sumExpensesWithColors = (transactions, expenseCategories) => {
   const summedExpenses = transactions
     .filter((transaction) => transaction.type === "expense")
@@ -151,11 +164,9 @@ export const filterQueryTransactions = (transactions, values) => {
   if (
     values.categories &&
     values.categories.length > 0 &&
-    values.categories[0].value !== "all"
+    !values.categories.includes("all")
   ) {
-    const selectedCategories = values.categories.map(
-      (category) => category.value
-    );
+    const selectedCategories = values.categories.map((category) => category);
     filteredTransactions = filteredTransactions.filter((transaction) =>
       selectedCategories.includes(transaction.category)
     );
