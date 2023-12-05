@@ -1464,7 +1464,7 @@ body[data-color-scheme=dark] .header {
   position: relative;
 }
 .home__info {
-  margin-top: 20px;
+  margin-block: 20px;
   text-align: center;
 }
 body[data-color-scheme=dark] .home__info {

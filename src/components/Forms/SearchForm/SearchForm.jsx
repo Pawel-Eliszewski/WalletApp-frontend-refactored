@@ -132,7 +132,7 @@ export const SearchForm = ({ onModalClose }) => {
         onSubmit={handleSearchTransactions}
         enableReinitialize={true}
       >
-        {({ errors, touched, values, setFieldValue }) => (
+        {({ errors, touched, values, setFieldValue, setFieldTouched }) => (
           <Form className="search-form__wrapper">
             <div className="search-form__radio-group">
               <label>
@@ -205,11 +205,14 @@ export const SearchForm = ({ onModalClose }) => {
                 type="text"
                 onInput={(e) => {
                   e.target.value = e.target.value
+                    .replace(/^0{2,}/, "0")
+                    .replace(/^0[^.,]/, "0")
+                    .replace(/^[.,]/, "")
                     .replace(/,/g, ".")
                     .replace(/[^0-9.]/g, "")
                     .replace(/(\..*)\./g, "$1")
                     .replace(/(\.\d{1,2}).*/g, "$1");
-                  setFieldValue("amount", e.target.value);
+                  setFieldValue("minAmount", e.target.value);
                 }}
                 className="search-form__amount"
                 placeholder="0.00"
@@ -232,11 +235,14 @@ export const SearchForm = ({ onModalClose }) => {
                 type="text"
                 onInput={(e) => {
                   e.target.value = e.target.value
+                    .replace(/^0{2,}/, "0")
+                    .replace(/^0[^.,]/, "0")
+                    .replace(/^[.,]/, "")
                     .replace(/,/g, ".")
                     .replace(/[^0-9.]/g, "")
                     .replace(/(\..*)\./g, "$1")
                     .replace(/(\.\d{1,2}).*/g, "$1");
-                  setFieldValue("amount", e.target.value);
+                  setFieldValue("maxAmount", e.target.value);
                 }}
                 className="search-form__amount"
                 placeholder="0.00"
@@ -261,7 +267,9 @@ export const SearchForm = ({ onModalClose }) => {
                   isMobile={isMobile}
                   onDateChange={(newDate) => {
                     setFieldValue("minDate", newDate);
+                    setFieldTouched("minDate", true);
                   }}
+                  onBlur={() => setFieldTouched("minDate", true)}
                 />
                 {touched.minDate && errors.minDate && (
                   <span className="search-form__alert">{errors.minDate}</span>
@@ -281,7 +289,9 @@ export const SearchForm = ({ onModalClose }) => {
                   isMobile={isMobile}
                   onDateChange={(newDate) => {
                     setFieldValue("maxDate", newDate);
+                    setFieldTouched("maxDate", true);
                   }}
+                  onBlur={() => setFieldTouched("maxDate", true)}
                 />
                 {touched.maxDate && errors.maxDate && (
                   <span className="search-form__alert search-form__alert--date">
@@ -290,6 +300,7 @@ export const SearchForm = ({ onModalClose }) => {
                 )}
               </div>
             </div>
+
             <div className="search-form__inputs search-form__inputs--last">
               <label className="search-form__label" htmlFor="maxDate">
                 <FormattedMessage id="headerComment" />:

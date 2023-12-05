@@ -1,57 +1,75 @@
 import { object, string, number, ref } from "yup";
 import { formattedTransactionDate } from "./dateHandlers";
+import { FormattedMessage } from "react-intl";
 
 const isNullOrUndefined = (value) => value === null || value === undefined;
 
 export const loginValidationSchema = object().shape({
-  email: string().email("Invalid email address").required("Email is required"),
+  email: string()
+    .email(<FormattedMessage id="invalidEmail" />)
+    .required(<FormattedMessage id="emailRequired" />),
   password: string()
-    .min(6, "Password must be at least 6 characters")
-    .max(12, "Password must not exceed 12 characters")
-    .required("Password is required"),
+    .min(6, <FormattedMessage id="passwordMinLength" />)
+    .max(12, <FormattedMessage id="passwordMaxLength" />)
+    .required(<FormattedMessage id="passwordRequired" />),
 });
 
 export const registerValidationSchema = object().shape({
-  email: string().email("Invalid email address").required("Email is required"),
+  email: string()
+    .email(<FormattedMessage id="invalidEmail" />)
+    .required(<FormattedMessage id="emailRequired" />),
   password: string()
-    .min(6, "Password must be at least 6 characters")
-    .max(12, "Password must not exceed 12 characters")
-    .required("Password is required"),
+    .min(6, <FormattedMessage id="passwordMinLength" />)
+    .max(12, <FormattedMessage id="passwordMaxLength" />)
+    .required(<FormattedMessage id="passwordRequired" />),
   confirmPassword: string()
-    .oneOf([ref("password"), null], "Passwords must match")
-    .required("Confirmed password is required"),
+    .oneOf(
+      [ref("password"), null],
+      <FormattedMessage id="passwordsMustMatch" />
+    )
+    .required(<FormattedMessage id="confirmPasswordRequired" />),
   name: string()
-    .max(10, "Name must not exceed 10 characters")
-    .required("Name is required"),
+    .max(10, <FormattedMessage id="nameMaxLength" />)
+    .required(<FormattedMessage id="nameRequired" />),
 });
 
 export const transactionValidationSchema = object().shape({
-  type: string().oneOf(["income", "expense"]).required("Type is required"),
+  type: string()
+    .oneOf(["income", "expense"])
+    .required(<FormattedMessage id="typeRequired" />),
   category: object().when("type", {
     is: "expense",
     then: () =>
       object()
-        .test("isValidCategory", "Category is required", (value) => {
-          return value.value !== "Select a category";
-        })
-        .required("Category is required"),
+        .test(
+          "isValidCategory",
+          <FormattedMessage id="categoryRequired" />,
+          (value) => {
+            return value.value !== "Select a category";
+          }
+        )
+        .required(<FormattedMessage id="categoryRequired" />),
     otherwise: () => object(),
   }),
-  amount: number().required("Amount is required"),
+  amount: number().required(<FormattedMessage id="amountRequired" />),
   date: string()
-    .required("Date is required")
-    .test("is-valid-date", "Invalid date format", function (value) {
-      if (!value) return true;
-      const parsedDate = formattedTransactionDate(value);
-      return parsedDate !== null;
-    }),
-  comment: string().max(34, "Comment must be less than 34 characters"),
+    .required(<FormattedMessage id="dateRequired" />)
+    .test(
+      "is-valid-date",
+      <FormattedMessage id="invalidDateFormat" />,
+      function (value) {
+        if (!value) return true;
+        const parsedDate = formattedTransactionDate(value);
+        return parsedDate !== null;
+      }
+    ),
+  comment: string().max(34, <FormattedMessage id="commentMaxLength" />),
 });
 
 export const transactionsFiltersValidationSchema = object().shape({
   minAmount: number().test(
     "minAmount",
-    "'min' must be equal or less than 'max'",
+    <FormattedMessage id="minAmountValidation" />,
     function (value) {
       const { maxAmount } = this.parent;
       return (
@@ -64,7 +82,7 @@ export const transactionsFiltersValidationSchema = object().shape({
 
   maxAmount: number().test(
     "maxAmount",
-    "'max' must be equal or greater than 'min'",
+    <FormattedMessage id="maxAmountValidation" />,
     function (value) {
       const { minAmount } = this.parent;
       return (
@@ -77,7 +95,7 @@ export const transactionsFiltersValidationSchema = object().shape({
 
   minDate: string().test(
     "minDate",
-    "'from' must be equal or earlier than 'to'",
+    <FormattedMessage id="minDateValidation" />,
     function (value) {
       const { maxDate } = this.parent;
       const parsedMinDate = formattedTransactionDate(value);
@@ -93,7 +111,7 @@ export const transactionsFiltersValidationSchema = object().shape({
 
   maxDate: string().test(
     "maxDate",
-    "'to' must be equal or later than 'from'",
+    <FormattedMessage id="maxDateValidation" />,
     function (value) {
       const { minDate } = this.parent;
       const parsedMinDate = formattedTransactionDate(minDate);

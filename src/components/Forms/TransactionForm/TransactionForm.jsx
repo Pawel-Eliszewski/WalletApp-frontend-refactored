@@ -116,7 +116,7 @@ export const TransactionForm = ({ onModalClose }) => {
         }
         enableReinitialize={true}
       >
-        {({ errors, touched, values, setFieldValue }) => (
+        {({ errors, touched, values, setFieldValue, setFieldTouched }) => (
           <Form className="transaction-form__wrapper">
             <div className="transaction-form__type type">
               <span
@@ -174,6 +174,9 @@ export const TransactionForm = ({ onModalClose }) => {
                 inputMode="decimal"
                 onInput={(e) => {
                   e.target.value = e.target.value
+                    .replace(/^0{2,}/, "0")
+                    .replace(/^0[^.,]/, "0")
+                    .replace(/^[.,]/, "")
                     .replace(/,/g, ".")
                     .replace(/[^0-9.]/g, "")
                     .replace(/(\..*)\./g, "$1")
@@ -197,6 +200,7 @@ export const TransactionForm = ({ onModalClose }) => {
                 isMobile={isMobile}
                 onDateChange={(newDate) => {
                   setFieldValue("date", newDate);
+                  setFieldTouched("date", true);
                 }}
               />
               {touched.date && errors.date && (
@@ -214,7 +218,7 @@ export const TransactionForm = ({ onModalClose }) => {
                 placeholder={placeholderComment}
                 initialvalue={initialValues.comment}
                 autoComplete="off"
-                maxLength="34"
+                maxLength="35"
               />
               <ErrorMessage
                 name="comment"
