@@ -54,6 +54,12 @@
         outline: 1px solid var(--primary-font-color);
       }
 
+      & span {
+        body[data-color-scheme='dark'] & {
+          color: var(--primary-font-color);
+        }
+      }
+
       @media (hover: hover) {
 
         &:hover,
@@ -77,10 +83,6 @@
 
     body[data-color-scheme='dark'] & {
       color: var(--primary-background-color);
-
-      &--disabled a {
-        color: black;
-      }
     }
   }
 }

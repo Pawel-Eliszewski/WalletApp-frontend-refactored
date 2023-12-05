@@ -1951,6 +1951,9 @@ body[data-color-scheme=dark] .pagination__link--active, body[data-color-scheme=d
 body[data-color-scheme=dark] .pagination__link--disabled, body[data-color-scheme=dark] .pagination__link--outermost--disabled {
   outline: 1px solid var(--primary-font-color);
 }
+body[data-color-scheme=dark] .pagination__link--disabled span, body[data-color-scheme=dark] .pagination__link--outermost--disabled span {
+  color: var(--primary-font-color);
+}
 @media (hover: hover) {
   .pagination__link--disabled:hover, .pagination__link--disabled:focus, .pagination__link--outermost--disabled:hover, .pagination__link--outermost--disabled:focus {
     color: var(--secondary-gray-font-color);
@@ -1969,9 +1972,6 @@ body[data-color-scheme=dark] .pagination__link--disabled, body[data-color-scheme
 }
 body[data-color-scheme=dark] .pagination__link a {
   color: var(--primary-background-color);
-}
-body[data-color-scheme=dark] .pagination__link a--disabled a {
-  color: black;
 }
 
 @media screen and (min-width: 768px) {
