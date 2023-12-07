@@ -47,7 +47,7 @@ DropdownSelect.propTypes = {
   isClearable: PropTypes.bool,
   isDisabled: PropTypes.bool,
   placeholder: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  onMenuOpen: PropTypes.func,
-  onMenuClose: PropTypes.func,
+  onMenuOpen: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
+  onMenuClose: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
   onChange: PropTypes.func.isRequired,
 };
