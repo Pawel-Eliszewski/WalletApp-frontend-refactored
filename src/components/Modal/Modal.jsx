@@ -53,21 +53,16 @@ export const Modal = () => {
   const handleLogout = () => {
     dispatch(logout());
     handleModalClose();
-    // dispatch(setIsModalOpen(false));
-    // dispatch(setContext(null));
-    // document.body.classList.remove("modal-open");
   };
 
   const handleDeleteTransaction = () => {
     try {
       Loading.hourglass();
       dispatch(deleteTransaction(transactionId));
-      dispatch(setIsModalOpen(false));
-      dispatch(setContext(null));
+      handleModalClose();
       Loading.remove(600);
     } catch (error) {
-      dispatch(setIsModalOpen(false));
-      dispatch(setContext(null));
+      handleModalClose();
       Loading.remove(600);
       console.error(error);
     }
