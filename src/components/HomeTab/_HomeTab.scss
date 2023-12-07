@@ -10,8 +10,10 @@
   }
 
   &__info {
-    margin-block: 20px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-block: 20px;
 
     body[data-color-scheme='dark'] & {
       color: var(--primary-gray-font-color);

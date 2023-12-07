@@ -13,9 +13,10 @@ import { Button } from "../Button/Button";
 import {
   dropIn,
   flip,
-  handleBlurVisible,
-  handleBlurNotVisible,
+  setOverlayVisible,
+  setOverlayNotVisible,
 } from "../../utils/backdropAndAnimationsStyles";
+import { Overlay } from "../Overlay/Overlay";
 
 export const Modal = () => {
   const dispatch = useDispatch();
@@ -68,7 +69,7 @@ export const Modal = () => {
               type="button"
               onClick={handleModalClose}
             />
-            <div className="backdrop-blur"></div>
+            <Overlay />
             <h2 className="modal__title">
               {context === "logout" ? (
                 <FormattedMessage id="titleLogOut" />
@@ -85,8 +86,8 @@ export const Modal = () => {
             {context === "add" || context === "edit" ? (
               <>
                 <TransactionForm
-                  onMenuOpen={handleBlurVisible}
-                  onMenuClose={handleBlurNotVisible}
+                  onMenuOpen={setOverlayVisible}
+                  onMenuClose={setOverlayNotVisible}
                   onModalClose={handleModalClose}
                 />
                 <Button
@@ -103,8 +104,8 @@ export const Modal = () => {
                 <SearchForm
                   isModalOpen={isModalOpen}
                   context={context}
-                  onMenuOpen={handleBlurVisible}
-                  onMenuClose={handleBlurNotVisible}
+                  onMenuOpen={setOverlayVisible}
+                  onMenuClose={setOverlayNotVisible}
                   onModalClose={handleModalClose}
                 />
                 <Button

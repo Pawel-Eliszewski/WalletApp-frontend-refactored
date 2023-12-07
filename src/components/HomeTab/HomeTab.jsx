@@ -229,9 +229,13 @@ export const HomeTab = () => {
                 )
               )
             ) : (
-              <span className="home__info">
-                <FormattedMessage id="homeTabInfo" />
-              </span>
+              <tr>
+                <td className="home__info">
+                  <span>
+                    <FormattedMessage id="homeTabInfo" />
+                  </span>
+                </td>
+              </tr>
             )}
           </tbody>
         </table>

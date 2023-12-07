@@ -91,35 +91,6 @@ textarea:focus::placeholder {
           backdrop-filter: blur(25px);
 }
 
-.backdrop-blur {
-  visibility: hidden;
-}
-.backdrop-blur--visible {
-  visibility: visible;
-  display: flex;
-  background-color: var(--backdrop-background-color);
-  -webkit-backdrop-filter: blur(0.5px);
-          backdrop-filter: blur(0.5px);
-  position: absolute;
-  z-index: 7;
-  width: 100vw;
-  height: calc(100vh + 107px);
-  margin-top: -135px;
-}
-body[data-color-scheme=dark] .backdrop-blur--visible {
-  -webkit-backdrop-filter: blur(50px);
-          backdrop-filter: blur(50px);
-}
-@media screen and (min-width: 768px) {
-  .backdrop-blur--visible {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    margin-top: 20px;
-    border-radius: 20px;
-  }
-}
-
 :root {
   --primary-font-color: #000000;
   --primary-gray-font-color: #bdbdbd;
@@ -1306,12 +1277,6 @@ body[data-color-scheme=dark] .auth-form__field:focus-within {
   background-color: transparent;
   margin-bottom: 30px;
 }
-.transaction-form__amount::-moz-placeholder {
-  color: var(--primary-gray-font-color);
-}
-.transaction-form__amount::placeholder {
-  color: var(--primary-gray-font-color);
-}
 .transaction-form__comment {
   position: relative;
 }
@@ -1326,12 +1291,6 @@ body[data-color-scheme=dark] .auth-form__field:focus-within {
   border-bottom: 1px solid var(--primary-gray-font-color);
   resize: none;
   overflow: hidden;
-}
-.transaction-form__textarea::-moz-placeholder {
-  color: var(--primary-gray-font-color);
-}
-.transaction-form__textarea::placeholder {
-  color: var(--primary-gray-font-color);
 }
 .transaction-form__alert {
   position: absolute;
@@ -1493,8 +1452,10 @@ body[data-color-scheme=dark] .header {
   position: relative;
 }
 .home__info {
-  margin-block: 20px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-block: 20px;
 }
 body[data-color-scheme=dark] .home__info {
   color: var(--primary-gray-font-color);
@@ -2252,7 +2213,7 @@ body[data-color-scheme=dark] .appLanguage-switch__input:checked + .appLanguage-s
 }
 .transaction-form-select,
 .search-form-select {
-  z-index: 1000 !important;
+  z-index: 8 !important;
 }
 .transaction-form-select-container,
 .search-form-select-container {
@@ -2341,7 +2302,7 @@ body[data-color-scheme=dark] .search-form-select__single-value {
   background-color: var(--primary-gray-background-color) !important;
   border-bottom-left-radius: 20px !important;
   border-bottom-right-radius: 20px !important;
-  z-index: 1000 !important;
+  z-index: 8 !important;
   max-width: 395px !important;
 }
 body[data-color-scheme=dark] .transaction-form-select__menu,
@@ -2362,8 +2323,7 @@ body[data-color-scheme=dark] .search-form-select__menu {
   color: var(--primary-font-color) !important;
   background-color: transparent !important;
   padding-left: 20px !important;
-  z-index: 2;
-  z-index: 1000 !important;
+  z-index: 8 !important;
 }
 body[data-color-scheme=dark] .transaction-form-select__option,
 body[data-color-scheme=dark] .search-form-select__option {
@@ -2380,6 +2340,7 @@ body[data-color-scheme=dark] .search-form-select__option {
   background-color: var(--primary-background-color) !important;
   color: var(--primary-expense-color) !important;
   cursor: pointer !important;
+  z-index: 8 !important;
 }
 body[data-color-scheme=dark] .transaction-form-select__option:hover, body[data-color-scheme=dark] .transaction-form-select__option--is-selected,
 body[data-color-scheme=dark] .search-form-select__option:hover,
@@ -2448,7 +2409,7 @@ body[data-color-scheme=dark] .search-form-select__multi-value__label {
 }
 
 .statistics-tab-select--is-disabled {
-  z-index: 6;
+  z-index: 0;
 }
 .statistics-tab-select-container {
   width: 100% !important;
@@ -2459,7 +2420,7 @@ body[data-color-scheme=dark] .search-form-select__multi-value__label {
   border: none !important;
   outline: none !important;
   border-radius: 30px !important;
-  z-index: 6 !important;
+  z-index: 0 !important;
 }
 body[data-color-scheme=dark] .statistics-tab-select__control {
   background-color: var(--primary-dark-background-color) !important;
@@ -2781,4 +2742,39 @@ body[data-color-scheme=dark] .loader__title::after {
   -webkit-backdrop-filter: blur(100px);
           backdrop-filter: blur(100px);
   z-index: 3;
+}
+
+.overlay,
+.overlay-statistics-page {
+  background-color: var(--backdrop-background-color);
+  -webkit-backdrop-filter: blur(0.5px);
+          backdrop-filter: blur(0.5px);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  opacity: 0;
+  transition: 250ms;
+  z-index: -1;
+  border-radius: 20px;
+}
+@media screen and (min-width: 768px) {
+  .overlay,
+  .overlay-statistics-page {
+    margin-top: 20px;
+  }
+}
+body[data-color-scheme=dark] .overlay,
+body[data-color-scheme=dark] .overlay-statistics-page {
+  -webkit-backdrop-filter: blur(50px);
+          backdrop-filter: blur(50px);
+}
+.overlay--visible,
+.overlay-statistics-page--visible {
+  opacity: 1;
+  transition: 250ms;
+  z-index: 4;
+}
+
+.overlay-statistics-page {
+  border-radius: 0px;
 }/*# sourceMappingURL=main.css.map */

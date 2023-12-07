@@ -1,6 +1,6 @@
 .transaction-form-select,
 .search-form-select {
-    z-index: 1000 !important;
+    z-index: 8 !important;
 
     &-container {
         width: 280px !important;
@@ -82,7 +82,7 @@
         background-color: var(--primary-gray-background-color) !important;
         border-bottom-left-radius: 20px !important;
         border-bottom-right-radius: 20px !important;
-        z-index: 1000 !important;
+        z-index: 8 !important;
         max-width: 395px !important;
 
         body[data-color-scheme='dark'] & {
@@ -103,8 +103,7 @@
         color: var(--primary-font-color) !important;
         background-color: transparent !important;
         padding-left: 20px !important;
-        z-index: 2;
-        z-index: 1000 !important;
+        z-index: 8 !important;
 
         body[data-color-scheme='dark'] & {
             color: var(--primary-gray-font-color) !important;
@@ -120,6 +119,7 @@
             background-color: var(--primary-background-color) !important;
             color: var(--primary-expense-color) !important;
             cursor: pointer !important;
+            z-index: 8 !important;
 
             body[data-color-scheme='dark'] & {
                 color: var(--primary-expense-color) !important;
@@ -200,7 +200,7 @@
 
 .statistics-tab-select {
     &--is-disabled {
-        z-index: 6;
+        z-index: 0;
     }
 
     &-container {
@@ -213,7 +213,7 @@
         border: none !important;
         outline: none !important;
         border-radius: 30px !important;
-        z-index: 6 !important;
+        z-index: 0 !important;
 
         body[data-color-scheme='dark'] & {
             background-color: var(--primary-dark-background-color) !important;

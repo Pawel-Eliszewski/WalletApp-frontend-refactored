@@ -7,13 +7,16 @@ import { Balance } from "../../components/Balance/Balance";
 import { Currency } from "../../components/Currency/Currency";
 import { PageBackground } from "../../components/PageBackground/PageBackground";
 import { Modal } from "../../components/Modal/Modal";
+import { Overlay } from "../../components/Overlay/Overlay";
 
 const MobileDashboard = () => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
+  const isStatisticsPage = location.pathname === "/statistics";
 
   return (
     <>
+      {isStatisticsPage && <Overlay styles="overlay-statistics-page" />}
       <Header />
       <Modal />
       <div className="container container--mobile">
