@@ -13,7 +13,6 @@ import {
   setTransactionId,
   setTransactionsFilters,
 } from "../../redux/finance/financeSlice";
-import { deleteTransaction } from "../../redux/finance/operations";
 import { Button } from "../Button/Button";
 import { Pagination } from "../Pagination/Pagination";
 import { paginateTransactions } from "../../utils/paginationHandlers";
@@ -71,15 +70,11 @@ export const HomeTab = () => {
     document.body.classList.add("modal-open");
   };
 
-  const handleDeleteTransaction = (transactionId) => {
-    try {
-      Loading.hourglass();
-      dispatch(deleteTransaction(transactionId));
-      Loading.remove(600);
-    } catch (error) {
-      Loading.remove(600);
-      console.error(error);
-    }
+  const openModalDelete = (_id) => {
+    dispatch(setContext("delete"));
+    dispatch(setTransactionId(_id));
+    dispatch(setIsModalOpen(true));
+    document.body.classList.add("modal-open");
   };
 
   const handleTransactionFiltersReset = () => {
@@ -139,7 +134,7 @@ export const HomeTab = () => {
                       title={<FormattedMessage id="titleDelete" />}
                       styles="--delete"
                       type="button"
-                      onClick={() => handleDeleteTransaction(_id)}
+                      onClick={() => openModalDelete(_id)}
                     />
                     <Button
                       ariaLabel="open modal to edit selected transaction"
@@ -221,7 +216,7 @@ export const HomeTab = () => {
                           title={<FormattedMessage id="titleDelete" />}
                           styles="--delete"
                           type="button"
-                          onClick={() => handleDeleteTransaction(_id)}
+                          onClick={() => openModalDelete(_id)}
                         />
                       </div>
                     </td>

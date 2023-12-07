@@ -5,23 +5,28 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectContext, selectIsModalOpen } from "../../redux/global/selectors";
 import { setContext, setIsModalOpen } from "../../redux/global/globalSlice";
 import { logout } from "../../redux/session/operations";
+import { setTransactionId } from "../../redux/finance/financeSlice";
+import { deleteTransaction } from "../../redux/finance/operations";
 import { motion, AnimatePresence } from "framer-motion";
 import { Backdrop } from "./Backdrop/Backdrop";
+import { Button } from "../Button/Button";
 import { TransactionForm } from "../Forms/TransactionForm/TransactionForm";
 import { SearchForm } from "../Forms/SearchForm/SearchForm";
-import { Button } from "../Button/Button";
+import { Overlay } from "../Overlay/Overlay";
 import {
   dropIn,
   flip,
   setOverlayVisible,
   setOverlayNotVisible,
 } from "../../utils/backdropAndAnimationsStyles";
-import { Overlay } from "../Overlay/Overlay";
+import { Loading } from "notiflix";
+import { selectTransactionId } from "../../redux/finance/selectors";
 
 export const Modal = () => {
   const dispatch = useDispatch();
   const context = useSelector(selectContext);
   const isModalOpen = useSelector(selectIsModalOpen);
+  const transactionId = useSelector(selectTransactionId);
   const isMobile = useMedia("(max-width: 767px)");
 
   useEffect(() => {
@@ -41,14 +46,31 @@ export const Modal = () => {
   const handleModalClose = () => {
     dispatch(setIsModalOpen(false));
     dispatch(setContext(null));
+    dispatch(setTransactionId(null));
     document.body.classList.remove("modal-open");
   };
 
   const handleLogout = () => {
     dispatch(logout());
-    dispatch(setIsModalOpen(false));
-    dispatch(setContext(null));
-    document.body.classList.remove("modal-open");
+    handleModalClose();
+    // dispatch(setIsModalOpen(false));
+    // dispatch(setContext(null));
+    // document.body.classList.remove("modal-open");
+  };
+
+  const handleDeleteTransaction = () => {
+    try {
+      Loading.hourglass();
+      dispatch(deleteTransaction(transactionId));
+      dispatch(setIsModalOpen(false));
+      dispatch(setContext(null));
+      Loading.remove(600);
+    } catch (error) {
+      dispatch(setIsModalOpen(false));
+      dispatch(setContext(null));
+      Loading.remove(600);
+      console.error(error);
+    }
   };
 
   return (
@@ -79,6 +101,8 @@ export const Modal = () => {
                 <FormattedMessage id="titleEditTransaction" />
               ) : context === "search" ? (
                 <FormattedMessage id="titleSearchTransactions" />
+              ) : context === "delete" ? (
+                <FormattedMessage id="titleDeleteTransaction" />
               ) : (
                 ""
               )}
@@ -117,14 +141,22 @@ export const Modal = () => {
                 />
               </>
             ) : null}
-            {context === "logout" && (
+            {context === "logout" || context === "delete" ? (
               <div className="modal__controls">
                 <Button
-                  ariaLabel="submit logging out"
+                  ariaLabel={
+                    context === "logout"
+                      ? "submit logging out"
+                      : "submit transaction delete"
+                  }
                   title={<FormattedMessage id="titleYes" />}
                   styles="--yes"
                   type="button"
-                  onClick={handleLogout}
+                  onClick={
+                    context === "logout"
+                      ? handleLogout
+                      : handleDeleteTransaction
+                  }
                 />
                 <Button
                   ariaLabel="cancel and close modal"
@@ -134,7 +166,7 @@ export const Modal = () => {
                   onClick={handleModalClose}
                 />
               </div>
-            )}
+            ) : null}
           </motion.div>
         </Backdrop>
       )}

@@ -79,7 +79,8 @@ const financeSlice = createSlice({
           state.error = null;
         }
       })
-      .addCase(logout.fulfilled, () => initialState);
+      .addCase(logout.fulfilled, () => initialState)
+      .addCase(logout.rejected, () => initialState);
   },
 });
 

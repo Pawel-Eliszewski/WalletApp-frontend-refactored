@@ -91,7 +91,7 @@ export const SearchForm = ({ onMenuOpen, onMenuClose, onModalClose }) => {
       maxAmount: values.maxAmount,
       minDate: values.minDate,
       maxDate: values.maxDate,
-      comment: values.comment,
+      comment: values.comment.trim(),
     };
     if (values === initialValues) {
       return Notify.info(translatedMsg);
