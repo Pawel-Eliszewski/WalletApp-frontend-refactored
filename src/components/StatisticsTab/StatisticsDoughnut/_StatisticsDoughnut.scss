@@ -8,7 +8,7 @@
         max-width: 380px;
 
         & canvas {
-            z-index: 2;
+            z-index: 8;
         }
     }
 
@@ -22,6 +22,7 @@
         line-height: 27px;
         letter-spacing: 0em;
         text-align: center;
+        z-index: 8;
 
         body[data-color-scheme='dark'] & {
             color: var(--primary-gray-font-color);
