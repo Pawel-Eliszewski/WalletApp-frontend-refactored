@@ -153,9 +153,9 @@ export const HomeTab = () => {
               )
             )
           ) : (
-            <p className="home__info">
+            <span className="home__info">
               <FormattedMessage id="homeTabInfo" />
-            </p>
+            </span>
           )}
         </div>
       )}
@@ -229,9 +229,9 @@ export const HomeTab = () => {
                 )
               )
             ) : (
-              <p className="home__info">
+              <span className="home__info">
                 <FormattedMessage id="homeTabInfo" />
-              </p>
+              </span>
             )}
           </tbody>
         </table>

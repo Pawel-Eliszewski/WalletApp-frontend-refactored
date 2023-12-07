@@ -13,6 +13,8 @@ export const DropdownSelect = ({
   isDisabled,
   placeholder,
   onChange,
+  onMenuOpen,
+  onMenuClose,
 }) => {
   return (
     <Select
@@ -28,6 +30,8 @@ export const DropdownSelect = ({
       isDisabled={isDisabled}
       placeholder={placeholder}
       onChange={onChange}
+      onMenuOpen={onMenuOpen}
+      onMenuClose={onMenuClose}
     />
   );
 };
@@ -43,5 +47,7 @@ DropdownSelect.propTypes = {
   isClearable: PropTypes.bool,
   isDisabled: PropTypes.bool,
   placeholder: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  onMenuOpen: PropTypes.func,
+  onMenuClose: PropTypes.func,
   onChange: PropTypes.func.isRequired,
 };

@@ -13,6 +13,10 @@ import {
   filterTransactions,
 } from "../../utils/transactionsDataOperations";
 import { expenseCategories } from "../../utils/transactionCategories";
+import {
+  handleBlurVisible,
+  handleBlurNotVisible,
+} from "../../utils/backdropAndAnimationsStyles";
 import { nanoid } from "nanoid";
 
 export const StatisticsTab = () => {
@@ -106,6 +110,7 @@ export const StatisticsTab = () => {
 
   return (
     <div className="statistics__container">
+      {isMobile && <div className="backdrop-blur"></div>}
       <div className="statistics__doughnut-wrapper">
         <h2 className="statistics__title">
           <FormattedMessage id="linkStatistics" />
@@ -136,6 +141,8 @@ export const StatisticsTab = () => {
             isSearchable={false}
             options={getTransactionsYears(allTransactions)}
             value={selectedYear}
+            onMenuOpen={isMobile && handleBlurVisible}
+            onMenuClose={isMobile && handleBlurNotVisible}
             onChange={handleSelectYear}
           />
           <DropdownSelect
@@ -149,6 +156,8 @@ export const StatisticsTab = () => {
               selectedYear.value
             )}
             value={selectedMonth}
+            onMenuOpen={isMobile && handleBlurVisible}
+            onMenuClose={isMobile && handleBlurNotVisible}
             onChange={handleSelectMonth}
           />
         </div>

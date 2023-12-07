@@ -10,7 +10,12 @@ import { Backdrop } from "./Backdrop/Backdrop";
 import { TransactionForm } from "../Forms/TransactionForm/TransactionForm";
 import { SearchForm } from "../Forms/SearchForm/SearchForm";
 import { Button } from "../Button/Button";
-import { dropIn, flip } from "../../utils/framerMotionStyles";
+import {
+  dropIn,
+  flip,
+  handleBlurVisible,
+  handleBlurNotVisible,
+} from "../../utils/backdropAndAnimationsStyles";
 
 export const Modal = () => {
   const dispatch = useDispatch();
@@ -63,6 +68,7 @@ export const Modal = () => {
               type="button"
               onClick={handleModalClose}
             />
+            <div className="backdrop-blur"></div>
             <h2 className="modal__title">
               {context === "logout" ? (
                 <FormattedMessage id="titleLogOut" />
@@ -78,7 +84,11 @@ export const Modal = () => {
             </h2>
             {context === "add" || context === "edit" ? (
               <>
-                <TransactionForm onModalClose={handleModalClose} />
+                <TransactionForm
+                  onMenuOpen={handleBlurVisible}
+                  onMenuClose={handleBlurNotVisible}
+                  onModalClose={handleModalClose}
+                />
                 <Button
                   ariaLabel="cancel and close modal"
                   title={<FormattedMessage id="titleCancel" />}
@@ -93,6 +103,8 @@ export const Modal = () => {
                 <SearchForm
                   isModalOpen={isModalOpen}
                   context={context}
+                  onMenuOpen={handleBlurVisible}
+                  onMenuClose={handleBlurNotVisible}
                   onModalClose={handleModalClose}
                 />
                 <Button

@@ -45,3 +45,13 @@ export const flip = {
     },
   },
 };
+
+export const handleBlurVisible = () => {
+  const backdrop = document.querySelector(".backdrop-blur");
+  backdrop.classList.add("backdrop-blur--visible");
+};
+
+export const handleBlurNotVisible = () => {
+  const backdrop = document.querySelector(".backdrop-blur");
+  backdrop.classList.remove("backdrop-blur--visible");
+};

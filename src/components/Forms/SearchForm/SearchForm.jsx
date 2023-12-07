@@ -6,7 +6,6 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   selectTransactions,
   selectTransactionsFilters,
-  selectFilteredTransactions,
 } from "../../../redux/finance/selectors";
 import {
   setTransactionsFilters,
@@ -21,15 +20,14 @@ import { expenseCategoryOptions } from "../../../utils/transactionCategories";
 import { transactionsFiltersValidationSchema } from "../../../utils/yupValidationSchemas";
 import { Loading, Notify } from "notiflix";
 /**
- * @param {{ onModalClose: () => void }} props
+ * @param {{ onMenuOpen: () => void, onMenuClose: () => void, onModalClose: () => void }} props
  */
-export const SearchForm = ({ onModalClose }) => {
+export const SearchForm = ({ onMenuOpen, onMenuClose, onModalClose }) => {
   const intl = useIntl();
   const dispatch = useDispatch();
 
   const allTransactions = useSelector(selectTransactions);
   const transactionsFilters = useSelector(selectTransactionsFilters);
-  const filteredTransactions = useSelector(selectFilteredTransactions);
   const isMobile = useMedia("(max-width: 767px)");
   const formikRef = useRef();
 
@@ -99,14 +97,10 @@ export const SearchForm = ({ onModalClose }) => {
       return Notify.info(translatedMsg);
     } else
       try {
+        Loading.hourglass();
         dispatch(setTransactionsFilters(formData));
-        if (transactionsFilters && filteredTransactions.length === 0) {
-          return Notify.info("brak");
-        } else {
-          Loading.hourglass();
-          Loading.remove(600);
-          onModalClose();
-        }
+        Loading.remove(600);
+        onModalClose();
       } catch (error) {
         dispatch(setTransactionsFilters(null));
         onModalClose();
@@ -184,6 +178,8 @@ export const SearchForm = ({ onModalClose }) => {
                     isSearchable={!isMobile}
                     isClearable={false}
                     placeholder={<FormattedMessage id="labelSelectCategory" />}
+                    onMenuOpen={onMenuOpen}
+                    onMenuClose={onMenuClose}
                     onChange={handleCategoriesChange}
                   />
                   {touched.categories && errors.categories && (
@@ -340,5 +336,7 @@ export const SearchForm = ({ onModalClose }) => {
 };
 
 SearchForm.propTypes = {
+  onMenuOpen: PropTypes.func.isRequired,
+  onMenuClose: PropTypes.func.isRequired,
   onModalClose: PropTypes.func.isRequired,
 };

@@ -22,9 +22,9 @@ import { formattedTodayDate } from "../../../utils/dateHandlers";
 import { transactionValidationSchema } from "../../../utils/yupValidationSchemas";
 import { Loading } from "notiflix";
 /**
- * @param {{ onModalClose: () => void }} props
+ * @param {{ onMenuOpen: () => void, onMenuClose: () => void, onModalClose: () => void }} props
  */
-export const TransactionForm = ({ onModalClose }) => {
+export const TransactionForm = ({ onMenuOpen, onMenuClose, onModalClose }) => {
   const intl = useIntl();
   const dispatch = useDispatch();
   const isMobile = useMedia("(max-width: 767px)");
@@ -156,6 +156,8 @@ export const TransactionForm = ({ onModalClose }) => {
                   value={values.category}
                   styles="transaction-form"
                   isSearchable={!isMobile}
+                  onMenuOpen={onMenuOpen}
+                  onMenuClose={onMenuClose}
                   onChange={(selectedOption) => {
                     setFieldValue("category", selectedOption);
                   }}
@@ -250,5 +252,7 @@ export const TransactionForm = ({ onModalClose }) => {
 };
 
 TransactionForm.propTypes = {
+  onMenuOpen: PropTypes.func.isRequired,
+  onMenuClose: PropTypes.func.isRequired,
   onModalClose: PropTypes.func.isRequired,
 };
