@@ -3,7 +3,6 @@ import { useIntl, FormattedMessage } from "react-intl";
 import { useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { Logo } from "../../Logo/Logo";
 import { Button } from "../../Button/Button";
 import {
   loginValidationSchema,
@@ -53,7 +52,6 @@ export const AuthForm = ({ context, onSubmit }) => {
 
   return (
     <div className="auth-form">
-      <Logo />
       <Formik
         initialValues={initialValues}
         validationSchema={
