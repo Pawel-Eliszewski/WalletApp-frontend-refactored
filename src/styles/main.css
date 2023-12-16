@@ -130,7 +130,7 @@ textarea:focus::placeholder {
 @media screen and (min-width: 768px) {
   .auth-page {
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 76px);
     display: flex;
     align-items: center;
     justify-content: flex-start;

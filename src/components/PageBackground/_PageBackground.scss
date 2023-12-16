@@ -1,6 +1,7 @@
 .background {
     position: fixed;
     width: 100%;
+    // height: calc(100% - 56px);
     height: 100%;
     background-color: var(--primary-background-color);
     z-index: -1;
@@ -16,6 +17,7 @@
 
 @media screen and (min-width: 768px) {
     .background {
+        // height: calc(100% - 76px);
         background-color: var(--secondary-background-color);
 
         &__ellipse {

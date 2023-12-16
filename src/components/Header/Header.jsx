@@ -65,16 +65,18 @@ export const Header = () => {
         checked={appLanguage === "pl"}
         onChange={handleAppLanguageChange}
       />
-      <div className="header__nav">
-        <p className="header__nav-user">{user.firstname}</p>
-        <Button
-          ariaLabel="exit and log out from application"
-          title={window.innerWidth >= 768 ? "Exit" : ""}
-          styles="--logout"
-          type="button"
-          onClick={openModalLogout}
-        />
-      </div>
+      {user && (
+        <div className="header__nav">
+          <p className="header__nav-user">{user.firstname}</p>
+          <Button
+            ariaLabel="exit and log out from application"
+            title={window.innerWidth >= 768 ? "Exit" : ""}
+            styles="--logout"
+            type="button"
+            onClick={openModalLogout}
+          />
+        </div>
+      )}
     </div>
   );
 };

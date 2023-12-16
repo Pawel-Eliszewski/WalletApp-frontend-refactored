@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { login, register } from "../../redux/session/operations";
 import { AuthForm } from "../../components/Forms/AuthForm/AuthForm";
 import { PageBackground } from "../../components/PageBackground/PageBackground";
+import { Header } from "../../components/Header/Header";
 /**
  * @param {{ context: 'login' | 'register' }} props
  */
@@ -32,6 +33,7 @@ const AuthPage = ({ context }) => {
   return (
     <>
       <PageBackground />
+      <Header />
       <div className="auth-page">
         <div className="auth-page__hero-container">
           <img
