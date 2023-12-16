@@ -75,7 +75,6 @@
   "monthsNovember": "Listopad",
   "monthsDecember": "Grudzień",
   "homeTabInfo": "Brak transakcji dla wybranych filtrów",
-
   "notifyLoggedIn": "Logowanie pomyślne.",
   "notifyWelcome": "Witaj",
   "notifyLogInAgain": "Proszę zalogować się ponownie",
@@ -89,15 +88,10 @@
   "notifyLoggingFailed": "Logowanie nie powiodło się, spróbuj ponownie",
   "notifyInvalidCredentials": "Błedny email lub hasło",
   "notifyNetworkError": "Błąd sieci. Proszę sprawdzić połączenie sieciowe",
-
   "notifyNoFilters": "Proszę wybrać przynajmniej 1 filtr",
   "notifyAdded": "Transakcja dodana",
   "notifyDeleted": "Transakcja usunięta",
-
-  "notifyUpdated2": "Transakcja zaaktualizowana",
-
-  "notifyUpdated": "cośtam<br>cośtam",
-
+  "notifyUpdated": "Transakcja zaaktualizowana",
   "invalidEmail": "Adres e-mail musi zawierać @",
   "emailRequired": "E-mail jest wymagany",
   "passwordRequired": "Hasło jest wymagane",

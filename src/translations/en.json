@@ -75,7 +75,6 @@
   "monthsNovember": "November",
   "monthsDecember": "December",
   "homeTabInfo": "No transactions for selected filters",
-
   "notifyLoggedIn": "Logging successful.",
   "notifyWelcome": "Welcome,",
   "notifyLogInAgain": "Failure. Please log in again",
@@ -89,7 +88,6 @@
   "notifyLoggingFailed": "Logging failed. Please check internet connection and try again",
   "notifyInvalidCredentials": "Invalid email or password",
   "notifyNetworkError": "Network error. Please check internet connection",
-
   "notifyNoFilters": "Please use at least 1 filter",
   "notifyAdded": "Transaction added",
   "notifyDeleted": "Transaction deleted",
