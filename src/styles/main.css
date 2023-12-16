@@ -138,7 +138,6 @@ textarea:focus::placeholder {
     position: relative;
     gap: 50px;
     padding-top: 60px;
-    overflow: hidden;
   }
   .auth-page__hero-container {
     display: flex;
@@ -1167,7 +1166,7 @@ body[data-color-scheme=dark] .doughnut__balance {
   top: 50%;
   transform: translate(-50%, -50%);
   background-color: transparent;
-  z-index: 9;
+  z-index: 1;
 }
 .auth-form__wrapper {
   display: flex;
@@ -1408,6 +1407,7 @@ body[data-color-scheme=dark] .type__span--expense {
   padding-inline: 10px;
   background-color: var(--primary-background-color);
   border-bottom: 1px solid var(--primary-background-color);
+  z-index: 2;
 }
 body[data-color-scheme=dark] .header {
   background-color: var(--primary-dark-background-color);
