@@ -1,6 +1,7 @@
 import { Notify, Report } from "notiflix";
 
 export const configureNotiflixStyles = (colorScheme) => {
+  let notifyTextColor = "#ffffff";
   let notifySuccessBackground = "#24cca7";
   let notifySuccessIconColor = "#ffffff";
   let notifyFailureBackground = "#ff6596";
@@ -13,7 +14,8 @@ export const configureNotiflixStyles = (colorScheme) => {
   let reportFontColor = "#1e1e1e";
 
   if (colorScheme === "dark") {
-    notifySuccessBackground = "#1f7e56";
+    notifyTextColor = "#e0e0e0";
+    notifySuccessBackground = "#127962";
     notifySuccessIconColor = "#bdbdbd";
     notifyFailureBackground = "#8c0030";
     notifyFailureIconColor = "#ff6596";
@@ -34,7 +36,7 @@ export const configureNotiflixStyles = (colorScheme) => {
     rtl: false,
     timeout: 3500,
     messageMaxLength: 110,
-    plainText: true,
+    plainText: false,
     showOnlyTheLastOne: true,
     clickToClose: false,
     pauseOnHover: true,
@@ -49,16 +51,18 @@ export const configureNotiflixStyles = (colorScheme) => {
     closeButton: false,
     useIcon: true,
     useFontAwesome: false,
-    textColor: "#ffffff",
     success: {
+      textColor: notifyTextColor,
       background: notifySuccessBackground,
       notiflixIconColor: notifySuccessIconColor,
     },
     failure: {
+      textColor: notifyTextColor,
       background: notifyFailureBackground,
       notiflixIconColor: notifyFailureIconColor,
     },
     info: {
+      textColor: notifyTextColor,
       background: notifyInfoBackground,
       notiflixIconColor: notifyInfoIconColor,
     },

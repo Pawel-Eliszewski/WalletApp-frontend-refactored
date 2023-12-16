@@ -1,6 +1,16 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { instance, clearAuthHeader } from "../session/operations";
 import { Notify, Report } from "../../utils/notiflixStyles";
+import {
+  addTransactionMessage,
+  updateTransactionMessage,
+  deleteTransactionMessage,
+  tryAgainMessage,
+  logInAgainMessage,
+  sessionExpiredMessage,
+  loggingMessage,
+} from "../../utils/notiflixMessages";
+import { Loading } from "notiflix";
 
 export const fetchTransactions = createAsyncThunk(
   "finance/fetchTransactions",
@@ -17,23 +27,28 @@ export const fetchTransactions = createAsyncThunk(
 export const addTransaction = createAsyncThunk(
   "finance/addTransaction",
   async (data, thunkAPI) => {
+    const { appLanguage } = thunkAPI.getState().global;
     try {
+      Loading.hourglass();
       const response = await instance.post("/transaction", data);
-      Notify.success("Transaction added");
+      Loading.remove();
+      Notify.success(addTransactionMessage(appLanguage));
       return response.data;
     } catch (error) {
+      Loading.remove();
       if (error.message === "Request failed with status code 401") {
         Report.failure(
-          "Failure, please log in again",
-          "Your session has expired, or you have logged in on another device.",
-          "Log in",
+          logInAgainMessage(appLanguage),
+          sessionExpiredMessage(appLanguage),
+          loggingMessage(appLanguage),
           () => {
             window.location.reload();
           }
         );
         clearAuthHeader();
       } else {
-        Notify.failure("Failure, please try again");
+        Loading.remove();
+        Notify.failure(tryAgainMessage(appLanguage));
       }
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -43,23 +58,28 @@ export const addTransaction = createAsyncThunk(
 export const deleteTransaction = createAsyncThunk(
   "finance/deleteTransaction",
   async (transactionID, thunkAPI) => {
+    const { appLanguage } = thunkAPI.getState().global;
     try {
+      Loading.hourglass();
       const response = await instance.delete(`/transaction/${transactionID}`);
-      Notify.success("Transaction deleted");
+      Loading.remove();
+      Notify.success(deleteTransactionMessage(appLanguage));
       return response.data;
     } catch (error) {
+      Loading.remove();
       if (error.message === "Request failed with status code 401") {
         Report.failure(
-          "Failure, please log in again",
-          "Your session has expired, or you have logged in on another device.",
-          "Log in",
+          logInAgainMessage(appLanguage),
+          sessionExpiredMessage(appLanguage),
+          loggingMessage(appLanguage),
           () => {
             window.location.reload();
           }
         );
         clearAuthHeader();
       } else {
-        Notify.failure("Failure, please try again");
+        Loading.remove();
+        Notify.failure(tryAgainMessage(appLanguage));
       }
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -69,26 +89,31 @@ export const deleteTransaction = createAsyncThunk(
 export const updateTransaction = createAsyncThunk(
   "finance/updateTransaction",
   async (data, thunkAPI) => {
+    const { appLanguage } = thunkAPI.getState().global;
     try {
+      Loading.hourglass();
       const response = await instance.patch(
         `/transaction/${data.transactionId}`,
         data
       );
-      Notify.success("Transaction updated");
+      Loading.remove();
+      Notify.success(updateTransactionMessage(appLanguage));
       return response.data;
     } catch (error) {
+      Loading.remove();
       if (error.message === "Request failed with status code 401") {
         Report.failure(
-          "Failure, please log in again",
-          "Your session has expired, or you have logged in on another device.",
-          "Log in",
+          logInAgainMessage(appLanguage),
+          sessionExpiredMessage(appLanguage),
+          loggingMessage(appLanguage),
           () => {
             window.location.reload();
           }
         );
         clearAuthHeader();
       } else {
-        Notify.failure("Failure, please try again");
+        Loading.remove();
+        Notify.failure(tryAgainMessage(appLanguage));
       }
       return thunkAPI.rejectWithValue(error.message);
     }

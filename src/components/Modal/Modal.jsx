@@ -19,7 +19,6 @@ import {
   setOverlayVisible,
   setOverlayNotVisible,
 } from "../../utils/backdropAndAnimationsStyles";
-import { Loading } from "notiflix";
 import { selectTransactionId } from "../../redux/finance/selectors";
 
 export const Modal = () => {
@@ -57,13 +56,10 @@ export const Modal = () => {
 
   const handleDeleteTransaction = () => {
     try {
-      Loading.hourglass();
       dispatch(deleteTransaction(transactionId));
       handleModalClose();
-      Loading.remove(600);
     } catch (error) {
       handleModalClose();
-      Loading.remove(600);
       console.error(error);
     }
   };

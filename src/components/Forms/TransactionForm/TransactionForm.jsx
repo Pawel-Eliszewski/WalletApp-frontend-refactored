@@ -20,7 +20,6 @@ import { Calendar } from "../../Calendar/Calendar";
 import { expenseCategoryOptions } from "../../../utils/transactionCategories";
 import { formattedTodayDate } from "../../../utils/dateHandlers";
 import { transactionValidationSchema } from "../../../utils/yupValidationSchemas";
-import { Loading } from "notiflix";
 /**
  * @param {{ onMenuOpen: () => void, onMenuClose: () => void, onModalClose: () => void }} props
  */
@@ -72,13 +71,10 @@ export const TransactionForm = ({ onMenuOpen, onMenuClose, onModalClose }) => {
       owner: user.id,
     };
     try {
-      Loading.hourglass();
       await dispatch(addTransaction(formData)).unwrap();
       onModalClose();
-      Loading.remove();
     } catch (error) {
       onModalClose();
-      Loading.remove();
       console.error(error);
     }
   };
@@ -95,13 +91,10 @@ export const TransactionForm = ({ onMenuOpen, onMenuClose, onModalClose }) => {
       owner: selectedTransaction.owner,
     };
     try {
-      Loading.hourglass();
       await dispatch(updateTransaction(formData)).unwrap();
       onModalClose();
-      Loading.remove();
     } catch (error) {
       onModalClose();
-      Loading.remove();
       console.error(error);
     }
   };

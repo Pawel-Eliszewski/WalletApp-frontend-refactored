@@ -18,6 +18,7 @@ import { Calendar } from "../../Calendar/Calendar";
 import { getTransactionsCategories } from "../../../utils/transactionsDataOperations";
 import { expenseCategoryOptions } from "../../../utils/transactionCategories";
 import { transactionsFiltersValidationSchema } from "../../../utils/yupValidationSchemas";
+import { noFiltersMessage } from "../../../utils/notiflixMessages";
 import { Loading, Notify } from "notiflix";
 /**
  * @param {{ onMenuOpen: () => void, onMenuClose: () => void, onModalClose: () => void }} props
@@ -33,7 +34,6 @@ export const SearchForm = ({ onMenuOpen, onMenuClose, onModalClose }) => {
 
   const placeholderDate = intl.formatMessage({ id: "placeholderDate" });
   const placeholderComment = intl.formatMessage({ id: "placeholderTypeWord" });
-  const translatedMsg = intl.formatMessage({ id: "notifyOneFilter" });
 
   const usedExpenseCategories = getTransactionsCategories(allTransactions);
 
@@ -94,17 +94,18 @@ export const SearchForm = ({ onMenuOpen, onMenuClose, onModalClose }) => {
       comment: values.comment.trim(),
     };
     if (values === initialValues) {
-      return Notify.info(translatedMsg);
+      const appLanguage = intl.locale;
+      return Notify.info(noFiltersMessage(appLanguage));
     } else
       try {
         Loading.hourglass();
         dispatch(setTransactionsFilters(formData));
-        Loading.remove(600);
         onModalClose();
+        Loading.remove(500);
       } catch (error) {
         dispatch(setTransactionsFilters(null));
         onModalClose();
-        Loading.remove();
+        Loading.remove(500);
         console.error(error);
       }
   };
