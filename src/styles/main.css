@@ -1408,6 +1408,7 @@ body[data-color-scheme=dark] .type__span--expense {
   background-color: var(--primary-background-color);
   border-bottom: 1px solid var(--primary-background-color);
   z-index: 3;
+  position: relative;
 }
 body[data-color-scheme=dark] .header {
   background-color: var(--primary-dark-background-color);
