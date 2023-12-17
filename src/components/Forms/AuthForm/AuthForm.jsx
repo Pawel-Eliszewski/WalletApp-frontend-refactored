@@ -15,16 +15,16 @@ export const AuthForm = ({ context, onSubmit }) => {
   const intl = useIntl();
   const navigate = useNavigate();
   const btnRegisterRef = useRef(null);
+  const btnSubmitRef = useRef(null);
 
   useEffect(() => {
-    const submitBtn = document.getElementById("submit");
-    if (submitBtn) {
-      submitBtn.focus();
+    if (btnSubmitRef.current) {
+      btnSubmitRef.current.focus();
     }
     if (btnRegisterRef.current) {
       btnRegisterRef.current.blur();
     }
-  }, []);
+  }, [context]);
 
   const placeholderPassword = intl.formatMessage({
     id: "placeholderPassword",
@@ -51,7 +51,7 @@ export const AuthForm = ({ context, onSubmit }) => {
   };
 
   return (
-    <div className="auth-form">
+    <div className="auth-form" ref={btnSubmitRef}>
       <Formik
         initialValues={initialValues}
         validationSchema={
@@ -164,7 +164,6 @@ export const AuthForm = ({ context, onSubmit }) => {
               }
               styles="--submit"
               type="submit"
-              id="submit"
             />
             <Button
               ariaLabel={
