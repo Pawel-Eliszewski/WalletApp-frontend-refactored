@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useIntl, FormattedMessage } from "react-intl";
 import { useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, FastField, Field, ErrorMessage } from "formik";
 import { Button } from "../../Button/Button";
 import {
   loginValidationSchema,
@@ -66,13 +66,7 @@ export const AuthForm = ({ context, onSubmit }) => {
                 width="21"
                 height="16"
               />
-              <Field
-                innerRef={(fieldRef) => {
-                  formikBag.innerRef(fieldRef);
-                  if (fieldRef) {
-                    fieldRef.blur();
-                  }
-                }}
+              <FastField
                 autoFocus={false}
                 className="auth-form__input"
                 type="email"
