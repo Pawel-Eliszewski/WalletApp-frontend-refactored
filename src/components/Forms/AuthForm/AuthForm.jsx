@@ -19,7 +19,7 @@ export const AuthForm = ({ context, onSubmit }) => {
   useEffect(() => {
     const emailField = document.getElementById("email");
     if (emailField) {
-      emailField.removeAttribute("autofocus");
+      emailField.blur();
     }
     if (btnRef.current) {
       btnRef.current.blur();
