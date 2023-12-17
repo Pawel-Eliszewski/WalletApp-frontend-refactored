@@ -1168,14 +1168,6 @@ body[data-color-scheme=dark] .doughnut__balance {
   background-color: transparent;
   z-index: 1;
 }
-.auth-form__placeholder:focus, .auth-form__placeholder:focus-visible {
-  outline: none;
-  border: none;
-}
-body[data-color-scheme=dark] .auth-form__placeholder:focus, body[data-color-scheme=dark] .auth-form__placeholder:focus-visible {
-  outline: none;
-  border: none;
-}
 .auth-form__wrapper {
   display: flex;
   align-items: center;
