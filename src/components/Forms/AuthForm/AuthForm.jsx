@@ -14,17 +14,17 @@ import {
 export const AuthForm = ({ context, onSubmit }) => {
   const intl = useIntl();
   const navigate = useNavigate();
-  const btnRef = useRef(null);
+  const btnRegisterRef = useRef(null);
 
   useEffect(() => {
-    const emailField = document.getElementById("email");
-    if (emailField) {
-      emailField.blur();
+    const submitBtn = document.getElementById("submit");
+    if (submitBtn) {
+      submitBtn.focus();
     }
-    if (btnRef.current) {
-      btnRef.current.blur();
+    if (btnRegisterRef.current) {
+      btnRegisterRef.current.blur();
     }
-  }, [context]);
+  }, []);
 
   const placeholderPassword = intl.formatMessage({
     id: "placeholderPassword",
@@ -164,6 +164,7 @@ export const AuthForm = ({ context, onSubmit }) => {
               }
               styles="--submit"
               type="submit"
+              id="submit"
             />
             <Button
               ariaLabel={
@@ -179,7 +180,7 @@ export const AuthForm = ({ context, onSubmit }) => {
               styles="--cancel"
               type="button"
               onClick={() => handleClick(formikBag)}
-              ref={btnRef}
+              ref={btnRegisterRef}
             />
           </Form>
         )}
