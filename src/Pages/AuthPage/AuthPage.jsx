@@ -6,9 +6,9 @@ import { AuthForm } from "../../components/Forms/AuthForm/AuthForm";
 import { PageBackground } from "../../components/PageBackground/PageBackground";
 import { Header } from "../../components/Header/Header";
 /**
- * @param {{ context: 'login' | 'register' }} props
+ * @param {{ formType: 'login' | 'register' }} props
  */
-const AuthPage = ({ context }) => {
+const AuthPage = ({ formType }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -39,7 +39,7 @@ const AuthPage = ({ context }) => {
           <img
             className="auth-page__hero-img"
             src={
-              context === "login"
+              formType === "login"
                 ? "/assets/image-hero-login.svg"
                 : "/assets/image-hero-register.svg"
             }
@@ -49,8 +49,8 @@ const AuthPage = ({ context }) => {
         </div>
         <div className="auth-page__form-container">
           <AuthForm
-            context={context}
-            onSubmit={context === "login" ? handleLogin : handleRegister}
+            formType={formType}
+            onSubmit={formType === "login" ? handleLogin : handleRegister}
           />
         </div>
       </div>
@@ -59,7 +59,7 @@ const AuthPage = ({ context }) => {
 };
 
 AuthPage.propTypes = {
-  context: PropTypes.string.isRequired,
+  formType: PropTypes.string.isRequired,
 };
 
 export default AuthPage;

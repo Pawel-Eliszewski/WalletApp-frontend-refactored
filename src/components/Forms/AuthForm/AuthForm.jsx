@@ -9,9 +9,9 @@ import {
   registerValidationSchema,
 } from "../../../utils/yupValidationSchemas";
 /**
- * @param {{ context: 'login' | 'register', onSubmit: () => void }} props
+ * @param {{ formType: 'login' | 'register', onSubmit: () => void }} props
  */
-export const AuthForm = ({ context, onSubmit }) => {
+export const AuthForm = ({ formType, onSubmit }) => {
   const intl = useIntl();
   const navigate = useNavigate();
   const btnRegisterRef = useRef(null);
@@ -20,7 +20,7 @@ export const AuthForm = ({ context, onSubmit }) => {
     if (btnRegisterRef.current) {
       btnRegisterRef.current.blur();
     }
-  }, [context]);
+  }, [formType]);
 
   const placeholderPassword = intl.formatMessage({
     id: "placeholderPassword",
@@ -43,7 +43,7 @@ export const AuthForm = ({ context, onSubmit }) => {
 
   const handleClick = (formikBag) => {
     formikBag.resetForm();
-    navigate(context === "login" ? "/register" : "/login", { replace: true });
+    navigate(formType === "login" ? "/register" : "/login", { replace: true });
   };
 
   return (
@@ -51,7 +51,9 @@ export const AuthForm = ({ context, onSubmit }) => {
       <Formik
         initialValues={initialValues}
         validationSchema={
-          context === "login" ? loginValidationSchema : registerValidationSchema
+          formType === "login"
+            ? loginValidationSchema
+            : registerValidationSchema
         }
         onSubmit={onSubmit}
         enableReinitialize={true}
@@ -72,7 +74,7 @@ export const AuthForm = ({ context, onSubmit }) => {
                 type="email"
                 name="email"
                 placeholder="E-mail"
-                autoComplete="off"
+                autoComplete="email"
               />
               <ErrorMessage
                 name="email"
@@ -94,7 +96,9 @@ export const AuthForm = ({ context, onSubmit }) => {
                 type="password"
                 name="password"
                 placeholder={placeholderPassword}
-                autoComplete="off"
+                autoComplete={
+                  formType === "login" ? "current-password" : "new-password"
+                }
               />
               <ErrorMessage
                 name="password"
@@ -102,7 +106,7 @@ export const AuthForm = ({ context, onSubmit }) => {
                 className="auth-form__alert"
               />
             </div>
-            {context === "register" ? (
+            {formType === "register" ? (
               <>
                 <div className="auth-form__field">
                   <img
@@ -118,7 +122,7 @@ export const AuthForm = ({ context, onSubmit }) => {
                     type="password"
                     name="confirmPassword"
                     placeholder={placeholderConfirmPassword}
-                    autoComplete="off"
+                    autoComplete="new-password"
                   />
                   <ErrorMessage
                     name="confirmPassword"
@@ -152,10 +156,10 @@ export const AuthForm = ({ context, onSubmit }) => {
             ) : null}
             <Button
               ariaLabel={
-                context === "login" ? "submit logging in" : "submit register"
+                formType === "login" ? "submit logging in" : "submit register"
               }
               title={
-                context === "login" ? (
+                formType === "login" ? (
                   <FormattedMessage id="titleLogin" />
                 ) : (
                   <FormattedMessage id="titleRegister" />
@@ -166,10 +170,10 @@ export const AuthForm = ({ context, onSubmit }) => {
             />
             <Button
               ariaLabel={
-                context === "login" ? "go to register" : "go to logging in"
+                formType === "login" ? "go to register" : "go to logging in"
               }
               title={
-                context === "login" ? (
+                formType === "login" ? (
                   <FormattedMessage id="titleRegister" />
                 ) : (
                   <FormattedMessage id="titleLogin" />
@@ -188,6 +192,6 @@ export const AuthForm = ({ context, onSubmit }) => {
 };
 
 AuthForm.propTypes = {
-  context: PropTypes.string.isRequired,
+  formType: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };

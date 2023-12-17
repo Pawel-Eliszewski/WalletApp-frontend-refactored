@@ -99,7 +99,7 @@ export default function App() {
             element={
               <RestrictedRoute
                 redirectTo="/"
-                component={<AuthPage context="register" />}
+                component={<AuthPage formType="register" />}
               />
             }
           />
@@ -108,7 +108,7 @@ export default function App() {
             element={
               <RestrictedRoute
                 redirectTo="/"
-                component={<AuthPage context="login" />}
+                component={<AuthPage formType="login" />}
               />
             }
           />
