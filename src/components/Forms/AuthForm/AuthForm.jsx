@@ -17,6 +17,10 @@ export const AuthForm = ({ context, onSubmit }) => {
   const btnRef = useRef(null);
 
   useEffect(() => {
+    const emailField = document.getElementById("email");
+    if (emailField) {
+      emailField.removeAttribute("autofocus");
+    }
     if (btnRef.current) {
       btnRef.current.blur();
     }
@@ -67,6 +71,7 @@ export const AuthForm = ({ context, onSubmit }) => {
                 height="16"
               />
               <Field
+                id="email"
                 className="auth-form__input"
                 type="email"
                 name="email"
