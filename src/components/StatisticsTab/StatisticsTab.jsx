@@ -48,7 +48,7 @@ export const StatisticsTab = () => {
     expenseCategories
   );
 
-  const { income, expense, balance } = countTransactionsSummary(
+  const { incomes, expenses, balance } = countTransactionsSummary(
     selectedRangeTransactions
   );
 
@@ -114,7 +114,11 @@ export const StatisticsTab = () => {
         <h2 className="statistics__title">
           <FormattedMessage id="linkStatistics" />
         </h2>
-        <StatisticsDoughnut balance={balance} data={summedExpensesWithColors} />
+        <StatisticsDoughnut
+          balance={balance}
+          data={summedExpensesWithColors}
+          incomes={incomes}
+        />
         <div className="statistics__data-range-wrapper">
           <h4 className="statistics__data-range">
             <FormattedMessage id="labelDateRange" />:{" "}
@@ -204,7 +208,7 @@ export const StatisticsTab = () => {
                 <FormattedMessage id="labelExpenses" />:
               </p>
               <p className="statistics__summary-type statistics__summary-type--expense">
-                {expense.toFixed(2)} PLN
+                {expenses.toFixed(2)} PLN
               </p>
             </li>
             <li className="statistics__summary-item">
@@ -212,7 +216,7 @@ export const StatisticsTab = () => {
                 <FormattedMessage id="labelIncomes" />:
               </p>
               <p className="statistics__summary-type statistics__summary-type--income">
-                {income.toFixed(2)} PLN
+                {incomes.toFixed(2)} PLN
               </p>
             </li>
           </ul>

@@ -3,8 +3,8 @@ import { formattedTransactionDate } from "./dateHandlers";
 
 export const countTransactionsSummary = (transactions) => {
   let transactionsSummary = {
-    expense: 0,
-    income: 0,
+    expenses: 0,
+    incomes: 0,
     balance: 0,
   };
 
@@ -12,14 +12,14 @@ export const countTransactionsSummary = (transactions) => {
     const amount = Number(transaction.amount);
 
     if (transaction.type === "income") {
-      transactionsSummary.income += amount;
+      transactionsSummary.incomes += amount;
     } else {
-      transactionsSummary.expense += amount;
+      transactionsSummary.expenses += amount;
     }
   });
 
   transactionsSummary.balance =
-    transactionsSummary.income - transactionsSummary.expense;
+    transactionsSummary.incomes - transactionsSummary.expenses;
 
   return transactionsSummary;
 };
