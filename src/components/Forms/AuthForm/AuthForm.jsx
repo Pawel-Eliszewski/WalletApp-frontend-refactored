@@ -17,9 +17,9 @@ export const AuthForm = ({ context, onSubmit }) => {
   const btnRegisterRef = useRef(null);
 
   useEffect(() => {
-    const firstInput = document.querySelector(".auth-form__input");
-    if (firstInput) {
-      firstInput.blur();
+    const form = document.getElementById("form");
+    if (form) {
+      form.focus();
     }
   }, []);
 
@@ -54,7 +54,7 @@ export const AuthForm = ({ context, onSubmit }) => {
   };
 
   return (
-    <div className="auth-form">
+    <div className="auth-form" id="form" tabIndex={-1}>
       <Formik
         initialValues={initialValues}
         validationSchema={
