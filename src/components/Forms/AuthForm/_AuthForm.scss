@@ -11,17 +11,6 @@
     background-color: transparent;
     z-index: 1;
 
-    &:focus,
-    &:focus-visible {
-        outline: none;
-        border: none;
-
-        body[data-color-scheme='dark'] & {
-            outline: none;
-            border: none;
-        }
-    }
-
     &__wrapper {
         display: flex;
         align-items: center;

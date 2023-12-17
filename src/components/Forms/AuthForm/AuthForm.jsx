@@ -17,13 +17,6 @@ export const AuthForm = ({ context, onSubmit }) => {
   const btnRegisterRef = useRef(null);
 
   useEffect(() => {
-    const form = document.getElementById("form");
-    if (form) {
-      form.focus();
-    }
-  }, []);
-
-  useEffect(() => {
     if (btnRegisterRef.current) {
       btnRegisterRef.current.blur();
     }
@@ -54,7 +47,7 @@ export const AuthForm = ({ context, onSubmit }) => {
   };
 
   return (
-    <div className="auth-form" id="form" tabIndex={-1}>
+    <div className="auth-form">
       <Formik
         initialValues={initialValues}
         validationSchema={
@@ -74,8 +67,13 @@ export const AuthForm = ({ context, onSubmit }) => {
                 height="16"
               />
               <Field
+                innerRef={(fieldRef) => {
+                  formikBag.innerRef(fieldRef);
+                  if (fieldRef) {
+                    fieldRef.blur();
+                  }
+                }}
                 autoFocus={false}
-                id="email"
                 className="auth-form__input"
                 type="email"
                 name="email"
