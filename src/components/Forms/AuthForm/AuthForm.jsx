@@ -67,7 +67,7 @@ export const AuthForm = ({ context, onSubmit }) => {
                 height="16"
               />
               <Field
-                autoFocus={false}
+                autoFocus={formikBag.values.email !== ""}
                 className="auth-form__input"
                 type="email"
                 name="email"
