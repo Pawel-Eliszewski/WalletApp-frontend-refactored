@@ -63,10 +63,16 @@
         letter-spacing: 0em;
         text-align: left;
         color: var(--primary-font-color);
+        position: relative;
 
         &::placeholder {
             color: var(--primary-gray-font-color);
         }
+    }
+
+    &__password-toggle {
+        position: absolute;
+        right: 5px;
     }
 
     &__alert {

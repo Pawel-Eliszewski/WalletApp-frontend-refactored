@@ -1213,12 +1213,17 @@ body[data-color-scheme=dark] .auth-form__field:focus-within {
   letter-spacing: 0em;
   text-align: left;
   color: var(--primary-font-color);
+  position: relative;
 }
 .auth-form__input::-moz-placeholder {
   color: var(--primary-gray-font-color);
 }
 .auth-form__input::placeholder {
   color: var(--primary-gray-font-color);
+}
+.auth-form__password-toggle {
+  position: absolute;
+  right: 5px;
 }
 .auth-form__alert {
   position: absolute;

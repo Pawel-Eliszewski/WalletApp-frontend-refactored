@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useIntl, FormattedMessage } from "react-intl";
-import { useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Button } from "../../Button/Button";
@@ -15,6 +15,7 @@ export const AuthForm = ({ formType, onSubmit }) => {
   const intl = useIntl();
   const navigate = useNavigate();
   const btnRegisterRef = useRef(null);
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     if (btnRegisterRef.current) {
@@ -39,6 +40,10 @@ export const AuthForm = ({ formType, onSubmit }) => {
     password: "",
     confirmPassword: "",
     name: "",
+  };
+
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
   const handleClick = (formikBag) => {
@@ -93,13 +98,21 @@ export const AuthForm = ({ formType, onSubmit }) => {
               <Field
                 autoFocus={false}
                 className="auth-form__input"
-                type="password"
+                type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder={placeholderPassword}
                 autoComplete={
                   formType === "login" ? "current-password" : "new-password"
                 }
               />
+              {formikBag.values.password !== "" && (
+                <span
+                  className="auth-form__password-toggle"
+                  onClick={toggleShowPassword}
+                >
+                  {showPassword ? "🔒" : "👁️"}
+                </span>
+              )}
               <ErrorMessage
                 name="password"
                 component="span"
@@ -119,11 +132,19 @@ export const AuthForm = ({ formType, onSubmit }) => {
                   <Field
                     autoFocus={false}
                     className="auth-form__input"
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     name="confirmPassword"
                     placeholder={placeholderConfirmPassword}
                     autoComplete="new-password"
                   />
+                  {formikBag.values.confirmPassword !== "" && (
+                    <span
+                      className="auth-form__password-toggle"
+                      onClick={toggleShowPassword}
+                    >
+                      {showPassword ? "🔒" : "👁️"}
+                    </span>
+                  )}
                   <ErrorMessage
                     name="confirmPassword"
                     component="span"
