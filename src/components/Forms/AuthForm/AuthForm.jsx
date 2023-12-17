@@ -17,10 +17,6 @@ export const AuthForm = ({ context, onSubmit }) => {
   const btnRef = useRef(null);
 
   useEffect(() => {
-    const inputs = document.querySelectorAll(".auth-form__input");
-    inputs.forEach((input) => {
-      input.blur();
-    });
     if (btnRef.current) {
       btnRef.current.blur();
     }
@@ -75,7 +71,7 @@ export const AuthForm = ({ context, onSubmit }) => {
                 type="email"
                 name="email"
                 placeholder="E-mail"
-                autoComplete="off"
+                autoComplete="email"
               />
               <ErrorMessage
                 name="email"
