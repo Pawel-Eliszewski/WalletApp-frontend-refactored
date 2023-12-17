@@ -67,12 +67,12 @@ export const AuthForm = ({ context, onSubmit }) => {
                 height="16"
               />
               <Field
-                autoFocus={true}
+                autoFocus={false}
                 className="auth-form__input"
                 type="email"
                 name="email"
                 placeholder="E-mail"
-                autoComplete="email"
+                autoComplete="off"
               />
               <ErrorMessage
                 name="email"
@@ -94,7 +94,7 @@ export const AuthForm = ({ context, onSubmit }) => {
                 type="password"
                 name="password"
                 placeholder={placeholderPassword}
-                autoComplete="password"
+                autoComplete="off"
               />
               <ErrorMessage
                 name="password"
@@ -118,7 +118,7 @@ export const AuthForm = ({ context, onSubmit }) => {
                     type="password"
                     name="confirmPassword"
                     placeholder={placeholderConfirmPassword}
-                    autoComplete="new-password"
+                    autoComplete="off"
                   />
                   <ErrorMessage
                     name="confirmPassword"
