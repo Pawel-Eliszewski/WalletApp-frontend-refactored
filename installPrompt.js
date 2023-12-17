@@ -1,19 +1,16 @@
-// const isInstallPromptShown = localStorage.getItem("isInstallPromptShown");
+const isInstallPromptShown = localStorage.getItem("isInstallPromptShown");
 
 window.addEventListener("beforeinstallprompt", (event) => {
   event.preventDefault();
-  // if (!isInstallPromptShown) {
-  //   localStorage.setItem("isInstallPromptShown", "true");
-  // }
-  showInstallPrompt(event);
+  if (!isInstallPromptShown) {
+    showInstallPrompt();
+  }
 });
 
-function showInstallPrompt(event) {
+function showInstallPrompt() {
   const userLanguage = (navigator.language || navigator.userLanguage)
     .split("-")[0]
     .toLowerCase();
-
-  console.log(userLanguage);
 
   const translations = {
     en: "You can install this application on your device. It is recommended for the best user experience.",
@@ -24,25 +21,5 @@ function showInstallPrompt(event) {
 
   alert(translatedMessage);
 
-  const installButton = document.createElement("button");
-  installButton.innerText = "Install App";
-  installButton.addEventListener("click", () => {
-    event.prompt();
-    event.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === "accepted") {
-        hideInstallButton();
-      } else {
-        return;
-      }
-    });
-  });
-
-  document.body.appendChild(installButton);
-}
-
-function hideInstallButton() {
-  const installButton = document.querySelector("button");
-  if (installButton) {
-    installButton.style.display = "none";
-  }
+  localStorage.setItem("isInstallPromptShown", "true");
 }
