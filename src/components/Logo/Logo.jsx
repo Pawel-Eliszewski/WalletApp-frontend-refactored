@@ -6,7 +6,9 @@ export const Logo = () => {
         src="/assets/icon-wallet.svg"
         alt="wallet icon"
       />
-      <h2 className="logo__title">Wallet</h2>
+      <h2 className="logo__title" id="app-title">
+        Wallet
+      </h2>
     </div>
   );
 };

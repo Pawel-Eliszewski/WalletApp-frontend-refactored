@@ -17,16 +17,13 @@ export const AuthForm = ({ context, onSubmit }) => {
   const btnRegisterRef = useRef(null);
 
   useEffect(() => {
-    document.activeElement.blur();
+    document.getElementById("app-title").focus();
   }, []);
 
   useEffect(() => {
     if (btnRegisterRef.current) {
       btnRegisterRef.current.blur();
     }
-    // const timeoutId = setTimeout(() => {
-    // }, 0);
-    // return () => clearTimeout(timeoutId);
   }, [context]);
 
   const placeholderPassword = intl.formatMessage({
