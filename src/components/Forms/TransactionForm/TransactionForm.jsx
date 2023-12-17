@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useIntl, FormattedMessage } from "react-intl";
 import { useMedia } from "react-use";
+import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../../redux/session/selectors";
 import {
@@ -31,6 +32,7 @@ export const TransactionForm = ({ onMenuOpen, onMenuClose, onModalClose }) => {
   const user = useSelector(selectUser);
   const allTransactions = useSelector(selectTransactions);
   const transactionId = useSelector(selectTransactionId);
+  const formikRef = useRef();
 
   const placeholderComment = intl.formatMessage({
     id: "headerComment",
@@ -59,6 +61,12 @@ export const TransactionForm = ({ onMenuOpen, onMenuClose, onModalClose }) => {
     amount: context === "edit" ? selectedTransaction.amount : "",
     date: context === "edit" ? selectedTransaction.date : formattedTodayDate,
     comment: context === "edit" ? selectedTransaction.comment : "",
+  };
+
+  const handleTransactionFormClear = () => {
+    formikRef.current.resetForm();
+    const clearButton = document.querySelector(".btn.btn--cancel");
+    !isMobile && clearButton.blur();
   };
 
   const handleAddTransaction = async (values) => {
@@ -102,6 +110,7 @@ export const TransactionForm = ({ onMenuOpen, onMenuClose, onModalClose }) => {
   return (
     <div className="transaction-form">
       <Formik
+        innerRef={formikRef}
         initialValues={initialValues}
         validationSchema={transactionValidationSchema}
         onSubmit={
@@ -240,6 +249,15 @@ export const TransactionForm = ({ onMenuOpen, onMenuClose, onModalClose }) => {
           </Form>
         )}
       </Formik>
+      {context === "add" && (
+        <Button
+          ariaLabel="clear all transaction inputs"
+          title={<FormattedMessage id="titleClear" />}
+          styles="--cancel"
+          type="button"
+          onClick={handleTransactionFormClear}
+        />
+      )}
     </div>
   );
 };

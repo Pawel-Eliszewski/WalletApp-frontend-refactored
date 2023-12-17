@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useIntl, FormattedMessage } from "react-intl";
-import { useRef } from "react";
 import { useMedia } from "react-use";
+import { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   selectTransactions,
@@ -297,7 +297,6 @@ export const SearchForm = ({ onMenuOpen, onMenuClose, onModalClose }) => {
                 )}
               </div>
             </div>
-
             <div className="search-form__inputs search-form__inputs--last">
               <label className="search-form__label" htmlFor="maxDate">
                 <FormattedMessage id="headerComment" />:
