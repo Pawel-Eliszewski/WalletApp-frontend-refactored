@@ -1,11 +1,11 @@
-const isInstallPromptShown = localStorage.getItem("isInstallPromptShown");
+// const isInstallPromptShown = localStorage.getItem("isInstallPromptShown");
 
 window.addEventListener("beforeinstallprompt", (event) => {
   event.preventDefault();
-  if (!isInstallPromptShown) {
-    showInstallPrompt(event);
-    localStorage.setItem("isInstallPromptShown", "true");
-  }
+  // if (!isInstallPromptShown) {
+  //   localStorage.setItem("isInstallPromptShown", "true");
+  // }
+  showInstallPrompt(event);
 });
 
 function showInstallPrompt(event) {
