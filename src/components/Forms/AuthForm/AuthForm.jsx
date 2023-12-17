@@ -17,6 +17,7 @@ export const AuthForm = ({ context, onSubmit }) => {
   const btnRegisterRef = useRef(null);
 
   useEffect(() => {
+    document.activeElement.blur();
     if (btnRegisterRef.current) {
       btnRegisterRef.current.blur();
     }
