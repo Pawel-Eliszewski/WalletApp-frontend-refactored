@@ -4,6 +4,7 @@ import { FormattedMessage } from "react-intl";
 import { useSelector, useDispatch } from "react-redux";
 import { selectContext, selectIsModalOpen } from "../../redux/global/selectors";
 import { setContext, setIsModalOpen } from "../../redux/global/globalSlice";
+import { selectUser } from "../../redux/session/selectors";
 import { logout } from "../../redux/session/operations";
 import { setTransactionId } from "../../redux/finance/financeSlice";
 import { deleteTransaction } from "../../redux/finance/operations";
@@ -21,11 +22,14 @@ import {
 } from "../../utils/backdropAndAnimationsStyles";
 import { selectTransactionId } from "../../redux/finance/selectors";
 
+import { Notify } from "notiflix";
+
 export const Modal = () => {
   const dispatch = useDispatch();
   const context = useSelector(selectContext);
   const isModalOpen = useSelector(selectIsModalOpen);
   const transactionId = useSelector(selectTransactionId);
+  const user = useSelector(selectUser);
   const isMobile = useMedia("(max-width: 767px)");
 
   useEffect(() => {
@@ -56,7 +60,13 @@ export const Modal = () => {
 
   const handleDeleteTransaction = () => {
     try {
-      dispatch(deleteTransaction(transactionId));
+      if (user.id !== "650f2fb1143d76a0d93a0176") {
+        dispatch(deleteTransaction(transactionId));
+      } else {
+        Notify.info(
+          "W wersji Demo nie można dodawać, edytować ani usuwać transakcji"
+        );
+      }
       handleModalClose();
     } catch (error) {
       handleModalClose();

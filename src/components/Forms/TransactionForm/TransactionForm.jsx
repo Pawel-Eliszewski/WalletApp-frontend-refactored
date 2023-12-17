@@ -21,6 +21,7 @@ import { Calendar } from "../../Calendar/Calendar";
 import { expenseCategoryOptions } from "../../../utils/transactionCategories";
 import { formattedTodayDate } from "../../../utils/dateHandlers";
 import { transactionValidationSchema } from "../../../utils/yupValidationSchemas";
+import { Notify } from "notiflix";
 /**
  * @param {{ onMenuOpen: () => void, onMenuClose: () => void, onModalClose: () => void }} props
  */
@@ -79,7 +80,13 @@ export const TransactionForm = ({ onMenuOpen, onMenuClose, onModalClose }) => {
       owner: user.id,
     };
     try {
-      await dispatch(addTransaction(formData)).unwrap();
+      if (user.id !== "650f2fb1143d76a0d93a0176") {
+        await dispatch(addTransaction(formData)).unwrap();
+      } else {
+        Notify.info(
+          "W wersji Demo nie można dodawać, edytować ani usuwać transakcji"
+        );
+      }
       onModalClose();
     } catch (error) {
       onModalClose();
@@ -99,7 +106,13 @@ export const TransactionForm = ({ onMenuOpen, onMenuClose, onModalClose }) => {
       owner: selectedTransaction.owner,
     };
     try {
-      await dispatch(updateTransaction(formData)).unwrap();
+      if (user.id !== "650f2fb1143d76a0d93a0176") {
+        await dispatch(updateTransaction(formData)).unwrap();
+      } else {
+        Notify.info(
+          "W wersji Demo nie można dodawać, edytować ani usuwać transakcji"
+        );
+      }
       onModalClose();
     } catch (error) {
       onModalClose();
