@@ -9,9 +9,10 @@ import {
   registerValidationSchema,
 } from "../../../utils/yupValidationSchemas";
 /**
- * @param {{ formType: 'login' | 'register', onSubmit: () => void }} props
+ * @param {{ formType: 'login' | 'register', onSubmit: () => void,
+ * onDemoLogin: () => void }} props
  */
-export const AuthForm = ({ formType, onSubmit }) => {
+export const AuthForm = ({ formType, onSubmit, onDemoLogin }) => {
   const intl = useIntl();
   const navigate = useNavigate();
   const btnRegisterRef = useRef(null);
@@ -205,6 +206,13 @@ export const AuthForm = ({ formType, onSubmit }) => {
               onClick={() => handleClick(formikBag)}
               ref={btnRegisterRef}
             />
+            <Button
+              ariaLabel="go to demo version"
+              title="Demo"
+              styles="--cancel"
+              type="button"
+              onClick={onDemoLogin}
+            />
           </Form>
         )}
       </Formik>
@@ -215,4 +223,5 @@ export const AuthForm = ({ formType, onSubmit }) => {
 AuthForm.propTypes = {
   formType: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  onDemoLogin: PropTypes.func.isRequired,
 };

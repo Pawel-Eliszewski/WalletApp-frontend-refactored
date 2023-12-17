@@ -30,6 +30,14 @@ const AuthPage = ({ formType }) => {
     navigate("/login", { replace: "true" });
   };
 
+  const handleDemoLogin = () => {
+    const formData = {
+      email: "demo@demo.com",
+      password: "demo123",
+    };
+    dispatch(login(formData)).unwrap();
+  };
+
   return (
     <>
       <PageBackground />
@@ -51,6 +59,7 @@ const AuthPage = ({ formType }) => {
           <AuthForm
             formType={formType}
             onSubmit={formType === "login" ? handleLogin : handleRegister}
+            onDemoLogin={handleDemoLogin}
           />
         </div>
       </div>
