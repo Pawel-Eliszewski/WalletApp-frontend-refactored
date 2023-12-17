@@ -1295,7 +1295,7 @@ body[data-color-scheme=dark] .auth-form__field:focus-within {
   background-color: transparent;
   overflow-wrap: break-word;
   width: 280px;
-  height: 84px;
+  height: 54px;
   border: none;
   padding-left: 12px;
   padding-bottom: 50px;
