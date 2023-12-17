@@ -17,6 +17,14 @@ export const AuthForm = ({ context, onSubmit }) => {
   const btnRegisterRef = useRef(null);
 
   useEffect(() => {
+    const form = document.getElementById("form");
+    if (form) {
+      console.log("click");
+      form.focus();
+    }
+  }, []);
+
+  useEffect(() => {
     if (btnRegisterRef.current) {
       btnRegisterRef.current.blur();
     }
@@ -58,6 +66,11 @@ export const AuthForm = ({ context, onSubmit }) => {
       >
         {(formikBag) => (
           <Form className="auth-form__wrapper">
+            <div
+              id="form"
+              className="auth-form__placeholder"
+              tabIndex={-1}
+            ></div>
             <div className="auth-form__field">
               <img
                 className="auth-form__icon auth-form__icon--email"
