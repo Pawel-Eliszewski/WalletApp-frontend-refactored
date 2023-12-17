@@ -17,6 +17,13 @@ export const AuthForm = ({ context, onSubmit }) => {
   const btnRegisterRef = useRef(null);
 
   useEffect(() => {
+    const firstInput = document.querySelector(".auth-form__input");
+    if (firstInput) {
+      firstInput.blur();
+    }
+  }, []);
+
+  useEffect(() => {
     if (btnRegisterRef.current) {
       btnRegisterRef.current.blur();
     }

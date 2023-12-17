@@ -1756,9 +1756,6 @@ body[data-color-scheme=dark] .mobile-table__controls {
 body[data-color-scheme=dark] .logo__title {
   color: var(--secondary-gray-font-color);
 }
-.logo__title:focus {
-  outline: none;
-}
 
 @media screen and (min-width: 768px) {
   .logo__icon {

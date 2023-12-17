@@ -1,10 +1,4 @@
-import { useEffect } from "react";
-
 export const Logo = () => {
-  useEffect(() => {
-    document.getElementById("app-title").focus();
-  }, []);
-
   return (
     <div className="logo">
       <img
@@ -12,9 +6,7 @@ export const Logo = () => {
         src="/assets/icon-wallet.svg"
         alt="wallet icon"
       />
-      <h2 className="logo__title" id="app-title" tabIndex={-1}>
-        Wallet
-      </h2>
+      <h2 className="logo__title">Wallet</h2>
     </div>
   );
 };
