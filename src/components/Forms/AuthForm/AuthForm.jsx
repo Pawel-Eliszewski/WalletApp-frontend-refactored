@@ -15,12 +15,8 @@ export const AuthForm = ({ context, onSubmit }) => {
   const intl = useIntl();
   const navigate = useNavigate();
   const btnRegisterRef = useRef(null);
-  const btnSubmitRef = useRef(null);
 
   useEffect(() => {
-    if (btnSubmitRef.current) {
-      btnSubmitRef.current.focus();
-    }
     if (btnRegisterRef.current) {
       btnRegisterRef.current.blur();
     }
@@ -51,7 +47,7 @@ export const AuthForm = ({ context, onSubmit }) => {
   };
 
   return (
-    <div className="auth-form" ref={btnSubmitRef}>
+    <div className="auth-form">
       <Formik
         initialValues={initialValues}
         validationSchema={
@@ -71,6 +67,7 @@ export const AuthForm = ({ context, onSubmit }) => {
                 height="16"
               />
               <Field
+                autoFocus={false}
                 id="email"
                 className="auth-form__input"
                 type="email"
@@ -93,6 +90,7 @@ export const AuthForm = ({ context, onSubmit }) => {
                 height="21"
               />
               <Field
+                autoFocus={false}
                 className="auth-form__input"
                 type="password"
                 name="password"
@@ -116,6 +114,7 @@ export const AuthForm = ({ context, onSubmit }) => {
                     height="21"
                   />
                   <Field
+                    autoFocus={false}
                     className="auth-form__input"
                     type="password"
                     name="confirmPassword"
@@ -137,6 +136,7 @@ export const AuthForm = ({ context, onSubmit }) => {
                     height="18"
                   />
                   <Field
+                    autoFocus={false}
                     className="auth-form__input"
                     type="name"
                     name="name"
