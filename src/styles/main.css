@@ -1269,6 +1269,9 @@ body[data-color-scheme=dark] .auth-form__field:focus-within {
   gap: 25px;
   margin-bottom: 15px;
 }
+.transaction-form__wrapper--edit {
+  margin-bottom: 0;
+}
 .transaction-form__inputs {
   position: relative;
   display: flex;

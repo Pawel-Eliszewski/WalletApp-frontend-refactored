@@ -132,7 +132,13 @@ export const TransactionForm = ({ onMenuOpen, onMenuClose, onModalClose }) => {
         enableReinitialize={true}
       >
         {({ errors, touched, values, setFieldValue, setFieldTouched }) => (
-          <Form className="transaction-form__wrapper">
+          <Form
+            className={
+              context === "add"
+                ? "transaction-form__wrapper"
+                : "transaction-form__wrapper transaction-form__wrapper--edit"
+            }
+          >
             <div className="transaction-form__type type">
               <span
                 className={`type__span ${

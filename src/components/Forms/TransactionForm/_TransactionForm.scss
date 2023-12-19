@@ -16,6 +16,10 @@
         justify-content: center;
         gap: 25px;
         margin-bottom: 15px;
+
+        &--edit {
+            margin-bottom: 0;
+        }
     }
 
     &__inputs {
