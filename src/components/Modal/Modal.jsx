@@ -2,7 +2,11 @@ import { useEffect } from "react";
 import { useMedia } from "react-use";
 import { FormattedMessage } from "react-intl";
 import { useSelector, useDispatch } from "react-redux";
-import { selectContext, selectIsModalOpen } from "../../redux/global/selectors";
+import {
+  selectContext,
+  selectIsModalOpen,
+  selectAppLanguage,
+} from "../../redux/global/selectors";
 import { setContext, setIsModalOpen } from "../../redux/global/globalSlice";
 import { selectUser } from "../../redux/session/selectors";
 import { logout } from "../../redux/session/operations";
@@ -21,14 +25,18 @@ import {
   setOverlayNotVisible,
 } from "../../utils/backdropAndAnimationsStyles";
 import { selectTransactionId } from "../../redux/finance/selectors";
-
-import { Notify } from "notiflix";
+import { Report } from "../../utils/notiflixStyles";
+import {
+  notAllowedMessage,
+  pleaseRegisterMessage,
+} from "../../utils/notiflixMessages";
 
 export const Modal = () => {
   const dispatch = useDispatch();
   const context = useSelector(selectContext);
   const isModalOpen = useSelector(selectIsModalOpen);
   const transactionId = useSelector(selectTransactionId);
+  const appLanguage = useSelector(selectAppLanguage);
   const user = useSelector(selectUser);
   const isMobile = useMedia("(max-width: 767px)");
 
@@ -63,8 +71,10 @@ export const Modal = () => {
       if (user.id !== "650f2fb1143d76a0d93a0176") {
         dispatch(deleteTransaction(transactionId));
       } else {
-        Notify.info(
-          "W wersji Demo nie można dodawać, edytować ani usuwać transakcji"
+        Report.info(
+          notAllowedMessage(appLanguage),
+          pleaseRegisterMessage(appLanguage),
+          "OK"
         );
       }
       handleModalClose();

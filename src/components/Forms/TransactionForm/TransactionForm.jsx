@@ -8,7 +8,10 @@ import {
   selectTransactions,
   selectTransactionId,
 } from "../../../redux/finance/selectors";
-import { selectContext } from "../../../redux/global/selectors";
+import {
+  selectContext,
+  selectAppLanguage,
+} from "../../../redux/global/selectors";
 import {
   addTransaction,
   updateTransaction,
@@ -21,7 +24,11 @@ import { Calendar } from "../../Calendar/Calendar";
 import { expenseCategoryOptions } from "../../../utils/transactionCategories";
 import { formattedTodayDate } from "../../../utils/dateHandlers";
 import { transactionValidationSchema } from "../../../utils/yupValidationSchemas";
-import { Notify } from "notiflix";
+import { Report } from "../../../utils/notiflixStyles";
+import {
+  notAllowedMessage,
+  pleaseRegisterMessage,
+} from "../../../utils/notiflixMessages";
 /**
  * @param {{ onMenuOpen: () => void, onMenuClose: () => void, onModalClose: () => void }} props
  */
@@ -30,6 +37,7 @@ export const TransactionForm = ({ onMenuOpen, onMenuClose, onModalClose }) => {
   const dispatch = useDispatch();
   const isMobile = useMedia("(max-width: 767px)");
   const context = useSelector(selectContext);
+  const appLanguage = useSelector(selectAppLanguage);
   const user = useSelector(selectUser);
   const allTransactions = useSelector(selectTransactions);
   const transactionId = useSelector(selectTransactionId);
@@ -83,8 +91,10 @@ export const TransactionForm = ({ onMenuOpen, onMenuClose, onModalClose }) => {
       if (user.id !== "650f2fb1143d76a0d93a0176") {
         await dispatch(addTransaction(formData)).unwrap();
       } else {
-        Notify.info(
-          "W wersji Demo nie można dodawać, edytować ani usuwać transakcji"
+        Report.info(
+          notAllowedMessage(appLanguage),
+          pleaseRegisterMessage(appLanguage),
+          "OK"
         );
       }
       onModalClose();
@@ -109,8 +119,10 @@ export const TransactionForm = ({ onMenuOpen, onMenuClose, onModalClose }) => {
       if (user.id !== "650f2fb1143d76a0d93a0176") {
         await dispatch(updateTransaction(formData)).unwrap();
       } else {
-        Notify.info(
-          "W wersji Demo nie można dodawać, edytować ani usuwać transakcji"
+        Report.info(
+          notAllowedMessage(appLanguage),
+          pleaseRegisterMessage(appLanguage),
+          "OK"
         );
       }
       onModalClose();

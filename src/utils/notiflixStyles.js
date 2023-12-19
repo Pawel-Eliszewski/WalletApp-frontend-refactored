@@ -97,6 +97,14 @@ export const configureNotiflixStyles = (colorScheme) => {
       buttonColor: reportFailureButtonColor,
       backOverlayColor: "#000000b0",
     },
+    info: {
+      svgColor: notifyInfoBackground,
+      titleColor: reportFontColor,
+      messageColor: reportFontColor,
+      buttonBackground: notifyInfoBackground,
+      buttonColor: reportFailureButtonColor,
+      backOverlayColor: "#000000b0",
+    },
   });
 };
 

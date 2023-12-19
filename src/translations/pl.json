@@ -92,6 +92,8 @@
   "notifyAdded": "Transakcja dodana",
   "notifyDeleted": "Transakcja usunięta",
   "notifyUpdated": "Transakcja zaaktualizowana",
+  "notifyNotAllowed": "Niedozwolone w wersji Demo",
+  "notifyPleaseRegister": "W wersji Demo nie można dodawać, edytować ani usuwać transakcji. Proszę się zalogować lub zarejestrować, żeby móc korzystać ze wszystkich funkcjonalności aplikacji.",
   "invalidEmail": "Adres e-mail musi zawierać @",
   "emailRequired": "E-mail jest wymagany",
   "passwordRequired": "Hasło jest wymagane",

@@ -63,3 +63,9 @@ export const loggingMessage = (appLanguage) =>
 
 export const noFiltersMessage = (appLanguage) =>
   getTranslatedMessage(appLanguage, "notifyNoFilters");
+
+export const notAllowedMessage = (appLanguage) =>
+  getTranslatedMessage(appLanguage, "notifyNotAllowed");
+
+export const pleaseRegisterMessage = (appLanguage) =>
+  getTranslatedMessage(appLanguage, "notifyPleaseRegister");
