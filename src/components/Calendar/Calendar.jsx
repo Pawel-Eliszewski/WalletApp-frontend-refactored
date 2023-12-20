@@ -26,8 +26,6 @@ export const Calendar = ({
   const appLanguage = useSelector(selectAppLanguage);
   const datePickerRef = useRef(null);
 
-  console.log(transactionType);
-
   useEffect(() => {
     const disableScreenKeyboard = () => {
       if (id && isMobile) {
