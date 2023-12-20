@@ -273,6 +273,7 @@
         border-radius: 20px !important;
         box-shadow: 0px 6px 15px 0px rgba(0, 0, 0, 0.3) !important;
         z-index: 100 !important;
+        max-height: none !important;
 
         body[data-color-scheme='dark'] & {
             background-color: var(--primary-dark-background-color) !important;
@@ -282,6 +283,7 @@
         &-list {
             border-radius: 20px !important;
             z-index: 100 !important;
+            max-height: 500px !important;
         }
     }
 

@@ -69,3 +69,9 @@ export const notAllowedMessage = (appLanguage) =>
 
 export const pleaseRegisterMessage = (appLanguage) =>
   getTranslatedMessage(appLanguage, "notifyPleaseRegister");
+
+export const demoWelcomeMessage = (appLanguage) =>
+  getTranslatedMessage(appLanguage, "notifyDemoWelcome");
+
+export const demoWelcomeInfoMessage = (appLanguage) =>
+  getTranslatedMessage(appLanguage, "notifyDemoWelcomeInfo");

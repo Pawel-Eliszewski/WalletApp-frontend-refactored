@@ -1,9 +1,12 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { Notify } from "../../utils/notiflixStyles";
+import { Loading } from "notiflix";
+import { Notify, Report } from "../../utils/notiflixStyles";
 import {
   loggingSuccessfulMessage,
   welcomeMessage,
+  demoWelcomeMessage,
+  demoWelcomeInfoMessage,
   invalidCredentialsMessage,
   loggingFailedMessage,
   registeredMessage,
@@ -13,7 +16,6 @@ import {
   loggedOutMessage,
   networkErrorMessage,
 } from "../../utils/notiflixMessages";
-import { Loading } from "notiflix";
 
 export const instance = axios.create({
   baseURL: "https://finance-app-wallet-backend.cyclic.app",
@@ -59,10 +61,18 @@ export const login = createAsyncThunk(
       Loading.remove();
       setAuthHeader(response.data.data.token);
       setTimeout(() => {
-        Notify.info(
-          `${loggingSuccessfulMessage(appLanguage)}<br>
+        if (response.data.data.ID !== "650f2fb1143d76a0d93a0176") {
+          Notify.info(
+            `${loggingSuccessfulMessage(appLanguage)}<br>
            ${welcomeMessage(appLanguage, response.data.data.firstname)}`
-        );
+          );
+        } else {
+          Report.info(
+            demoWelcomeMessage(appLanguage),
+            demoWelcomeInfoMessage(appLanguage),
+            "OK"
+          );
+        }
       }, 1500);
       return response.data;
     } catch (error) {

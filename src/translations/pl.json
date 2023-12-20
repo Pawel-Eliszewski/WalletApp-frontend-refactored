@@ -94,6 +94,8 @@
   "notifyUpdated": "Transakcja zaaktualizowana",
   "notifyNotAllowed": "Niedozwolone w wersji Demo",
   "notifyPleaseRegister": "W wersji Demo nie można dodawać, edytować ani usuwać transakcji. Proszę się zalogować lub zarejestrować, żeby móc korzystać ze wszystkich funkcjonalności aplikacji.",
+  "notifyDemoWelcome": "Witamy w wersji Demo",
+  "notifyDemoWelcomeInfo": "Aplikacja 'Wallet' jest menedżerem finansów. Prezentujemy symulację użytkowania aplikacji w okresie 3 lat, przez pracującego na pełen etet rodzica trójki dzieci.",
   "invalidEmail": "Adres e-mail musi zawierać @",
   "emailRequired": "E-mail jest wymagany",
   "passwordRequired": "Hasło jest wymagane",
