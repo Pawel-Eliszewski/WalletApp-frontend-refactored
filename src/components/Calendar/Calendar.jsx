@@ -26,6 +26,8 @@ export const Calendar = ({
   const appLanguage = useSelector(selectAppLanguage);
   const datePickerRef = useRef(null);
 
+  console.log(transactionType);
+
   useEffect(() => {
     const disableScreenKeyboard = () => {
       if (id && isMobile) {
@@ -61,7 +63,13 @@ export const Calendar = ({
       selected={formattedTransactionDate(transactionDate)}
       onChange={(newDate) => onDateChange(handleNewDate(newDate))}
       dateFormat="dd.MM.yyyy"
-      calendarClassName={transactionType === "income" ? "--income" : ""}
+      calendarClassName={
+        transactionType === "income"
+          ? "react-datepicker--income"
+          : transactionType === "expense"
+          ? "react-datepicker--expense"
+          : ""
+      }
       autoComplete="off"
       locale={appLanguage === "pl" ? pl : null}
     >

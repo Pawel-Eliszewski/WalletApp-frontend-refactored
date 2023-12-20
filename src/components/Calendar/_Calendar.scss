@@ -33,15 +33,6 @@ $iconCalendar: url("/assets/icon-calendar.svg");
 
     &-popper {
         z-index: 1000 !important;
-        // position: fixed !important;
-        // left: 50% !important;
-        // top: 50% !important;
-        // transform: translate(-50%, -50%) !important;
-
-        @media screen and (min-width:768px) {
-            // transform: translate3d(165px, 28.8px, 0px) !important;
-            // margin-top: 3px !important;
-        }
     }
 
     &__aria-live,
@@ -241,12 +232,12 @@ $iconCalendar: url("/assets/icon-calendar.svg");
         &:focus,
         &--today,
         &--selected {
-            background-color: var(--primary-expense-color);
+            background-color: var(--primary-gray-font-color);
             color: var(--primary-background-color);
             text-shadow: 0 -1px 0 var(--primary-text-shadow-color);
 
             body[data-color-scheme='dark'] & {
-                background-color: var(--ellipse-bottom-dark-color);
+                background-color: var(--primary-dark-border-color);
             }
         }
 
@@ -270,6 +261,22 @@ $iconCalendar: url("/assets/icon-calendar.svg");
 
                 body[data-color-scheme='dark'] & {
                     background-color: var(--btn-submit-hover);
+                }
+            }
+        }
+    }
+
+    &--expense {
+        .react-datepicker__day {
+
+            &:hover,
+            &:focus,
+            &--today,
+            &--selected {
+                background-color: var(--primary-expense-color);
+
+                body[data-color-scheme='dark'] & {
+                    background-color: var(--ellipse-bottom-dark-color);
                 }
             }
         }

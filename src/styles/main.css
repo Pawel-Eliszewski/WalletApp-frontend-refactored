@@ -772,12 +772,12 @@ body[data-color-scheme=dark] .react-datepicker__day--outside-month {
   right: 3px;
 }
 .react-datepicker__day:hover, .react-datepicker__day:focus, .react-datepicker__day--today, .react-datepicker__day--selected {
-  background-color: var(--primary-expense-color);
+  background-color: var(--primary-gray-font-color);
   color: var(--primary-background-color);
   text-shadow: 0 -1px 0 var(--primary-text-shadow-color);
 }
 body[data-color-scheme=dark] .react-datepicker__day:hover, body[data-color-scheme=dark] .react-datepicker__day:focus, body[data-color-scheme=dark] .react-datepicker__day--today, body[data-color-scheme=dark] .react-datepicker__day--selected {
-  background-color: var(--ellipse-bottom-dark-color);
+  background-color: var(--primary-dark-border-color);
 }
 .react-datepicker__day--selected {
   outline: 2px solid var(--primary-font-color);
@@ -790,6 +790,12 @@ body[data-color-scheme=dark] .react-datepicker__day--selected {
 }
 body[data-color-scheme=dark] .react-datepicker--income .react-datepicker__day:hover, body[data-color-scheme=dark] .react-datepicker--income .react-datepicker__day:focus, body[data-color-scheme=dark] .react-datepicker--income .react-datepicker__day--today, body[data-color-scheme=dark] .react-datepicker--income .react-datepicker__day--selected {
   background-color: var(--btn-submit-hover);
+}
+.react-datepicker--expense .react-datepicker__day:hover, .react-datepicker--expense .react-datepicker__day:focus, .react-datepicker--expense .react-datepicker__day--today, .react-datepicker--expense .react-datepicker__day--selected {
+  background-color: var(--primary-expense-color);
+}
+body[data-color-scheme=dark] .react-datepicker--expense .react-datepicker__day:hover, body[data-color-scheme=dark] .react-datepicker--expense .react-datepicker__day:focus, body[data-color-scheme=dark] .react-datepicker--expense .react-datepicker__day--today, body[data-color-scheme=dark] .react-datepicker--expense .react-datepicker__day--selected {
+  background-color: var(--ellipse-bottom-dark-color);
 }
 
 .currency__container {
