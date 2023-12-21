@@ -7,5 +7,3 @@ export const selectFilteredTransactions = (state) =>
   state.finance.filteredTransactions;
 
 export const selectTransactionId = (state) => state.finance.transactionId;
-
-export const selectBalance = (state) => state.finance.totalBalance;

@@ -33,5 +33,3 @@ export const Balance = () => {
     </div>
   );
 };
-
-//h2 or h1 ?

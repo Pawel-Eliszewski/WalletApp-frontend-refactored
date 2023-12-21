@@ -8,7 +8,6 @@ import {
 import { register, login, logout, refreshUser } from "../session/operations";
 
 const initialState = {
-  totalBalance: 0,
   transactions: null,
   transactionsFilters: null,
   filteredTransactions: null,
