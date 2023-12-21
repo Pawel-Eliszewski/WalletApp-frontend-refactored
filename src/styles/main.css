@@ -1098,6 +1098,7 @@ body[data-color-scheme=dark] .statistics__summary-item {
     justify-content: space-between;
     max-width: 728px;
     position: relative;
+    padding-bottom: 0;
   }
 }
 @media screen and (min-width: 1280px) and (min-width: 1280px) {
