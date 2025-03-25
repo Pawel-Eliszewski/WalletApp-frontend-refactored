@@ -18,7 +18,7 @@ import {
 } from "../../utils/notiflixMessages";
 
 export const instance = axios.create({
-  baseURL: "https://finance-app-wallet-backend.cyclic.app",
+  baseURL: "https://walletapp-backend-refactored.onrender.com",
 });
 
 const setAuthHeader = (token) => {
